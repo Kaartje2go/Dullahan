@@ -1,0 +1,207 @@
+{
+    "private": true,
+    "license": "GPL-3.0",
+    "name": "@kaartje2go/dullahan",
+    "version": "1.0.0",
+    "description": "An extensible utility to help you run acceptance tests anywhere at lightning speed",
+    "author": "Kaartje2go",
+    "repository": "https://github.com/Kaartje2go/Dullahan.git",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "dullahan": "yarn dullahan-ts",
+        "dullahan-ts": "ts-node -r tsconfig-paths/register ./packages/dullahan/src/bin/dullahan-ts.ts",
+        "commit": "yarn lint-staged && git-cz",
+        "serve-website": "yarn serve website/build/Dullahan",
+        "serve-fixtures": "yarn serve packages/dullahan/fixtures/",
+        "test-all": "jest --config=./scripts/jest/config/entry.js",
+        "test-windows": "yarn test-all --projects='scripts/jest/projects/*{ie11,chrome,firefox,edge,chromium,webkit}.js'",
+        "test-linux": "yarn test-all --projects='scripts/jest/projects/*{chrome,firefox,edge,chromium,webkit}.js'",
+        "test-mac": "yarn test-all --projects='scripts/jest/projects/*{safari,chrome,firefox,edge,chromium,webkit}.js'",
+        "test-nodejs": "yarn test-all --projects=./scripts/jest/projects/nodejs.js",
+        "test-chrome": "yarn test-all --projects='scripts/jest/projects/*{chrome,chromium}.js'",
+        "test-firefox": "yarn test-all --projects='scripts/jest/projects/*{firefox}.js'",
+        "test-safari": "yarn test-all --projects='scripts/jest/projects/*{safari,webkit}.js'",
+        "test-edge": "yarn test-all --projects='scripts/jest/projects/*{edge}.js'",
+        "test-ie11": "yarn test-all --projects='scripts/jest/projects/*{ie11}.js'",
+        "test-puppeteer": "yarn test-all --projects='scripts/jest/projects/puppeteer*.js'",
+        "test-playwright": "yarn test-all --projects='scripts/jest/projects/playwright*.js'",
+        "test-selenium": "yarn test-all --projects='scripts/jest/projects/selenium*.js'",
+        "test-selenium-3": "yarn test-all --projects='scripts/jest/projects/selenium_3*.js'",
+        "test-selenium-4": "yarn test-all --projects='scripts/jest/projects/selenium_4*.js'",
+        "test-puppeteer-chromium": "yarn test-all --projects=./scripts/jest/projects/puppeteer_chromium.js",
+        "test-puppeteer-firefox": "yarn test-all --projects=./scripts/jest/projects/puppeteer_firefox.js",
+        "test-playwright-chromium": "yarn test-all --projects=./scripts/jest/projects/playwright_chromium.js",
+        "test-playwright-firefox": "yarn test-all --projects=./scripts/jest/projects/playwright_firefox.js",
+        "test-playwright-webkit": "yarn test-all --projects=./scripts/jest/projects/playwright_webkit.js",
+        "test-selenium-3-chrome": "yarn test-all --projects=./scripts/jest/projects/selenium_3_chrome.js",
+        "test-selenium-3-firefox": "yarn test-all --projects=./scripts/jest/projects/selenium_3_firefox.js",
+        "test-selenium-3-safari": "yarn test-all --projects=./scripts/jest/projects/selenium_3_safari.js",
+        "test-selenium-3-edge18": "yarn test-all --projects=./scripts/jest/projects/selenium_3_edge18.js",
+        "test-selenium-3-edge": "yarn test-all --projects=./scripts/jest/projects/selenium_3_edge.js",
+        "test-selenium-3-ie11": "yarn test-all --projects=./scripts/jest/projects/selenium_3_ie11.js",
+        "test-selenium-4-chrome": "yarn test-all --projects=./scripts/jest/projects/selenium_4_chrome.js",
+        "test-selenium-4-firefox": "yarn test-all --projects=./scripts/jest/projects/selenium_4_firefox.js",
+        "test-selenium-4-safari": "yarn test-all --projects=./scripts/jest/projects/selenium_4_safari.js",
+        "test-selenium-4-edge18": "yarn test-all --projects=./scripts/jest/projects/selenium_4_edge18.js",
+        "test-selenium-4-edge": "yarn test-all --projects=./scripts/jest/projects/selenium_4_edge.js",
+        "test-selenium-4-ie11": "yarn test-all --projects=./scripts/jest/projects/selenium_4_ie11.js",
+        "lint-code": "yarn eslint 'packages/*/{src,tests}/**/*.{ts,js}' 'scripts/**/*.{ts,js}'",
+        "lint-commit": "commitlint",
+        "clean-all": "yarn clean-code && yarn clean-coverage && yarn clean-website && yarn clean-modules",
+        "clean-code": "lerna run clean-code --parallel",
+        "clean-coverage": "rimraf coverage",
+        "clean-website": "rimraf website/build",
+        "clean-modules": "(rimraf 'packages/*/node_modules' || true) && (rimraf node_modules || true)",
+        "build-all": "yarn build-code && yarn build-website",
+        "build-code": "yarn clean-code && lerna run compile-code",
+        "build-website": "yarn clean-website && bash ./scripts/ci/jobs/build_website.sh",
+        "build-website-local": "cross-env DULLAHAN_WEBSITE_TARGET=local yarn build-website && yarn serve-website",
+        "ensure-all": "yarn ensure-env && yarn ensure-packagejson && yarn ensure-tsconfig && yarn ensure-license",
+        "ensure-env": "ts-node ./scripts/yarn/ensure_env.ts",
+        "ensure-license": "ts-node ./scripts/yarn/ensure_license.ts",
+        "ensure-packagejson": "ts-node ./scripts/yarn/ensure_packagejson.ts",
+        "ensure-tsconfig": "ts-node ./scripts/yarn/ensure_tsconfig.ts",
+        "setup": "yarn install && yarn ensure-all && yarn build-code"
+    },
+    "resolutions": {
+        "**/lodash": ">=4.17.12",
+        "**/minimist": ">=1.2.3"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.9.6",
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-conventional": "^8.3.4",
+        "@commitlint/prompt": "^8.3.5",
+        "@types/jest": "^25.2.3",
+        "@types/node": "^13.13.4",
+        "@typescript-eslint/eslint-plugin": "^3.0.0",
+        "@typescript-eslint/parser": "^3.0.0",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "^26.0.1",
+        "codecov": "^3.7.0",
+        "commitizen": "^4.1.2",
+        "cross-env": "^7.0.2",
+        "docusaurus": "^1.14.4",
+        "dotenv": "^8.2.0",
+        "eslint": "^7.1.0",
+        "eslint-import-resolver-typescript": "^2.0.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-jest": "^23.13.1",
+        "eslint-plugin-jsdoc": "^25.4.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-react": "^7.20.0",
+        "eslint-plugin-react-hooks": "^4.0.2",
+        "git-cz": "^4.5.0",
+        "glob": "^7.1.6",
+        "jest": "^26.0.1",
+        "jest-dev-server": "^4.4.0",
+        "kill-port": "^1.6.0",
+        "lerna": "^3.21.0",
+        "lint-staged": "^10.2.6",
+        "rimraf": "^3.0.2",
+        "serve": "^11.3.1",
+        "signale": "^1.4.0",
+        "ts-jest": "^26.0.0",
+        "ts-node": "^8.10.1",
+        "tsconfig-paths": "^3.9.0",
+        "typedoc": "^0.17.7",
+        "typedoc-plugin-lerna-packages": "^0.3.0",
+        "typedoc-plugin-markdown": "^2.2.17",
+        "typescript": "^3.9.3"
+    },
+    "lint-staged": {
+        "**/*.{ts,js}": [
+            "yarn eslint --quiet"
+        ]
+    },
+    "renovate": {
+        "extends": [
+            "config:base"
+        ],
+        "rangeStrategy": "auto",
+        "packageRules": [
+            {
+                "packagePatterns": [
+                    "ts-node",
+                    "typescript"
+                ],
+                "groupName": "typescript dependencies",
+                "updateTypes": [
+                    "major",
+                    "minor",
+                    "patch"
+                ]
+            },
+            {
+                "packagePatterns": [
+                    "jest",
+                    "jest-dev-server",
+                    "ts-jest",
+                    "babel-jest",
+                    "@types/jest"
+                ],
+                "groupName": "jest dependencies",
+                "updateTypes": [
+                    "major",
+                    "minor",
+                    "patch"
+                ]
+            },
+            {
+                "packagePatterns": [
+                    "eslint",
+                    "lint-staged"
+                ],
+                "groupName": "eslint dependencies",
+                "updateTypes": [
+                    "major",
+                    "minor",
+                    "patch"
+                ]
+            },
+            {
+                "packagePatterns": [
+                    "commitlint",
+                    "commitizen",
+                    "git-cz"
+                ],
+                "groupName": "commitlint dependencies",
+                "updateTypes": [
+                    "major",
+                    "minor",
+                    "patch"
+                ]
+            },
+            {
+                "packagePatterns": [
+                    "typedoc"
+                ],
+                "groupName": "website dependencies",
+                "updateTypes": [
+                    "major",
+                    "minor",
+                    "patch"
+                ]
+            },
+            {
+                "packagePatterns": [
+                    "driver"
+                ],
+                "groupName": "driver development dependencies",
+                "updateTypes": [
+                    "major",
+                    "minor",
+                    "patch"
+                ]
+            }
+        ]
+    },
+    "optionalDependencies": {
+        "@sitespeed.io/edgedriver": "^80.0.361-54d",
+        "chromedriver": "^83.0.0",
+        "geckodriver": "^1.19.1",
+        "iedriver": "^3.14.2"
+    }
+}

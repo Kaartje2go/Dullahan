@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Scroll Boxes</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            flex-flow: row wrap;
+        }
+        
+        body>.container {
+            margin: 10px;
+            display: none;
+        }
+        
+        .container {
+            background: red;
+            width: 300px;
+            height: 300px;
+            -ms-overflow-style: none;
+            display: flex;
+        }
+        
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filler {
+            background: orange;
+            flex: 1 0 auto;
+        }
+        
+        .target {
+            background: green;
+            flex: 1 0 auto;
+            align-self: center;
+        }
+        
+        .overflow-x {
+            flex-flow: row nowrap;
+            overflow-x: scroll;
+        }
+        
+        .overflow-x .filler {
+            width: 700px;
+        }
+        
+        .overflow-y {
+            flex-flow: column nowrap;
+            overflow-y: scroll;
+        }
+        
+        .overflow-y .filler {
+            height: 700px;
+        }
+        
+        .overflow-x.overflow-y {
+            flex-flow: row nowrap;
+        }
+        
+        .overflow-x.overflow-y .target {
+            margin-top: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="simple-overflow-x" class="container overflow-x">
+        <div class="filler"></div>
+        <button class="target">Target</button>
+        <div class="filler"></div>
+    </div>
+    <div id="simple-overflow-y" class="container overflow-y">
+        <div class="filler"></div>
+        <button class="target">Target</button>
+        <div class="filler"></div>
+    </div>
+    <div id="simple-overflow-xy" class="container overflow-x overflow-y">
+        <div class="filler"></div>
+        <button class="target">Target</button>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-x-x" class="container overflow-x">
+        <div class="filler"></div>
+        <div class="filler container overflow-x">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-x-y" class="container overflow-x">
+        <div class="filler"></div>
+        <div class="filler container overflow-y">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-x-xy" class="container overflow-x">
+        <div class="filler"></div>
+        <div class="filler container overflow-x overflow-y">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-y-y" class="container overflow-y">
+        <div class="filler"></div>
+        <div class="filler container overflow-y">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-y-x" class="container overflow-y">
+        <div class="filler"></div>
+        <div class="filler container overflow-x">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-y-xy" class="container overflow-y">
+        <div class="filler"></div>
+        <div class="filler container overflow-x overflow-y">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-xy-xy" class="container overflow-x overflow-y">
+        <div class="filler"></div>
+        <div class="filler container overflow-x overflow-y">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-xy-x" class="container overflow-x overflow-y">
+        <div class="filler"></div>
+        <div class="filler container overflow-x">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <div id="nested-overflow-xy-y" class="container overflow-x overflow-y">
+        <div class="filler"></div>
+        <div class="filler container overflow-y">
+            <div class="filler"></div>
+            <button class="target">Target</button>
+            <div class="filler"></div>
+        </div>
+        <div class="filler"></div>
+    </div>
+    <script>
+        var query = location.search.replace('?show=', '');
+        var decodedQuery = decodeURIComponent(query) || 'body > .container';
+        var queryMatchList = document.querySelectorAll(decodedQuery);
+
+        // Cannot use Array.from in IE11
+        Array.prototype.slice.call(queryMatchList).forEach(function(match) {
+            match.style.display = 'flex';
+        });
+    </script>
+</body>
+
+</html>

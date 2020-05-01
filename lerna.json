@@ -1,0 +1,26 @@
+{
+    "version": "independent",
+    "npmClient": "yarn",
+    "useWorkspaces": true,
+    "packages": [
+        "packages/*"
+    ],
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "command": {
+        "version": {
+            "allowBranch": "master",
+            "conventionalCommits": true,
+            "changelogPreset": "angular",
+            "createRelease": "github",
+            "commitHooks": "false",
+            "message": "chore: release --skip-ci"
+        }
+    },
+    "ignoreChanges": [
+        "**/*.md",
+        "**/*.json",
+        "**/tests/**"
+    ]
+}
