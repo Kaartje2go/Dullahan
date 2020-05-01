@@ -1,0 +1,12 @@
+{
+    "private": true,
+    "license": "GPL-3.0",
+    "name": "@kaartje2go/dullahan",
+    "version": "1.0.0",
+    "description": "An extensible utility to help you run acceptance tests anywhere at lightning speed",
+    "author": "Kaartje2go",
+    "repository": "https://github.com/Kaartje2go/Dullahan.git",
+    "workspaces": [
+        "packages/*"
+    ]
+}
