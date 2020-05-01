@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "@kaartje2go/temp-dullahan",
+  "version": "0.0.0",
+  "description": "TODO",
+  "repository": "https://github.com/Kaartje2go/Dullahan",
+  "license": "GPL-3.0",
+  "main": "dist/index.js",
+  "bin": {
+    "dullahan": "dist/bin/dullahan.js",
+    "dullahan-ts": "dist/bin/dullahan-ts.js"
+  },
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "clean-code": "rimraf './dist'; rimraf './src/**/*.d.ts'; rimraf './src/**/*.js'; rimraf './src/**/*.js.map'",
+    "compile-code": "tsc -p ./tsconfig.build.json"
+  },
+  "dependencies": {
+    "assign-deep": "^1.0.1",
+    "decache": "^4.6.0",
+    "expect": "^26.0.1",
+    "glob": "^7.1.6",
+    "signale": "^1.4.0"
+  }
+}

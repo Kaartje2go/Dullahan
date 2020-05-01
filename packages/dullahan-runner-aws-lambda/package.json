@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@kaartje2go/temp-dullahan-runner-aws-lambda",
+  "version": "0.0.0",
+  "description": "TODO",
+  "repository": "https://github.com/Kaartje2go/Dullahan",
+  "license": "GPL-3.0",
+  "main": "dist/index.js",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "clean-code": "rimraf './dist'; rimraf './src/**/*.d.ts'; rimraf './src/**/*.js'; rimraf './src/**/*.js.map'",
+    "compile-code": "tsc -p ./tsconfig.build.json"
+  },
+  "dependencies": {
+    "@kaartje2go/temp-dullahan": "0.0.0",
+    "aws-sdk": "^2.683.0",
+    "fast-glob": "^3.2.2",
+    "tiny-async-pool": "^1.1.0"
+  }
+}

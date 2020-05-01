@@ -1,0 +1,33 @@
+<details data-test-id="<%= test.testId %>">
+    <summary><%= test.testName %></summary>
+    <% test.calls.forEach(function(call, index) { %>
+        <% if (call.functionScope === 'api') { %>
+            <div class="<%= call.error ? 'step step--error' : 'step' %>">
+                <div class="step--row">
+                    <span class="step--icon">
+                        <%- call.error ? '&cross;' : '&check;' %>
+                    </span>
+                    <span class="step--message">
+                        <%= `${call.functionName}(${JSON.stringify(call.functionArguments)}) => ${JSON.stringify(call.functionResult)}` %>
+                    </span>
+                    <span class="step--duration">
+                        <%= call.timeEnd - call.timeStart %>ms
+                    </span>
+                </div>
+                <% if (call.error) { %>
+                    <div class="step--output">
+                        <%= `${call.error.name}: ${call.error.message}` %>
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+        <% (call.remoteUrls || []).forEach(function(remoteUrl) { %>
+            <div class="screenshot">
+                <img alt="screenshot" src="<%- remoteUrl %>">
+            </div>
+        <% }); %>
+        <% if (call.functionScope === 'adapter' && call.functionName === 'closeBrowser' && index !== test.calls.length - 1) { %>
+            <div class="step step--spacer"></div>
+        <% } %>
+    <% }); %>
+</details>
