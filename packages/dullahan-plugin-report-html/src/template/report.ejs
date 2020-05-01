@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= reportTitle %></title>
+    <%- include('partials/styles'); %>
+</head>
+<body>
+<section class="header">
+    <h1><span class="header--icon"></span><span><%= reportTitle %></span></h1>
+</section>
+
+<% if (failingTests.length) { %>
+    <section>
+        <h2><span>&cross;</span><span>Failing Tests</span></h2>
+        <div class="section--failing">
+            <% failingTests.forEach(function(test) { %>
+                <%- include('partials/test', {test}); %>
+            <% }); %>
+        </div>
+    </section>
+<% } %>
+
+<% if (unstableTests.length) { %>
+    <section>
+        <h2><span>☂</span><span>Unstable Tests</span></h2>
+        <div class="section--unstable">
+            <% unstableTests.forEach(function(test) { %>
+                <%- include('partials/test', {test}); %>
+            <% }); %>
+        </div>
+    </section>
+<% } %>
+
+<% if (slowTests.length) { %>
+    <section>
+        <h2><span>⏱</span><span>Slow Tests</span></h2>
+        <div class="section--slow">
+            <% slowTests.forEach(function(test) { %>
+                <%- include('partials/test', {test}); %>
+            <% }); %>
+        </div>
+    </section>
+<% } %>
+
+<% if (successfulTests.length) { %>
+    <section>
+        <h2><span>&check;</span><span>Successful Tests</span></h2>
+        <div class="section--successful">
+            <% successfulTests.forEach(function(test) { %>
+                <%- include('partials/test', {test}); %>
+            <% }); %>
+        </div>
+    </section>
+<% } %>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "@k2g/dullahan-plugin-github",
+  "version": "0.0.0",
+  "description": "TODO",
+  "repository": "https://github.com/Kaartje2go/Dullahan",
+  "license": "GPL-3.0",
+  "main": "dist/index.js",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "clean-code": "rimraf './dist'; rimraf './src/**/*.d.ts'; rimraf './src/**/*.js'; rimraf './src/**/*.js.map'",
+    "compile-code": "tsc -p ./tsconfig.build.json"
+  },
+  "dependencies": {
+    "@k2g/dullahan": "0.0.0",
+    "@octokit/rest": "^17.9.2"
+  }
+}

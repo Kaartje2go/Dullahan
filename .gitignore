@@ -1,0 +1,9 @@
+.idea
+.env
+coverage
+node_modules
+packages/*/dist
+website/build
+website/docs
+website/sitebars.json
+**/*.log
