@@ -1,0 +1,335 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@k2g/dullahan AdapterError should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan AssertionError should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanAdapter should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanAdapterDefaultOptions should remain the same 1`] = `
+Object {
+  "debug": true,
+  "headless": false,
+}
+`;
+
+exports[`@k2g/dullahan DullahanApi should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanApiDefaultOptions should remain the same 1`] = `
+Object {
+  "autoScroll": true,
+  "defaultNetworkTimeout": 30000,
+  "defaultTimeout": 15000,
+  "displayPointer": true,
+}
+`;
+
+exports[`@k2g/dullahan DullahanCallSpy should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanClient should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanError should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanErrorMessage should remain the same 1`] = `
+Object {
+  "ACTIVE_BROWSER": "Browser has already been opened!",
+  "NO_BROWSER": "Browser has been closed, or has not yet been opened!",
+  "findElementResult": [Function],
+}
+`;
+
+exports[`@k2g/dullahan DullahanPlugin should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanPluginDefaultOptions should remain the same 1`] = `Object {}`;
+
+exports[`@k2g/dullahan DullahanRunner should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan DullahanRunnerDefaultOptions should remain the same 1`] = `
+Object {
+  "excludeRegexes": Array [
+    /node_modules/,
+  ],
+  "failFast": false,
+  "includeGlobs": Array [
+    "**/tests/**/*.{ts,js}",
+    "**/*.test.{ts,js}",
+  ],
+  "includeRegexes": Array [
+    /test/i,
+  ],
+  "maxAttempts": 1,
+  "minSuccesses": 1,
+  "rootDirectories": Array [
+    "./",
+  ],
+  "testPredicate": [Function],
+}
+`;
+
+exports[`@k2g/dullahan DullahanTest should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan cli should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan displayPointer should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan emitFakeEvent should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan ensureArray should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan ensureScopedOptions should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan findElement should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan getBoundingClientRect should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan getElementAttributes should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan getElementProperties should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan getElementStyles should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan isDullahanConfig should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan isValidTest should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan requireDependency should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan saveArtifactToFile should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan saveArtifactToRemotes should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan scrollToElement should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan setElementAttribute should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan setElementProperty should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan sleep should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan tryIgnore should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan tryX should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan waitForReadyState should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-adapter-playwright DullahanAdapterPlaywrightDefaultOptions should remain the same 1`] = `
+Object {
+  "browserName": "chromium",
+  "debug": true,
+  "headless": false,
+}
+`;
+
+exports[`@k2g/dullahan-adapter-playwright default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-adapter-puppeteer DullahanAdapterPuppeteerDefaultOptions should remain the same 1`] = `
+Object {
+  "browserName": "chrome",
+  "debug": true,
+  "headless": false,
+}
+`;
+
+exports[`@k2g/dullahan-adapter-puppeteer default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-adapter-selenium-3 DullahanAdapterSelenium3DefaultOptions should remain the same 1`] = `
+Object {
+  "browserName": "chrome",
+  "debug": true,
+  "headless": false,
+  "maximizeWindow": true,
+  "rawCapabilities": Object {},
+}
+`;
+
+exports[`@k2g/dullahan-adapter-selenium-3 default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-adapter-selenium-4 DullahanAdapterSelenium4DefaultOptions should remain the same 1`] = `
+Object {
+  "browserName": "chrome",
+  "debug": true,
+  "headless": false,
+  "maximizeWindow": true,
+  "rawCapabilities": Object {},
+}
+`;
+
+exports[`@k2g/dullahan-adapter-selenium-4 default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-aws-s3 DullahanPluginAwsS3DefaultOptions should remain the same 1`] = `
+Object {
+  "accessKeyId": undefined,
+  "region": undefined,
+  "secretAccessKey": undefined,
+  "secrets": Array [],
+}
+`;
+
+exports[`@k2g/dullahan-plugin-aws-s3 default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-browserstack DullahanPluginBrowserstackDefaultOptions should remain the same 1`] = `
+Object {
+  "accessKey": undefined,
+  "localOptions": Object {},
+  "removeFailedAfterRetrySuccess": true,
+  "useLocal": false,
+  "username": undefined,
+}
+`;
+
+exports[`@k2g/dullahan-plugin-browserstack default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-github DullahanPluginGithubDefaultOptions should remain the same 1`] = `
+Object {
+  "enablePullRequestComments": true,
+  "enablePullRequestReviews": false,
+  "enableStatusChecks": true,
+  "statusName": "Dullahan",
+  "statusUrl": "https://dullahan.io",
+}
+`;
+
+exports[`@k2g/dullahan-plugin-github default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-gitlab DullahanPluginGitlabDefaultOptions should remain the same 1`] = `Object {}`;
+
+exports[`@k2g/dullahan-plugin-gitlab default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-report-html DullahanPluginReportHtmlDefaultOptions should remain the same 1`] = `
+Object {
+  "colorFailing": "#da002b",
+  "colorHeader": "#1b4373",
+  "colorSection": "#02b8ff",
+  "colorSlow": "#87be3c",
+  "colorSuccessful": "#87be3c",
+  "colorUnstable": "#ff9b00",
+  "reportTitle": "Dullahan Report",
+  "slowTestThreshold": 60000,
+}
+`;
+
+exports[`@k2g/dullahan-plugin-report-html default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-report-html isFailingTest should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-report-html isSlowTest should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-report-html isSuccessfulTest should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-report-html isUnstableTest should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-report-json DullahanPluginReportJsonDefaultOptions should remain the same 1`] = `Object {}`;
+
+exports[`@k2g/dullahan-plugin-report-json default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-report-markdown DullahanPluginReportMarkdownDefaultOptions should remain the same 1`] = `
+Object {
+  "hideSlowTests": false,
+  "hideSuccessfulTests": false,
+  "hideUnstableTests": false,
+  "reportTitle": "Dullahan Report",
+  "reportTitleUrl": "https://dullahan.io",
+  "slowTestThreshold": 30000,
+}
+`;
+
+exports[`@k2g/dullahan-plugin-report-markdown default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-slack DullahanPluginSlackDefaultOptions should remain the same 1`] = `
+Object {
+  "attachments": Object {},
+  "maxPreviews": 3,
+  "slowTestThreshold": 60000,
+  "webhook": undefined,
+  "when": "always",
+}
+`;
+
+exports[`@k2g/dullahan-plugin-slack default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-plugin-xvfb DullahanPluginXvfbDefaultOptions should remain the same 1`] = `Object {}`;
+
+exports[`@k2g/dullahan-plugin-xvfb default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-runner-aws-lambda DullahanRunnerAwsLambdaDefaultOptions should remain the same 1`] = `
+Object {
+  "accessKeyId": undefined,
+  "excludeRegexes": Array [
+    /node_modules/,
+  ],
+  "failFast": false,
+  "includeGlobs": Array [
+    "**/tests/**/*.{ts,js}",
+    "**/*.test.{ts,js}",
+  ],
+  "includeRegexes": Array [
+    /test/i,
+  ],
+  "maxAttempts": 1,
+  "maxConcurrency": 900,
+  "minSuccesses": 1,
+  "region": undefined,
+  "role": "master",
+  "rootDirectories": Array [
+    "./",
+  ],
+  "secretAccessKey": undefined,
+  "slaveFunctionName": undefined,
+  "slaveOptions": Object {},
+  "slaveQualifier": undefined,
+  "testPredicate": [Function],
+}
+`;
+
+exports[`@k2g/dullahan-runner-aws-lambda default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-runner-development DullahanRunnerDevelopmentDefaultOptions should remain the same 1`] = `
+Object {
+  "excludeRegexes": Array [
+    /node_modules/,
+  ],
+  "failFast": false,
+  "ignoreDotFiles": true,
+  "ignoreNotPermitted": true,
+  "ignoreUnreadableDir": true,
+  "includeGlobs": Array [
+    "**/tests/**/*.{ts,js}",
+    "**/*.test.{ts,js}",
+  ],
+  "includeRegexes": Array [
+    /test/i,
+  ],
+  "maxAttempts": 1,
+  "minSuccesses": 1,
+  "rootDirectories": Array [
+    "./",
+  ],
+  "testPredicate": [Function],
+}
+`;
+
+exports[`@k2g/dullahan-runner-development default should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan-runner-standard DullahanRunnerStandardDefaultOptions should remain the same 1`] = `
+Object {
+  "excludeRegexes": Array [
+    /node_modules/,
+  ],
+  "failFast": false,
+  "includeGlobs": Array [
+    "**/tests/**/*.{ts,js}",
+    "**/*.test.{ts,js}",
+  ],
+  "includeRegexes": Array [
+    /test/i,
+  ],
+  "maxAttempts": 1,
+  "minSuccesses": 1,
+  "rootDirectories": Array [
+    "./",
+  ],
+  "testPredicate": [Function],
+}
+`;
+
+exports[`@k2g/dullahan-runner-standard default should remain the same 1`] = `[Function]`;

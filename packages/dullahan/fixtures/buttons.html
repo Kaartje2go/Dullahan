@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Buttons</title>
+    <style>
+        .hidden--display {
+            display: none;
+        }
+        
+        .hidden--opacity {
+            opacity: 0;
+        }
+        
+        .hidden--visibility {
+            visibility: hidden;
+        }
+        
+        .visible-now {
+            display: inline-block;
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="present-instantly visible-instantly">
+        present-instantly visible-instantly
+    </button>
+    <button class="present-instantly hidden-instantly hidden--display">
+        present-instantly hidden-instantly hidden--display
+    </button>
+    <button class="present-instantly hidden-instantly hidden--opacity">
+        present-instantly hidden-instantly hidden--opacity
+    </button>
+    <button class="present-instantly hidden-instantly hidden--visibility">
+        present-instantly hidden-instantly hidden--visibility
+    </button>
+    <button class="present-instantly visible-delayed hidden--display">
+        present-instantly visible-delayed hidden--display
+    </button>
+    <button class="present-instantly visible-delayed hidden--opacity">
+        present-instantly visible-delayed hidden--opacity
+    </button>
+    <button class="present-instantly visible-delayed hidden--visibility">
+        present-instantly visible-delayed hidden--visibility
+    </button>
+    <input type="text" class="present-instantly visible-instantly" placeholder="present-instantly visible-instantly" />
+    <script>
+        const shadowHost = document.createElement('div');
+
+        if (shadowHost.attachShadow) {
+            const shadow = shadowHost.attachShadow({
+                mode: 'open'
+            });
+            const button = document.createElement('button');
+            const input = document.createElement('input');
+
+            shadowHost.id = 'shadow-host';
+            input.classList.add('shadow', 'present-instantly', 'visible-instantly');
+            input.placeholder = 'shadow present-instantly visible-instantly';
+
+            button.classList.add('shadow', 'present-instantly', 'visible-instantly');
+            button.innerText = 'shadow present-instantly visible-instantly';
+
+            shadow.appendChild(button);
+            shadow.appendChild(input);
+            document.body.appendChild(shadowHost);
+        }
+
+        window.addEventListener('load', () => {
+            const {
+                shadowRoot
+            } = shadowHost;
+
+            const delayedElements = [{
+                tagName: 'button',
+                classList: ['present-delayed', 'visible-instantly']
+            }, {
+                tagName: 'button',
+                classList: ['present-delayed', 'hidden-instantly', 'hidden--display']
+            }, {
+                tagName: 'button',
+                classList: ['present-delayed', 'hidden-instantly', 'hidden--opacity']
+            }, {
+                tagName: 'button',
+                classList: ['present-delayed', 'hidden-instantly', 'hidden--visibility']
+            }, {
+                tagName: 'input',
+                classList: ['present-delayed', 'visible-instantly']
+            }];
+
+            const createElement = ({
+                tagName,
+                classList
+            }) => {
+                const element = document.createElement(tagName);
+                if (tagName === 'button') {
+                    element.innerText = classList.join(' ');
+                } else if (tagName === 'input') {
+                    element.type = 'text';
+                    element.placeholder = classList.join(' ');
+                }
+                element.classList.add(...classList);
+                document.body.appendChild(element);
+            };
+
+            const createShadowElement = ({
+                tagName,
+                classList
+            }) => {
+                const element = document.createElement(tagName);
+                if (tagName === 'button') {
+                    element.innerText = `shadow ${classList.join(' ')}`;
+                } else if (tagName === 'input') {
+                    element.type = 'text';
+                    element.placeholder = `shadow ${classList.join(' ')}`;
+                }
+                element.classList.add('shadow', ...classList);
+                shadowRoot.appendChild(element);
+            };
+
+            setTimeout(() => delayedElements.forEach(createElement), 2000);
+
+            if (shadowRoot) {
+                setTimeout(() => delayedElements.forEach(createShadowElement), 2000);
+            }
+
+            setTimeout(() => Array.from(document.querySelectorAll('.present-instantly.visible-delayed')).forEach((element) => {
+                element.classList.add('visible-now');
+            }), 2000);
+
+            if (shadowRoot) {
+                setTimeout(() => Array.from(shadowRoot.querySelectorAll('.present-instantly.visible-delayed')).forEach((element) => {
+                    element.classList.add('visible-now');
+                }), 2000);
+            }
+        }, {
+            once: true
+        });
+    </script>
+</body>
+
+</html>

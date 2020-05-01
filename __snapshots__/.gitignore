@@ -1,0 +1,6 @@
+# Contains snapshots that are automatically taken and stored when
+# running tests; do not modify manually.
+
+*
+!**/*.snap
+!.gitignore

@@ -1,0 +1,455 @@
+name: CI
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    commitlint:
+        name: 'Run CommitLint'
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/commitlint.sh
+
+    eslint:
+        name: 'Run ESLint'
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/eslint.sh
+
+    build_website:
+        name: 'Build Website'
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/build_website.sh
+
+    test_nodejs:
+        name: 'Test NodeJS'
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/test_nodejs.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+    test_puppeteer_chromium:
+        name: 'Test Puppeteer Chromium'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+                env:
+                    PUPPETEER_PRODUCT: chrome
+            -   run: bash ./scripts/ci/setup/chromium.sh
+            -   run: bash ./scripts/ci/jobs/test_puppeteer_chromium.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_puppeteer_chromium
+                    path: __artifacts__/jest/*.png
+
+    test_puppeteer_firefox:
+        name: 'Test Puppeteer Firefox'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+                env:
+                    PUPPETEER_PRODUCT: firefox
+            -   run: bash ./scripts/ci/setup/firefox.sh
+            -   run: bash ./scripts/ci/jobs/test_puppeteer_firefox.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_puppeteer_firefox
+                    path: __artifacts__/jest/*.png
+
+    test_playwright_chromium:
+        name: 'Test Playwright Chromium'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/chromium.sh
+            -   run: bash ./scripts/ci/jobs/test_playwright_chromium.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_playwright_chromium
+                    path: __artifacts__/jest/*.png
+
+    test_playwright_firefox:
+        name: 'Test Playwright Firefox'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/firefox.sh
+            -   run: bash ./scripts/ci/jobs/test_playwright_firefox.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_playwright_firefox
+                    path: __artifacts__/jest/*.png
+
+    test_playwright_webkit:
+        name: 'Test Playwright WebKit'
+        runs-on: macos-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/webkit.sh
+            -   run: bash ./scripts/ci/jobs/test_playwright_webkit.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_playwright_webkit
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_3_chrome:
+        name: 'Test Selenium3 Chrome'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+                env:
+                    DETECT_CHROMEDRIVER_VERSION: 'true'
+            -   run: bash ./scripts/ci/setup/chrome.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_3_chrome.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_3_chrome
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_3_firefox:
+        name: 'Test Selenium3 Firefox'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/firefox.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_3_firefox.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_3_firefox
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_3_safari:
+        if: ${{ false }}
+        name: 'Test Selenium3 Safari'
+        runs-on: macos-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/safari.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_3_safari.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_3_safari
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_3_edge:
+        name: 'Test Selenium3 Edge'
+        runs-on: windows-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/edge.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_3_edge.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_3_edge
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_3_ie11:
+        name: 'Test Selenium3 IE11'
+        runs-on: windows-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/ie11.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_3_ie11.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_3_ie11
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_chrome:
+        name: 'Test Selenium4 Chrome'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+                env:
+                    DETECT_CHROMEDRIVER_VERSION: 'true'
+            -   run: bash ./scripts/ci/setup/chrome.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_chrome.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_chrome
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_firefox:
+        name: 'Test Selenium4 Firefox'
+        runs-on: ubuntu-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/firefox.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_firefox.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_firefox
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_safari:
+        name: 'Test Selenium4 Safari'
+        runs-on: macos-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/safari.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_safari.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_safari
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_edge:
+        name: 'Test Selenium4 Edge'
+        runs-on: windows-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/edge.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_edge.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_edge
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_ie11:
+        name: 'Test Selenium4 IE11'
+        runs-on: windows-latest
+        needs: [commitlint, eslint, build_website]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/ie11.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_ie11.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_ie11
+                    path: __artifacts__/jest/*.png
+
+    deploy_website:
+        name: 'Deploy Website'
+        runs-on: ubuntu-latest
+        needs: [test_nodejs, test_puppeteer_chromium, test_playwright_chromium, test_selenium_3_chrome, test_selenium_4_chrome]
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/deploy_website.sh
+
+    release_packages:
+        name: 'Release Packages'
+        runs-on: ubuntu-latest
+        needs: [test_nodejs, test_puppeteer_chromium, test_playwright_chromium, test_selenium_3_chrome, test_selenium_4_chrome]
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/release_packages.sh
+                env:
+                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                    GH_TOKEN: ${{ secrets.GH_TOKEN }}
