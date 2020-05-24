@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@kaartje2go/temp-dullahan": "0.0.0",
-    "micromatch": "^4.0.2",
-    "watch": "^1.0.2"
+    "micromatch": "4.0.2",
+    "watch": "1.0.2"
   },
   "devDependencies": {
-    "@types/watch": "^1.0.1"
+    "@types/watch": "1.0.1"
   }
 }

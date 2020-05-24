@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "@kaartje2go/temp-dullahan": "0.0.0",
-    "aws-sdk": "^2.683.0"
+    "aws-sdk": "2.683.0"
   }
 }

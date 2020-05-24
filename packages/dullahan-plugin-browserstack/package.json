@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@kaartje2go/temp-dullahan": "0.0.0",
-    "browserstack-local": "^1.4.5",
-    "node-fetch": "^2.6.0"
+    "browserstack-local": "1.4.5",
+    "node-fetch": "2.6.0"
   }
 }

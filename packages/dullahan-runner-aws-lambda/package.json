@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@kaartje2go/temp-dullahan": "0.0.0",
-    "aws-sdk": "^2.683.0",
-    "fast-glob": "^3.2.2",
-    "tiny-async-pool": "^1.1.0"
+    "aws-sdk": "2.683.0",
+    "fast-glob": "3.2.2",
+    "tiny-async-pool": "1.1.0"
   }
 }

@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@kaartje2go/temp-dullahan": "0.0.0",
-    "selenium-webdriver": "^3.6.0"
+    "selenium-webdriver": "3.6.0"
   },
   "devDependencies": {
-    "@types/selenium-webdriver": "^3.0.16"
+    "@types/selenium-webdriver": "3.0.17"
   }
 }

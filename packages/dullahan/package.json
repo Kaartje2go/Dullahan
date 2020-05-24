@@ -18,10 +18,10 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "assign-deep": "^1.0.1",
-    "decache": "^4.6.0",
-    "expect": "^26.0.1",
-    "glob": "^7.1.6",
-    "signale": "^1.4.0"
+    "assign-deep": "1.0.1",
+    "decache": "4.6.0",
+    "expect": "26.0.1",
+    "glob": "7.1.6",
+    "signale": "1.4.0"
   }
 }
