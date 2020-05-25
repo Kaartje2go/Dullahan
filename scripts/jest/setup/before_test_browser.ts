@@ -1,4 +1,4 @@
-import {readFileSync, writeFile} from 'fs';
+import {mkdir, readFileSync, writeFile} from 'fs';
 import {resolve as resolvePath} from 'path';
 
 import {
@@ -7,9 +7,10 @@ import {
     DullahanApi,
     DullahanApiArguments,
     DullahanClient,
-    DullahanTest
+    DullahanTest, tryIgnore
 } from '@k2g/dullahan';
 import {parse} from "dotenv";
+import {promisify} from "util";
 
 declare let api: DullahanApi<never, never>;
 declare let adapter: DullahanAdapter<never, never>;
@@ -42,6 +43,9 @@ declare namespace jasmine {
         testPath: string;
     };
 }
+
+const mkdirP = promisify(mkdir);
+const writeFileP = promisify(writeFile);
 
 Object.keys(parse(Buffer.from(readFileSync('.env.example')))).forEach((key) => {
     delete process.env[key];
@@ -101,18 +105,16 @@ afterEach(async () => {
             try {
                 const filename = `${fullName.replace(/[\s\.]/g, '_').replace(/\W/g, '')}.png`;
                 const screenshot = await adapter.screenshotPage();
+                const directoryPath = resolvePath(__dirname, '../../../__artifacts__/jest/');
 
-                await new Promise((resolve, reject) => {
-                    writeFile(resolvePath(__dirname, '../../../__artifacts__/jest/', filename), screenshot, 'base64', (error) => {
-                        error ? reject(error) : resolve();
-                    });
-                });
+                await mkdirP(directoryPath, {recursive: true});
+                await writeFileP(resolvePath(directoryPath, filename), screenshot, 'base64');
             } catch (error) {
                 console.warn(error);
             }
         }
 
-        await adapter.closeBrowser();
+        await tryIgnore(1, () => adapter.closeBrowser());
     }
 });
 
