@@ -16,7 +16,14 @@ jobs:
                     path: .
             -   uses: actions/setup-node@v1
                 with:
-                    node-version: 12.x
+                    node-version: 12
+            -   run: echo "::set-output name=dir::$(yarn cache dir)"
+                id: yarn-cache-dir
+            -   uses: actions/cache@v1
+                with:
+                    path: ${{ steps.yarn-cache-dir.outputs.dir }}
+                    key: yarn-cache-12-${{ hashFiles('**/yarn.lock') }}
+                    restore-keys: yarn-cache-12-
             -   run: bash ./scripts/ci/setup/default.sh
                 env:
                     DETECT_CHROMEDRIVER_VERSION: 'true'
@@ -39,7 +46,14 @@ jobs:
                     path: .
             -   uses: actions/setup-node@v1
                 with:
-                    node-version: 12.x
+                    node-version: 12
+            -   run: echo "::set-output name=dir::$(yarn cache dir)"
+                id: yarn-cache-dir
+            -   uses: actions/cache@v1
+                with:
+                    path: ${{ steps.yarn-cache-dir.outputs.dir }}
+                    key: yarn-cache-12-${{ hashFiles('**/yarn.lock') }}
+                    restore-keys: yarn-cache-12-
             -   run: bash ./scripts/ci/setup/default.sh
             -   run: bash ./scripts/ci/setup/firefox.sh
             -   run: bash ./scripts/ci/jobs/test_selenium_3_firefox.sh
@@ -60,7 +74,14 @@ jobs:
                     path: .
             -   uses: actions/setup-node@v1
                 with:
-                    node-version: 12.x
+                    node-version: 12
+            -   run: echo "::set-output name=dir::$(yarn cache dir)"
+                id: yarn-cache-dir
+            -   uses: actions/cache@v1
+                with:
+                    path: ${{ steps.yarn-cache-dir.outputs.dir }}
+                    key: yarn-cache-12-${{ hashFiles('**/yarn.lock') }}
+                    restore-keys: yarn-cache-12-
             -   run: bash ./scripts/ci/setup/default.sh
             -   run: bash ./scripts/ci/setup/edge.sh
             -   run: bash ./scripts/ci/jobs/test_selenium_3_edge.sh
@@ -81,7 +102,14 @@ jobs:
                     path: .
             -   uses: actions/setup-node@v1
                 with:
-                    node-version: 12.x
+                    node-version: 12
+            -   run: echo "::set-output name=dir::$(yarn cache dir)"
+                id: yarn-cache-dir
+            -   uses: actions/cache@v1
+                with:
+                    path: ${{ steps.yarn-cache-dir.outputs.dir }}
+                    key: yarn-cache-12-${{ hashFiles('**/yarn.lock') }}
+                    restore-keys: yarn-cache-12-
             -   run: bash ./scripts/ci/setup/default.sh
             -   run: bash ./scripts/ci/setup/ie11.sh
             -   run: bash ./scripts/ci/jobs/test_selenium_3_ie11.sh
