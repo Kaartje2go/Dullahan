@@ -8,7 +8,10 @@ import {
 
 import {DullahanClient, DullahanFunctionEndCall, DullahanPlugin, DullahanTestEndCall} from '@k2g/dullahan';
 
-export default class DullahanPluginBrowserstack extends DullahanPlugin<DullahanPluginBrowserstackUserOptions, typeof DullahanPluginBrowserstackDefaultOptions> {
+export default class DullahanPluginBrowserstack extends DullahanPlugin<
+    DullahanPluginBrowserstackUserOptions,
+    typeof DullahanPluginBrowserstackDefaultOptions
+> {
 
     private browserstackBuildUrl?: string;
     private stopBrowserstackLocal?: () => Promise<void>;
