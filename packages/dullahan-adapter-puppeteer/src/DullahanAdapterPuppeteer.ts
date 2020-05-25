@@ -26,18 +26,12 @@ import {
     waitForReadyState
 } from '@k2g/dullahan';
 
-let instanceIdCounter = 0;
-
 export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAdapterPuppeteerUserOptions,
     typeof DullahanAdapterPuppeteerDefaultOptions> {
 
     protected browser?: Puppeteer.Browser;
 
     protected page?: Puppeteer.Page;
-
-    protected readonly instanceId = instanceIdCounter++;
-
-    protected readonly instances = new Map<number, DullahanAdapterPuppeteer>();
 
     public constructor(args: {
         testId: string;
@@ -518,7 +512,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
     }
 
     public async closeBrowser(): Promise<void> {
-        const {browser, instanceId, instances} = this;
+        const {browser} = this;
 
         if (!browser) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -526,7 +520,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
 
         await browser.close();
 
-        instances.delete(instanceId);
         this.browser = undefined;
         this.page = undefined;
     }
@@ -539,12 +532,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         await page.evaluate(displayPointer);
-    }
-
-    public async getActiveInstances(): Promise<DullahanAdapterPuppeteer[]> {
-        const {instances} = this;
-
-        return Array.from(instances.values());
     }
 
     public async getElementAttributes(selector: string, ...attributeNames: string[]): Promise<(string | null)[]> {
@@ -762,7 +749,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
     public async openBrowser(): Promise<{
         sessionId: string | null
     }> {
-        const {instanceId, instances, options} = this;
+        const {options} = this;
         const {headless, browserName} = options;
 
         if (this.browser) {
@@ -780,7 +767,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         const pages = await browser.pages();
         const page = pages[pages.length - 1];
 
-        instances.set(instanceId, this);
         this.browser = browser;
         this.page = page;
 

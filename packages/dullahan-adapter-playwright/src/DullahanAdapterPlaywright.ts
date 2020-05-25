@@ -25,18 +25,12 @@ import {
     waitForReadyState
 } from '@k2g/dullahan';
 
-let instanceIdCounter = 0;
-
 export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanAdapterPlaywrightUserOptions,
     typeof DullahanAdapterPlaywrightDefaultOptions> {
 
     protected browser?: Playwright.Browser;
 
     protected page?: Playwright.Page;
-
-    protected readonly instanceId = instanceIdCounter++;
-
-    protected readonly instances = new Map<number, DullahanAdapterPlaywright>();
 
     public constructor(args: {
         testId: string;
@@ -530,7 +524,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
     }
 
     public async closeBrowser(): Promise<void> {
-        const {browser, instanceId, instances} = this;
+        const {browser} = this;
 
         if (!browser) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -538,7 +532,6 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
 
         await browser.close();
 
-        instances.delete(instanceId);
         this.browser = undefined;
         this.page = undefined;
     }
@@ -551,12 +544,6 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         }
 
         await page.evaluate(displayPointer);
-    }
-
-    public async getActiveInstances(): Promise<DullahanAdapterPlaywright[]> {
-        const {instances} = this;
-
-        return Array.from(instances.values());
     }
 
     public async getElementAttributes(selector: string, ...attributeNames: string[]): Promise<(string | null)[]> {
@@ -774,7 +761,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
     public async openBrowser(): Promise<{
         sessionId: string | null
     }> {
-        const {instanceId, instances, options} = this;
+        const {options} = this;
         const {headless, browserName} = options;
 
         if (this.browser) {
@@ -788,7 +775,6 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         const context = await browser.newContext();
         const page = await context.newPage();
 
-        instances.set(instanceId, this);
         this.browser = browser;
         this.page = page;
 

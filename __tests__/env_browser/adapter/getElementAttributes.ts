@@ -6,14 +6,6 @@ declare const adapter: DullahanAdapter<never, never>;
 
 describe('adapter.getElementAttributes', () => {
 
-    afterAll(async () => {
-        await Promise.all((await adapter.getActiveInstances()).map(async (instance) => {
-            if (await instance.isBrowserOpen()) {
-                await instance.closeBrowser();
-            }
-        }));
-    });
-
     it('throws a valid error when a browser has not been opened', async () => {
         try {
             expect.hasAssertions();
