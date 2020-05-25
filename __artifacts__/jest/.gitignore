@@ -1,5 +1,0 @@
-# Contains screenshots that are automatically taken and stored upon failure
-# when running tests in a browser; to be used for debugging only.
-
-*
-!.gitignore

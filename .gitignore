@@ -1,5 +1,6 @@
 .idea
 .env
+.npmrc
 coverage
 node_modules
 packages/*/dist
