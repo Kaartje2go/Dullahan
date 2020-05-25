@@ -1,0 +1,53 @@
+name: 'Release'
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    commitlint:
+        name: 'CommitLint'
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/commitlint.sh
+
+    deploy_website:
+        name: 'Website'
+        runs-on: ubuntu-latest
+        needs: [commitlint]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/deploy_website.sh
+
+    release_packages:
+        name: 'Packages'
+        runs-on: ubuntu-latest
+        needs: [commitlint]
+
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/release_packages.sh
+                env:
+                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                    GH_TOKEN: ${{ secrets.GH_TOKEN }}

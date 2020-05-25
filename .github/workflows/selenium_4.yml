@@ -1,0 +1,115 @@
+name: 'Selenium 4'
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    test_selenium_4_chrome:
+        name: 'Chrome'
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+                env:
+                    DETECT_CHROMEDRIVER_VERSION: 'true'
+            -   run: bash ./scripts/ci/setup/chrome.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_chrome.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_chrome
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_firefox:
+        name: 'Firefox'
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/firefox.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_firefox.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_firefox
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_safari:
+        name: 'Safari'
+        runs-on: macos-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/safari.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_safari.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_safari
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_edge:
+        name: 'Edge'
+        runs-on: windows-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/edge.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_edge.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_edge
+                    path: __artifacts__/jest/*.png
+
+    test_selenium_4_ie11:
+        name: 'IE11'
+        runs-on: windows-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/ie11.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_4_ie11.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_4_ie11
+                    path: __artifacts__/jest/*.png

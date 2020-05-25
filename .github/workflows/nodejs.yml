@@ -1,0 +1,26 @@
+name: 'NodeJS'
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    test_nodejs:
+        strategy:
+            matrix:
+                node: [10, 12, 14]
+        name: ${{ matrix.node }}
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: ${{ matrix.node }}
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/jobs/test_nodejs.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
