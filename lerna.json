@@ -13,8 +13,7 @@
             "allowBranch": "master",
             "conventionalCommits": true,
             "changelogPreset": "angular",
-            "createRelease": "github",
-            "commitHooks": "false",
+            "commitHooks": false,
             "message": "chore: release --skip-ci"
         }
     },
