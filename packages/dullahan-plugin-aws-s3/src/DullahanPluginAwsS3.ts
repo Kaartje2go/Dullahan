@@ -3,8 +3,10 @@ import {S3} from 'aws-sdk';
 
 import {Artifact, DullahanClient, DullahanError, DullahanPlugin} from '@k2g/dullahan';
 
-export default class DullahanPluginAwsS3 extends DullahanPlugin<DullahanPluginAwsS3UserOptions,
-    typeof DullahanPluginAwsS3DefaultOptions> {
+export default class DullahanPluginAwsS3 extends DullahanPlugin<
+    DullahanPluginAwsS3UserOptions,
+    typeof DullahanPluginAwsS3DefaultOptions
+> {
 
     private readonly s3 = new S3({
         accessKeyId: this.options.accessKeyId,
