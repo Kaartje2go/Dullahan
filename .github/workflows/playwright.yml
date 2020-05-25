@@ -1,0 +1,71 @@
+name: 'Playwright'
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    test_playwright_chromium:
+        name: 'Chromium'
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/chromium.sh
+            -   run: bash ./scripts/ci/jobs/test_playwright_chromium.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_playwright_chromium
+                    path: __artifacts__/jest/*.png
+
+    test_playwright_firefox:
+        name: 'Firefox'
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/firefox.sh
+            -   run: bash ./scripts/ci/jobs/test_playwright_firefox.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_playwright_firefox
+                    path: __artifacts__/jest/*.png
+
+    test_playwright_webkit:
+        name: 'WebKit'
+        runs-on: macos-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12.x
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/webkit.sh
+            -   run: bash ./scripts/ci/jobs/test_playwright_webkit.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_playwright_webkit
+                    path: __artifacts__/jest/*.png
