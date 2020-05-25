@@ -1,7 +1,7 @@
 {
   "name": "@k2g/dullahan-plugin-aws-s3",
   "version": "0.0.1-alpha.1",
-  "description": "TODO",
+  "description": "Allows Dullahan to upload artifacts to AWS S3",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
   "main": "dist/index.js",
