@@ -1,14 +1,66 @@
 codecov:
     notify:
-        require_ci_to_pass: no
+        wait_for_ci: true
+        require_ci_to_pass: false
+comment:
+    layout: "reach, diff"
 
 coverage:
     precision: 0
     round: down
-    range: "70...100"
+    range: "25...75"
 
     status:
-        project: yes
-        patch: yes
-        changes: yes
-        threshold: 1%
+        patch: off
+        project:
+            dullahan:
+                paths:
+                    - packages/dullahan/*
+            adapter-playwright:
+                paths:
+                    - packages/dullahan-adapter-playwright/*
+            adapter-puppeteer:
+                paths:
+                    - packages/dullahan-adapter-puppeteer/*
+            adapter-selenium-3:
+                paths:
+                    - packages/dullahan-adapter-selenium-3/*
+            adapter-selenium-4:
+                paths:
+                    - packages/dullahan-adapter-selenium-4/*
+            plugin-aws-s3:
+                paths:
+                    - packages/dullahan-plugin-aws-s3/*
+            plugin-browserstack:
+                paths:
+                    - packages/dullahan-plugin-browserstack/*
+            plugin-github:
+                paths:
+                    - packages/dullahan-plugin-github/*
+            plugin-gitlab:
+                paths:
+                    - packages/dullahan-plugin-gitlab/*
+            plugin-report-html:
+                paths:
+                    - packages/dullahan-plugin-report-html/*
+            plugin-report-json:
+                paths:
+                    - packages/dullahan-plugin-report-json/*
+            plugin-report-markdown:
+                paths:
+                    - packages/dullahan-plugin-report-markdown/*
+            plugin-slack:
+                paths:
+                    - packages/dullahan-plugin-slack/*
+            plugin-xvfb:
+                paths:
+                    - packages/dullahan-plugin-xvfb/*
+            runner-aws-lambda:
+                paths:
+                    - packages/dullahan-runner-aws-lambda/*
+            runner-development:
+                paths:
+                    - packages/dullahan-runner-development/*
+            runner-standard:
+                paths:
+                    - packages/dullahan-runner-standard/*
