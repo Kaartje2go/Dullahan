@@ -117,11 +117,3 @@ afterEach(async () => {
         await tryIgnore(1, () => adapter.closeBrowser());
     }
 });
-
-afterAll(async () => {
-    await Promise.all((await adapter.getActiveInstances()).map(async (instance) => {
-        if (await instance.isBrowserOpen()) {
-            await instance.closeBrowser();
-        }
-    }));
-});

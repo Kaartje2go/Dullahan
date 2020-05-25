@@ -51,8 +51,6 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
 
     public abstract async getCookie(name: string): Promise<DullahanCookie | null>;
 
-    public abstract async getActiveInstances(): Promise<DullahanAdapter<any, any>[]>;
-
     public abstract async getElementAttributes(selector: string, ...attributeNames: string[]): Promise<(string | null)[]>;
 
     public abstract async getElementBoundaries(selector: string): Promise<{

@@ -38,8 +38,6 @@ import {
     waitForReadyState
 } from '@k2g/dullahan';
 
-let instanceIdCounter = 0;
-
 export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAdapterSelenium4UserOptions,
     typeof DullahanAdapterSelenium4DefaultOptions> {
 
@@ -54,10 +52,6 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     protected readonly viewportAdjustmentX: number;
 
     protected readonly viewportAdjustmentY: number;
-
-    protected readonly instanceId = instanceIdCounter++;
-
-    protected readonly instances = new Map<number, DullahanAdapterSelenium4>();
 
     public constructor(args: {
         testId: string;
@@ -670,7 +664,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async closeBrowser(): Promise<void> {
-        const {driver, instanceId, instances} = this;
+        const {driver} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -678,7 +672,6 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
         await driver.quit();
 
-        instances.delete(instanceId);
         this.driver = undefined;
     }
 
@@ -690,12 +683,6 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.executeScript(displayPointer);
-    }
-
-    public async getActiveInstances(): Promise<DullahanAdapterSelenium4[]> {
-        const {instances} = this;
-
-        return Array.from(instances.values());
     }
 
     public async getElementAttributes(selector: string, ...attributeNames: string[]): Promise<(string | null)[]> {
@@ -930,7 +917,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     public async openBrowser(): Promise<{
         sessionId: string | null
     }> {
-        const {instanceId, instances, options} = this;
+        const {options} = this;
         const {browserVersion, browserName, seleniumRemoteUrl, rawCapabilities, maximizeWindow} = options;
 
         if (this.driver) {
@@ -963,8 +950,6 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         } else {
             this.driver = await buildUnknown(options);
         }
-
-        instances.set(instanceId, this);
 
         if (maximizeWindow) {
             const {driver} = this;
