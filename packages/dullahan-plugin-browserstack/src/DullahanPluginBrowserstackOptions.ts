@@ -37,6 +37,4 @@ export const DullahanPluginBrowserstackDefaultOptions = {
     localOptions: {}
 };
 
-export type DullahanPluginBrowserstackOptions =
-    DullahanPluginBrowserstackUserOptions
-    & typeof DullahanPluginBrowserstackDefaultOptions;
+export type DullahanPluginBrowserstackOptions = DullahanPluginBrowserstackUserOptions & typeof DullahanPluginBrowserstackDefaultOptions;
