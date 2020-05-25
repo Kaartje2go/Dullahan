@@ -13,7 +13,6 @@ sync('packages/*/', {
 })).forEach(({filepath, dirname, contents}) => {
     writeFileSync(filepath, `${JSON.stringify({
         ...contents,
-        version: '0.0.0',
         name: `@k2g/${dirname}`,
         license: 'GPL-3.0',
         main: 'dist/index.js',
