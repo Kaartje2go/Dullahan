@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-plugin-gitlab",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,6 +13,6 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "0.0.0"
+    "@k2g/dullahan": "^0.0.1-alpha.0"
   }
 }
