@@ -65,6 +65,34 @@ jobs:
                     name: screenshots_selenium_3_firefox
                     path: __artifacts__/jest/*.png
 
+    test_selenium_3_safari:
+        name: 'Safari'
+        runs-on: macos-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    path: .
+            -   uses: actions/setup-node@v1
+                with:
+                    node-version: 12
+            -   run: echo "::set-output name=dir::$(yarn cache dir)"
+                id: yarn-cache-dir
+            -   uses: actions/cache@v1
+                with:
+                    path: ${{ steps.yarn-cache-dir.outputs.dir }}
+                    key: yarn-cache-12-${{ hashFiles('**/yarn.lock') }}
+                    restore-keys: yarn-cache-12-
+            -   run: bash ./scripts/ci/setup/default.sh
+            -   run: bash ./scripts/ci/setup/safari.sh
+            -   run: bash ./scripts/ci/jobs/test_selenium_3_safari.sh
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            -   uses: actions/upload-artifact@v2
+                if: ${{ failure() }}
+                with:
+                    name: screenshots_selenium_3_safari
+                    path: __artifacts__/jest/*.png
+
     test_selenium_3_edge:
         name: 'Edge'
         runs-on: windows-latest
