@@ -37,13 +37,13 @@ This plugin uses [xvfb](https://yarnpkg.com/en/package/xvfb) internally and pass
 
 To change any of these options, pass along an object containing the options you wish to change to Dullahan:
 ```js
-module.exports = {
+export default {
     plugins: [
         ['@k2g/dullahan-plugin-xvfb', {
             displayNum: 13
         }]
     ]
-};
+}
 ```
 
 ## Frequently Asked Questions
