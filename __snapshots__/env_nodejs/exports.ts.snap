@@ -184,6 +184,7 @@ Object {
   "enablePullRequestComments": true,
   "enablePullRequestReviews": false,
   "enableStatusChecks": true,
+  "githubToken": undefined,
   "statusName": "Dullahan",
   "statusUrl": "https://dullahan.io",
 }
