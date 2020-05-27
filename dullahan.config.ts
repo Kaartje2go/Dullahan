@@ -22,8 +22,8 @@ export default {
             maximizeWindow: true,
             browserName: 'chrome',
             requireDriver: 'chromedriver',
-            seleniumRemoteUrl: 'https://hub-cloud.browserstack.com/wd/hub',
-            rawCapabilities: {
+            //seleniumRemoteUrl: 'https://hub-cloud.browserstack.com/wd/hub',
+            /*rawCapabilities: {
                 os: 'Windows',
                 os_version: '10',
                 browserName: 'Chrome',
@@ -39,7 +39,7 @@ export default {
                 'browserstack.chrome.driver': '81.0.4044.69',
                 'browserstack.user': BROWSERSTACK_USERNAME,
                 'browserstack.key': BROWSERSTACK_ACCESS_KEY,
-            }
+            }*/
         }
     ],
     plugins: [
@@ -48,7 +48,7 @@ export default {
         '@k2g/dullahan-plugin-report-json',
         '@k2g/dullahan-plugin-report-html',
         '@k2g/dullahan-plugin-report-markdown',
-        '@k2g/dullahan-plugin-browserstack',
+        //'@k2g/dullahan-plugin-browserstack',
         /*['@k2g/dullahan-plugin-aws-s3', {
             bucketName: 'dullahan-artifacts-test'
         }]*/

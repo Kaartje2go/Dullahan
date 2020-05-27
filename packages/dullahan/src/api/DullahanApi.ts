@@ -53,11 +53,6 @@ export class DullahanApi<
         this.options = {...defaultOptions, ...userOptions};
     }
 
-    public goto = this.setURL.bind(this);
-    public click = this.clickAtElementCenter.bind(this);
-    public pressMouse = this.pressMouseAtElementCenter.bind(this);
-    public releaseMouse = this.releaseMouseAtElementCenter.bind(this);
-
     public async sleep(milliseconds: number): Promise<void> {
         await new Promise((resolve) => setTimeout(resolve, milliseconds));
     }
@@ -82,6 +77,10 @@ export class DullahanApi<
             timeout: timeout ?? defaultTimeout
         });
         await adapter.clickAtElement(selector, offsetX, offsetY);
+    }
+
+    async click(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+        return this.clickAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
     }
 
     async clickAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
@@ -215,6 +214,10 @@ export class DullahanApi<
         return adapter.pressMouseAtElement(selector, offsetX, offsetY);
     }
 
+    async pressMouse(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+        return this.pressMouseAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
+    }
+
     async pressMouseAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
@@ -247,6 +250,10 @@ export class DullahanApi<
         });
 
         return adapter.releaseMouseAtElement(selector, offsetX, offsetY);
+    }
+
+    async releaseMouse(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+        return this.releaseMouseAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
     }
 
     async releaseMouseAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
@@ -355,6 +362,10 @@ export class DullahanApi<
         });
 
         return adapter.setElementProperty(selector, propertyName, propertyValue);
+    }
+
+    public async goto(url: string, timeout?: number): Promise<void> {
+        return this.setURL(url, timeout);
     }
 
     async setURL(url: string, timeout?: number): Promise<void> {
