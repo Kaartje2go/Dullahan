@@ -34,12 +34,20 @@ Selenium supports an incredibly wide range of browsers, but not all browsers sup
 
 Instead of creating yet another protocol, Dullahan simply wraps around these existing protocols with a custom API. Each function in Dullahan's API is tested to behave exactly the same for each of these protocols, allowing you to switch between them at will, without having to change any of your code.
 
+More information can be found in each adapter's readme file.
+
 ## Runners: Standard, Development and AWS-Lambda
 * [@k2g/dullahan-runner-standard](./packages/dullahan-runner-standard)
 * [@k2g/dullahan-runner-development](./packages/dullahan-runner-development)
 * [@k2g/dullahan-runner-aws-lambda](./packages/dullahan-runner-aws-lambda)
 
-... TODO
+Dullahan uses runners to determine how tests will be run. The simplest of the runners is the Standard runner, which runs all of your tests (if they match the criteria from your config) and then simply stops. It can run them in series, or in parallel, but in the end it still just means "start - run all tests - stop".
+
+That's nice if you want to run tests, but when you're writing a new test that can be incredibly annoying. In this case, you'll likely want to use the Development runner, which doesn't run anything until you change a test and then runs only that test. The flow with this runner can be described as "start - run a test whenever it changes - stop on user request"
+
+When it comes to running hundreds, or even thousands of tests, the Standard runner likely isn't enough. Imagine opening 100 instances of Google Chrome at the same time on your laptop, it will probably crash. There's a limit to concurrency and that's generally tied to the device running the tests. This is where more specialized runners can save the day: the AWS Lambda runner can easily handle hundreds of tests all running at the same time, as each test will be executed on its own temporary "server". Thousands of tests can be completed within a few minutes, mostly depending on how many active users your website can handle at any given time.
+
+More information can be found in each runner's readme file.
 
 ## Plugins: AWS S3
 * [@k2g/dullahan-plugin-aws-s3](./packages/dullahan-plugin-aws-s3)

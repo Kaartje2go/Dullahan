@@ -40,7 +40,7 @@ export default {
     plugins: [
         ['@k2g/dullahan-plugin-gitlab', {
             projectId: 12345678,
-            mergeRequestInternalId: 'Dullahan'
+            mergeRequestInternalId: 1
         }]
     ]
 }
@@ -50,16 +50,15 @@ export default {
 * [@k2g/dullahan-plugin-report-html](../dullahan-plugin-report-html)
 * [@k2g/dullahan-plugin-aws-s3](../dullahan-plugin-aws-s3)
 
-If the `@k2g/dullahan-plugin-aws-s3` plugin and at least one of `@k2g/dullahan-plugin-report-html` or `@k2g/dullahan-plugin-report-markdown` are installed and configured, the HTML report will be linked to in the commit status. If the HTML report is not available the Markdown report - if available - is linked.
+If the `@k2g/dullahan-plugin-aws-s3` plugin and at least one of `@k2g/dullahan-plugin-report-html` or `@k2g/dullahan-plugin-report-markdown` are installed and configured, the HTML report will be linked to in the comment. If the HTML report is not available the Markdown report - if available - is linked.
 
-If the `@k2g/dullahan-plugin-report-markdown` plugin is installed, this plugin will also be able to post comments on pull requests with the Markdown as content.
+If the `@k2g/dullahan-plugin-report-markdown` plugin is installed, this plugin will also be able to post comments on merge requests with the Markdown as content.
 
 ## Frequently Asked Questions
 **Question:** Which permissions are required for the GitLab Token?
 
 **Answer:**
-* `repo:status`  if `enableStatusChecks` is `true`
-* `repo` if `enablePullRequestReviews` or `enablePullRequestComments` is `true`
+* `api`, which is much more than is needed... but there isn't a smaller scope available.
 
 ## License
 
