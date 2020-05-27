@@ -43,7 +43,7 @@ export default {
 
 To change any of these options, pass along an object containing the options you wish to change to Dullahan:
 ```js
-module.exports = {
+export default {
     plugins: [
         ['@k2g/dullahan-plugin-github', {
             githubToken: '203d8c15720af0a8dd89f05cd9a637790003fbf2',
@@ -51,7 +51,7 @@ module.exports = {
             repositoryName: 'Dullahan'
         }]
     ]
-};
+}
 ```
 ## Companion Plugins
 * [@k2g/dullahan-plugin-report-markdown](../dullahan-plugin-report-markdown)
