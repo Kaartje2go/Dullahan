@@ -50,7 +50,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
         const {bucketName, region, accessKeyId, secretAccessKey, secrets} = options;
         const {scope, name, ext, encoding, data, mimeType} = artifact;
 
-        const Key = `artifacts/${encodeURIComponent(scope)}/${encodeURIComponent(name)}.${encodeURIComponent(ext)}`;
+        const Key = `artifacts/${encodeURIComponent(scope)}/${encodeURIComponent(name)}-${Date.now()}.${encodeURIComponent(ext)}`;
         const url = new URL(`https://${bucketName}.s3.${region}.amazonaws.com/${Key}`);
 
         let safeData = data;
