@@ -1,7 +1,7 @@
 {
   "name": "@k2g/dullahan-plugin-xvfb",
   "version": "0.0.1-alpha.4",
-  "description": "TODO",
+  "description": "Allows Dullahan to manage Xvfb by starting, stopping and/or re-using a virtual frame buffer whenever Dullahan needs it",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
   "main": "dist/index.js",
