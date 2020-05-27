@@ -40,3 +40,25 @@ Instead of creating yet another protocol, Dullahan simply wraps around these exi
 * [@k2g/dullahan-runner-aws-lambda](./packages/dullahan-runner-aws-lambda)
 
 ... TODO
+
+## Plugins: AWS S3
+* [@k2g/dullahan-plugin-aws-s3](./packages/dullahan-plugin-aws-s3)
+
+... TODO
+
+## Plugins: HTML, Markdown, JSON
+* [@k2g/dullahan-plugin-report-html](./packages/dullahan-plugin-report-html)
+* [@k2g/dullahan-plugin-report-markdown](./packages/dullahan-plugin-report-markdown)
+* [@k2g/dullahan-plugin-report-json](./packages/dullahan-plugin-report-json)
+
+... TODO
+
+## Plugins: Other
+
+| Name | Summary|
+| :--- | :--- |
+| [@k2g/dullahan-plugin-browserstack](./packages/dullahan-plugin-browserstack) | Allows Dullahan to manage Browserstack |
+| [@k2g/dullahan-plugin-github](./packages/dullahan-plugin-github) | Allows Dullahan to share test results on GitHub |
+| [@k2g/dullahan-plugin-gitlab](./packages/dullahan-plugin-gitlab) | |
+| [@k2g/dullahan-plugin-slack](./packages/dullahan-plugin-slack) | Allows Dullahan to send messages to Slack |
+| [@k2g/dullahan-plugin-xvfb](./packages/dullahan-plugin-xvfb) | Allows Dullahan to manage Xvfb by starting, stopping and/or re-using a virtual frame buffer whenever Dullahan needs it |
