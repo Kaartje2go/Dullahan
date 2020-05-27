@@ -1,7 +1,7 @@
 {
   "name": "@k2g/dullahan-plugin-gitlab",
   "version": "0.0.1-alpha.5",
-  "description": "TODO",
+  "description": "Allows Dullahan to share test results on GitLab",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
   "main": "dist/index.js",

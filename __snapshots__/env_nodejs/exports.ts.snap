@@ -192,7 +192,12 @@ Object {
 
 exports[`@k2g/dullahan-plugin-github default should remain the same 1`] = `[Function]`;
 
-exports[`@k2g/dullahan-plugin-gitlab DullahanPluginGitlabDefaultOptions should remain the same 1`] = `Object {}`;
+exports[`@k2g/dullahan-plugin-gitlab DullahanPluginGitlabDefaultOptions should remain the same 1`] = `
+Object {
+  "enableMergeRequestComments": true,
+  "gitlabToken": undefined,
+}
+`;
 
 exports[`@k2g/dullahan-plugin-gitlab default should remain the same 1`] = `[Function]`;
 

@@ -59,6 +59,6 @@ Instead of creating yet another protocol, Dullahan simply wraps around these exi
 | :--- | :--- |
 | [@k2g/dullahan-plugin-browserstack](./packages/dullahan-plugin-browserstack) | Allows Dullahan to manage Browserstack |
 | [@k2g/dullahan-plugin-github](./packages/dullahan-plugin-github) | Allows Dullahan to share test results on GitHub |
-| [@k2g/dullahan-plugin-gitlab](./packages/dullahan-plugin-gitlab) | |
+| [@k2g/dullahan-plugin-gitlab](./packages/dullahan-plugin-gitlab) | Allows Dullahan to share test results on GitLab |
 | [@k2g/dullahan-plugin-slack](./packages/dullahan-plugin-slack) | Allows Dullahan to send messages to Slack |
 | [@k2g/dullahan-plugin-xvfb](./packages/dullahan-plugin-xvfb) | Allows Dullahan to manage Xvfb by starting, stopping and/or re-using a virtual frame buffer whenever Dullahan needs it |
