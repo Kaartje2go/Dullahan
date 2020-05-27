@@ -1,6 +1,8 @@
 import {DullahanPluginDefaultOptions, DullahanPluginUserOptions} from '@k2g/dullahan';
 
-const {SLACK_WEBHOOK} = process.env;
+const {
+    DULLAHAN_SLACK_WEBHOOK, SLACK_WEBHOOK
+} = process.env;
 
 export type DullahanPluginSlackUserOptions = Partial<DullahanPluginUserOptions & {
     webhook: string;
@@ -16,7 +18,7 @@ export type DullahanPluginSlackUserOptions = Partial<DullahanPluginUserOptions &
 
 export const DullahanPluginSlackDefaultOptions = {
     ...DullahanPluginDefaultOptions,
-    webhook: SLACK_WEBHOOK,
+    webhook: DULLAHAN_SLACK_WEBHOOK || SLACK_WEBHOOK,
     when: 'always',
     maxPreviews: 3,
     slowTestThreshold: 60000,
