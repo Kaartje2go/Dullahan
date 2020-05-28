@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.1-alpha.9 (2020-05-28)
+
+
+### Bug Fixes
+
+* add a missing dependency ([#9](https://github.com/Kaartje2go/Dullahan/issues/9)) ([4361bd7](https://github.com/Kaartje2go/Dullahan/commit/4361bd764952f48f613c976d17616e7a4ffbbb05))
+
+
+
+
+
 ## 0.0.1-alpha.8 (2020-05-27)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
