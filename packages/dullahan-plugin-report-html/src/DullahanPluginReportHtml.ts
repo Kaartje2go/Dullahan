@@ -21,7 +21,7 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<DullahanPlu
 
     private readonly filename = this.options.template
         ? resolvePath(process.cwd(), this.options.template)
-        : resolvePath(__dirname, 'template/report.ejs');
+        : resolvePath(__dirname, '../template/report.ejs');
 
     private readonly templatePromise = promisify(readFile)(this.filename)
         .then((buffer) => buffer.toString());

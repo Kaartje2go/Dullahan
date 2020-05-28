@@ -16,7 +16,6 @@ sync('packages/*/', {
         name: `@k2g/${dirname}`,
         license: 'GPL-3.0',
         main: 'dist/index.js',
-        files: ['/dist'],
         repository: 'https://github.com/Kaartje2go/Dullahan',
         scripts: {
             ...contents.scripts,

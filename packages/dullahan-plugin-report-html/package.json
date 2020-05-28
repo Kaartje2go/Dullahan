@@ -6,7 +6,8 @@
   "license": "GPL-3.0",
   "main": "dist/index.js",
   "files": [
-    "/dist"
+    "/dist",
+    "/template"
   ],
   "scripts": {
     "clean-code": "rimraf './dist'; rimraf './src/**/*.d.ts'; rimraf './src/**/*.js'; rimraf './src/**/*.js.map'",
