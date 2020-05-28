@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.1-alpha.10 (2020-05-28)
+
+
+### Bug Fixes
+
+* include template in packed files ([8ebd04f](https://github.com/Kaartje2go/Dullahan/commit/8ebd04f5692eb7d5e7683ce075d00ef81ca95ce4))
+
+
+
+
+
 ## 0.0.1-alpha.9 (2020-05-28)
 
 
