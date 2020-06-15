@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@k2g/dullahan": "^0.0.1-alpha.10",
-    "puppeteer": "^3.1.0"
+    "puppeteer": "^4.0.0"
   },
   "devDependencies": {
     "@types/puppeteer": "^3.0.0"
