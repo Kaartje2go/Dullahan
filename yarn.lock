@@ -13979,10 +13979,10 @@ xtend@^4.0.0, xtend@~4.0.1:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
-xvfb@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/xvfb/-/xvfb-0.3.0.tgz#a35aa794fd47575e32bd2284fb0fd6737fe672bc"
-  integrity sha512-Ags69RYsWIxyLpnrOxPZfk3CpHy5vDuMmgg9kYE52hxfa7I5nJX1aAYh0KTFBK7nqcmKM9MuaOfPXAEmVppYsQ==
+xvfb@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/xvfb/-/xvfb-0.4.0.tgz#52c4ddb991b7c5ae9d175d35452718b734781e85"
+  integrity sha512-g55AbjcBL4Bztfn7kiUrR0ne8mMUsFODDJ+HFGf5OuHJqKKccpExX2Qgn7VF2eImw1eoh6+riXHser1J4agrFA==
   optionalDependencies:
     sleep "6.1.0"
 
