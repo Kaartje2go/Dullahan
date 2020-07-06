@@ -162,7 +162,9 @@ export class DullahanApi<
             timeout: timeout ?? defaultTimeout
         });
 
-        return adapter.getElementProperties<string>(selector, 'value')[0];
+        const [value] = await adapter.getElementProperties<string>(selector, 'value');
+
+        return value;
     }
 
     async isElementPresent(selector: string): Promise<boolean> {
