@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.3 (2020-07-06)
+
+
+### Bug Fixes
+
+* handle empty regex patterns ([3da822c](https://github.com/Kaartje2go/Dullahan/commit/3da822ce28057f3173616d690d0570f02403d12c))
+
+
+
+
+
 # 0.1.0-alpha.2 (2020-07-06)
 
 
