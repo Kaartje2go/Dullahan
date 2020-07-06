@@ -19,9 +19,9 @@
   "dependencies": {
     "assign-deep": "^1.0.1",
     "decache": "^4.6.0",
-    "expect": "^26.0.1",
+    "expect": "^26.1.0",
     "glob": "^7.1.6",
     "signale": "^1.4.0",
-    "yargs": "^15.3.1"
+    "yargs": "^15.4.0"
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {resolve as resolvePath} from 'path';
 
 import decache from 'decache';
