@@ -153,6 +153,17 @@ export class DullahanApi<
         return this.adapter.getURL();
     }
 
+    async getValue(selector: string, timeout?: number): Promise<string | null> {
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
+
+        await adapter.waitForElementPresent(selector, {
+            timeout: timeout ?? defaultTimeout
+        });
+
+        return adapter.getElementProperties<string>(selector, 'value')[0];
+    }
+
     async isElementPresent(selector: string): Promise<boolean> {
         return this.adapter.isElementPresent(selector);
     }
@@ -380,6 +391,17 @@ export class DullahanApi<
         if (displayPointer) {
             await this.displayPointer();
         }
+    }
+
+    async setValue(selector: string, value: any, timeout?: number): Promise<void> {
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
+
+        await adapter.waitForElementPresent(selector, {
+            timeout: timeout ?? defaultTimeout
+        });
+
+        return adapter.setElementProperty(selector, 'value', value);
     }
 
     async waitForElementNotPresent(selector: string, timeout?: number): Promise<void> {
