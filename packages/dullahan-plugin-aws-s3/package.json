@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-plugin-aws-s3",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "Allows Dullahan to upload artifacts to AWS S3",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,7 +13,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^0.1.0-alpha.1",
+    "@k2g/dullahan": "^0.1.0-alpha.2",
     "aws-sdk": "^2.709.0"
   }
 }

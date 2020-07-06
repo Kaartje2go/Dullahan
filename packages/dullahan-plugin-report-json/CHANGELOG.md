@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.2 (2020-07-06)
+
+
+### Bug Fixes
+
+* remove incorrect throwing of error ([964f1c6](https://github.com/Kaartje2go/Dullahan/commit/964f1c634307f3719eeda8598b302aa20fc7984a))
+
+
+
+
+
 # 0.1.0-alpha.1 (2020-07-06)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-json
