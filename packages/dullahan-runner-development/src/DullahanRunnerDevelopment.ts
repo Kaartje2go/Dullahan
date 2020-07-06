@@ -40,19 +40,21 @@ export default class DullahanRunnerDevelopment extends DullahanRunner<DullahanRu
         const {options, rootDirectories, includeGlobs, excludeGlobs, includeRegexes, excludeRegexes} = this;
         const {ignoreDotFiles, ignoreUnreadableDir, ignoreNotPermitted} = options;
 
-        if (!includeGlobs.length) {
-            includeGlobs.push('**/*');
-        }
-
         const watchOptions = {
             ignoreDotFiles,
             ignoreUnreadableDir,
             ignoreNotPermitted,
-            filter: (file: string): boolean =>
-                micromatch.isMatch(file, includeGlobs)
-                && !micromatch.isMatch(file, excludeGlobs)
-                && includeRegexes.some((iRegex) => iRegex.test(file))
-                && !excludeRegexes.some((eRegex) => eRegex.test(file))
+            filter: (file: string): boolean => {
+                if (!/[\\/].*\..+/.test(file)) {
+                    // Always accept sub-directories
+                    return true;
+                }
+
+                return (!includeGlobs.length || micromatch.isMatch(file, includeGlobs))
+                    && !micromatch.isMatch(file, excludeGlobs)
+                    && (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+                    && !excludeRegexes.some((eRegex) => eRegex.test(file));
+            }
         };
 
         const watchCallback = async (file: string | object, curr: Stats | null, prev: Stats | null): Promise<void> => {
