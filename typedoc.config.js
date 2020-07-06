@@ -9,7 +9,6 @@ module.exports = {
     hideBreadcrumbs: true,
     hideSources: true,
     externalPattern: '**/node_modules/**',
-
     mode: 'modules',
     name: 'Dullahan',
     out: 'website/docs',
@@ -19,6 +18,7 @@ module.exports = {
     exclude: [
         '**/dist/**/*',
         '**/tests/**/*',
+        '**/node_modules/**/*',
         '**/browser_context/**/*'
     ]
 };
