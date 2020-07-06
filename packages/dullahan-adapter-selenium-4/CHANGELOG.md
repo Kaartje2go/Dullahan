@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.0 (2020-07-06)
+
+
+### Features
+
+* add slowMotion option ([c110113](https://github.com/Kaartje2go/Dullahan/commit/c11011318bd64cde4e99c9d0f8295caa559afdf5))
+
+
+
+
+
 ## 0.0.1-alpha.12 (2020-07-06)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-selenium-4
