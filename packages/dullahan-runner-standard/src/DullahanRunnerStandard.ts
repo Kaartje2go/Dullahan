@@ -38,8 +38,8 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
 
         const testFiles = searchResults.flat()
             .filter((file) =>
-                includeRegexes.some((iRegex) => iRegex.test(file))
-                && !excludeRegexes.some((eRegex) => eRegex.test(file))
+                (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+                && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
             )
             .map((file) => ({
                 file,
