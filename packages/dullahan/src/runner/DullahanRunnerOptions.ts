@@ -16,13 +16,10 @@ export const DullahanRunnerDefaultOptions = {
     failFast: false,
     minSuccesses: 1,
     maxAttempts: 1,
-    rootDirectories: ['./'],
-    includeRegexes: [/test/i],
-    excludeRegexes: [/node_modules/],
-    includeGlobs: [
-        '**/tests/**/*.{ts,js}',
-        '**/*.test.{ts,js}'
-    ],
+    rootDirectories: [],
+    includeRegexes: [],
+    excludeRegexes: [],
+    includeGlobs: [],
     testPredicate: (file: string, test: DullahanTest<never>): boolean => !test.disabled
 };
 
