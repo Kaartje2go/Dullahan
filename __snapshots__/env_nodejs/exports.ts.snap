@@ -10,6 +10,7 @@ exports[`@k2g/dullahan DullahanAdapterDefaultOptions should remain the same 1`] 
 Object {
   "debug": true,
   "headless": false,
+  "slowMotion": 0,
 }
 `;
 
@@ -21,6 +22,7 @@ Object {
   "defaultNetworkTimeout": 30000,
   "defaultTimeout": 15000,
   "displayPointer": true,
+  "slowMotion": 0,
 }
 `;
 
@@ -46,22 +48,13 @@ exports[`@k2g/dullahan DullahanRunner should remain the same 1`] = `[Function]`;
 
 exports[`@k2g/dullahan DullahanRunnerDefaultOptions should remain the same 1`] = `
 Object {
-  "excludeRegexes": Array [
-    /node_modules/,
-  ],
+  "excludeRegexes": Array [],
   "failFast": false,
-  "includeGlobs": Array [
-    "**/tests/**/*.{ts,js}",
-    "**/*.test.{ts,js}",
-  ],
-  "includeRegexes": Array [
-    /test/i,
-  ],
+  "includeGlobs": Array [],
+  "includeRegexes": Array [],
   "maxAttempts": 1,
   "minSuccesses": 1,
-  "rootDirectories": Array [
-    "./",
-  ],
+  "rootDirectories": Array [],
   "testPredicate": [Function],
 }
 `;
@@ -117,6 +110,7 @@ Object {
   "browserName": "chromium",
   "debug": true,
   "headless": false,
+  "slowMotion": 0,
 }
 `;
 
@@ -127,6 +121,7 @@ Object {
   "browserName": "chrome",
   "debug": true,
   "headless": false,
+  "slowMotion": 0,
 }
 `;
 
@@ -139,6 +134,7 @@ Object {
   "headless": false,
   "maximizeWindow": true,
   "rawCapabilities": Object {},
+  "slowMotion": 0,
 }
 `;
 
@@ -151,6 +147,7 @@ Object {
   "headless": false,
   "maximizeWindow": true,
   "rawCapabilities": Object {},
+  "slowMotion": 0,
 }
 `;
 
@@ -260,25 +257,16 @@ exports[`@k2g/dullahan-plugin-xvfb default should remain the same 1`] = `[Functi
 exports[`@k2g/dullahan-runner-aws-lambda DullahanRunnerAwsLambdaDefaultOptions should remain the same 1`] = `
 Object {
   "accessKeyId": undefined,
-  "excludeRegexes": Array [
-    /node_modules/,
-  ],
+  "excludeRegexes": Array [],
   "failFast": false,
-  "includeGlobs": Array [
-    "**/tests/**/*.{ts,js}",
-    "**/*.test.{ts,js}",
-  ],
-  "includeRegexes": Array [
-    /test/i,
-  ],
+  "includeGlobs": Array [],
+  "includeRegexes": Array [],
   "maxAttempts": 1,
   "maxConcurrency": 900,
   "minSuccesses": 1,
   "region": undefined,
   "role": "master",
-  "rootDirectories": Array [
-    "./",
-  ],
+  "rootDirectories": Array [],
   "secretAccessKey": undefined,
   "slaveFunctionName": undefined,
   "slaveOptions": Object {},
@@ -291,25 +279,16 @@ exports[`@k2g/dullahan-runner-aws-lambda default should remain the same 1`] = `[
 
 exports[`@k2g/dullahan-runner-development DullahanRunnerDevelopmentDefaultOptions should remain the same 1`] = `
 Object {
-  "excludeRegexes": Array [
-    /node_modules/,
-  ],
+  "excludeRegexes": Array [],
   "failFast": false,
   "ignoreDotFiles": true,
   "ignoreNotPermitted": true,
   "ignoreUnreadableDir": true,
-  "includeGlobs": Array [
-    "**/tests/**/*.{ts,js}",
-    "**/*.test.{ts,js}",
-  ],
-  "includeRegexes": Array [
-    /test/i,
-  ],
+  "includeGlobs": Array [],
+  "includeRegexes": Array [],
   "maxAttempts": 1,
   "minSuccesses": 1,
-  "rootDirectories": Array [
-    "./",
-  ],
+  "rootDirectories": Array [],
   "testPredicate": [Function],
 }
 `;
@@ -318,22 +297,13 @@ exports[`@k2g/dullahan-runner-development default should remain the same 1`] = `
 
 exports[`@k2g/dullahan-runner-standard DullahanRunnerStandardDefaultOptions should remain the same 1`] = `
 Object {
-  "excludeRegexes": Array [
-    /node_modules/,
-  ],
+  "excludeRegexes": Array [],
   "failFast": false,
-  "includeGlobs": Array [
-    "**/tests/**/*.{ts,js}",
-    "**/*.test.{ts,js}",
-  ],
-  "includeRegexes": Array [
-    /test/i,
-  ],
+  "includeGlobs": Array [],
+  "includeRegexes": Array [],
   "maxAttempts": 1,
   "minSuccesses": 1,
-  "rootDirectories": Array [
-    "./",
-  ],
+  "rootDirectories": Array [],
   "testPredicate": [Function],
 }
 `;
