@@ -38,8 +38,9 @@ export class DullahanCallSpy {
         testId: string;
         client: DullahanClient;
         functionScope: DullahanFunctionScope;
+        slowMotion: number;
     }) {
-        const {testId, client, functionScope} = args;
+        const {testId, client, functionScope, slowMotion} = args;
 
         return new Proxy(this, {
             get: (target: DullahanCallSpy, functionName: string): unknown => {
@@ -90,6 +91,13 @@ export class DullahanCallSpy {
                         });
 
                         return intermediate;
+                    }
+
+                    if (slowMotion) {
+                        intermediate = intermediate.then(async (functionResult: any) => {
+                            await new Promise((resolve) => setTimeout(resolve, slowMotion));
+                            return functionResult;
+                        });
                     }
 
                     return intermediate.then((functionResult: any) => {

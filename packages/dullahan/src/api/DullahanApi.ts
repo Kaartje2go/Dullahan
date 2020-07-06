@@ -44,7 +44,8 @@ export class DullahanApi<
         super({
             testId,
             client,
-            functionScope: 'api'
+            functionScope: 'api',
+            slowMotion: userOptions.slowMotion ?? defaultOptions.slowMotion
         });
 
         this.test = test;

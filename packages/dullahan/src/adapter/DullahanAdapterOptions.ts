@@ -1,4 +1,5 @@
 export type DullahanAdapterUserOptions = Partial<{
+    slowMotion: number;
     headless: boolean;
     browserName: string;
     browserVersion: string;
@@ -6,6 +7,7 @@ export type DullahanAdapterUserOptions = Partial<{
  }>;
 
 export const DullahanAdapterDefaultOptions = {
+    slowMotion: 0,
     headless: false,
     debug: true
 };

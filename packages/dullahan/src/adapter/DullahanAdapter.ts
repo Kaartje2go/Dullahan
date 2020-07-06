@@ -29,7 +29,8 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
         super({
             testId,
             client,
-            functionScope: 'adapter'
+            functionScope: 'adapter',
+            slowMotion: userOptions.slowMotion ?? defaultOptions.slowMotion
         });
 
         this.client = client;

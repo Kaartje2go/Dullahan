@@ -1,4 +1,5 @@
 export type DullahanApiUserOptions = Partial<{
+    slowMotion: number;
     autoScroll: true;
     displayPointer: boolean;
     defaultTimeout: number;
@@ -6,6 +7,7 @@ export type DullahanApiUserOptions = Partial<{
 }>;
 
 export const DullahanApiDefaultOptions = {
+    slowMotion: 0,
     autoScroll: true,
     displayPointer: true,
     defaultTimeout: 15000,
