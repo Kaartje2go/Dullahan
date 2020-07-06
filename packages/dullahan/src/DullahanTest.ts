@@ -1,7 +1,8 @@
 import {DullahanApi} from './api/DullahanApi';
 import {DullahanError} from './DullahanError';
+import {DullahanApiOptions, DullahanApiUserOptions} from './api';
 
-export class DullahanTest<Api extends DullahanApi<never, never> = DullahanApi<never, never>> {
+export class DullahanTest<Api extends DullahanApi<DullahanApiUserOptions, DullahanApiOptions> = DullahanApi<DullahanApiUserOptions, DullahanApiOptions>> {
 
     public readonly name: string;
 
