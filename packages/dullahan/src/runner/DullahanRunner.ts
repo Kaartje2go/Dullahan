@@ -38,6 +38,7 @@ export abstract class DullahanRunner<DullahanRunnerSubclassUserOptions extends D
                        }: DullahanRunnerArguments<DullahanRunnerSubclassUserOptions, DullahanRunnerSubclassDefaultOptions>) {
         this.client = client;
         this.options = assignDeep({}, defaultOptions, userOptions);
+        this.options.testPredicate = userOptions.testPredicate || defaultOptions.testPredicate;
         const {rootDirectories, includeGlobs, excludeGlobs, includeRegexes, excludeRegexes} = this.options;
         this.includeGlobs = ensureArray<string>(includeGlobs);
         this.excludeGlobs = ensureArray<string>(excludeGlobs);

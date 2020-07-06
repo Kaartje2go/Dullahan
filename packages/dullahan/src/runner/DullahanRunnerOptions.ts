@@ -20,7 +20,7 @@ export const DullahanRunnerDefaultOptions = {
     includeRegexes: [],
     excludeRegexes: [],
     includeGlobs: [],
-    testPredicate: (file: string, test: DullahanTest<never>): boolean => !test.disabled
+    testPredicate: (file: string, test: DullahanTest<never>): boolean | Promise<boolean> => !test.disabled
 };
 
 export type DullahanRunnerOptions = DullahanRunnerUserOptions & typeof DullahanRunnerDefaultOptions;
