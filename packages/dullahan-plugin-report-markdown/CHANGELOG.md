@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.4 (2020-07-06)
+
+
+### Bug Fixes
+
+* properly pass user option testPredicate around ([4170b44](https://github.com/Kaartje2go/Dullahan/commit/4170b449542fb76abd27628615be80584c06a15b))
+
+
+
+
+
 # 0.1.0-alpha.3 (2020-07-06)
 
 
