@@ -2,6 +2,7 @@ import {DullahanAdapterUserOptions, DullahanAdapterDefaultOptions} from '@k2g/du
 
 export type DullahanAdapterPuppeteerUserOptions = Partial<DullahanAdapterUserOptions & {
     browserName?: 'chrome' | 'firefox';
+    emulateDevice?: string;
  }>;
 
 export const DullahanAdapterPuppeteerDefaultOptions = {

@@ -762,7 +762,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         sessionId: string | null
     }> {
         const {options} = this;
-        const {headless, browserName} = options;
+        const {headless, browserName, emulateDevice} = options;
 
         if (this.browser) {
             throw new AdapterError(DullahanErrorMessage.ACTIVE_BROWSER);
@@ -772,7 +772,9 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             headless,
             args: ['--no-sandbox']
         });
-        const context = await browser.newContext();
+
+        const contextOptions = emulateDevice ? Playwright.devices[emulateDevice] : {};
+        const context = await browser.newContext(contextOptions);
         const page = await context.newPage();
 
         this.browser = browser;
