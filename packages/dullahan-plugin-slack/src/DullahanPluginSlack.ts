@@ -83,7 +83,7 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
                 type: 'section',
                 text: {
                     type: 'mrkdwn',
-                    text: `New results: ${failingTests} failing tests, ${unstableTests} unstable tests, ${slowTests} slow tests and ${successfulTests} successful tests`
+                    text: `New results: ${failingTests.length} failing tests, ${unstableTests.length} unstable tests, ${slowTests.length} slow tests and ${successfulTests.length} successful tests`
                 }
             }, {
                 type: 'divider'
