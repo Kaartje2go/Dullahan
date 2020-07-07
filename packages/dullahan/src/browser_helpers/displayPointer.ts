@@ -16,27 +16,27 @@ export function displayPointer(): void {
     dullahanCursorStyle.setAttribute('type', 'text/css');
     dullahanCursorStyle.appendChild(document.createTextNode(
         '.dullahan-cursor {'
-            + 'position: absolute;'
-            + 'pointer-events: none;'
-            + 'background-color: rgba(0, 0, 255, 0.2);'
-            + 'z-index: 9007199254740991;'
-            + 'border-radius: 20px;'
-            + 'width: 20px;'
-            + 'height: 20px;'
-            + 'transform: scale(1);'
-            + 'transition: transform 0.05s'
-            + 'transition-delay: 0.05s;'
-            + 'transform-origin: center center;'
+        + 'position: absolute;'
+        + 'pointer-events: none;'
+        + 'background-color: rgba(0, 0, 255, 0.2);'
+        + 'z-index: 9007199254740991;'
+        + 'border-radius: 20px;'
+        + 'width: 20px;'
+        + 'height: 20px;'
+        + 'transform: scale(1);'
+        + 'transition: transform 0.05s'
+        + 'transition-delay: 0.05s;'
+        + 'transform-origin: center center;'
         + '} '
         + '.dullahan-cursor-history {'
-            + 'display: block;'
-            + 'position: absolute;'
-            + 'top: 0;'
-            + 'bottom: 0;'
-            + 'left: 0;'
-            + 'right: 0;'
-            + 'pointer-events: none;'
-            + 'z-index: 9007199254740990;'
+        + 'display: block;'
+        + 'position: absolute;'
+        + 'top: 0;'
+        + 'bottom: 0;'
+        + 'left: 0;'
+        + 'right: 0;'
+        + 'pointer-events: none;'
+        + 'z-index: 9007199254740990;'
         + '}'
     ));
     document.head.appendChild(dullahanCursorStyle);
@@ -68,7 +68,7 @@ export function displayPointer(): void {
             var moved = !!lastAction && (lastAction.x !== x || lastAction.y !== y);
             console.log(lastAction, x, y);
             if (moved) {
-                var line = document.createElementNS('http://www.w3.org/2000/svg','line');
+                var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
                 line.setAttribute('x1', lastAction.x.toString());
                 line.setAttribute('y1', lastAction.y.toString());
                 line.setAttribute('x2', x.toString());
@@ -82,7 +82,7 @@ export function displayPointer(): void {
             }
 
             if (!lastAction || moved) {
-                var circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+                var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 circle.setAttribute('cx', x.toString());
                 circle.setAttribute('cy', y.toString());
                 circle.setAttribute('r', '10');
@@ -108,6 +108,16 @@ export function displayPointer(): void {
         dullahanCursorMovementHandler(event, 'release');
     }
 
+    function dullahanCursorHashChangeHandler(event): void {
+        if (event.oldURL.split('#')[0] === event.newURL.split('#')[0]) {
+            return;
+        }
+
+        while (dullahanSVG.firstChild) {
+            dullahanSVG.removeChild(dullahanSVG.lastChild!);
+        }
+    }
+
     document.addEventListener('mousemove', dullahanCursorMovementHandler);
     document.addEventListener('touchmove', dullahanCursorMovementHandler);
 
@@ -116,6 +126,8 @@ export function displayPointer(): void {
 
     document.addEventListener('touchstart', dullahanCursorPressHandler);
     document.addEventListener('touchend', dullahanCursorReleaseHandler);
+
+    window.addEventListener('hashchange', dullahanCursorHashChangeHandler);
 
     updateSVGSize();
     setInterval(updateSVGSize, 100);
