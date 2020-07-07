@@ -27,7 +27,7 @@ export const isSlowTest = (slowThreshold: number, test: Test): boolean => {
 };
 
 export const isSuccessfulTest = (slowThreshold: number, test: Test): boolean => {
-    const {error, timeStart, timeEnd} = test;
+    const {error, timeStart, timeEnd, calls} = test;
 
-    return !error && timeEnd - timeStart < slowThreshold;
+    return !error && timeEnd - timeStart < slowThreshold && !calls.find(({error}) => !!error);
 };

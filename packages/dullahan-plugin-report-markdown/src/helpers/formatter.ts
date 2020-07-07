@@ -77,9 +77,9 @@ export const formatSlowTable = (rows: string[]) => {
 };
 
 export const isSuccessfulTest = (slowThreshold: number, test: Test): boolean => {
-    const {error, timeStart, timeEnd} = test;
+    const {error, timeStart, timeEnd, calls} = test;
 
-    return !error && timeEnd - timeStart < slowThreshold;
+    return !error && timeEnd - timeStart < slowThreshold && !calls.find(({error}) => !!error);
 };
 
 export const formatSuccessfulTest = (test: Test) => {
