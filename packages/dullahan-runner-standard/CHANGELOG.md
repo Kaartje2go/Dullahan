@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.8 (2020-07-07)
+
+
+### Bug Fixes
+
+* deeply check for successful tests ([ad91d30](https://github.com/Kaartje2go/Dullahan/commit/ad91d30689b9d54f29b09a968ad9fa3e1d21e500))
+
+
+
+
+
 # 0.1.0-alpha.7 (2020-07-07)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-standard
