@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.6 (2020-07-07)
+
+
+### Features
+
+* add emulateDevice option ([066eb48](https://github.com/Kaartje2go/Dullahan/commit/066eb48285546d0f73146f2ccba11ccd5efc8a14))
+
+
+
+
+
 # 0.1.0-alpha.5 (2020-07-07)
 
 
