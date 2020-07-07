@@ -29,8 +29,13 @@ export const saveArtifactToFile = async (artifact: Artifact): Promise<URL> => {
     const filePath = resolvePath(directoryPath, `${name}.${ext}`);
 
     console.log(`Writing file "${filePath}"`);
-    await mkdirP(directoryPath, {recursive: true});
-    await writeFileP(filePath, data, {encoding});
+
+    try {
+        await mkdirP(directoryPath, {recursive: true});
+        await writeFileP(filePath, data, {encoding});
+    } catch (error) {
+        console.log(`Failed to write file "${filePath}": ${error.name}`);
+    }
 
     return pathToFileURL(filePath);
 };
