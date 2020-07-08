@@ -59,13 +59,13 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             defaultOptions: DullahanAdapterSelenium3DefaultOptions
         });
 
-        const {browserName, browserVersion} = this.options;
+        const {browserName, browserVersion, appium} = this.options;
 
         // Safari and Edge 18 do not support returning Promise<WebElement>
         this.supportsPromises = !/safari/i.test(browserName) && !(/egde/i.test(browserName) && parseInt(browserVersion ?? '19') <= 18);
 
         // Firefox and Internet Explorer do not (fully) support actions
-        this.supportsActions = !/firefox|ie/i.test(browserName);
+        this.supportsActions = !appium && !/firefox|ie/i.test(browserName);
 
         // Firefox, Internet Explorer and Safari do not (fully) support shadow dom
         this.supportsShadowDom = !/firefox|ie|safari/i.test(browserName);
@@ -948,7 +948,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         sessionId: string | null
     }> {
         const {options} = this;
-        const {browserVersion, browserName, seleniumRemoteUrl, rawCapabilities, maximizeWindow} = options;
+        const {browserVersion, browserName, seleniumRemoteUrl, rawCapabilities, maximizeWindow, appium} = options;
 
         if (this.driver) {
             throw new AdapterError(DullahanErrorMessage.ACTIVE_BROWSER);
@@ -981,7 +981,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             this.driver = await buildUnknown(options);
         }
 
-        if (maximizeWindow) {
+        if (!appium && maximizeWindow) {
             const {driver} = this;
             tryIgnore(1, async () => {
                 await driver.manage().window().maximize();

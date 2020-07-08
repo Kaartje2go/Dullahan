@@ -1,6 +1,7 @@
 import {DullahanAdapterDefaultOptions, DullahanAdapterUserOptions} from '@k2g/dullahan';
 
 export type DullahanAdapterSelenium3UserOptions = Partial<DullahanAdapterUserOptions & {
+    appium?: boolean;
     browserName?: 'chrome' | 'firefox' | 'edge' | 'ie' | 'safari';
     requireDriver?: 'chromedriver' | 'geckodriver' | 'iedriver' | '@sitespeed.io/edgedriver' | string;
     browserBinary: string;
