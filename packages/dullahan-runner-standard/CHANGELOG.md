@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.10 (2020-07-08)
+
+
+### Features
+
+* add appium option ([422e7f9](https://github.com/Kaartje2go/Dullahan/commit/422e7f94aa7c4720ac3fc7f55799e7106f32199f))
+
+
+
+
+
 # 0.1.0-alpha.9 (2020-07-07)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-standard
