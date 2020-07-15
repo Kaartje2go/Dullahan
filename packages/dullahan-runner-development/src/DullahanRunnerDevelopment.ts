@@ -70,6 +70,7 @@ export default class DullahanRunnerDevelopment extends DullahanRunner<DullahanRu
                 const testPredicateResult = !!tempInstance && await testPredicate(file, tempInstance.test);
 
                 if (!testPredicateResult) {
+                    this.isBusy = false;
                     return;
                 }
 
