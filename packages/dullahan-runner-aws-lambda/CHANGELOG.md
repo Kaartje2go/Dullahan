@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.11 (2020-07-15)
+
+
+### Bug Fixes
+
+* continue watching after testPredicateResult returns false ([#21](https://github.com/Kaartje2go/Dullahan/issues/21)) ([312d068](https://github.com/Kaartje2go/Dullahan/commit/312d068af30db5089017149196eca9a6f95fbb8e))
+
+
+
+
+
 # 0.1.0-alpha.10 (2020-07-08)
 
 
