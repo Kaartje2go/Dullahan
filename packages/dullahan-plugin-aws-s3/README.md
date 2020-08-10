@@ -32,6 +32,7 @@ export default {
 | region | string | `DULLAHAN_PLUGIN_AWS_S3_AWS_REGION`, `AWS_REGION`, `AWS_DEFAULT_REGION` | The region in which the bucket is located |
 | accessKeyId | string | `DULLAHAN_PLUGIN_AWS_S3_AWS_ACCESS_KEY_ID`, `AWS_ACCESS_KEY_ID` | Security credentials for the account used to perform the uploads |
 | secretAccessKey | string | `DULLAHAN_PLUGIN_AWS_S3_AWS_SECRET_ACCESS_KEY`, `AWS_SECRET_ACCESS_KEY` | Security credentials for the account used to perform the uploads |
+| useAccessKeys | boolean | true | Whether or not the access keys should be used. |
 | secrets | (string or RegExp)[] | `DULLAHAN_PLUGIN_AWS_S3_AWS_SECRET_ACCESS_KEY`, `AWS_SECRET_ACCESS_KEY` | An optional list of information that you want to be redacted before it is uploaded. Setting this option does not replace the secrets that Dullahan is able to determine at runtime. |
 
 To change any of these options, pass along an object containing the options you wish to change to Dullahan:
@@ -61,6 +62,10 @@ The following will automatically (and always) be considered secret:
 **Question:** I added the plugin, but nothing is being uploaded, what is going on?
 
 **Answer:** It could be that there is simply nothing to upload. To be sure though, check the logs, there may be an issue with your configuration.
+
+**Question:** I get the error `UnrecognizedClientException: The security token included in the request is invalid.`. What can I do?
+
+**Answer:** Dependening on your S3 settings and the environment Dullahan runs in, the `access key` and `secret access key` environment variables should not be used. Sometimes, they are needed for other AWS plugins though, and you _do_ need to set them. You can set `useAccessKeys` to `false` which should fix this issue.
 
 **Question:** Can I use this plugin together with another plugin that also uploads artifacts?
 
