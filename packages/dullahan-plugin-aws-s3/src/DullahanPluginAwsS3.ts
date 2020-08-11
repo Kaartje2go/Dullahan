@@ -47,6 +47,16 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
         }
     }
 
+    private getSecretRegex(secret: string | RegExp) {
+        if (secret instanceof RegExp)    {
+            return secret;
+        }
+        const secretRegex = /\/(.+)\//.exec(secret);
+        return secretRegex !== null ?
+            new RegExp(secretRegex[1], 'gim')
+            : new RegExp(secret.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'), 'gim');
+    }
+
     public async uploadArtifact(artifact: Artifact): Promise<URL | null> {
         const {s3, options} = this;
         const {bucketName, region, accessKeyId, secretAccessKey, secrets} = options;
@@ -65,11 +75,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
                 .map(([, value]) => value)
         ])].forEach((secret) => {
             if (secret) {
-                const searchValue = secret instanceof RegExp
-                    ? secret
-                    : /\/(.+)\//.test(secret)
-                        ? new RegExp(/\/(.+)\//.exec(secret)![1], 'gim')
-                        : new RegExp(secret.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'), 'gim');
+                const searchValue = this.getSecretRegex(secret);
                 safeData = safeData.replace(searchValue, '<secret>');
             }
         });
