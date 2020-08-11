@@ -159,6 +159,7 @@ Object {
   "region": undefined,
   "secretAccessKey": undefined,
   "secrets": Array [],
+  "useAccessKeys": true,
 }
 `;
 

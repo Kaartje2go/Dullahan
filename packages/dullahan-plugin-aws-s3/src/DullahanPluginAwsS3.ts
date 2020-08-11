@@ -8,9 +8,11 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
     typeof DullahanPluginAwsS3DefaultOptions
 > {
 
-    private readonly s3 = new S3({
+    private readonly s3 = this.options.useAccessKeys ? new S3({
         accessKeyId: this.options.accessKeyId,
         secretAccessKey: this.options.secretAccessKey,
+        region: this.options.region
+    }) : new S3({
         region: this.options.region
     });
 
@@ -20,7 +22,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
     }) {
         super({
             ...args,
-            defaultOptions: DullahanPluginAwsS3DefaultOptions
+            defaultOptions: DullahanPluginAwsS3DefaultOptions,
         });
     }
 
@@ -56,18 +58,20 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
         let safeData = data;
         [...new Set([
             ...secrets,
-            accessKeyId!,
-            secretAccessKey!,
+            accessKeyId,
+            secretAccessKey,
             ...Object.entries(process.env)
                 .filter(([key, value]) => /token|key|secret|password/i.test(key) && value?.length)
-                .map(([, value]) => value as string)
+                .map(([, value]) => value)
         ])].forEach((secret) => {
-            const searchValue = secret instanceof RegExp
-                ? secret
-                : /\/(.+)\//.test(secret)
-                    ? new RegExp(/\/(.+)\//.exec(secret)![1], 'gim')
-                    : new RegExp(secret.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'), 'gim');
-            safeData = safeData.replace(searchValue, '<secret>');
+            if (secret) {
+                const searchValue = secret instanceof RegExp
+                    ? secret
+                    : /\/(.+)\//.test(secret)
+                        ? new RegExp(/\/(.+)\//.exec(secret)![1], 'gim')
+                        : new RegExp(secret.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'), 'gim');
+                safeData = safeData.replace(searchValue, '<secret>');
+            }
         });
 
         try {

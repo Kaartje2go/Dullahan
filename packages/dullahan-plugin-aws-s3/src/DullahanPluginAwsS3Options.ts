@@ -12,6 +12,7 @@ export type DullahanPluginAwsS3UserOptions = Partial<DullahanPluginUserOptions &
     secretAccessKey: string;
     bucketName: string;
     secrets: (string | RegExp)[];
+    useAccessKeys: boolean;
 }>;
 
 export const DullahanPluginAwsS3DefaultOptions = {
@@ -19,7 +20,8 @@ export const DullahanPluginAwsS3DefaultOptions = {
     region: DULLAHAN_PLUGIN_AWS_S3_AWS_REGION || AWS_REGION || AWS_DEFAULT_REGION,
     accessKeyId: DULLAHAN_PLUGIN_AWS_S3_AWS_ACCESS_KEY_ID || AWS_ACCESS_KEY_ID,
     secretAccessKey: DULLAHAN_PLUGIN_AWS_S3_AWS_SECRET_ACCESS_KEY || AWS_SECRET_ACCESS_KEY,
-    secrets: [] as (string | RegExp)[]
+    secrets: [] as (string | RegExp)[],
+    useAccessKeys: true
 };
 
 export type DullahanPluginAwsS3Options = DullahanPluginAwsS3UserOptions & typeof DullahanPluginAwsS3DefaultOptions;
