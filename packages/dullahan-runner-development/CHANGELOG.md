@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.13 (2020-08-11)
+
+
+### Bug Fixes
+
+* make sure the regex exec result is not null ([#26](https://github.com/Kaartje2go/Dullahan/issues/26)) ([de68ce0](https://github.com/Kaartje2go/Dullahan/commit/de68ce0caea4851d82cf957bf6d9d1d98d46f791))
+
+
+
+
+
 # 0.1.0-alpha.12 (2020-08-11)
 
 
