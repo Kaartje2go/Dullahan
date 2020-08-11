@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.12 (2020-08-11)
+
+
+### Features
+
+* add option to not use access keys in the S3 plugin ([#25](https://github.com/Kaartje2go/Dullahan/issues/25)) ([7944fb1](https://github.com/Kaartje2go/Dullahan/commit/7944fb1ba3af3bc6815ef3c10e6f0c24fa8c9011))
+
+
+
+
+
 # 0.1.0-alpha.11 (2020-07-15)
 
 
