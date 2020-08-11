@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 type MouseEvents = 'mousedown' | 'mouseup' | 'click' | 'mousemove';
 
 export type EmitFakeEventOptions = {

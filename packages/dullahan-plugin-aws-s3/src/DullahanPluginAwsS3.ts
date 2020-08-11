@@ -47,13 +47,13 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
         }
     }
 
-    private getSecretRegex(secret: string | RegExp) {
+    private getRegexForSecret(secret: string | RegExp): RegExp {
         if (secret instanceof RegExp)    {
             return secret;
         }
         const secretRegex = /\/(.+)\//.exec(secret);
-        return secretRegex !== null ?
-            new RegExp(secretRegex[1], 'gim')
+        return secretRegex !== null
+            ? new RegExp(secretRegex[1], 'gim')
             : new RegExp(secret.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'), 'gim');
     }
 
@@ -75,7 +75,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
                 .map(([, value]) => value)
         ])].forEach((secret) => {
             if (secret) {
-                const searchValue = this.getSecretRegex(secret);
+                const searchValue = this.getRegexForSecret(secret);
                 safeData = safeData.replace(searchValue, '<secret>');
             }
         });

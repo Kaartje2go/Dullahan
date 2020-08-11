@@ -1,5 +1,3 @@
-/* eslint-disable  */
-
 import {DullahanAdapter, AdapterError, DullahanErrorMessage, tryX} from "@k2g/dullahan";
 
 declare const adapter: DullahanAdapter<never, never>;

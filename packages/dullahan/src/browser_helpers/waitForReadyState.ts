@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export type DullahanReadyState = 'loading' | 'interactive' | 'complete'
 
 export type WaitForReadyStateOptions = {
@@ -17,7 +15,7 @@ export function waitForReadyState(this: void, options: WaitForReadyStateOptions)
     var timeout = options.timeout;
     var interval = Math.floor(timeout / 100);
     var endTime = Date.now() + timeout;
-    
+
     function performSearch(): boolean {
         try {
             return states[document.readyState] >= wantedState;
@@ -30,7 +28,7 @@ export function waitForReadyState(this: void, options: WaitForReadyStateOptions)
         return new Promise(function poll(resolve, reject) {
             try {
                 var result = performSearch();
-    
+
                 if (result) {
                      resolve(result);
                 } else if (Date.now() < endTime) {

@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export function getBoundingClientRect(this: void, element: Element): {
     top: number;
     left: number;

@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export function scrollToElement(this: void, element: Element): void {
     element.scrollIntoView({
         behavior: 'auto',

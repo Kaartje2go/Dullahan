@@ -1,5 +1,3 @@
-/* eslint-disable  */
-
 import {DullahanApi, DullahanAdapter} from "@k2g/dullahan";
 
 declare const api: DullahanApi<never, never>;

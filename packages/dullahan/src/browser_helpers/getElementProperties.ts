@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export type GetElementPropertiesOptions = {
     element: Element;
     propertyNames: string[]
