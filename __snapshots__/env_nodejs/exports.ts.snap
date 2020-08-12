@@ -273,6 +273,7 @@ Object {
   "slaveOptions": Object {},
   "slaveQualifier": undefined,
   "testPredicate": [Function],
+  "useAccessKeys": true,
 }
 `;
 
