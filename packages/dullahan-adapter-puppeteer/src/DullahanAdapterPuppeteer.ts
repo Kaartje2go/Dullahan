@@ -750,20 +750,23 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         sessionId: string | null
     }> {
         const {options} = this;
-        const {headless, browserName, emulateDevice, userAgent} = options;
+        const {headless, browserName, emulateDevice, executablePath, userAgent} = options;
 
         if (this.browser) {
             throw new AdapterError(DullahanErrorMessage.ACTIVE_BROWSER);
         }
 
-        const browser = await Puppeteer.launch({
+        const launchOptions: Puppeteer.LaunchOptions = {
+            defaultViewport: null,
+            executablePath,
             headless,
             handleSIGINT: false,
-            defaultViewport: null,
             // @ts-ignore
             product: browserName,
             args: ['--no-sandbox']
-        });
+        };
+
+        const browser = await Puppeteer.launch(launchOptions);
         const pages = await browser.pages();
         const page = pages[pages.length - 1];
 
