@@ -22,11 +22,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
     private hasStopSignal = false;
 
-    private readonly lambda = new Lambda({
+    private readonly lambda = this.options.useAccessKeys ? new Lambda({
         accessKeyId: this.options.accessKeyId,
         secretAccessKey: this.options.secretAccessKey,
         region: this.options.region
-    });
+    }) : new Lambda();
 
     public constructor(args: {
         client: DullahanClient;
@@ -59,22 +59,28 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             dot: true
         })));
 
-        const testFiles: string[] = (await Promise.all(
-            searchResults.flat()
-                .filter((file) =>
-                    (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
-                    && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
-                )
-                .map(async (file: string) => {
-                    const instance = client.getTestInstance(file);
-                    const accepted = !!instance && await testPredicate(file, instance.test);
-                    return {file, accepted};
-                })
-        )).filter(({accepted}) => accepted).map(({file}) => file);
+        const testFiles = (await Promise.all(
+                searchResults.flat()
+                    .filter((file) =>
+                        (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+                        && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
+                    )
+                    .map(async (file: string) => {
+                        const instance = client.getTestInstance(file);
+                        const accepted = !!instance && await testPredicate(file, instance.test);
+                        return {file, accepted};
+                    })
+            ))
+            .filter(({accepted}) => accepted)
+            .map(({file}) => ({
+                file,
+                successes: 0,
+                failures: 0
+            }));
 
         const nextPool = [...testFiles];
 
-        console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files (${searchResults.length} in total)`);
+        console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`);
 
         do {
             const currentPool = nextPool.splice(0, nextPool.length);

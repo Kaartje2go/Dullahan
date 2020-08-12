@@ -20,6 +20,7 @@ export type DullahanRunnerAwsLambdaUserOptions = Partial<DullahanRunnerUserOptio
         file: string;
         [key: string]: unknown;
     };
+    useAccessKeys: boolean;
 }>;
 
 export const DullahanRunnerAwsLambdaDefaultOptions = {
@@ -31,7 +32,8 @@ export const DullahanRunnerAwsLambdaDefaultOptions = {
     secretAccessKey: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_SECRET_ACCESS_KEY || AWS_SECRET_ACCESS_KEY,
     slaveFunctionName: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_LAMBDA_FUNCTION_NAME || AWS_LAMBDA_FUNCTION_NAME,
     slaveQualifier: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_LAMBDA_FUNCTION_VERSION || AWS_LAMBDA_FUNCTION_VERSION,
-    slaveOptions: {}
+    slaveOptions: {},
+    useAccessKeys: true,
 };
 
 export type DullahanRunnerAwsLambdaOptions =
