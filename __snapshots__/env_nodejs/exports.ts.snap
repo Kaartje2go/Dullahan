@@ -118,12 +118,12 @@ exports[`@k2g/dullahan-adapter-playwright default should remain the same 1`] = `
 
 exports[`@k2g/dullahan-adapter-puppeteer DullahanAdapterPuppeteerDefaultOptions should remain the same 1`] = `
 Object {
-  "args": [],
+  "args": Array [],
   "browserName": "chrome",
   "debug": true,
   "devTools": false,
   "headless": false,
-  "rawOptions": {},
+  "rawOptions": Object {},
   "slowMotion": 0,
 }
 `;
