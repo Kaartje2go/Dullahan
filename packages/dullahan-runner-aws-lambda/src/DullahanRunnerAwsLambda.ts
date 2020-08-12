@@ -137,7 +137,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
             await adapter.openBrowser();
             await test.run(api);
-            await adapter.closeBrowser();
 
             client.emitTestEnd({
                 testId,
@@ -162,10 +161,9 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             });
 
             await tryIgnore(3, async () => {
-                if (await adapter.isBrowserOpen()) {
-                    await adapter.closeBrowser();
-                }
             });
+        } finally {
+            await adapter.closeBrowser();
         }
     }
 
