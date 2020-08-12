@@ -50,6 +50,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             includeGlobs.push('**/*')
         }
 
+        console.log('Dullahan Runner AWS Lambda - finding tests');
+
         const searchResults = await Promise.all(rootDirectories.map((rootDirectory) => fastGlob(includeGlobs, {
             cwd: rootDirectory,
             ignore: excludeGlobs,
@@ -70,6 +72,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         )).filter(({accepted}) => accepted).map(({file}) => file);
 
         const nextPool = [...testFiles];
+
+        console.log(`Dullahan Runner AWS Lambda - found ${nextPool.length} test files`);
 
         do {
             const currentPool = nextPool.splice(0, nextPool.length);
