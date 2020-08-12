@@ -62,8 +62,9 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         const testFiles: string[] = (await Promise.all(
             searchResults.flat()
                 .filter((file) =>
-                    includeRegexes.some((iRegex) => iRegex.test(file))
-                    && !excludeRegexes.some((eRegex) => eRegex.test(file)))
+                    (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+                    && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
+                )
                 .map(async (file: string) => {
                     const instance = client.getTestInstance(file);
                     const accepted = !!instance && await testPredicate(file, instance.test);
@@ -73,7 +74,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
         const nextPool = [...testFiles];
 
-        console.log(`Dullahan Runner AWS Lambda - found ${nextPool.length} test files`);
+        console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files (${searchResults.length} in total)`);
 
         do {
             const currentPool = nextPool.splice(0, nextPool.length);
