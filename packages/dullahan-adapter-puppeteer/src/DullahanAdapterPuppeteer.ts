@@ -750,7 +750,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         sessionId: string | null
     }> {
         const {options} = this;
-        const {headless, browserName, emulateDevice} = options;
+        const {headless, browserName, emulateDevice, userAgent} = options;
 
         if (this.browser) {
             throw new AdapterError(DullahanErrorMessage.ACTIVE_BROWSER);
@@ -768,7 +768,14 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         const page = pages[pages.length - 1];
 
         if (emulateDevice) {
-            await page.emulate(Puppeteer.devices[emulateDevice]);
+            const emulationTarget = Puppeteer.devices[emulateDevice];
+            if (userAgent) {
+                emulationTarget.userAgent += ` ${userAgent}`;
+            }
+            await page.emulate(emulationTarget);
+        } else if (userAgent) {
+            const defaultUserAgent = await browser.userAgent();
+            await page.setUserAgent(`${defaultUserAgent} ${userAgent}`);
         }
 
         this.browser = browser;
