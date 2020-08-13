@@ -139,6 +139,11 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         });
         const pullRequestNumber = pullRequests[0]?.number;
 
+        if (!pullRequestNumber) {
+            console.info('No open pull request to comment on');
+            return;
+        }
+
         const {data: comments} = await octokit.issues.listComments({
             owner: repositoryOwner,
             repo: repositoryName,
