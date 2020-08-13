@@ -39,7 +39,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
     }
 
     public async start(): Promise<void> {
-        await this.options.role === 'master' ? this.startMaster() : this.startSlave();
+        return this.options.role === 'master' ? this.startMaster() : this.startSlave();
     }
 
     private async startMaster(): Promise<void> {
@@ -113,14 +113,14 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         } while (nextPool.length && !this.hasStopSignal);
     }
 
-    private async startSlave(): Promise<boolean> {
+    private async startSlave(): Promise<void> {
         const {client, options} = this;
         const {file} = options.slaveOptions;
 
         const instance = client.getTestInstance(file);
 
         if (!instance) {
-            return false;
+            return;
         }
 
         const {testId, test, adapter, api} = instance;
@@ -145,7 +145,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                 error: null,
                 timeEnd: Date.now()
             });
-            return true;
         } catch (error) {
             client.emitTestEnd({
                 testId,
@@ -160,7 +159,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                     await adapter.screenshotPage();
                 }
             });
-            return false;
         } finally {
             await adapter.closeBrowser();
         }
