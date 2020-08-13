@@ -229,7 +229,7 @@ export class DullahanClient {
 
     public emitTestEnd(dtec: DullahanTestEndCall): void {
         const {testEndPromises} = this;
-        console.log(dtec.testName, dtec.error);
+        console.log(dtec.testName, dtec.error ?? 'success');
 
         testEndPromises.push(this.processTestEnd(dtec));
     }
