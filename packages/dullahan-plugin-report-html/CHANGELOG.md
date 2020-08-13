@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.22 (2020-08-13)
+
+
+### Bug Fixes
+
+* verify that payload is of type string ([#36](https://github.com/Kaartje2go/Dullahan/issues/36)) ([d7eda79](https://github.com/Kaartje2go/Dullahan/commit/d7eda79a51fa2d83215228fdd2d931c629754734))
+
+
+
+
+
 # 0.1.0-alpha.21 (2020-08-13)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-html
