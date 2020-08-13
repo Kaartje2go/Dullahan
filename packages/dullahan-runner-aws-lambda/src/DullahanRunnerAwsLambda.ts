@@ -39,7 +39,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
     }
 
     public async start(): Promise<void> {
-        return this.options.role === 'master' ? this.startMaster() : this.startSlave();
+        await this.options.role === 'master' ? this.startMaster() : this.startSlave();
     }
 
     private async startMaster(): Promise<void> {
@@ -113,14 +113,14 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         } while (nextPool.length && !this.hasStopSignal);
     }
 
-    private async startSlave(): Promise<void> {
+    private async startSlave(): Promise<boolean> {
         const {client, options} = this;
         const {file} = options.slaveOptions;
 
         const instance = client.getTestInstance(file);
 
         if (!instance) {
-            return;
+            return false;
         }
 
         const {testId, test, adapter, api} = instance;
@@ -145,6 +145,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                 error: null,
                 timeEnd: Date.now()
             });
+            return true;
         } catch (error) {
             client.emitTestEnd({
                 testId,
@@ -159,6 +160,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                     await adapter.screenshotPage();
                 }
             });
+            return false;
         } finally {
             await adapter.closeBrowser();
         }
@@ -181,10 +183,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
         // If the payload is not of type string, it cannot be parsed.
         if (typeof Payload !== 'string') {
+            console.error(`Invoked test returned incorrect Payload of type ${typeof Payload}`);
             return false;
         }
 
-        const [{calls, ...testEndCall}] = JSON.parse(JSON.parse(Payload)) as [Test];
+        const [{calls, ...testEndCall}] = JSON.parse(Payload) as [Test];
 
         calls?.forEach((functionEndCall) => client.emitFunctionStart(functionEndCall));
         calls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));

@@ -87,7 +87,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const {repositoryName, repositoryOwner, commitHash, statusUrl, statusName} = options;
 
         const state = url ? failedTestsCounter ? 'failure' : 'success' : 'pending';
-        const description = `${successfulTestsCounter}/${successfulTestsCounter + failedTestsCounter} tests have passed`;
+        const description = state !== 'pending' ? `${successfulTestsCounter}/${successfulTestsCounter + failedTestsCounter} tests have passed` : '';
 
         this.lastStatusCheck = Date.now();
 
