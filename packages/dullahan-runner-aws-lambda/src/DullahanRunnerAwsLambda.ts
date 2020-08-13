@@ -179,7 +179,12 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             })
         }).promise();
 
-        const [{calls, ...testEndCall}] = JSON.parse(JSON.parse(Payload as string)) as [Test];
+        // If the payload is not of type string, it cannot be parsed.
+        if (typeof Payload !== 'string') {
+            return false;
+        }
+
+        const [{calls, ...testEndCall}] = JSON.parse(JSON.parse(Payload)) as [Test];
 
         calls?.forEach((functionEndCall) => client.emitFunctionStart(functionEndCall));
         calls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
