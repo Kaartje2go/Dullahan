@@ -185,11 +185,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             return false;
         }
 
-        const [{calls, ...testEndCall}] = JSON.parse(Payload) as [Test];
+        const parsedPayload = JSON.parse(JSON.parse(Payload))[0] as Test;
 
-        calls?.forEach((functionEndCall) => client.emitFunctionStart(functionEndCall));
-        calls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
+        parsedPayload.calls?.forEach((functionEndCall) => client.emitFunctionStart(functionEndCall));
+        parsedPayload.calls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
 
-        return !testEndCall.error;
+        return !parsedPayload.error;
     }
 }
