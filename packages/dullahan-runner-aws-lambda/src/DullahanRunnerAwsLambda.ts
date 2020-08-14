@@ -14,8 +14,9 @@ import {
 } from '@k2g/dullahan';
 import {Lambda} from 'aws-sdk';
 
-interface Test extends DullahanTestEndCall {
+interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
+    testEndCalls?: DullahanTestEndCall[];
 }
 
 export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunnerAwsLambdaUserOptions, typeof DullahanRunnerAwsLambdaDefaultOptions> {
@@ -185,13 +186,15 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             return false;
         }
 
-        const [{functionEndCalls, ...testEndCalls}] = JSON.parse(JSON.parse(Payload as string)) as [Test];
+        const parsedPayload = JSON.parse(JSON.parse(Payload as string)) as Test;
+        const { functionEndCalls, testEndCalls } = parsedPayload;
+        const testEndCall = testEndCalls && testEndCalls[0];
 
-        client.emitTestStart(testEndCalls);
+        testEndCall && client.emitTestStart(testEndCall);
         functionEndCalls?.forEach((functionEndCall) => client.emitFunctionStart(functionEndCall));
         functionEndCalls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
-        client.emitTestEnd(testEndCalls);
+        testEndCall && client.emitTestEnd(testEndCall);
 
-        return !testEndCalls.error;
+        return !testEndCall?.error;
     }
 }

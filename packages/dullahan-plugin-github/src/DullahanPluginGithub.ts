@@ -16,6 +16,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
     private lastStatusCheck = Date.now() - 60000;
     private successfulTestsCounter = 0;
     private failedTestsCounter = 0;
+    private testIds: string[] = [];
 
     private readonly octokit = new Octokit({
         auth: `token ${this.options.githubToken}`
@@ -44,10 +45,14 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const {enableStatusChecks} = options;
         const {error} = dtec;
 
-        if (error) {
-            this.failedTestsCounter++;
-        } else {
-            this.successfulTestsCounter++;
+        // Make sure this is not a retry
+        if (!this.testIds.includes(dtec.testId)) {
+            if (error) {
+                this.failedTestsCounter++;
+            } else {
+                this.successfulTestsCounter++;
+            }
+            this.testIds.push(dtec.testId);
         }
 
         if (enableStatusChecks && lastStatusCheck + 60000 > Date.now()) {
