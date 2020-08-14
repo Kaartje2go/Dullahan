@@ -212,7 +212,7 @@
     },
     "optionalDependencies": {
         "@sitespeed.io/edgedriver": "^83.0.478-44",
-        "chromedriver": "^83.0.0",
+        "chromedriver": "^84.0.0",
         "geckodriver": "^1.19.1",
         "iedriver": "^3.14.2"
     }
