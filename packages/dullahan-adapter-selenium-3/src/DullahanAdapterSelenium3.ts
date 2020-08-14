@@ -92,6 +92,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -117,6 +118,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -160,6 +162,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -205,6 +208,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -248,6 +252,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -344,6 +349,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -394,6 +400,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -419,6 +426,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -459,6 +467,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -485,6 +494,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: true
@@ -519,6 +529,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: true
@@ -579,6 +590,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector: 'body',
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -607,6 +619,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -650,6 +663,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -717,6 +731,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -742,6 +757,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -767,6 +783,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -808,6 +825,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -837,6 +855,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -855,6 +874,36 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         }
     }
 
+    public async isElementInteractable(selector: string): Promise<boolean> {
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
+
+            return !!element;
+        } catch (error) {
+            if (/unloaded|destroyed/ui.test(error.message)) {
+                return this.isElementInteractable(selector);
+            }
+
+            throw error;
+        }
+    }
+
     public async moveMouseTo(x: number, y: number): Promise<void> {
         const {driver, supportsPromises} = this;
 
@@ -866,6 +915,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector: 'body',
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -894,6 +944,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -922,6 +973,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1009,6 +1061,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector: 'body',
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1042,6 +1095,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector: 'body',
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1070,6 +1124,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1133,6 +1188,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1169,6 +1225,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: false

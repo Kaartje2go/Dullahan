@@ -48,9 +48,9 @@ describe('adapter.scrollToElement', () => {
             timeout: 2000
         });
 
-        const before = await adapter.isElementVisible(target);
+        const before = await adapter.isElementInteractable(target);
         await adapter.scrollToElement(target);
-        const after = await adapter.isElementVisible(target);
+        const after = await adapter.isElementInteractable(target);
 
         expect(before).toBe(false);
         expect(after).toBe(true);
