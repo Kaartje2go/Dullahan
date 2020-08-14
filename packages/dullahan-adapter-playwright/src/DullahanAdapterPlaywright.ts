@@ -710,6 +710,29 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         return element !== null;
     }
 
+    public async isElementInteractable(selector: string): Promise<boolean> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
+            timeout: 200,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        const elementHandle = await page.evaluateHandle(findElement, findOptions);
+        const element = elementHandle.asElement();
+
+        return element !== null;
+    }
+
     public async moveMouseTo(x: number, y: number): Promise<void> {
         const {page} = this;
 

@@ -80,6 +80,8 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
 
     public abstract async isElementVisible(selector: string): Promise<boolean>;
 
+    public abstract async isElementInteractable(selector: string): Promise<boolean>;
+
     public abstract async moveMouseTo(x: number, y: number): Promise<void>;
 
     public abstract async moveMouseToElement(selector: string, offsetX: number, offsetY: number): Promise<void>;
