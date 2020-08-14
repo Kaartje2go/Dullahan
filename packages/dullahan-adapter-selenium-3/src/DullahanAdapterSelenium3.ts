@@ -1247,4 +1247,41 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             throw error;
         }
     }
+
+    public async waitForElementInteractive(selector: string, options: {
+        timeout: number;
+    }): Promise<void> {
+        const {driver, supportsPromises} = this;
+        const {timeout} = options;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const element = await driver.wait(() => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
+
+            if (!element) {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            }
+        } catch (error) {
+            if (error.name === 'TimeoutError') {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/unloaded|destroyed/ui.test(error.message)) {
+                return this.waitForElementInteractive(selector, options);
+            }
+
+            throw error;
+        }
+    }
 }

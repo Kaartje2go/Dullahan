@@ -986,4 +986,40 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             throw error;
         }
     }
+
+    public async waitForElementInteractive(selector: string, options: {
+        timeout: number;
+    }): Promise<void> {
+        const {page} = this;
+        const {timeout} = options;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        try {
+            const elementHandle = await page.evaluateHandle(findElement, findOptions);
+            const element = elementHandle.asElement();
+
+            if (!element) {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            }
+        } catch (error) {
+            if (error.name === 'TimeoutError') {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            }
+
+            throw error;
+        }
+    }
 }

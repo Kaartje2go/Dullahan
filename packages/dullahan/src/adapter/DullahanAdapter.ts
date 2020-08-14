@@ -148,6 +148,10 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
         timeout: number;
     }): Promise<void>;
 
+    public abstract async waitForElementInteractive(selector: string, options: {
+        timeout: number;
+    }): Promise<void>;
+
     public abstract async waitForNavigation(trigger: () => (Promise<void> | void), options: {
         timeout: number;
         readyState: DullahanReadyState;

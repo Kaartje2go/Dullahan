@@ -1005,4 +1005,44 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw error;
         }
     }
+
+    public async waitForElementInteractive(selector: string, options: {
+        timeout: number;
+    }): Promise<void> {
+        const {page} = this;
+        const {timeout} = options;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const startTime = Date.now();
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        try {
+            const elementHandle = await page.evaluateHandle(findElement, findOptions);
+            const element = elementHandle.asElement();
+
+            if (!element) {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            }
+        } catch (error) {
+            if (error.name === 'TimeoutError') {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error/u.test(error.message)) {
+                return this.waitForElementInteractive(selector, { timeout: options.timeout + startTime - Date.now() });
+            }
+
+            throw error;
+        }
+    }
 }
