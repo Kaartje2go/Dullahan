@@ -863,7 +863,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
-            interactiveOnly: false,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
