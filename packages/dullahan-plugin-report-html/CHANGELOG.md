@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.29 (2020-08-14)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-report-html
+
+
+
+
+
 # 0.1.0-alpha.28 (2020-08-13)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-html
