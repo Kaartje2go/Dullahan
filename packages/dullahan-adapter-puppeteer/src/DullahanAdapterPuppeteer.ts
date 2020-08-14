@@ -378,6 +378,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error/u.test(error.message)) {
+                return this.waitForElementNotPresent(selector, options);
             }
 
             throw error;
@@ -411,6 +413,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error/u.test(error.message)) {
+                return this.waitForElementNotVisible(selector, options);
             }
 
             throw error;
@@ -903,6 +907,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error/u.test(error.message)) {
+                return this.waitForElementPresent(selector, options);
             }
 
             throw error;
@@ -938,6 +944,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error/u.test(error.message)) {
+                return this.waitForElementVisible(selector, options);
             }
 
             throw error;
