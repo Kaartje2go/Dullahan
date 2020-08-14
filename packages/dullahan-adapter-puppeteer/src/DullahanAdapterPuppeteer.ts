@@ -359,6 +359,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        const startTime = Date.now();
+
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: false,
@@ -379,7 +381,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error/u.test(error.message)) {
-                return this.waitForElementNotPresent(selector, options);
+                return this.waitForElementNotPresent(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
@@ -393,6 +395,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
+
+        const startTime = Date.now();
 
         const findOptions: FindElementOptions = {
             selector,
@@ -414,7 +418,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error/u.test(error.message)) {
-                return this.waitForElementNotVisible(selector, options);
+                return this.waitForElementNotVisible(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
@@ -888,6 +892,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        const startTime = Date.now();
+
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: false,
@@ -908,7 +914,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error/u.test(error.message)) {
-                return this.waitForElementPresent(selector, options);
+                return this.waitForElementPresent(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
@@ -924,6 +930,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
+
+        const startTime = Date.now();
 
         const findOptions: FindElementOptions = {
             selector,
@@ -945,7 +953,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error/u.test(error.message)) {
-                return this.waitForElementVisible(selector, options);
+                return this.waitForElementVisible(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
