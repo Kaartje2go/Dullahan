@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-runner-development",
-  "version": "0.1.0-alpha.30",
+  "version": "0.1.0-alpha.31",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,7 +13,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^0.1.0-alpha.30",
+    "@k2g/dullahan": "^0.1.0-alpha.31",
     "micromatch": "^4.0.2",
     "watch": "^1.0.2"
   },
