@@ -1284,4 +1284,14 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             throw error;
         }
     }
+
+    public async executeScript<T>(script: string): Promise<T> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        return driver.executeScript<T>((_script: string) => new Function(_script)(), script);
+    }
 }

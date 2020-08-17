@@ -50,6 +50,8 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
 
     public abstract async displayPointer(): Promise<void>;
 
+    public abstract async executeScript<T>(script: string): Promise<T>;
+
     public abstract async getCookie(name: string): Promise<DullahanCookie | null>;
 
     public abstract async getElementAttributes(selector: string, ...attributeNames: string[]): Promise<(string | null)[]>;

@@ -1045,4 +1045,14 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw error;
         }
     }
+
+    public async executeScript<T>(script: string): Promise<T> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        return page.evaluate((_script: string) => new Function(_script)(), script);
+    }
 }
