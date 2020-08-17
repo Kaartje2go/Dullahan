@@ -1022,4 +1022,14 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             throw error;
         }
     }
+
+    public async executeScript<T>(script: string): Promise<T> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        return page.evaluate((_script: string) => new Function(_script)(), script);
+    }
 }
