@@ -154,7 +154,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             repo: repositoryName,
             issue_number: pullRequestNumber
         });
-        const commentId = comments.find(({body}) => body.startsWith(identifier))?.id;
+        const commentId = comments.find(({body}) => body.includes(identifier))?.id;
 
         if (typeof commentId === 'number') {
             await octokit.issues.updateComment({
