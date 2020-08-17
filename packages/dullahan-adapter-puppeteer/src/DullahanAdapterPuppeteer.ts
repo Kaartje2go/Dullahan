@@ -1022,7 +1022,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
-            interactiveOnly: false,
+            interactiveOnly: true,
             timeout,
             promise: true,
             expectNoMatches: false

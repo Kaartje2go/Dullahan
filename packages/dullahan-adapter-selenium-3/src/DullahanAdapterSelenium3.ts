@@ -1262,7 +1262,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
-            interactiveOnly: false,
+            interactiveOnly: true,
             timeout,
             promise: supportsPromises,
             expectNoMatches: false
