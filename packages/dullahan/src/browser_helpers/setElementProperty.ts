@@ -14,12 +14,11 @@ export function setElementProperty(this: void, optionsOrElement: SetElementPrope
     element[propertyName] = propertyValue;
 
     if (propertyName === 'value') {
-        var inputEvent = document.createEvent('Event');
-        inputEvent.initEvent('input', true);
-        element.dispatchEvent(inputEvent);
-
-        var changeEvent = document.createEvent('Event');
-        changeEvent.initEvent('change', true);
-        element.dispatchEvent(changeEvent);
+        element.dispatchEvent(new Event('input', {
+            bubbles: true
+        }));
+        element.dispatchEvent(new Event('change', {
+            bubbles: true
+        }));
     }
 }
