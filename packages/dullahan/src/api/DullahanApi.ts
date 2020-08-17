@@ -451,6 +451,23 @@ export class DullahanApi<
         });
     }
 
+    async waitForElementInteractive(selector: string, timeout?: number): Promise<void> {
+        const {adapter, options} = this;
+        const {defaultTimeout, autoScroll} = options;
+
+        await adapter.waitForElementPresent(selector, {
+            timeout: timeout ?? defaultTimeout
+        });
+
+        if (autoScroll && !(await adapter.isElementVisible(selector))) {
+            await this.scrollToElement(selector, timeout);
+        }
+
+        await adapter.waitForElementInteractive(selector, {
+            timeout: timeout ?? defaultTimeout
+        });
+    }
+
     async waitForNavigation(trigger: () => (Promise<void> | void), timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultNetworkTimeout, displayPointer} = options;
@@ -527,5 +544,9 @@ export class DullahanApi<
 
         await adapter.sendKeysToElement(selector, Array(existingText.length).fill('\b').join(''));
         await adapter.sendKeysToElement(selector, text);
+    }
+
+    public async executeScript(script: string) {
+        return this.adapter.executeScript(script);
     }
 }
