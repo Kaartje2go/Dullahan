@@ -23,6 +23,10 @@ export const formatFailingTest = (test: FailingTest): string => {
 };
 
 export const formatFailingTable = (rows: string[]) => {
+    const header = `## ${rows.length} Unstable tests`;
+    if (rows.length === 0) {
+        return [header];
+    }
     return [
         `## ${rows.length} Failing tests`,
         'Result | Name | Error |  Message',
@@ -46,7 +50,7 @@ export const formatUnstableTest = (test: Test): string => {
 
 export const formatUnstableTable = (rows: string[], headerOnly: boolean) => {
     const header = `## ${rows.length} Unstable tests`;
-    if (headerOnly) {
+    if (headerOnly || rows.length === 0) {
         return [header];
     }
     return [
@@ -72,7 +76,7 @@ export const formatSlowTest = (test: Test) => {
 
 export const formatSlowTable = (rows: string[], headerOnly) => {
     const header = `## ${rows.length} Slow tests`;
-    if (headerOnly) {
+    if (headerOnly || rows.length === 0) {
         return [header];
     }
     return [
@@ -98,7 +102,7 @@ export const formatSuccessfulTest = (test: Test) => {
 
 export const formatSuccessfulTable = (rows: string[], headerOnly: boolean) => {
     const header = `## ${rows.length} Successful tests`;
-    if (headerOnly) {
+    if (headerOnly || rows.length === 0) {
         return [header];
     }
     return [
