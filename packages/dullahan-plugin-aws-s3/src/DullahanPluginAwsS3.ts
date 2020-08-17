@@ -66,13 +66,10 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
         const url = new URL(`https://${bucketName}.s3.${region}.amazonaws.com/${Key}`);
 
         let safeData = data;
-        encoding !== 'base64' && [...new Set([
+        [...new Set([
             ...secrets,
             accessKeyId,
-            secretAccessKey,
-            ...Object.entries(process.env)
-                .filter(([key, value]) => /token|key|secret|password/i.test(key) && value?.length)
-                .map(([, value]) => value)
+            secretAccessKey
         ])].forEach((secret) => {
             if (secret) {
                 const searchValue = this.getRegexForSecret(secret);
