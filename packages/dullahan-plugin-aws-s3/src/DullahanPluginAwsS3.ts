@@ -47,7 +47,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
         }
     }
 
-    private getSecretRegex(secret: string | RegExp) {
+    private getRegexForSecret(secret: string | RegExp) {
         if (secret instanceof RegExp)    {
             return secret;
         }
@@ -66,7 +66,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
         const url = new URL(`https://${bucketName}.s3.${region}.amazonaws.com/${Key}`);
 
         let safeData = data;
-        [...new Set([
+        encoding !== 'base64' && [...new Set([
             ...secrets,
             accessKeyId,
             secretAccessKey,
@@ -75,7 +75,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
                 .map(([, value]) => value)
         ])].forEach((secret) => {
             if (secret) {
-                const searchValue = this.getSecretRegex(secret);
+                const searchValue = this.getRegexForSecret(secret);
                 safeData = safeData.replace(searchValue, '<secret>');
             }
         });
