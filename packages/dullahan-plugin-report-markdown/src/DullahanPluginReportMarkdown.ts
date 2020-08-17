@@ -58,10 +58,10 @@ export default class DullahanPluginReportMarkdown extends DullahanPlugin<Dullaha
         const successfulTests = tests.filter(isSuccessfulTest.bind(null, slowTestThreshold)).map(formatSuccessfulTest);
 
         const tables = [
-            failingTests.length && formatFailingTable(failingTests),
-            !hideUnstableTests && unstableTests.length && formatUnstableTable(unstableTests),
-            !hideSlowTests && slowTests.length && formatSlowTable(slowTests),
-            !hideSuccessfulTests && successfulTests.length && formatSuccessfulTable(successfulTests)
+            formatFailingTable(failingTests),
+            formatUnstableTable(unstableTests, hideUnstableTests),
+            formatSlowTable(slowTests, hideSlowTests),
+            formatSuccessfulTable(successfulTests, hideSuccessfulTests)
         ].filter((table) => !!table).join('\n');
 
         const data = [

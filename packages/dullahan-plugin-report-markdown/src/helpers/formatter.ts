@@ -44,9 +44,13 @@ export const formatUnstableTest = (test: Test): string => {
     return `:heavy_multiplication_x: | ${testName} | ${Math.ceil((timeEnd - timeStart) / 1000)}s | ${calls.filter(({error}) => !!error).length}`;
 };
 
-export const formatUnstableTable = (rows: string[]) => {
+export const formatUnstableTable = (rows: string[], headerOnly: boolean) => {
+    const header = `## ${rows.length} Unstable tests`;
+    if (headerOnly) {
+        return [header];
+    }
     return [
-        `## ${rows.length} Unstable tests`,
+        header,
         'Result | Name | Time |  Error Count',
         ':---: | :--- | :---: | :---:',
         ...rows,
@@ -66,9 +70,13 @@ export const formatSlowTest = (test: Test) => {
     return fixLinebreaks(`:clock4: | ${testName} | ${Math.ceil((timeEnd - timeStart) / 1000)}s`);
 };
 
-export const formatSlowTable = (rows: string[]) => {
+export const formatSlowTable = (rows: string[], headerOnly) => {
+    const header = `## ${rows.length} Slow tests`;
+    if (headerOnly) {
+        return [header];
+    }
     return [
-        `## ${rows.length} Slow tests`,
+        header,
         `Result | Name | Time`,
         ':---: | :--- | :---:',
         ...rows,
@@ -88,9 +96,13 @@ export const formatSuccessfulTest = (test: Test) => {
     return fixLinebreaks(`:heavy_check_mark: | ${testName} | ${Math.ceil((timeEnd - timeStart) / 1000)}s`);
 };
 
-export const formatSuccessfulTable = (rows: string[]) => {
+export const formatSuccessfulTable = (rows: string[], headerOnly: boolean) => {
+    const header = `## ${rows.length} Successful tests`;
+    if (headerOnly) {
+        return [header];
+    }
     return [
-        `## ${rows.length} Successful tests`,
+        header,
         `Result | Name | Time`,
         ':---: | :--- | :---:',
         ...rows,
