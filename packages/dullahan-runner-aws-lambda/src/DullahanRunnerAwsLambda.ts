@@ -191,7 +191,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         const testEndCall = testEndCalls && testEndCalls[0];
 
         testEndCall && client.emitTestStart(testEndCall);
-        functionEndCalls?.forEach((functionEndCall) => client.emitFunctionStart(functionEndCall));
         functionEndCalls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
         testEndCall && client.emitTestEnd(testEndCall);
 

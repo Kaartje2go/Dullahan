@@ -390,7 +390,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/Protocol error/u.test(error.message)) {
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementNotPresent(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
@@ -428,7 +428,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/Protocol error/u.test(error.message)) {
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementNotVisible(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
@@ -958,7 +958,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/Protocol error/u.test(error.message)) {
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementPresent(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
@@ -998,7 +998,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/Protocol error/u.test(error.message)) {
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementVisible(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
@@ -1038,7 +1038,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/Protocol error/u.test(error.message)) {
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementInteractive(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
