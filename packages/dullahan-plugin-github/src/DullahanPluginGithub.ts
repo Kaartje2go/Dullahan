@@ -55,7 +55,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             this.testIds.push(dtec.testId);
         }
 
-        if (enableStatusChecks && lastStatusCheck + 60000 > Date.now()) {
+        if (enableStatusChecks && lastStatusCheck + 15000 > Date.now()) {
             await this.setStatus();
         }
 
