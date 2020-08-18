@@ -594,6 +594,35 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }), timeout);
     }
 
+    public async click(selector: string): Promise<void> {
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
+
+        if (!element) {
+            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        await driver.actions().move({
+            origin: element,
+            duration: 0
+        }).click().perform();
+    }
+
     public async clickAt(x: number, y: number): Promise<void> {
         const {driver, viewportAdjustmentX, viewportAdjustmentY} = this;
 
