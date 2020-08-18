@@ -531,19 +531,13 @@ export class DullahanApi<
 
     public async clearText(selector: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
-        const {defaultTimeout, autoScroll} = options;
+        const {autoScroll} = options;
 
         if (autoScroll && !(await adapter.isElementVisible(selector))) {
             await this.scrollToElement(selector, timeout);
         }
 
-        await adapter.waitForElementVisible(selector, {
-            timeout: timeout ?? defaultTimeout
-        });
-
-        const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
-        const existingText = typeof value === 'string' ? value : typeof innerText === 'string' ? innerText : '';
-
+        const existingText = await this.getText(selector, timeout);
         await adapter.sendKeysToElement(selector, Array(existingText.length).fill('\b').join(''));
     }
 
