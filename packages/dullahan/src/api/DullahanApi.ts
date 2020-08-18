@@ -80,7 +80,7 @@ export class DullahanApi<
         await adapter.clickAtElement(selector, offsetX, offsetY);
     }
 
-    public async click(selector: string, offsetCenterX: number, offsetCenterY: number, timeout?: number): Promise<void> {
+    public async click(selector: string, offsetCenterX?: number, offsetCenterY?: number, timeout?: number): Promise<void> {
         if (offsetCenterX && offsetCenterY) {
             return this.clickAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
         }
