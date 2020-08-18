@@ -485,7 +485,7 @@ export class DullahanApi<
     public async getText(selector: string, timeout?: number): Promise<string> {
         const {adapter} = this;
 
-        await adapter.waitForElementVisible(selector, {
+        await adapter.waitForElementPresent(selector, {
             timeout: timeout ?? 10000
         });
 
