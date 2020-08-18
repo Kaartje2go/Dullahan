@@ -572,6 +572,47 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         }), timeout);
     }
 
+    public async click(selector: string): Promise<void> {
+        const {driver, supportsPromises, supportsActions} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
+
+        if (!element) {
+            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        if (!supportsActions) {
+            const {top, left} = await driver.executeScript<{
+                top: number;
+                left: number;
+            }>(getBoundingClientRect, element);
+
+            const x = left;
+            const y = top;
+
+            await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mousedown', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mouseup', x, y, element);
+            return driver.executeScript<void>(emitFakeEvent, 'click', x, y, element);
+        }
+
+        await driver.actions().mouseMove(element).click().perform();
+    }
+
     public async clickAt(x: number, y: number): Promise<void> {
         const {driver, supportsPromises, supportsActions} = this;
 

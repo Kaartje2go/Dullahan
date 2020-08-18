@@ -460,6 +460,33 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         });
     }
 
+    public async click(selector: string): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        const elementHandle = await page.evaluateHandle(findElement, findOptions);
+        const element = elementHandle.asElement();
+
+        if (!element) {
+            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        await element.click();
+    }
+
     public async clickAt(x: number, y: number): Promise<void> {
         const {page} = this;
 
