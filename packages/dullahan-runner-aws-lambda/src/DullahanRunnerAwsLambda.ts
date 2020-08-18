@@ -82,6 +82,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         const nextPool = [...testFiles];
 
         console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`);
+        console.log(`Running tests with concurrency ${maxConcurrency}`);
 
         do {
             const currentPool = nextPool.splice(0, nextPool.length);
