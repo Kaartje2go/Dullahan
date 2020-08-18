@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.40 (2020-08-18)
+
+
+### Bug Fixes
+
+* unstable tests are no longer counted as errors ([#51](https://github.com/Kaartje2go/Dullahan/issues/51)) ([55e3803](https://github.com/Kaartje2go/Dullahan/commit/55e38038d78cf7862cd620a2e6f5972543c57f8b))
+
+
+
+
+
 # 0.1.0-alpha.39 (2020-08-18)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-xvfb
