@@ -491,7 +491,13 @@ export class DullahanApi<
 
         const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
 
-        return typeof value === 'string' ? value : typeof innerText === 'string' ? innerText : '';
+        if (value) {
+            return value.toString();
+        } else if (innerText) {
+            return innerText.toString();
+        }
+
+        return '';
     }
 
     public async appendText(selector: string, text: string, timeout?: number): Promise<void> {
