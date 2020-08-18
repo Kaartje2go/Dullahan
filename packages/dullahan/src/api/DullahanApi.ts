@@ -92,7 +92,7 @@ export class DullahanApi<
             await this.scrollToElement(selector, timeout);
         }
 
-        await adapter.waitForElementPresent(selector, {
+        await adapter.waitForElementVisible(selector, {
             timeout: timeout ?? defaultTimeout
         });
         await adapter.click(selector);
