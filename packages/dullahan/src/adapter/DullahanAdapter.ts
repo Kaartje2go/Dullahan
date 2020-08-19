@@ -40,6 +40,8 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
         };
     }
 
+    public abstract async clearText(selector: string, count: number): Promise<void>;
+
     public abstract async click(selector: string): Promise<void>;
 
     public abstract async clickAt(x: number, y: number): Promise<void>;

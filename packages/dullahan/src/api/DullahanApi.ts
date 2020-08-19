@@ -538,7 +538,7 @@ export class DullahanApi<
         }
 
         const existingText = await this.getText(selector, timeout);
-        await adapter.sendKeysToElement(selector, Array(existingText.length).fill('\b').join(''));
+        await adapter.clearText(selector, existingText.length);
     }
 
     public async setText(selector: string, text: string, timeout?: number): Promise<void> {

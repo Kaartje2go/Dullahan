@@ -242,6 +242,36 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await page.keyboard.type(keys);
     }
 
+    public async clearText(selector: string, count: number): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        const elementHandle = await page.evaluateHandle(findElement, findOptions);
+        const element = elementHandle.asElement();
+
+        if (!element) {
+            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        await element.focus();
+        for (let i = 0; i < count; i++) {
+            await page.keyboard.press('Backspace');
+        }
+    }
+
     public async sendKeysToElement(selector: string, keys: string): Promise<void> {
         const {page} = this;
 

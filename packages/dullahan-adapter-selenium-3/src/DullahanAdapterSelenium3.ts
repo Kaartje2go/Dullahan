@@ -334,6 +334,11 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         await driver.actions().sendKeys(keys).perform();
     }
 
+    public async clearText(selector: string, count: number): Promise<void> {
+        const keys = Array(count).fill('\uE003').join('');
+        return this.sendKeysToElement(selector, keys);
+    }
+
     public async sendKeysToElement(selector: string, keys: string): Promise<void> {
         const {driver, supportsPromises, supportsShadowDom} = this;
 
