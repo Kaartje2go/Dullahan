@@ -79,40 +79,34 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                 failures: 0
             }));
 
-        const nextPool = [...testFiles];
-
         console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`);
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
-        do {
-            const currentPool = nextPool.splice(0, nextPool.length);
+        await asyncPool(maxConcurrency, testFiles, async (testData) => {
+            if (this.hasStopSignal) {
+                return;
+            }
 
-            await asyncPool(maxConcurrency, currentPool, async (testData) => {
-                if (this.hasStopSignal) {
-                    return;
-                }
+            const success = await this.processFile(testData.file).catch((error) => {
+                console.error(error);
 
-                const success = await this.processFile(testData.file).catch((error) => {
-                    console.error(error);
-
-                    return false;
-                });
-                success ? testData.successes++ : testData.failures++;
-
-                if (testData.successes >= minSuccesses) {
-                    return;
-                }
-
-                const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
-                const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
-
-                if (hasMoreAttempts && couldStillPass) {
-                    nextPool.push(testData);
-                } else if (failFast) {
-                    this.hasStopSignal = true;
-                }
+                return false;
             });
-        } while (nextPool.length && !this.hasStopSignal);
+            success ? testData.successes++ : testData.failures++;
+
+            console.log(`Got results - successes: ${testData.successes} - failures: ${testData.failures}`);
+
+            if (testData.successes >= minSuccesses) {
+                return;
+            }
+
+            const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
+            const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
+
+            if (failFast || !hasMoreAttempts && !couldStillPass) {
+                this.hasStopSignal = true;
+            }
+        });
     }
 
     private async startSlave(): Promise<void> {
