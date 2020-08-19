@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.47 (2020-08-19)
+
+
+### Bug Fixes
+
+* setText now correctly clears the input ([#56](https://github.com/Kaartje2go/Dullahan/issues/56)) ([5bac560](https://github.com/Kaartje2go/Dullahan/commit/5bac56071137c758faec5edc5728fd929b1da8c9))
+
+
+
+
+
 # 0.1.0-alpha.46 (2020-08-19)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-selenium-4
