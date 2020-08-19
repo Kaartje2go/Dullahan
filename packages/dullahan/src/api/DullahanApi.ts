@@ -556,7 +556,7 @@ export class DullahanApi<
         const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
         const existingText = typeof value === 'string' ? value : typeof innerText === 'string' ? innerText : '';
 
-        await adapter.sendKeysToElement(selector, Array(existingText.length).fill('\b').join(''));
+        await adapter.clearText(selector, existingText.length);
         await adapter.sendKeysToElement(selector, text);
     }
 
