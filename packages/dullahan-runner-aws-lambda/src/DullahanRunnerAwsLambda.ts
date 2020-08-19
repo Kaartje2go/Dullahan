@@ -82,34 +82,40 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                 failures: 0
             }));
 
+        const nextPool = [...testFiles];
+
         console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`);
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
-        await asyncPool(maxConcurrency, testFiles, async (testData) => {
-            if (this.hasStopSignal) {
-                return;
-            }
+        do {
+            const currentPool = nextPool.splice(0, nextPool.length);
 
-            const success = await this.processFile(testData.file).catch((error) => {
-                console.error(error);
+            await asyncPool(maxConcurrency, currentPool, async (testData) => {
+                if (this.hasStopSignal) {
+                    return;
+                }
 
-                return false;
+                const success = await this.processFile(testData.file).catch((error) => {
+                    console.error(error);
+
+                    return false;
+                });
+                success ? testData.successes++ : testData.failures++;
+
+                if (testData.successes >= minSuccesses) {
+                    return;
+                }
+
+                const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
+                const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
+
+                if (hasMoreAttempts && couldStillPass) {
+                    nextPool.push(testData);
+                } else if (failFast) {
+                    this.hasStopSignal = true;
+                }
             });
-            success ? testData.successes++ : testData.failures++;
-
-            console.log(`Got results - successes: ${testData.successes} - failures: ${testData.failures}`);
-
-            if (testData.successes >= minSuccesses) {
-                return;
-            }
-
-            const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
-            const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
-
-            if (failFast || !hasMoreAttempts && !couldStillPass) {
-                this.hasStopSignal = true;
-            }
-        });
+        } while (nextPool.length && !this.hasStopSignal);
     }
 
     private async startSlave(): Promise<void> {
