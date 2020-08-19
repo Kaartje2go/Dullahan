@@ -26,8 +26,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
     private readonly lambda = this.options.useAccessKeys ? new Lambda({
         accessKeyId: this.options.accessKeyId,
         secretAccessKey: this.options.secretAccessKey,
+        httpOptions: this.options.httpOptions,
         region: this.options.region
-    }) : new Lambda();
+    }) : new Lambda({
+        httpOptions: this.options.httpOptions
+    });
 
     public constructor(args: {
         client: DullahanClient;
