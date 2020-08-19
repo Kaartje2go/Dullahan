@@ -72,7 +72,12 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const html = artifacts.find(({scope, name}) => scope === 'dullahan-plugin-report-html' && name === 'report');
         const markdown = artifacts.find(({scope, name}) => scope === 'dullahan-plugin-report-markdown' && name === 'report');
 
-        const comment = markdown?.data ?? '[@k2g/dullahan-plugin-report-markdown](https://github.com/Kaartje2go/Dullahan/tree/master/packages/dullahan-plugin-report-markdown) not found';
+        let comment = markdown?.data ?? '[@k2g/dullahan-plugin-report-markdown](https://github.com/Kaartje2go/Dullahan/tree/master/packages/dullahan-plugin-report-markdown) not found';
+
+        if (html?.remoteUrls?.[0]) {
+            comment += `\n[Continue to review full report.](${html?.remoteUrls[0]})`
+        };
+
         const promises: Promise<void>[] = [];
 
         if (enableStatusChecks) {
