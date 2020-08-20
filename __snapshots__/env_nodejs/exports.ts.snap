@@ -236,7 +236,7 @@ Object {
   "hideUnstableTests": false,
   "reportTitle": "Dullahan Report",
   "reportTitleUrl": "https://dullahan.io",
-  "slowTestThreshold": 30000,
+  "slowTestThreshold": 60000,
 }
 `;
 
