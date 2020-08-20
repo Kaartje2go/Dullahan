@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.51 (2020-08-20)
+
+
+### Bug Fixes
+
+* add try catch to lambda runner ([e7f5efb](https://github.com/Kaartje2go/Dullahan/commit/e7f5efb341f4fe6c8faced307935388a5e3bb25f))
+
+
+
+
+
 # 0.1.0-alpha.50 (2020-08-19)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
