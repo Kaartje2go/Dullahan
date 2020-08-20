@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.54 (2020-08-20)
+
+
+### Bug Fixes
+
+* make sure artifacts are parsed correctly ([#63](https://github.com/Kaartje2go/Dullahan/issues/63)) ([5d71559](https://github.com/Kaartje2go/Dullahan/commit/5d71559b970f9f7c91008510b789e2ece5a7fea0))
+
+
+
+
+
 # 0.1.0-alpha.53 (2020-08-20)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-selenium-3
