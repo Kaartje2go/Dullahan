@@ -13,7 +13,7 @@ export const DullahanPluginReportMarkdownDefaultOptions = {
     ...DullahanPluginDefaultOptions,
     reportTitle: 'Dullahan Report',
     reportTitleUrl: 'https://dullahan.io',
-    slowTestThreshold: 30000,
+    slowTestThreshold: 60000,
     hideUnstableTests: false,
     hideSlowTests: false,
     hideSuccessfulTests: false

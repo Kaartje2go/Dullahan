@@ -170,7 +170,7 @@ export class DullahanClient {
         testEndCalls: DullahanTestEndCall[];
         functionEndCalls: DullahanFunctionEndCall[];
     }> {
-        const {plugins, runner, storedArtifactPromises, testStartCalls, testEndPromises, functionStartCalls, functionEndPromises} = this;
+        const {plugins, runner, testStartCalls, testEndPromises, functionStartCalls, functionEndPromises} = this;
 
         console.log('Stopping runner');
         await runner.stop();
@@ -189,7 +189,7 @@ export class DullahanClient {
             const artifacts = await plugin.getArtifacts(testEndCalls, functionEndCalls);
             artifacts.forEach((artifact) => this.submitArtifact(artifact));
         }));
-        const storedArtifacts = await Promise.all(storedArtifactPromises);
+        const storedArtifacts = await Promise.all(this.storedArtifactPromises);
         await Promise.all(plugins.map(async (plugin) => plugin.processResults(storedArtifacts, testEndCalls, functionEndCalls).catch(console.error)));
         console.log('Processing artifacts complete');
 
