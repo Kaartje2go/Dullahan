@@ -1,5 +1,5 @@
 <details data-test-id="<%= test.testId %>">
-    <summary><%= test.testName %></summary>
+    <summary><%= test.testName %> (<%= (test.timeEnd - test.timeStart) / 1000 %>s)</summary>
     <% test.calls.forEach(function(call, index) { %>
         <% if (call.functionScope === 'api') { %>
             <div class="<%= call.error ? 'step step--error' : 'step' %>">

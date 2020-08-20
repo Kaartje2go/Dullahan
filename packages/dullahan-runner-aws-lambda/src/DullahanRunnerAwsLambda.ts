@@ -200,6 +200,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
             return !testEndCall?.error;
         } catch (e) {
+            console.info('Failed with Payload', Payload);
             console.error(e);
             return false;
         }
