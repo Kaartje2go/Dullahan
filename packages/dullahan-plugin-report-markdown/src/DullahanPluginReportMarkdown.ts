@@ -48,7 +48,20 @@ export default class DullahanPluginReportMarkdown extends DullahanPlugin<Dullaha
             .filter(({testId}, index) => index === dtecs.findIndex((dtec) => dtec.testId === testId))
             .map((dtec) => ({
                 ...dtec,
-                calls: dfecs.filter(({testId}) => dtec.testId === testId)
+                calls: dfecs
+                    .filter(({testId}) => dtec.testId === testId)
+                    .map((call) => {
+                        const {functionResult} = call;
+
+                        if (typeof functionResult === 'string' && functionResult.length > 1024) {
+                            return {
+                                ...call,
+                                functionResult: '<truncated>'
+                            };
+                        }
+
+                        return call;
+                    })
             }))
             .reverse();
 
