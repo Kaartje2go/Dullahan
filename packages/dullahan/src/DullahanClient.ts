@@ -179,8 +179,8 @@ export class DullahanClient {
         console.log('Stopping plugins');
         await Promise.all(plugins.map(async (plugin) => plugin.stop()));
         const [testEndCalls, functionEndCalls] = await Promise.all([
-            Promise.all(testEndPromises),
-            Promise.all(functionEndPromises)
+            await Promise.all(testEndPromises),
+            await Promise.all(functionEndPromises)
         ]);
         console.log('Stopping plugins complete');
 

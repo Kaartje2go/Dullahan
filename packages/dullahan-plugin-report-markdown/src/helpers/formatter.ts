@@ -23,7 +23,7 @@ export const formatFailingTest = (test: FailingTest): string => {
 };
 
 export const formatFailingTable = (rows: string[]) => {
-    const header = `## ${rows.length} Unstable tests`;
+    const header = `## ${rows.length} Failing tests`;
     if (rows.length === 0) {
         return [header];
     }
