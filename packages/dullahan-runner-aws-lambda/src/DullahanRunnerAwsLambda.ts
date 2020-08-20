@@ -189,15 +189,19 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             console.error(`Invoked test returned incorrect Payload of type ${typeof Payload}`);
             return false;
         }
+        try {
+            const parsedPayload = JSON.parse(JSON.parse(Payload as string)) as Test;
+            const { functionEndCalls, testEndCalls } = parsedPayload;
+            const testEndCall = testEndCalls && testEndCalls[0];
 
-        const parsedPayload = JSON.parse(JSON.parse(Payload as string)) as Test;
-        const { functionEndCalls, testEndCalls } = parsedPayload;
-        const testEndCall = testEndCalls && testEndCalls[0];
+            testEndCall && client.emitTestStart(testEndCall);
+            functionEndCalls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
+            testEndCall && client.emitTestEnd(testEndCall);
 
-        testEndCall && client.emitTestStart(testEndCall);
-        functionEndCalls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
-        testEndCall && client.emitTestEnd(testEndCall);
-
-        return !testEndCall?.error;
+            return !testEndCall?.error;
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
     }
 }
