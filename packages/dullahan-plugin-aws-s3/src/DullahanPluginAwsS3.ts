@@ -34,15 +34,15 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
             throw new DullahanError(`Option "bucketName" was expected to be a string, but was: ${bucketName}`);
         }
 
-        if (!/^(af|ap|ca|cn|eu|me|sa|us)-(central|north|east|south|west|northeast|northwest|southeast|southwest)-\d$/.test(region ?? '')) {
+        if (region && !/^(af|ap|ca|cn|eu|me|sa|us)-(central|north|east|south|west|northeast|northwest|southeast|southwest)-\d$/.test(region ?? '')) {
             throw new DullahanError(`Option "region" was expected to be a valid region code, but was: ${region}`);
         }
 
-        if (!/^[A-Z0-9]{20}$/.test(accessKeyId ?? '')) {
+        if (accessKeyId && !/^[A-Z0-9]{20}$/.test(accessKeyId ?? '')) {
             throw new DullahanError('Option "accessKeyId" did not match RegExp /^[A-Z0-9]{20}$/');
         }
 
-        if (!/^[A-Za-z0-9\/+=]{40}$/.test(secretAccessKey ?? '')) {
+        if (secretAccessKey && !/^[A-Za-z0-9\/+=]{40}$/.test(secretAccessKey ?? '')) {
             throw new DullahanError('Option "secretAccessKey" did not match RegExp /^[A-Za-z0-9\\/+=]{40}$/');
         }
     }
