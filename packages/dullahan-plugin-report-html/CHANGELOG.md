@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.56 (2020-08-21)
+
+
+### Bug Fixes
+
+* do not wait for interactive when clicking ([#66](https://github.com/Kaartje2go/Dullahan/issues/66)) ([0eb75e7](https://github.com/Kaartje2go/Dullahan/commit/0eb75e72e80e08fa0fd55d4ce85004cd729ca762))
+
+
+
+
+
 # 0.1.0-alpha.55 (2020-08-21)
 
 
