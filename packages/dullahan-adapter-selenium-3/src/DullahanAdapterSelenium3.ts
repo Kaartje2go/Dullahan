@@ -588,7 +588,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
-            interactiveOnly: true,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -709,7 +709,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
-            interactiveOnly: true,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false

@@ -570,7 +570,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             selector,
             visibleOnly: true,
             onScreenOnly: true,
-            interactiveOnly: true,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
