@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.55 (2020-08-21)
+
+
+### Bug Fixes
+
+* only verify keys if they are defined ([#65](https://github.com/Kaartje2go/Dullahan/issues/65)) ([7bec9de](https://github.com/Kaartje2go/Dullahan/commit/7bec9de8f9986f2063d61c1a828030b58d358b1c))
+
+
+
+
+
 # 0.1.0-alpha.54 (2020-08-20)
 
 
