@@ -128,10 +128,12 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
         };
 
         if (webhook && (when === 'always' || (failingTests.length === 0 && when === 'success') || (failingTests.length > 0 && when === 'failure'))) {
-            await new IncomingWebhook(webhook, {
+            console.info(`Dullahan Plugin Slack: sending message to webhook: ${webhook}`);
+            const response = await new IncomingWebhook(webhook, {
                 link_names: true,
                 channel
             }).send(message);
+            console.info(`Dullahan Plugin Slack: message sent - response: ${response.text}`);
         }
     }
 }
