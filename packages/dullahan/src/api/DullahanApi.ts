@@ -366,7 +366,7 @@ export class DullahanApi<
         return adapter.setElementAttribute(selector, attributeName, attributeValue);
     }
 
-    public async setElementInputFile(selector: string, file: string, timeout?: number): Promise<void> {
+    public async setElementInputFile(selector: string, file: string, isAbsolute: boolean = false, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -378,7 +378,7 @@ export class DullahanApi<
             timeout: timeout ?? defaultTimeout
         });
 
-        return adapter.setElementInputFile(selector, resolvePath(process.cwd(), file));
+        return adapter.setElementInputFile(selector, isAbsolute ? file : resolvePath(process.cwd(), file));
     }
 
     public async setElementProperty(selector: string, propertyName: string, propertyValue: any, timeout?: number): Promise<void> {
