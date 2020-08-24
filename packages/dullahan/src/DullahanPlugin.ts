@@ -7,7 +7,7 @@ import {
     DullahanFunctionStartCall,
     DullahanTestEndCall,
     DullahanTestStartCall
-} from "./DullahanCall";
+} from './DullahanCall';
 
 export type DullahanPluginUserOptions = Partial<{
 
