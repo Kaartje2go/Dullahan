@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.60 (2020-08-24)
+
+
+### Bug Fixes
+
+* do not change absolute file path ([#70](https://github.com/Kaartje2go/Dullahan/issues/70)) ([774f633](https://github.com/Kaartje2go/Dullahan/commit/774f6336cd46e0390a4d6762e3ca51c4d894ab69))
+
+
+
+
+
 # 0.1.0-alpha.59 (2020-08-24)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
