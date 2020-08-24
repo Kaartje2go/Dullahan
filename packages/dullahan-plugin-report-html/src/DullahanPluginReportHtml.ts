@@ -5,7 +5,7 @@ import {
 import {render} from 'ejs';
 import {promisify} from 'util';
 import {resolve as resolvePath} from 'path';
-import {isFailingTest, isSlowTest, isSuccessfulTest, isUnstableTest, Test} from "./helpers";
+import {isFailingTest, isSlowTest, isSuccessfulTest, isUnstableTest, Test} from './helpers';
 import {readFile} from 'fs';
 
 import {

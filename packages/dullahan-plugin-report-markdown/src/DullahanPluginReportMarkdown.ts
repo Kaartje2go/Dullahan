@@ -24,7 +24,7 @@ import {
     isSuccessfulTest,
     isUnstableTest,
     Test
-} from "./helpers/formatter";
+} from './helpers/formatter';
 
 export default class DullahanPluginReportMarkdown extends DullahanPlugin<DullahanPluginReportMarkdownUserOptions,
     typeof DullahanPluginReportMarkdownDefaultOptions> {
