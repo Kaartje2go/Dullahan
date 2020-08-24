@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.57 (2020-08-24)
+
+
+### Bug Fixes
+
+* Plugins can no longer modify data ([#68](https://github.com/Kaartje2go/Dullahan/issues/68)) ([a973b58](https://github.com/Kaartje2go/Dullahan/commit/a973b580ec224bc50c3ff18255d471a5fc378f69))
+
+
+
+
+
 # 0.1.0-alpha.56 (2020-08-21)
 
 
