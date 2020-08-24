@@ -17,7 +17,9 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
+    "@types/clone-deep": "^4.0.1",
     "assign-deep": "^1.0.1",
+    "clone-deep": "^4.0.1",
     "decache": "^4.6.0",
     "expect": "^26.1.0",
     "glob": "^7.1.6",
