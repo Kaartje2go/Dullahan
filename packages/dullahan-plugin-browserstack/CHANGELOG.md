@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.62 (2020-08-25)
+
+
+### Bug Fixes
+
+* use the mention option if there are failing tests ([#72](https://github.com/Kaartje2go/Dullahan/issues/72)) ([7888bd8](https://github.com/Kaartje2go/Dullahan/commit/7888bd8a906db08a4c2710d7d96ffa816210d5b2))
+
+
+
+
+
 # 0.1.0-alpha.61 (2020-08-25)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-browserstack
