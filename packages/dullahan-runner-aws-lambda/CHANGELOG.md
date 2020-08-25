@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.64 (2020-08-25)
+
+
+### Bug Fixes
+
+* do not screenshot full page to decrease size ([#73](https://github.com/Kaartje2go/Dullahan/issues/73)) ([aa565bb](https://github.com/Kaartje2go/Dullahan/commit/aa565bb724905a512170df2af660fc37a9933daa))
+
+
+
+
+
 # 0.1.0-alpha.63 (2020-08-25)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
