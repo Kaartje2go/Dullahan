@@ -52,8 +52,8 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
             return secret;
         }
         const secretRegex = /\/(.+)\//.exec(secret);
-        return secretRegex !== null ?
-            new RegExp(secretRegex[1], 'gim')
+        return secretRegex !== null
+            ? new RegExp(secretRegex[1], 'gim')
             : new RegExp(secret.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'), 'gim');
     }
 

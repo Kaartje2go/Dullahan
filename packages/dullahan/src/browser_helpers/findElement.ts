@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 declare global {
     interface Element {
         computedStyleMap: undefined | (() => Map<string, {

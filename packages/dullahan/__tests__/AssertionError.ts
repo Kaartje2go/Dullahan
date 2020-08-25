@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import {AssertionError} from '@k2g/dullahan';
 
 describe('AdapterError', () => {

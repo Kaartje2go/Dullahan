@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 declare global {
     interface Window {
         __DULLAHAN_POINTER_ENABLED__?: boolean;
