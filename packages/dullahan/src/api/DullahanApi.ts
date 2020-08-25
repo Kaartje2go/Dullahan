@@ -560,7 +560,7 @@ export class DullahanApi<
         await adapter.sendKeysToElement(selector, text);
     }
 
-    public async executeScript(script: string) {
-        return this.adapter.executeScript(script);
+    public async executeScript<T = any>(script: string): Promise<T> {
+        return this.adapter.executeScript<T>(script);
     }
 }
