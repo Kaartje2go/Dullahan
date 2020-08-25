@@ -955,7 +955,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
 
         const screenshot = await page.screenshot({
             type: 'png',
-            fullPage: true,
+            fullPage: false,
             encoding: 'base64'
         });
 
