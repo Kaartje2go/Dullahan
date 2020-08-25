@@ -36,7 +36,7 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
     }
 
     public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[]): Promise<void> {
-        const {webhook, channel, slowTestThreshold, when, attachments, maxPreviews} = this.options;
+        const {webhook, channel, mention, slowTestThreshold, when, attachments, maxPreviews} = this.options;
 
         const tests: Test[] = dtecs
             .reverse()
@@ -86,7 +86,7 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
                 type: 'section',
                 text: {
                     type: 'mrkdwn',
-                    text: `New results: ${failingTests.length} failing tests, ${unstableTests.length} unstable tests, ${slowTests.length} slow tests and ${successfulTests.length} successful tests`
+                    text: `${failingTests.length ? mention : ''} New results: ${failingTests.length} failing tests, ${unstableTests.length} unstable tests, ${slowTests.length} slow tests and ${successfulTests.length} successful tests`
                 }
             }, {
                 type: 'divider'

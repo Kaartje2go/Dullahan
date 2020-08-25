@@ -7,7 +7,7 @@ const {
 export type DullahanPluginSlackUserOptions = Partial<DullahanPluginUserOptions & {
     webhook: string;
     channel: string;
-    mention: string | string[];
+    mention?: string;
     when: 'always' | 'failure' | 'success';
     maxPreviews: number;
     slowTestThreshold: number;
