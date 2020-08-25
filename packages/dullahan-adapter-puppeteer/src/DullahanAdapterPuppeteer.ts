@@ -67,6 +67,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -93,6 +94,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -121,6 +123,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -149,6 +152,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -177,6 +181,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -237,6 +242,36 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await page.keyboard.type(keys);
     }
 
+    public async clearText(selector: string, count: number): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        const elementHandle = await page.evaluateHandle(findElement, findOptions);
+        const element = elementHandle.asElement();
+
+        if (!element) {
+            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        await element.focus();
+        for (let i = 0; i < count; i++) {
+            await page.keyboard.press('Backspace');
+        }
+    }
+
     public async sendKeysToElement(selector: string, keys: string): Promise<void> {
         const {page} = this;
 
@@ -248,6 +283,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -284,6 +320,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -310,6 +347,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -336,6 +374,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -359,10 +398,13 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        const startTime = Date.now();
+
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout,
             promise: true,
             expectNoMatches: true
@@ -378,6 +420,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
+                return this.waitForElementNotPresent(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
@@ -392,10 +436,13 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        const startTime = Date.now();
+
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout,
             promise: true,
             expectNoMatches: true
@@ -411,6 +458,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
+                return this.waitForElementNotVisible(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
@@ -447,6 +496,33 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         });
     }
 
+    public async click(selector: string): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        const elementHandle = await page.evaluateHandle(findElement, findOptions);
+        const element = elementHandle.asElement();
+
+        if (!element) {
+            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        await element.click();
+    }
+
     public async clickAt(x: number, y: number): Promise<void> {
         const {page} = this;
 
@@ -468,6 +544,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -495,6 +572,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -545,6 +623,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -571,6 +650,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -605,6 +685,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -647,6 +728,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -669,6 +751,30 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        const elementHandle = await page.evaluateHandle(findElement, findOptions);
+        const element = elementHandle.asElement();
+
+        return element !== null;
+    }
+
+    public async isElementInteractable(selector: string): Promise<boolean> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -701,6 +807,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -729,6 +836,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -750,25 +858,35 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         sessionId: string | null
     }> {
         const {options} = this;
-        const {headless, browserName, emulateDevice} = options;
+        const {args, devtools, headless, browserName, emulateDevice, executablePath, rawOptions, userAgent} = options;
 
         if (this.browser) {
             throw new AdapterError(DullahanErrorMessage.ACTIVE_BROWSER);
         }
 
-        const browser = await Puppeteer.launch({
-            headless,
-            handleSIGINT: false,
+        const launchOptions = {
             defaultViewport: null,
-            // @ts-ignore
+            devtools,
+            executablePath,
+            headless,
             product: browserName,
-            args: ['--no-sandbox']
-        });
+            ...rawOptions,
+            args
+        };
+
+        const browser = await Puppeteer.launch(launchOptions);
         const pages = await browser.pages();
         const page = pages[pages.length - 1];
 
         if (emulateDevice) {
-            await page.emulate(Puppeteer.devices[emulateDevice]);
+            const emulationTarget = Puppeteer.devices[emulateDevice];
+            if (userAgent) {
+                emulationTarget.userAgent += ` ${userAgent}`;
+            }
+            await page.emulate(emulationTarget);
+        } else if (userAgent) {
+            const defaultUserAgent = await browser.userAgent();
+            await page.setUserAgent(`${defaultUserAgent} ${userAgent}`);
         }
 
         this.browser = browser;
@@ -812,6 +930,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: true,
             expectNoMatches: false
@@ -874,10 +993,13 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        const startTime = Date.now();
+
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout,
             promise: true,
             expectNoMatches: false
@@ -893,6 +1015,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
+                return this.waitForElementPresent(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
@@ -909,10 +1033,13 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        const startTime = Date.now();
+
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout,
             promise: true,
             expectNoMatches: false
@@ -928,9 +1055,61 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
+                return this.waitForElementVisible(selector, { timeout: options.timeout + startTime - Date.now() });
             }
 
             throw error;
         }
+    }
+
+    public async waitForElementInteractive(selector: string, options: {
+        timeout: number;
+    }): Promise<void> {
+        const {page} = this;
+        const {timeout} = options;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const startTime = Date.now();
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
+            timeout,
+            promise: true,
+            expectNoMatches: false
+        };
+
+        try {
+            const elementHandle = await page.evaluateHandle(findElement, findOptions);
+            const element = elementHandle.asElement();
+
+            if (!element) {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            }
+        } catch (error) {
+            if (error.name === 'TimeoutError') {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/Protocol error|Execution context/u.test(error.message)) {
+                return this.waitForElementInteractive(selector, { timeout: options.timeout + startTime - Date.now() });
+            }
+
+            throw error;
+        }
+    }
+
+    public async executeScript<T>(script: string): Promise<T> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        return page.evaluate((_script: string) => new Function(_script)(), script);
     }
 }

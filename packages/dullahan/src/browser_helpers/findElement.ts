@@ -15,6 +15,7 @@ export type FindElementOptions = {
     selector: string;
     visibleOnly: boolean;
     onScreenOnly: boolean;
+    interactiveOnly: boolean;
     expectNoMatches: boolean;
     timeout: number;
     promise: boolean;
@@ -41,6 +42,7 @@ export function findElement(this: void, options: FindElementOptions): Element | 
     var selector = options.selector;
     var visibleOnly = options.visibleOnly;
     var onScreenOnly = options.onScreenOnly;
+    var interactiveOnly = options.interactiveOnly;
     var expectNoMatches = options.expectNoMatches;
     var timeout = options.timeout;
     var promise = options.promise !== false && typeof Promise !== 'undefined' && timeout > 0;
@@ -194,8 +196,13 @@ export function findElement(this: void, options: FindElementOptions): Element | 
                 return false;
             }
 
-            if (visibleOnly && (!hasDimensions(width, height) || !hasValidStyles(element) || !isInteractable(element, top, left, width, height))) {
+            if (visibleOnly && (!hasDimensions(width, height) || !hasValidStyles(element))) {
                 console.log('findElement', 'visibleOnly', selector, element);
+                return false;
+            }
+
+            if (interactiveOnly && !isInteractable(element, top, left, width, height)) {
+                console.log('findElement', 'interactiveOnly', selector, element);
                 return false;
             }
 

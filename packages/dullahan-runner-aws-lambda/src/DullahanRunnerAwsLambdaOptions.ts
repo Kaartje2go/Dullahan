@@ -1,4 +1,5 @@
 import {DullahanRunnerDefaultOptions, DullahanRunnerUserOptions} from '@k2g/dullahan';
+import { HTTPOptions } from 'aws-sdk';
 
 const {
     DULLAHAN_RUNNER_AWS_LAMBDA_AWS_LAMBDA_FUNCTION_NAME, AWS_LAMBDA_FUNCTION_NAME,
@@ -9,17 +10,19 @@ const {
 } = process.env;
 
 export type DullahanRunnerAwsLambdaUserOptions = Partial<DullahanRunnerUserOptions & {
-    role: 'master' | 'slave';
-    region: string;
     accessKeyId: string;
-    secretAccessKey: string;
+    httpOptions?: HTTPOptions;
     maxConcurrency: number;
+    region: string;
+    role: 'master' | 'slave';
+    secretAccessKey: string;
     slaveFunctionName: string;
     slaveQualifier: string;
     slaveOptions: {
         file: string;
         [key: string]: unknown;
     };
+    useAccessKeys: boolean;
 }>;
 
 export const DullahanRunnerAwsLambdaDefaultOptions = {
@@ -31,7 +34,8 @@ export const DullahanRunnerAwsLambdaDefaultOptions = {
     secretAccessKey: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_SECRET_ACCESS_KEY || AWS_SECRET_ACCESS_KEY,
     slaveFunctionName: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_LAMBDA_FUNCTION_NAME || AWS_LAMBDA_FUNCTION_NAME,
     slaveQualifier: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_LAMBDA_FUNCTION_VERSION || AWS_LAMBDA_FUNCTION_VERSION,
-    slaveOptions: {}
+    slaveOptions: {},
+    useAccessKeys: true,
 };
 
 export type DullahanRunnerAwsLambdaOptions =

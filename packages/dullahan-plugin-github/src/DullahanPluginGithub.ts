@@ -16,6 +16,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
     private lastStatusCheck = Date.now() - 60000;
     private successfulTestsCounter = 0;
     private failedTestsCounter = 0;
+    private failedTests: string[] = [];
 
     private readonly octokit = new Octokit({
         auth: `token ${this.options.githubToken}`
@@ -43,14 +44,21 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const {options, lastStatusCheck} = this;
         const {enableStatusChecks} = options;
         const {error} = dtec;
-
         if (error) {
-            this.failedTestsCounter++;
+            // Make sure to count failures only once
+            if (!this.failedTests.includes(dtec.testId)) {
+                this.failedTestsCounter++;
+                this.failedTests.push(dtec.testId);
+            }
         } else {
             this.successfulTestsCounter++;
+            // If this test was marked as a failure before, decrease the failed tests count
+            if (this.failedTests.includes(dtec.testId)) {
+                this.failedTestsCounter--;
+            }
         }
 
-        if (enableStatusChecks && lastStatusCheck + 60000 > Date.now()) {
+        if (enableStatusChecks && lastStatusCheck + 15000 > Date.now()) {
             await this.setStatus();
         }
 
@@ -64,7 +72,12 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const html = artifacts.find(({scope, name}) => scope === 'dullahan-plugin-report-html' && name === 'report');
         const markdown = artifacts.find(({scope, name}) => scope === 'dullahan-plugin-report-markdown' && name === 'report');
 
-        const comment = markdown?.data ?? '[@k2g/dullahan-plugin-report-markdown](https://github.com/Kaartje2go/Dullahan/tree/master/packages/dullahan-plugin-report-markdown) not found';
+        let comment = markdown?.data ?? '[@k2g/dullahan-plugin-report-markdown](https://github.com/Kaartje2go/Dullahan/tree/master/packages/dullahan-plugin-report-markdown) not found';
+
+        if (html?.remoteUrls?.[0]) {
+            comment += `\n[Continue to review full report.](${html?.remoteUrls[0]})`
+        };
+
         const promises: Promise<void>[] = [];
 
         if (enableStatusChecks) {
@@ -87,7 +100,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const {repositoryName, repositoryOwner, commitHash, statusUrl, statusName} = options;
 
         const state = url ? failedTestsCounter ? 'failure' : 'success' : 'pending';
-        const description = `${successfulTestsCounter}/${successfulTestsCounter + failedTestsCounter} tests have passed`;
+        const description = state !== 'pending' ? `${successfulTestsCounter}/${successfulTestsCounter + failedTestsCounter} tests have passed` : '';
 
         this.lastStatusCheck = Date.now();
 
@@ -103,7 +116,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             throw new DullahanError('Could not set status on Github: no commitHash');
         }
 
-        await octokit.repos.createStatus({
+        await octokit.repos.createCommitStatus({
             owner: repositoryOwner,
             repo: repositoryName,
             sha: commitHash,
@@ -139,12 +152,17 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         });
         const pullRequestNumber = pullRequests[0]?.number;
 
+        if (!pullRequestNumber) {
+            console.info('No open pull request to comment on');
+            return;
+        }
+
         const {data: comments} = await octokit.issues.listComments({
             owner: repositoryOwner,
             repo: repositoryName,
             issue_number: pullRequestNumber
         });
-        const commentId = comments.find(({body}) => body.startsWith(identifier))?.id;
+        const commentId = comments.find(({body}) => body.includes(identifier))?.id;
 
         if (typeof commentId === 'number') {
             await octokit.issues.updateComment({

@@ -25,9 +25,18 @@ export default class DullahanPluginReportJson extends DullahanPlugin<DullahanPlu
     }
 
     public async getArtifacts(dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[]): Promise<Artifact[]> {
-        const tests = dtecs
-            .reverse()
-            .filter(({testId}, index) => index === dtecs.findIndex((dtec) => dtec.testId === testId))
+        const dedupedDtecs = dtecs.reduce((acc: DullahanTestEndCall[], current: DullahanTestEndCall) => {
+            const previouslyFound = acc.find(prev => prev.testId === current.testId);
+            if (!previouslyFound) {
+                acc.push(current);
+            } else if (previouslyFound.error && !current.error) {
+                const index = acc.indexOf(previouslyFound);
+                acc[index] = current;
+            }
+            return acc;
+        }, []);
+
+        const tests = dedupedDtecs
             .map((dtec) => ({
                 ...dtec,
                 calls: dfecs
@@ -44,8 +53,7 @@ export default class DullahanPluginReportJson extends DullahanPlugin<DullahanPlu
 
                         return call;
                     })
-            }))
-            .reverse();
+            }));
 
         return [{
             scope: 'dullahan-plugin-report-json',

@@ -1,4 +1,5 @@
 import {createHash} from 'crypto';
+import cloneDeep = require('clone-deep');
 
 import {DullahanAdapter} from './adapter';
 import {DullahanApi} from './api';
@@ -170,7 +171,7 @@ export class DullahanClient {
         testEndCalls: DullahanTestEndCall[];
         functionEndCalls: DullahanFunctionEndCall[];
     }> {
-        const {plugins, runner, storedArtifactPromises, testStartCalls, testEndPromises, functionStartCalls, functionEndPromises} = this;
+        const {plugins, runner, testStartCalls, testEndPromises, functionStartCalls, functionEndPromises} = this;
 
         console.log('Stopping runner');
         await runner.stop();
@@ -186,10 +187,10 @@ export class DullahanClient {
 
         console.log('Processing artifacts');
         await Promise.all(plugins.map(async (plugin) => {
-            const artifacts = await plugin.getArtifacts(testEndCalls, functionEndCalls);
+            const artifacts = await plugin.getArtifacts(cloneDeep(testEndCalls), cloneDeep(functionEndCalls));
             artifacts.forEach((artifact) => this.submitArtifact(artifact));
         }));
-        const storedArtifacts = await Promise.all(storedArtifactPromises);
+        const storedArtifacts = await Promise.all(this.storedArtifactPromises);
         await Promise.all(plugins.map(async (plugin) => plugin.processResults(storedArtifacts, testEndCalls, functionEndCalls).catch(console.error)));
         console.log('Processing artifacts complete');
 
@@ -229,7 +230,7 @@ export class DullahanClient {
 
     public emitTestEnd(dtec: DullahanTestEndCall): void {
         const {testEndPromises} = this;
-        console.log(dtec.testName, dtec.error);
+        console.log(dtec.testName, dtec.error ?? 'success');
 
         testEndPromises.push(this.processTestEnd(dtec));
     }
@@ -249,7 +250,7 @@ export class DullahanClient {
         const {plugins} = this;
 
         const dtecs = await Promise.all(plugins.map((plugin) => {
-            return plugin.onTestEnd(Object.assign({}, dtec)).catch((error) => {
+            return plugin.onTestEnd(cloneDeep(dtec)).catch((error) => {
                 console.error(error);
 
                 return dtec;
@@ -276,7 +277,7 @@ export class DullahanClient {
             });
 
             dfecs = await Promise.all(plugins.map((plugin) => {
-                return plugin.onFunctionEnd(Object.assign({remoteUrls}, dfec)).catch((error) => {
+                return plugin.onFunctionEnd(cloneDeep({remoteUrls, ...dfec})).catch((error) => {
                     console.error(error);
 
                     return dfec;
@@ -284,7 +285,7 @@ export class DullahanClient {
             }));
         } else {
             dfecs = await Promise.all(plugins.map((plugin) => {
-                return plugin.onFunctionEnd(Object.assign({}, dfec)).catch((error) => {
+                return plugin.onFunctionEnd(cloneDeep(dfec)).catch((error) => {
                     console.error(error);
 
                     return dfec;

@@ -40,6 +40,10 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
         };
     }
 
+    public abstract async clearText(selector: string, count: number): Promise<void>;
+
+    public abstract async click(selector: string): Promise<void>;
+
     public abstract async clickAt(x: number, y: number): Promise<void>;
 
     public abstract async clickAtElement(selector: string, offsetX: number, offsetY: number): Promise<void>;
@@ -49,6 +53,8 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
     public abstract async closeBrowser(): Promise<void>;
 
     public abstract async displayPointer(): Promise<void>;
+
+    public abstract async executeScript<T>(script: string): Promise<T>;
 
     public abstract async getCookie(name: string): Promise<DullahanCookie | null>;
 
@@ -79,6 +85,8 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
     public abstract async isElementPresent(selector: string): Promise<boolean>;
 
     public abstract async isElementVisible(selector: string): Promise<boolean>;
+
+    public abstract async isElementInteractable(selector: string): Promise<boolean>;
 
     public abstract async moveMouseTo(x: number, y: number): Promise<void>;
 
@@ -143,6 +151,10 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
     }): Promise<void>;
 
     public abstract async waitForElementVisible(selector: string, options: {
+        timeout: number;
+    }): Promise<void>;
+
+    public abstract async waitForElementInteractive(selector: string, options: {
         timeout: number;
     }): Promise<void>;
 

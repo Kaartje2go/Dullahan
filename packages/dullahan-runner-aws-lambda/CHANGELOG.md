@@ -3,6 +3,428 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.61 (2020-08-25)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.60 (2020-08-24)
+
+
+### Bug Fixes
+
+* do not change absolute file path ([#70](https://github.com/Kaartje2go/Dullahan/issues/70)) ([774f633](https://github.com/Kaartje2go/Dullahan/commit/774f6336cd46e0390a4d6762e3ca51c4d894ab69))
+
+
+
+
+
+# 0.1.0-alpha.59 (2020-08-24)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.58 (2020-08-24)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.57 (2020-08-24)
+
+
+### Bug Fixes
+
+* Plugins can no longer modify data ([#68](https://github.com/Kaartje2go/Dullahan/issues/68)) ([a973b58](https://github.com/Kaartje2go/Dullahan/commit/a973b580ec224bc50c3ff18255d471a5fc378f69))
+
+
+
+
+
+# 0.1.0-alpha.56 (2020-08-21)
+
+
+### Bug Fixes
+
+* do not wait for interactive when clicking ([#66](https://github.com/Kaartje2go/Dullahan/issues/66)) ([0eb75e7](https://github.com/Kaartje2go/Dullahan/commit/0eb75e72e80e08fa0fd55d4ce85004cd729ca762))
+
+
+
+
+
+# 0.1.0-alpha.55 (2020-08-21)
+
+
+### Bug Fixes
+
+* only verify keys if they are defined ([#65](https://github.com/Kaartje2go/Dullahan/issues/65)) ([7bec9de](https://github.com/Kaartje2go/Dullahan/commit/7bec9de8f9986f2063d61c1a828030b58d358b1c))
+
+
+
+
+
+# 0.1.0-alpha.54 (2020-08-20)
+
+
+### Bug Fixes
+
+* make sure artifacts are parsed correctly ([#63](https://github.com/Kaartje2go/Dullahan/issues/63)) ([5d71559](https://github.com/Kaartje2go/Dullahan/commit/5d71559b970f9f7c91008510b789e2ece5a7fea0))
+
+
+
+
+
+# 0.1.0-alpha.53 (2020-08-20)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.52 (2020-08-20)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.51 (2020-08-20)
+
+
+### Bug Fixes
+
+* add try catch to lambda runner ([e7f5efb](https://github.com/Kaartje2go/Dullahan/commit/e7f5efb341f4fe6c8faced307935388a5e3bb25f))
+
+
+
+
+
+# 0.1.0-alpha.50 (2020-08-19)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.49 (2020-08-19)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.48 (2020-08-19)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.47 (2020-08-19)
+
+
+### Bug Fixes
+
+* setText now correctly clears the input ([#56](https://github.com/Kaartje2go/Dullahan/issues/56)) ([5bac560](https://github.com/Kaartje2go/Dullahan/commit/5bac56071137c758faec5edc5728fd929b1da8c9))
+
+
+
+
+
+# 0.1.0-alpha.46 (2020-08-19)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.45 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.44 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.43 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.42 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.41 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.40 (2020-08-18)
+
+
+### Bug Fixes
+
+* unstable tests are no longer counted as errors ([#51](https://github.com/Kaartje2go/Dullahan/issues/51)) ([55e3803](https://github.com/Kaartje2go/Dullahan/commit/55e38038d78cf7862cd620a2e6f5972543c57f8b))
+
+
+
+
+
+# 0.1.0-alpha.39 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.38 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.37 (2020-08-18)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.36 (2020-08-17)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.35 (2020-08-17)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.34 (2020-08-17)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.33 (2020-08-17)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.32 (2020-08-17)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.31 (2020-08-14)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.30 (2020-08-14)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.29 (2020-08-14)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.28 (2020-08-13)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.27 (2020-08-13)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.26 (2020-08-13)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.25 (2020-08-13)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.24 (2020-08-13)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.23 (2020-08-13)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.22 (2020-08-13)
+
+
+### Bug Fixes
+
+* verify that payload is of type string ([#36](https://github.com/Kaartje2go/Dullahan/issues/36)) ([d7eda79](https://github.com/Kaartje2go/Dullahan/commit/d7eda79a51fa2d83215228fdd2d931c629754734))
+
+
+
+
+
+# 0.1.0-alpha.21 (2020-08-13)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.20 (2020-08-12)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.19 (2020-08-12)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.18 (2020-08-12)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.17 (2020-08-12)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.16 (2020-08-12)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.15 (2020-08-12)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.14 (2020-08-12)
+
+**Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
+
+
+
+
+
+# 0.1.0-alpha.13 (2020-08-11)
+
+
+### Bug Fixes
+
+* make sure the regex exec result is not null ([#26](https://github.com/Kaartje2go/Dullahan/issues/26)) ([de68ce0](https://github.com/Kaartje2go/Dullahan/commit/de68ce0caea4851d82cf957bf6d9d1d98d46f791))
+
+
+
+
+
 # 0.1.0-alpha.12 (2020-08-11)
 
 

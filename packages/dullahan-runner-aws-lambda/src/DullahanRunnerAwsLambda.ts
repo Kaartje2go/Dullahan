@@ -14,18 +14,22 @@ import {
 } from '@k2g/dullahan';
 import {Lambda} from 'aws-sdk';
 
-interface Test extends DullahanTestEndCall {
-    calls: DullahanFunctionEndCall[];
+interface Test {
+    functionEndCalls?: DullahanFunctionEndCall[];
+    testEndCalls?: DullahanTestEndCall[];
 }
 
 export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunnerAwsLambdaUserOptions, typeof DullahanRunnerAwsLambdaDefaultOptions> {
 
     private hasStopSignal = false;
 
-    private readonly lambda = new Lambda({
+    private readonly lambda = this.options.useAccessKeys ? new Lambda({
         accessKeyId: this.options.accessKeyId,
         secretAccessKey: this.options.secretAccessKey,
+        httpOptions: this.options.httpOptions,
         region: this.options.region
+    }) : new Lambda({
+        httpOptions: this.options.httpOptions
     });
 
     public constructor(args: {
@@ -50,6 +54,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             includeGlobs.push('**/*')
         }
 
+        console.log('Dullahan Runner AWS Lambda - finding tests');
+
         const searchResults = await Promise.all(rootDirectories.map((rootDirectory) => fastGlob(includeGlobs, {
             cwd: rootDirectory,
             ignore: excludeGlobs,
@@ -57,19 +63,29 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             dot: true
         })));
 
-        const testFiles: string[] = (await Promise.all(
-            searchResults.flat()
-                .filter((file) =>
-                    includeRegexes.some((iRegex) => iRegex.test(file))
-                    && !excludeRegexes.some((eRegex) => eRegex.test(file)))
-                .map(async (file: string) => {
-                    const instance = client.getTestInstance(file);
-                    const accepted = !!instance && await testPredicate(file, instance.test);
-                    return {file, accepted};
-                })
-        )).filter(({accepted}) => accepted).map(({file}) => file);
+        const testFiles = (await Promise.all(
+                searchResults.flat()
+                    .filter((file) =>
+                        (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+                        && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
+                    )
+                    .map(async (file: string) => {
+                        const instance = client.getTestInstance(file);
+                        const accepted = !!instance && await testPredicate(file, instance.test);
+                        return {file, accepted};
+                    })
+            ))
+            .filter(({accepted}) => accepted)
+            .map(({file}) => ({
+                file,
+                successes: 0,
+                failures: 0
+            }));
 
         const nextPool = [...testFiles];
+
+        console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`);
+        console.log(`Running tests with concurrency ${maxConcurrency}`);
 
         do {
             const currentPool = nextPool.splice(0, nextPool.length);
@@ -126,7 +142,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
             await adapter.openBrowser();
             await test.run(api);
-            await adapter.closeBrowser();
 
             client.emitTestEnd({
                 testId,
@@ -149,12 +164,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                     await adapter.screenshotPage();
                 }
             });
-
-            await tryIgnore(3, async () => {
-                if (await adapter.isBrowserOpen()) {
-                    await adapter.closeBrowser();
-                }
-            });
+        } finally {
+            await adapter.closeBrowser();
         }
     }
 
@@ -173,13 +184,24 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             })
         }).promise();
 
-        const [{calls, ...testEndCall}] = JSON.parse(JSON.parse(Payload as string)) as [Test];
+        // If the payload is not of type string, it cannot be parsed.
+        if (typeof Payload !== 'string') {
+            console.error(`Invoked test returned incorrect Payload of type ${typeof Payload}`);
+            return false;
+        }
+        try {
+            const parsedPayload = JSON.parse(JSON.parse(Payload as string)) as Test;
+            const { functionEndCalls, testEndCalls } = parsedPayload;
+            const testEndCall = testEndCalls && testEndCalls[0];
 
-        client.emitTestStart(testEndCall);
-        calls.forEach((functionEndCall) => client.emitFunctionStart(functionEndCall));
-        calls.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
-        client.emitTestEnd(testEndCall);
+            functionEndCalls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
+            testEndCall && client.emitTestEnd(testEndCall);
 
-        return !testEndCall.error;
+            return !testEndCall?.error;
+        } catch (e) {
+            console.info('Failed with Payload', Payload);
+            console.error(e);
+            return false;
+        }
     }
 }

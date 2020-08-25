@@ -62,11 +62,11 @@ export class DullahanApi<
         await assertion(expect);
     }
 
-    async clickAt(x: number, y: number): Promise<void> {
+    public async clickAt(x: number, y: number): Promise<void> {
         return this.adapter.clickAt(x, y);
     }
 
-    async clickAtElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
+    public async clickAtElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -80,11 +80,25 @@ export class DullahanApi<
         await adapter.clickAtElement(selector, offsetX, offsetY);
     }
 
-    async click(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
-        return this.clickAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
+    public async click(selector: string, offsetCenterX?: number, offsetCenterY?: number, timeout?: number): Promise<void> {
+        if (offsetCenterX && offsetCenterY) {
+            return this.clickAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
+        }
+
+        const {adapter, options} = this;
+        const {defaultTimeout, autoScroll} = options;
+
+        if (autoScroll && !(await adapter.isElementVisible(selector))) {
+            await this.scrollToElement(selector, timeout);
+        }
+
+        await adapter.waitForElementVisible(selector, {
+            timeout: timeout ?? defaultTimeout
+        });
+        await adapter.click(selector);
     }
 
-    async clickAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+    public async clickAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -98,15 +112,15 @@ export class DullahanApi<
         await adapter.clickAtElementCenter(selector, offsetCenterX, offsetCenterY);
     }
 
-    async displayPointer(): Promise<void> {
+    public async displayPointer(): Promise<void> {
         return this.adapter.displayPointer();
     }
 
-    async getCookie(name: string): Promise<DullahanCookie | null> {
+    public async getCookie(name: string): Promise<DullahanCookie | null> {
         return this.adapter.getCookie(name);
     }
 
-    async getElementAttributes(selector: string, attributeNames: string[], timeout?: number): Promise<(string | null)[]> {
+    public async getElementAttributes(selector: string, attributeNames: string[], timeout?: number): Promise<(string | null)[]> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -117,7 +131,7 @@ export class DullahanApi<
         return adapter.getElementAttributes(selector, ...attributeNames);
     }
 
-    async getElementBoundaries(selector: string, timeout?: number): Promise<{ top: number; left: number; bottom: number; right: number; x: number; y: number; width: number; height: number }> {
+    public async getElementBoundaries(selector: string, timeout?: number): Promise<{ top: number; left: number; bottom: number; right: number; x: number; y: number; width: number; height: number }> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -128,7 +142,7 @@ export class DullahanApi<
         return adapter.getElementBoundaries(selector);
     }
 
-    async getElementProperties<T>(selector: string, propertyNames: string[], timeout?: number): Promise<(T | null)[]> {
+    public async getElementProperties<T>(selector: string, propertyNames: string[], timeout?: number): Promise<(T | null)[]> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -139,7 +153,7 @@ export class DullahanApi<
         return adapter.getElementProperties<T>(selector, ...propertyNames);
     }
 
-    async getElementStyles(selector: string, styleNames: string[], timeout?: number): Promise<{ value: string | null; unit: string | null }[]> {
+    public async getElementStyles(selector: string, styleNames: string[], timeout?: number): Promise<{ value: string | null; unit: string | null }[]> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -150,11 +164,11 @@ export class DullahanApi<
         return adapter.getElementStyles(selector, ...styleNames);
     }
 
-    async getURL(): Promise<string> {
+    public async getURL(): Promise<string> {
         return this.adapter.getURL();
     }
 
-    async getValue(selector: string, timeout?: number): Promise<string | null> {
+    public async getValue(selector: string, timeout?: number): Promise<string | null> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -167,19 +181,19 @@ export class DullahanApi<
         return value;
     }
 
-    async isElementPresent(selector: string): Promise<boolean> {
+    public async isElementPresent(selector: string): Promise<boolean> {
         return this.adapter.isElementPresent(selector);
     }
 
-    async isElementVisible(selector: string): Promise<boolean> {
+    public async isElementVisible(selector: string): Promise<boolean> {
         return this.adapter.isElementVisible(selector);
     }
 
-    async moveMouseTo(x: number, y: number): Promise<void> {
+    public async moveMouseTo(x: number, y: number): Promise<void> {
         return this.adapter.moveMouseTo(x, y);
     }
 
-    async moveMouseToElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
+    public async moveMouseToElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -194,7 +208,7 @@ export class DullahanApi<
         return adapter.moveMouseToElement(selector, offsetX, offsetY);
     }
 
-    async moveMouseToElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+    public async moveMouseToElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -209,11 +223,11 @@ export class DullahanApi<
         return adapter.moveMouseToElementCenter(selector, offsetCenterX, offsetCenterY);
     }
 
-    async pressMouseAt(x: number, y: number): Promise<void> {
+    public async pressMouseAt(x: number, y: number): Promise<void> {
         return this.adapter.pressMouseAt(x, y);
     }
 
-    async pressMouseAtElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
+    public async pressMouseAtElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -228,11 +242,11 @@ export class DullahanApi<
         return adapter.pressMouseAtElement(selector, offsetX, offsetY);
     }
 
-    async pressMouse(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+    public async pressMouse(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
         return this.pressMouseAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
     }
 
-    async pressMouseAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+    public async pressMouseAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -247,11 +261,11 @@ export class DullahanApi<
         return adapter.pressMouseAtElementCenter(selector, offsetCenterX, offsetCenterY);
     }
 
-    async releaseMouseAt(x: number, y: number): Promise<void> {
+    public async releaseMouseAt(x: number, y: number): Promise<void> {
         return this.adapter.releaseMouseAt(x, y);
     }
 
-    async releaseMouseAtElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
+    public async releaseMouseAtElement(selector: string, offsetX: number = 0, offsetY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -266,11 +280,11 @@ export class DullahanApi<
         return adapter.releaseMouseAtElement(selector, offsetX, offsetY);
     }
 
-    async releaseMouse(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+    public async releaseMouse(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
         return this.releaseMouseAtElementCenter(selector, offsetCenterX, offsetCenterY, timeout);
     }
 
-    async releaseMouseAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
+    public async releaseMouseAtElementCenter(selector: string, offsetCenterX: number = 0, offsetCenterY: number = 0, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -285,7 +299,7 @@ export class DullahanApi<
         return adapter.releaseMouseAtElementCenter(selector, offsetCenterX, offsetCenterY);
     }
 
-    async reloadPage(timeout?: number): Promise<void> {
+    public async reloadPage(timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultNetworkTimeout, displayPointer} = options;
 
@@ -299,15 +313,15 @@ export class DullahanApi<
         }
     }
 
-    async removeCookie(name: string): Promise<void> {
+    public async removeCookie(name: string): Promise<void> {
         return this.adapter.removeCookie(name);
     }
 
-    async screenshotPage(): Promise<string> {
+    public async screenshotPage(): Promise<string> {
         return this.adapter.screenshotPage();
     }
 
-    async scrollToElement(selector: string, timeout?: number): Promise<void> {
+    public async scrollToElement(selector: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -318,11 +332,11 @@ export class DullahanApi<
         return adapter.scrollToElement(selector);
     }
 
-    async sendKeys(keys: string): Promise<void> {
+    public async sendKeys(keys: string): Promise<void> {
         return this.adapter.sendKeys(keys);
     }
 
-    async sendKeysToElement(selector: string, keys: string, timeout?: number): Promise<void> {
+    public async sendKeysToElement(selector: string, keys: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -337,11 +351,11 @@ export class DullahanApi<
         return adapter.sendKeysToElement(selector, keys);
     }
 
-    async setCookie(cookie: DullahanCookie): Promise<void> {
+    public async setCookie(cookie: DullahanCookie): Promise<void> {
         return this.adapter.setCookie(cookie);
     }
 
-    async setElementAttribute(selector: string, attributeName: string, attributeValue: string, timeout?: number): Promise<void> {
+    public async setElementAttribute(selector: string, attributeName: string, attributeValue: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -352,7 +366,7 @@ export class DullahanApi<
         return adapter.setElementAttribute(selector, attributeName, attributeValue);
     }
 
-    async setElementInputFile(selector: string, file: string, timeout?: number): Promise<void> {
+    public async setElementInputFile(selector: string, file: string, isAbsolute: boolean = false, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -364,10 +378,10 @@ export class DullahanApi<
             timeout: timeout ?? defaultTimeout
         });
 
-        return adapter.setElementInputFile(selector, resolvePath(process.cwd(), file));
+        return adapter.setElementInputFile(selector, isAbsolute ? file : resolvePath(process.cwd(), file));
     }
 
-    async setElementProperty(selector: string, propertyName: string, propertyValue: any, timeout?: number): Promise<void> {
+    public async setElementProperty(selector: string, propertyName: string, propertyValue: any, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -382,7 +396,7 @@ export class DullahanApi<
         return this.setURL(url, timeout);
     }
 
-    async setURL(url: string, timeout?: number): Promise<void> {
+    public async setURL(url: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultNetworkTimeout, displayPointer} = options;
 
@@ -396,7 +410,7 @@ export class DullahanApi<
         }
     }
 
-    async setValue(selector: string, value: any, timeout?: number): Promise<void> {
+    public async setValue(selector: string, value: any, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -407,7 +421,7 @@ export class DullahanApi<
         return adapter.setElementProperty(selector, 'value', value);
     }
 
-    async waitForElementNotPresent(selector: string, timeout?: number): Promise<void> {
+    public async waitForElementNotPresent(selector: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -416,7 +430,7 @@ export class DullahanApi<
         });
     }
 
-    async waitForElementNotVisible(selector: string, timeout?: number): Promise<void> {
+    public async waitForElementNotVisible(selector: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -425,7 +439,7 @@ export class DullahanApi<
         });
     }
 
-    async waitForElementPresent(selector: string, timeout?: number): Promise<void> {
+    public async waitForElementPresent(selector: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout} = options;
 
@@ -434,7 +448,7 @@ export class DullahanApi<
         });
     }
 
-    async waitForElementVisible(selector: string, timeout?: number): Promise<void> {
+    public async waitForElementVisible(selector: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
@@ -451,7 +465,24 @@ export class DullahanApi<
         });
     }
 
-    async waitForNavigation(trigger: () => (Promise<void> | void), timeout?: number): Promise<void> {
+    public async waitForElementInteractive(selector: string, timeout?: number): Promise<void> {
+        const {adapter, options} = this;
+        const {defaultTimeout, autoScroll} = options;
+
+        await adapter.waitForElementPresent(selector, {
+            timeout: timeout ?? defaultTimeout
+        });
+
+        if (autoScroll && !(await adapter.isElementVisible(selector))) {
+            await this.scrollToElement(selector, timeout);
+        }
+
+        await adapter.waitForElementInteractive(selector, {
+            timeout: timeout ?? defaultTimeout
+        });
+    }
+
+    public async waitForNavigation(trigger: () => (Promise<void> | void), timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultNetworkTimeout, displayPointer} = options;
 
@@ -468,13 +499,19 @@ export class DullahanApi<
     public async getText(selector: string, timeout?: number): Promise<string> {
         const {adapter} = this;
 
-        await adapter.waitForElementVisible(selector, {
+        await adapter.waitForElementPresent(selector, {
             timeout: timeout ?? 10000
         });
 
         const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
 
-        return typeof value === 'string' ? value : typeof innerText === 'string' ? innerText : '';
+        if (value) {
+            return value.toString();
+        } else if (innerText) {
+            return innerText.toString();
+        }
+
+        return '';
     }
 
     public async appendText(selector: string, text: string, timeout?: number): Promise<void> {
@@ -494,20 +531,14 @@ export class DullahanApi<
 
     public async clearText(selector: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
-        const {defaultTimeout, autoScroll} = options;
+        const {autoScroll} = options;
 
         if (autoScroll && !(await adapter.isElementVisible(selector))) {
             await this.scrollToElement(selector, timeout);
         }
 
-        await adapter.waitForElementVisible(selector, {
-            timeout: timeout ?? defaultTimeout
-        });
-
-        const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
-        const existingText = typeof value === 'string' ? value : typeof innerText === 'string' ? innerText : '';
-
-        await adapter.sendKeysToElement(selector, Array(existingText.length).fill('\b').join(''));
+        const existingText = await this.getText(selector, timeout);
+        await adapter.clearText(selector, existingText.length);
     }
 
     public async setText(selector: string, text: string, timeout?: number): Promise<void> {
@@ -525,7 +556,11 @@ export class DullahanApi<
         const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
         const existingText = typeof value === 'string' ? value : typeof innerText === 'string' ? innerText : '';
 
-        await adapter.sendKeysToElement(selector, Array(existingText.length).fill('\b').join(''));
+        await adapter.clearText(selector, existingText.length);
         await adapter.sendKeysToElement(selector, text);
+    }
+
+    public async executeScript<T = any>(script: string): Promise<T> {
+        return this.adapter.executeScript<T>(script);
     }
 }

@@ -8,7 +8,7 @@ import {
     DullahanTestEndCall,
     StoredArtifact
 } from '@k2g/dullahan';
-import {isFailingTest, isSlowTest, isSuccessfulTest, isUnstableTest, Test} from "./helpers";
+import {isFailingTest, isSlowTest, isSuccessfulTest, isUnstableTest, Test} from './helpers';
 
 export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSlackUserOptions, typeof DullahanPluginSlackDefaultOptions> {
 
@@ -36,8 +36,7 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
     }
 
     public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[]): Promise<void> {
-        const {options} = this;
-        const {webhook, channel, slowTestThreshold, when, attachments, maxPreviews} = options;
+        const {webhook, channel, mention, slowTestThreshold, when, attachments, maxPreviews} = this.options;
 
         const tests: Test[] = dtecs
             .reverse()
@@ -68,7 +67,11 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
 
         const links = artifacts
             .filter(({scope, name, remoteUrls}) => scope.startsWith('dullahan-plugin-report-') && name.includes('report') && remoteUrls.length)
-            .map(({scope, remoteUrls}) => `<${remoteUrls[0]}|${/report-(.*)/.exec(scope)![1]}>`);
+            .map(({scope, remoteUrls}) => {
+                const link = remoteUrls[0]
+                const name = /report-(.*)/.exec(scope);
+                return `<${link}|${name ? name[1] : link}>`
+            });
 
         const {browserstackBuildUrl} = tests.find(({browserstackBuildUrl}) => !!browserstackBuildUrl) ?? {
             browserstackBuildUrl: undefined
@@ -83,7 +86,7 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
                 type: 'section',
                 text: {
                     type: 'mrkdwn',
-                    text: `New results: ${failingTests.length} failing tests, ${unstableTests.length} unstable tests, ${slowTests.length} slow tests and ${successfulTests.length} successful tests`
+                    text: `${failingTests.length ? mention : ''} New results: ${failingTests.length} failing tests, ${unstableTests.length} unstable tests, ${slowTests.length} slow tests and ${successfulTests.length} successful tests`
                 }
             }, {
                 type: 'divider'
@@ -95,8 +98,8 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
                 },
                 accessory: test.calls
                     .filter(({remoteUrls}) => remoteUrls?.length)
-                    .map(({remoteUrls}) => ({
-                        image_url: remoteUrls![0],
+                    .map(({remoteUrls}) => (remoteUrls && {
+                        image_url: remoteUrls[0],
                         type: 'image',
                         alt_text: 'screenshot'
                     }))
@@ -117,18 +120,20 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
                     color: '#000000',
                     fields: Object.entries(attachments).map(([title, value]) => ({
                         title,
-                        value: typeof value === 'string' ? value : `${value}`,
+                        value: `${value}`,
                         short: true
                     }))
                 }
             ]
         };
 
-        if (when === 'always' || (failingTests.length === 0 && when === 'success') || (failingTests.length > 0 && when === 'failure')) {
-            await new IncomingWebhook(webhook!, {
+        if (webhook && (when === 'always' || (failingTests.length === 0 && when === 'success') || (failingTests.length > 0 && when === 'failure'))) {
+            console.info(`Dullahan Plugin Slack: sending message to webhook: ${webhook}`);
+            const response = await new IncomingWebhook(webhook, {
                 link_names: true,
                 channel
             }).send(message);
+            console.info(`Dullahan Plugin Slack: message sent - response: ${response.text}`);
         }
     }
 }

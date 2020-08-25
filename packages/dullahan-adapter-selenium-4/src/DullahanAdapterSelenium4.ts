@@ -98,6 +98,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -123,6 +124,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -170,6 +172,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -217,6 +220,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -264,6 +268,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -347,6 +352,11 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         await driver.actions().sendKeys(keys).perform();
     }
 
+    public async clearText(selector: string, count: number): Promise<void> {
+        const keys = Array(count).fill('\uE003').join('');
+        return this.sendKeysToElement(selector, keys);
+    }
+
     public async sendKeysToElement(selector: string, keys: string): Promise<void> {
         const {driver, supportsPromises, supportsShadowDom} = this;
 
@@ -362,6 +372,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -412,6 +423,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -437,6 +449,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -477,6 +490,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -503,6 +517,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: true
@@ -537,6 +552,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: true
@@ -583,6 +599,35 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }), timeout);
     }
 
+    public async click(selector: string): Promise<void> {
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
+
+        if (!element) {
+            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        await driver.actions().move({
+            origin: element,
+            duration: 0
+        }).click().perform();
+    }
+
     public async clickAt(x: number, y: number): Promise<void> {
         const {driver, viewportAdjustmentX, viewportAdjustmentY} = this;
 
@@ -609,6 +654,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -644,6 +690,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -696,6 +743,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -721,6 +769,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -746,6 +795,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -787,6 +837,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -816,6 +867,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -828,6 +880,36 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         } catch (error) {
             if (/unloaded|destroyed/ui.test(error.message)) {
                 return this.isElementVisible(selector);
+            }
+
+            throw error;
+        }
+    }
+
+    public async isElementInteractable(selector: string): Promise<boolean> {
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
+
+            return !!element;
+        } catch (error) {
+            if (/unloaded|destroyed/ui.test(error.message)) {
+                return this.isElementInteractable(selector);
             }
 
             throw error;
@@ -860,6 +942,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -895,6 +978,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: true,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1004,6 +1088,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout: 200,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1067,6 +1152,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: false,
             onScreenOnly: false,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1103,6 +1189,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             selector,
             visibleOnly: true,
             onScreenOnly: true,
+            interactiveOnly: false,
             timeout,
             promise: supportsPromises,
             expectNoMatches: false
@@ -1118,10 +1205,57 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/unloaded|destroyed/ui.test(error.message)) {
-                return this.waitForElementPresent(selector, options);
+                return this.waitForElementVisible(selector, options);
             }
 
             throw error;
         }
+    }
+
+    public async waitForElementInteractive(selector: string, options: {
+        timeout: number;
+    }): Promise<void> {
+        const {driver, supportsPromises} = this;
+        const {timeout} = options;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions: FindElementOptions = {
+            selector,
+            visibleOnly: true,
+            onScreenOnly: true,
+            interactiveOnly: true,
+            timeout,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const element = await driver.wait(() => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
+
+            if (!element) {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            }
+        } catch (error) {
+            if (error.name === 'TimeoutError') {
+                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            } else if (/unloaded|destroyed/ui.test(error.message)) {
+                return this.waitForElementInteractive(selector, options);
+            }
+
+            throw error;
+        }
+    }
+
+    public async executeScript<T>(script: string): Promise<T> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        return driver.executeScript<T>((_script: string) => new Function(_script)(), script);
     }
 }
