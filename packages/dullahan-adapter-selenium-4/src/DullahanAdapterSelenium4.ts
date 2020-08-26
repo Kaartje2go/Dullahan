@@ -524,11 +524,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         };
 
         try {
-            const element = await driver.wait(async () => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
-
-            if (element) {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            }
+            await driver.wait(async () => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
@@ -559,11 +555,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         };
 
         try {
-            const element = await driver.wait(async () => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
-
-            if (element) {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            }
+            await driver.wait(async () => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
         } catch (error) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
