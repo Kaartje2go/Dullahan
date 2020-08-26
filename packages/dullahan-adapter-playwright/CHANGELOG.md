@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.68 (2020-08-26)
+
+
+### Bug Fixes
+
+* Fixes for waitForElementNot functions ([#77](https://github.com/Kaartje2go/Dullahan/issues/77)) ([b2ed12d](https://github.com/Kaartje2go/Dullahan/commit/b2ed12da43b8637e2f8e68d5bed2204cad8289e8))
+
+
+
+
+
 # 0.1.0-alpha.67 (2020-08-26)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-playwright
