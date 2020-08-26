@@ -9,6 +9,7 @@ export type DullahanAdapterSelenium3UserOptions = Partial<DullahanAdapterUserOpt
     seleniumRemoteUrl: string;
     rawCapabilities: object;
     maximizeWindow: boolean;
+    userAgent?: string;
 }>;
 
 export const DullahanAdapterSelenium3DefaultOptions = {
