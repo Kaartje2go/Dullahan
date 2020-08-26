@@ -37,7 +37,6 @@
         "test-playwright-webkit": "yarn test-all --projects=./scripts/jest/projects/playwright_webkit.js",
         "test-selenium-3-chrome": "yarn test-all --projects=./scripts/jest/projects/selenium_3_chrome.js",
         "test-selenium-3-firefox": "yarn test-all --projects=./scripts/jest/projects/selenium_3_firefox.js",
-        "test-selenium-3-safari": "yarn test-all --projects=./scripts/jest/projects/selenium_3_safari.js",
         "test-selenium-3-edge18": "yarn test-all --projects=./scripts/jest/projects/selenium_3_edge18.js",
         "test-selenium-3-edge": "yarn test-all --projects=./scripts/jest/projects/selenium_3_edge.js",
         "test-selenium-3-ie11": "yarn test-all --projects=./scripts/jest/projects/selenium_3_ie11.js",
