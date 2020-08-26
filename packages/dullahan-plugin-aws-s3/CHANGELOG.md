@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.65 (2020-08-26)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-aws-s3
+
+
+
+
+
 # 0.1.0-alpha.64 (2020-08-25)
 
 
