@@ -1,4 +1,3 @@
-export * from './AppleSafari';
 export * from './GoogleChrome';
 export * from './MicrosoftEdge';
 export * from './MicrosoftInternetExplorer';

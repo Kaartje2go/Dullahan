@@ -6,7 +6,6 @@ import {
     buildEdgeClassic,
     buildFirefox,
     buildInternetExplorer,
-    buildSafari,
     buildUnknown
 } from './browsers';
 import {
@@ -1061,8 +1060,6 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             }).merge(rawCapabilities));
 
             this.driver = await builder.build();
-        } else if (/safari/i.test(browserName)) {
-            this.driver = await buildSafari(options);
         } else if (/chrome/i.test(browserName)) {
             this.driver = await buildChrome(options);
         } else if (/edge/i.test(browserName)) {

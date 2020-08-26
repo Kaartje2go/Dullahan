@@ -1029,7 +1029,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
         if (maximizeWindow) {
             const {driver} = this;
-            tryIgnore(1, async () => {
+            await tryIgnore(1, async () => {
                 await driver.manage().window().maximize();
             });
         }
