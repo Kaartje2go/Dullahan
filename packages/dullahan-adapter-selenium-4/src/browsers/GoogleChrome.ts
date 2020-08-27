@@ -11,7 +11,7 @@ export const buildChrome = async (options: DullahanAdapterSelenium4Options): Pro
 
     const args: string[] = [
         '--disable-dev-shm-usage',
-        '--no-sandbox',
+        '--no-sandbox'
     ];
 
     if (userAgent) {
