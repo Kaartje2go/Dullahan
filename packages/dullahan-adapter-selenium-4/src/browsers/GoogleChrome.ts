@@ -12,8 +12,11 @@ export const buildChrome = async (options: DullahanAdapterSelenium4Options): Pro
     const args: string[] = [
         '--disable-dev-shm-usage',
         '--no-sandbox',
-        `--user-agent="${userAgent}"`
     ];
+
+    if (userAgent) {
+        args.push(`--user-agent="${userAgent}"`);
+    }
 
     if (headless) {
         args.push('--headless');
