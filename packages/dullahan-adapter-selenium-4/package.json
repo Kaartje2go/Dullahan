@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@k2g/dullahan": "^0.1.0-alpha.71",
-    "selenium-webdriver": "4.0.0-alpha.6"
+    "selenium-webdriver": "4.0.0-alpha.7"
   },
   "devDependencies": {
     "@types/selenium-webdriver": "^4.0.9"
