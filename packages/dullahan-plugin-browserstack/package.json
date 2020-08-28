@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-plugin-browserstack",
-  "version": "0.1.0-alpha.70",
+  "version": "0.1.0-alpha.71",
   "description": "Allows Dullahan to manage Browserstack",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,7 +13,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^0.1.0-alpha.70",
+    "@k2g/dullahan": "^0.1.0-alpha.71",
     "browserstack-local": "^1.4.5",
     "node-fetch": "^2.6.0"
   }
