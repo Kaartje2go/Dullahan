@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.72 (2020-08-31)
+
+
+### Bug Fixes
+
+* only mention if the value is defined ([#83](https://github.com/Kaartje2go/Dullahan/issues/83)) ([07a67e2](https://github.com/Kaartje2go/Dullahan/commit/07a67e20ee60701cc97fced5055fa7ff41f80c11))
+
+
+
+
+
 # 0.1.0-alpha.71 (2020-08-28)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-xvfb
