@@ -38,9 +38,18 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
     public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[]): Promise<void> {
         const {webhook, channel, mention, slowTestThreshold, when, attachments, maxPreviews} = this.options;
 
-        const tests: Test[] = dtecs
-            .reverse()
-            .filter(({testId}, index) => index === dtecs.findIndex((dtec) => dtec.testId === testId))
+        const dedupedDtecs = dtecs.reduce((acc: DullahanTestEndCall[], current: DullahanTestEndCall) => {
+            const previouslyFound = acc.find(prev => prev.testId === current.testId);
+            if (!previouslyFound) {
+                acc.push(current);
+            } else if (previouslyFound.error && !current.error) {
+                const index = acc.indexOf(previouslyFound);
+                acc[index] = current;
+            }
+            return acc;
+        }, []);
+
+        const tests: Test[] = dedupedDtecs
             .map((dtec) => ({
                 ...dtec,
                 calls: dfecs
@@ -57,8 +66,7 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
 
                         return call;
                     })
-            }))
-            .reverse();
+            }));
 
         const failingTests = tests.filter(isFailingTest);
         const unstableTests = tests.filter(isUnstableTest);
@@ -86,7 +94,7 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
                 type: 'section',
                 text: {
                     type: 'mrkdwn',
-                    text: `${failingTests.length ? mention : ''} New results: ${failingTests.length} failing tests, ${unstableTests.length} unstable tests, ${slowTests.length} slow tests and ${successfulTests.length} successful tests`
+                    text: `${failingTests.length && mention ? mention : ''} New results: ${failingTests.length} failing tests, ${unstableTests.length} unstable tests, ${slowTests.length} slow tests and ${successfulTests.length} successful tests`
                 }
             }, {
                 type: 'divider'

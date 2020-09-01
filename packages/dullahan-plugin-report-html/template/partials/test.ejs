@@ -1,8 +1,23 @@
 <details data-test-id="<%= test.testId %>">
     <summary><%= test.testName %> (<%= Math.ceil((test.timeEnd - test.timeStart) / 1000) %>s)</summary>
     <% test.calls.forEach(function(call, index) { %>
-        <% if (call.functionScope === 'api') { %>
+        <% if (call. error && call.functionScope === 'adapter') { %>
             <div class="<%= call.error ? 'step step--error' : 'step' %>">
+                <div class="step--row">
+                    <span class="step--icon">
+                        &bull;
+                    </span>
+                    <span class="step--message">
+                        <%= `Adapter error: ${call.functionName}(${JSON.stringify(call.functionArguments)}) => ${JSON.stringify(call.functionResult)}` %>
+                    </span>
+                </div>
+                <div class="step--output">
+                    <%= `${call.error.name}: ${call.error.message}` %>
+                </div>
+            </div>
+        <% } %>
+        <% if (call.functionScope === 'api') { %>
+            <div class="<%= call.error ? 'step step--error error--api' : 'step' %>">
                 <div class="step--row">
                     <span class="step--icon">
                         <%- call.error ? '&cross;' : '&check;' %>
