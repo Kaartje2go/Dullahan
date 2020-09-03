@@ -202,8 +202,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: offsetCenterX,
-            y: offsetCenterY,
+            x: Math.round(offsetCenterX),
+            y: Math.round(offsetCenterY),
             origin: element,
             duration: 0
         }).press().perform();
@@ -298,8 +298,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: offsetCenterX,
-            y: offsetCenterY,
+            x: Math.round(offsetCenterX),
+            y: Math.round(offsetCenterY),
             origin: element,
             duration: 0
         }).release().perform();
@@ -628,8 +628,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: x + viewportAdjustmentX,
-            y: y + viewportAdjustmentY,
+            x: Math.round(x + viewportAdjustmentX),
+            y: Math.round(y + viewportAdjustmentY),
             origin: Origin.VIEWPORT,
             duration: 0
         }).click().perform();
@@ -664,8 +664,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }>(getBoundingClientRect, element);
 
         await driver.actions().move({
-            x: offsetX - width / 2,
-            y: offsetY - height / 2,
+            x: Math.round(offsetX - width / 2),
+            y: Math.round(offsetY - height / 2),
             origin: element,
             duration: 0
         }).click().perform();
@@ -695,8 +695,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: offsetCenterX,
-            y: offsetCenterY,
+            x: Math.round(offsetCenterX),
+            y: Math.round(offsetCenterY),
             origin: element,
             duration: 0
         }).click().perform();
@@ -916,8 +916,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: x + viewportAdjustmentX,
-            y: y + viewportAdjustmentY,
+            x: Math.round(x + viewportAdjustmentX),
+            y: Math.round(y + viewportAdjustmentY),
             origin: Origin.VIEWPORT,
             duration: 0
         }).perform();
@@ -952,8 +952,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }>(getBoundingClientRect, element);
 
         await driver.actions().move({
-            x: offsetX - width / 2,
-            y: offsetY - height / 2,
+            x: Math.round(offsetX - width / 2),
+            y: Math.round(offsetY - height / 2),
             origin: element,
             duration: 0
         }).perform();
@@ -983,8 +983,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: offsetCenterX,
-            y: offsetCenterY,
+            x: Math.round(offsetCenterX),
+            y: Math.round(offsetCenterY),
             origin: element,
             duration: 0
         }).perform();
@@ -1047,8 +1047,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: x + viewportAdjustmentX,
-            y: y + viewportAdjustmentY,
+            x: Math.round(x + viewportAdjustmentX),
+            y: Math.round(y + viewportAdjustmentY),
             origin: Origin.VIEWPORT,
             duration: 0
         }).press().perform();
@@ -1062,8 +1062,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().move({
-            x: x + viewportAdjustmentX,
-            y: y + viewportAdjustmentY,
+            x: Math.round(x + viewportAdjustmentX),
+            y: Math.round(y + viewportAdjustmentY),
             origin: Origin.VIEWPORT,
             duration: 0
         }).release().perform();
