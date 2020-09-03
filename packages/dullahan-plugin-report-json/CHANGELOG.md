@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.74 (2020-09-03)
+
+
+### Bug Fixes
+
+* Fixed problem with mouse coordinates not being integer ([#86](https://github.com/Kaartje2go/Dullahan/issues/86)) ([cf7d267](https://github.com/Kaartje2go/Dullahan/commit/cf7d26796f3a56045ed32fddc44f6fe80b36da88))
+
+
+
+
+
 # 0.1.0-alpha.73 (2020-08-31)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-json
