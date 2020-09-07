@@ -22,6 +22,9 @@ const getChangedFiles = async () : Promise<string[]> => {
 }
 
 const testIfOnlyTestsModified = (splited : string[]) : boolean => {
+    if (splited.length === 0) {
+        return false;
+    }
     return splited.every(line => line.startsWith('tests/'));
 }
 
