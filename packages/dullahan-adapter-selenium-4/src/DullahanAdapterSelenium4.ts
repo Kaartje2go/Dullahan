@@ -1250,4 +1250,8 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
         return driver.executeScript<T>((_script: string) => new Function(_script)(), script);
     }
+
+    public async fillIFrameField(iFrameSelector: string, fieldSelector: string, value: string) {
+        throw new AdapterError('Function not implemented!');
+    }
 }

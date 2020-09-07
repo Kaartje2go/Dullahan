@@ -1089,4 +1089,30 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
 
         return page.evaluate((_script: string) => new Function(_script)(), script);
     }
+
+    public async fillIFrameField(iFrameSelector: string, fieldSelector: string, value: string) {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const iFrameHandle = await page.$(iFrameSelector);
+
+        const frame = iFrameHandle && await iFrameHandle.contentFrame();
+
+        if (!frame) {
+            throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+        }
+
+        await frame.waitForSelector(fieldSelector);
+        const field = await frame.$(fieldSelector);
+
+        if (!field) {
+            throw new AdapterError(`No field found in iFrame with selector ${field}`);
+        }
+
+        await field.type(value);
+    }
+
 }
