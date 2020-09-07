@@ -3,7 +3,30 @@ import {DullahanRunnerStandardDefaultOptions, DullahanRunnerStandardUserOptions}
 import {DullahanClient, DullahanError, DullahanRunner, tryIgnore} from '@k2g/dullahan';
 import asyncPool from 'tiny-async-pool';
 import * as fastGlob from 'fast-glob';
-import {cpus} from "os";
+import {cpus} from 'os';
+import {readFile,pathExists} from 'fs-extra';
+
+const getChangedFiles = async () : Promise<string[]> => {
+    const file = './.changed.txt';
+    const fileExists = await pathExists(file);
+
+    if (fileExists) {
+        const data = await readFile(file, 'utf-8');
+        const splitted = data.split('\n');
+        // last element is empty line
+        splitted.splice(-1);
+        return splitted;
+    }
+    return [];
+}
+
+const testIfOnlyTestsModified = (splited : string[]) => {
+    return splited.every(line => line.startsWith('tests/'));
+}
+
+const testFile = (files: string[], fileToMatch: string) => {
+    return files.some(file => fileToMatch.endsWith(file));
+}
 
 export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunnerStandardUserOptions, typeof DullahanRunnerStandardDefaultOptions> {
 
@@ -17,7 +40,7 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
             ...args,
             defaultOptions: DullahanRunnerStandardDefaultOptions
         });
-    }
+    }   
 
     public async start(): Promise<void> {
         const {options, rootDirectories, includeGlobs, excludeGlobs, includeRegexes, excludeRegexes} = this;
@@ -36,11 +59,17 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
             dot: true,
         })));
 
+        const files = await getChangedFiles();
+        const onlyModifiedTests = testIfOnlyTestsModified(files);
+
         const testFiles = searchResults.flat()
-            .filter((file) =>
-                (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+            .filter((file) => {
+                if (onlyModifiedTests) {
+                    return testFile(files, file);
+                }
+                return (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
                 && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
-            )
+            })
             .map((file) => ({
                 file,
                 successes: 0,
