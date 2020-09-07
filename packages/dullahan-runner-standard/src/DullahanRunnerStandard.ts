@@ -7,7 +7,7 @@ import {cpus} from 'os';
 import {readFile,pathExists} from 'fs-extra';
 
 const getChangedFiles = async () : Promise<string[]> => {
-    // file created in Dullahan-Tests with changed-files in this branch from git history in drone build step
+    // file created in Dullahan-Tests repo with changed files from current branch using git history in drone build step
     const file = './.changed-files.txt';
     const fileExists = await pathExists(file);
 
