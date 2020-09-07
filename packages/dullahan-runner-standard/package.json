@@ -15,6 +15,7 @@
   "dependencies": {
     "@k2g/dullahan": "^0.1.0-alpha.75",
     "fast-glob": "^3.2.4",
+    "fs-extra": "^9.0.1",
     "tiny-async-pool": "^1.1.0"
   }
 }
