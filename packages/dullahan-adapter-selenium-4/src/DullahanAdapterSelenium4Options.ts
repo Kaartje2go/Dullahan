@@ -15,6 +15,7 @@ export const DullahanAdapterSelenium4DefaultOptions = {
     ...DullahanAdapterDefaultOptions,
     browserName: 'chrome',
     maximizeWindow: true,
+    useActions: true,
     rawCapabilities: {}
 };
 
