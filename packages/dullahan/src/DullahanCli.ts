@@ -21,7 +21,6 @@ export const cli = async (args: DullahanCliArguments = argv as DullahanCliArgume
     const {DULLAHAN_CLI_CONFIG} = process.env;
     const enableTypescript = process.argv.findIndex((part: string) => part.includes('ts-node')) >= 0;
     const configFileExtension = enableTypescript ? 'ts' : 'js';
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
     const configPathOrName = args.config ?? (DULLAHAN_CLI_CONFIG || `dullahan.config.${configFileExtension}`);
     const configPartial = requireDependency(configPathOrName, {}) as Partial<DullahanConfig>;
 
