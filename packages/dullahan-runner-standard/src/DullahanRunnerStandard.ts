@@ -7,7 +7,8 @@ import {cpus} from 'os';
 import {readFile,pathExists} from 'fs-extra';
 
 const getChangedFiles = async () : Promise<string[]> => {
-    const file = './.changed.txt';
+    // file created in Dullahan-Tests with changed-files in this branch from git history in drone build step
+    const file = './.changed-files.txt';
     const fileExists = await pathExists(file);
 
     if (fileExists) {
@@ -20,11 +21,11 @@ const getChangedFiles = async () : Promise<string[]> => {
     return [];
 }
 
-const testIfOnlyTestsModified = (splited : string[]) => {
+const testIfOnlyTestsModified = (splited : string[]) : boolean => {
     return splited.every(line => line.startsWith('tests/'));
 }
 
-const testFile = (files: string[], fileToMatch: string) => {
+const testFile = (files: string[], fileToMatch: string) : boolean => {
     return files.some(file => fileToMatch.endsWith(file));
 }
 
@@ -40,7 +41,7 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
             ...args,
             defaultOptions: DullahanRunnerStandardDefaultOptions
         });
-    }   
+    }
 
     public async start(): Promise<void> {
         const {options, rootDirectories, includeGlobs, excludeGlobs, includeRegexes, excludeRegexes} = this;
