@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.2 (2020-09-08)
+
+
+### Features
+
+* Puppeteer can now use touch instead of click ([#91](https://github.com/Kaartje2go/Dullahan/issues/91)) ([4b05adc](https://github.com/Kaartje2go/Dullahan/commit/4b05adc38620a85fd11198c0a2a1e1380899dfa3))
+
+
+
+
+
 # 1.0.0-alpha.1 (2020-09-08)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-selenium-3
