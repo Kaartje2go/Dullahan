@@ -10,7 +10,10 @@ import {
     DullahanFunctionEndCall,
     DullahanRunner,
     DullahanTestEndCall,
-    tryIgnore
+    tryIgnore,
+    testFile,
+    testIfOnlyTestsModified,
+    getChangedFiles,
 } from '@k2g/dullahan';
 import {Lambda} from 'aws-sdk';
 
@@ -63,12 +66,18 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             dot: true
         })));
 
+        const files = await getChangedFiles();
+        const onlyModifiedTests = testIfOnlyTestsModified(files);
+
         const testFiles = (await Promise.all(
                 searchResults.flat()
-                    .filter((file) =>
-                        (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+                    .filter((file) => {
+                        if (onlyModifiedTests) {
+                            return testFile(files, file);
+                        }
+                        return (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
                         && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
-                    )
+                    })
                     .map(async (file: string) => {
                         const instance = client.getTestInstance(file);
                         const accepted = !!instance && await testPredicate(file, instance.test);
