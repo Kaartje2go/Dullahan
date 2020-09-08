@@ -5,6 +5,7 @@ export type DullahanAdapterPuppeteerUserOptions = Partial<DullahanAdapterUserOpt
     browserName?: 'chrome' | 'firefox';
     devtools?: boolean;
     emulateDevice?: string;
+    useTouch?: boolean;
     executablePath?: string;
     rawOptions: Record<string, unknown>;
     userAgent?: string;
@@ -15,5 +16,6 @@ export const DullahanAdapterPuppeteerDefaultOptions = {
     args: [],
     browserName: 'chrome',
     devTools: false,
+    useTouch: false,
     rawOptions: {}
 };
