@@ -45,8 +45,6 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
     protected readonly supportsPromises: boolean;
 
-    protected readonly supportsActions: boolean;
-
     protected readonly supportsShadowDom: boolean;
 
     protected readonly viewportAdjustmentX: number;
@@ -70,9 +68,6 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
         // Safari and Edge 18 do not support returning Promise<WebElement>
         this.supportsPromises = !/safari/i.test(browserName) && !(/egde/i.test(browserName) && parseInt(browserVersion ?? '19') <= 18);
-
-        // Edge does not support Actions
-        this.supportsActions = !/edge/i.test(browserName);
 
         this.supportsShadowDom = true;
     }
@@ -114,7 +109,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async pressMouseAtElement(selector: string, offsetX: number, offsetY: number): Promise<void> {
-        const {driver, supportsActions, supportsPromises} = this;
+        const {driver, options:{useActions}, supportsPromises} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -143,7 +138,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             height: number;
         }>(getBoundingClientRect, element);
 
-        if (!supportsActions) {
+        if (!useActions) {
             const x = left + offsetX;
             const y = top + offsetY;
 
@@ -162,7 +157,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async pressMouseAtElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void> {
-        const {driver, supportsPromises, supportsActions} = this;
+        const {driver, supportsPromises, options:{useActions}} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -191,7 +186,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             height: number;
         }>(getBoundingClientRect, element);
 
-        if (!supportsActions) {
+        if (!useActions) {
             const x = left + offsetCenterX + width / 2;
             const y = top + offsetCenterY + height / 2;
 
@@ -210,7 +205,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async releaseMouseAtElement(selector: string, offsetX: number, offsetY: number): Promise<void> {
-        const {driver, supportsActions, supportsPromises} = this;
+        const {driver, options:{useActions}, supportsPromises} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -239,7 +234,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             height: number;
         }>(getBoundingClientRect, element);
 
-        if (!supportsActions) {
+        if (!useActions) {
             const x = left + offsetX;
             const y = top + offsetY;
 
@@ -258,7 +253,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async releaseMouseAtElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void> {
-        const {driver, supportsPromises, supportsActions} = this;
+        const {driver, supportsPromises, options:{useActions}} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -287,7 +282,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             height: number;
         }>(getBoundingClientRect, element);
 
-        if (!supportsActions) {
+        if (!useActions) {
             const x = left + offsetCenterX + width / 2;
             const y = top + offsetCenterY + height / 2;
 
@@ -592,7 +587,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async click(selector: string): Promise<void> {
-        const {driver, supportsPromises} = this;
+        const {driver, supportsPromises, options:{useActions}} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -614,6 +609,23 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
         }
 
+        if (!useActions) {
+            const {top, left, width, height} = await driver.executeScript<{
+                top: number;
+                left: number;
+                width: number;
+                height: number;
+            }>(getBoundingClientRect, element);
+
+            const x = left + width / 2;
+            const y = top + height / 2;
+
+            await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mousedown', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mouseup', x, y, element);
+            return driver.executeScript<void>(emitFakeEvent, 'click', x, y, element);
+        }
+
         await driver.actions().move({
             origin: element,
             duration: 0
@@ -621,10 +633,17 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async clickAt(x: number, y: number): Promise<void> {
-        const {driver, viewportAdjustmentX, viewportAdjustmentY} = this;
+        const {driver, options:{useActions}, viewportAdjustmentX, viewportAdjustmentY} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        if (!useActions) {
+            await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y);
+            await driver.executeScript<void>(emitFakeEvent, 'mousedown', x, y);
+            await driver.executeScript<void>(emitFakeEvent, 'mouseup', x, y);
+            return driver.executeScript<void>(emitFakeEvent, 'click', x, y);
         }
 
         await driver.actions().move({
@@ -636,7 +655,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async clickAtElement(selector: string, offsetX: number, offsetY: number): Promise<void> {
-        const {driver, supportsPromises} = this;
+        const {driver, options:{useActions}, supportsPromises} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -658,6 +677,21 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
         }
 
+        if (!useActions) {
+            const {top, left} = await driver.executeScript<{
+                top: number;
+                left: number;
+            }>(getBoundingClientRect, element);
+
+            const x = left + offsetX;
+            const y = top + offsetY;
+
+            await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mousedown', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mouseup', x, y, element);
+            return driver.executeScript<void>(emitFakeEvent, 'click', x, y, element);
+        }
+
         const {width, height} = await driver.executeScript<{
             width: number;
             height: number;
@@ -672,7 +706,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async clickAtElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void> {
-        const {driver, supportsPromises} = this;
+        const {driver, options:{useActions}, supportsPromises} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -692,6 +726,23 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
         if (!element) {
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        if (!useActions) {
+            const {top, left, width, height} = await driver.executeScript<{
+                top: number;
+                left: number;
+                width: number;
+                height: number;
+            }>(getBoundingClientRect, element);
+
+            const x = left + offsetCenterX + width / 2;
+            const y = top + offsetCenterY + height / 2;
+
+            await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mousedown', x, y, element);
+            await driver.executeScript<void>(emitFakeEvent, 'mouseup', x, y, element);
+            return driver.executeScript<void>(emitFakeEvent, 'click', x, y, element);
         }
 
         await driver.actions().move({
@@ -909,10 +960,14 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async moveMouseTo(x: number, y: number): Promise<void> {
-        const {driver, viewportAdjustmentX, viewportAdjustmentY} = this;
+        const {driver, options:{useActions}, viewportAdjustmentX, viewportAdjustmentY} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        if (!useActions) {
+            return driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y);
         }
 
         await driver.actions().move({
@@ -924,7 +979,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async moveMouseToElement(selector: string, offsetX: number, offsetY: number): Promise<void> {
-        const {driver, supportsPromises} = this;
+        const {driver, options:{useActions}, supportsPromises} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -946,10 +1001,19 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
         }
 
-        const {width, height} = await driver.executeScript<{
+        const {top, left, width, height} = await driver.executeScript<{
+            top: number;
+            left: number;
             width: number;
             height: number;
         }>(getBoundingClientRect, element);
+
+        if (!useActions) {
+            const x = left + offsetX;
+            const y = top + offsetY;
+
+            return driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y, element);
+        }
 
         await driver.actions().move({
             x: Math.round(offsetX - width / 2),
@@ -960,7 +1024,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async moveMouseToElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void> {
-        const {driver, supportsPromises} = this;
+        const {driver, options:{useActions}, supportsPromises} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -980,6 +1044,20 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
         if (!element) {
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+        }
+
+        if (!useActions) {
+            const {top, left, width, height} = await driver.executeScript<{
+                top: number;
+                left: number;
+                width: number;
+                height: number;
+            }>(getBoundingClientRect, element);
+
+            const x = left + offsetCenterX + width / 2;
+            const y = top + offsetCenterY + height / 2;
+
+            return driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y, element);
         }
 
         await driver.actions().move({
@@ -1040,10 +1118,15 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async pressMouseAt(x: number, y: number): Promise<void> {
-        const {driver, viewportAdjustmentX, viewportAdjustmentY} = this;
+        const {driver, options:{useActions}, viewportAdjustmentX, viewportAdjustmentY} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        if (!useActions) {
+            await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y);
+            return driver.executeScript<void>(emitFakeEvent, 'mousedown', x, y);
         }
 
         await driver.actions().move({
@@ -1055,10 +1138,15 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async releaseMouseAt(x: number, y: number): Promise<void> {
-        const {driver, viewportAdjustmentX, viewportAdjustmentY} = this;
+        const {driver, options:{useActions}, viewportAdjustmentX, viewportAdjustmentY} = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        if (!useActions) {
+            await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y);
+            return driver.executeScript<void>(emitFakeEvent, 'mouseup', x, y);
         }
 
         await driver.actions().move({
