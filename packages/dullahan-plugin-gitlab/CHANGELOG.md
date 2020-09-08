@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.0 (2020-09-08)
+
+
+### Features
+
+* Selenmium 4 can now use events instead of actions ([#89](https://github.com/Kaartje2go/Dullahan/issues/89)) ([d90918f](https://github.com/Kaartje2go/Dullahan/commit/d90918fc14f17a513f3bac7ddbdcf4e055039e71))
+
+
+### BREAKING CHANGES
+
+* 🧨 The selenium 4 adapter no longer automaticly uses some events instead of
+actions on edge, you need to manualy set the `useActions` option to
+false.
+
+
+
+
+
 # 0.1.0-alpha.76 (2020-09-07)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
