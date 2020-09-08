@@ -8,7 +8,7 @@ import {
     testFile,
     testIfOnlyTestsModified,
     getChangedFiles,
-} from "@k2g/dullahan";
+} from '@k2g/dullahan';
 import asyncPool from 'tiny-async-pool';
 import * as fastGlob from 'fast-glob';
 import {cpus} from 'os';
