@@ -19,9 +19,12 @@ export const testIfOnlyTestsModified = (splited : string[]) : boolean => {
     if (splited.length === 0) {
         return false;
     }
-    return splited.every(line => line.startsWith('tests/'));
+    return splited.some(line => line.startsWith('tests/'));
 }
 
 export const testFile = (files: string[], fileToMatch: string) : boolean => {
-    return files.some(file => fileToMatch.endsWith(file));
+    return files.some(file => {
+        console.log(file, fileToMatch);
+        return fileToMatch.endsWith(file)
+    });
 }
