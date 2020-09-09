@@ -15,6 +15,7 @@ export type DullahanRunnerAwsLambdaUserOptions = Partial<DullahanRunnerUserOptio
     maxConcurrency: number;
     region: string;
     role: 'master' | 'slave';
+    runnerTimeout?: number;
     secretAccessKey: string;
     slaveFunctionName: string;
     slaveQualifier: string;
@@ -35,7 +36,7 @@ export const DullahanRunnerAwsLambdaDefaultOptions = {
     slaveFunctionName: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_LAMBDA_FUNCTION_NAME || AWS_LAMBDA_FUNCTION_NAME,
     slaveQualifier: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_LAMBDA_FUNCTION_VERSION || AWS_LAMBDA_FUNCTION_VERSION,
     slaveOptions: {},
-    useAccessKeys: true,
+    useAccessKeys: true
 };
 
 export type DullahanRunnerAwsLambdaOptions =

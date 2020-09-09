@@ -51,7 +51,9 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
     private async startMaster(): Promise<void> {
         const {client, options, rootDirectories, includeGlobs, excludeGlobs, includeRegexes, excludeRegexes} = this;
-        const {maxConcurrency, minSuccesses, maxAttempts, failFast, testPredicate} = options;
+        const {runnerTimeout, maxConcurrency, minSuccesses, maxAttempts, failFast, testPredicate} = options;
+
+        const timeStart = Date.now();
 
         if (includeGlobs.length === 0) {
             includeGlobs.push('**/*')
@@ -117,10 +119,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
                 const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
                 const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
+                const hasTime = runnerTimeout ? Date.now() < timeStart + runnerTimeout : true;
 
-                if (hasMoreAttempts && couldStillPass) {
+                if (hasMoreAttempts && couldStillPass && hasTime) {
                     nextPool.push(testData);
-                } else if (failFast) {
+                } else if (failFast || !hasTime) {
                     this.hasStopSignal = true;
                 }
             });
