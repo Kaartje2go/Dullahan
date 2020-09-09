@@ -24,7 +24,7 @@ export const testIfOnlyTestsModified = (splited : string[]) : boolean => {
 
 export const testFile = (files: string[], fileToMatch: string) : boolean => {
     return files.some(file => {
-        console.log('testFile', file, fileToMatch)
-        return file.endsWith(fileToMatch) || fileToMatch.endsWith(file);
+        console.log('testFile', file, fileToMatch);
+        return file.substr(0, file.length - 3).endsWith(fileToMatch.substr(0, file.length -3))
     });
 }
