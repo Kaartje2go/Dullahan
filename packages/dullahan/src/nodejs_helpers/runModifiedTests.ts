@@ -1,5 +1,6 @@
 import {readFile,pathExists} from 'fs-extra';
 
+// deploy again?
 export const getChangedFiles = async () : Promise<string[]> => {
     // file created in Dullahan-Tests repo with changed files from current branch using git history in drone build step
     const file = './.changed-files.txt';
