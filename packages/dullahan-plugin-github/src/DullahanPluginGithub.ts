@@ -116,15 +116,17 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             throw new DullahanError('Could not set status on Github: no commitHash');
         }
 
-        await octokit.repos.createCommitStatus({
-            owner: repositoryOwner,
-            repo: repositoryName,
-            sha: commitHash,
-            state,
-            context: statusName,
-            target_url: url?.href ?? statusUrl,
-            description
-        });
+        if (commitHash.length > 0) {
+            await octokit.repos.createCommitStatus({
+                owner: repositoryOwner,
+                repo: repositoryName,
+                sha: commitHash,
+                state,
+                context: statusName,
+                target_url: url?.href ?? statusUrl,
+                description
+            });
+        }
     }
 
     private async setComment(comment: string): Promise<void> {
