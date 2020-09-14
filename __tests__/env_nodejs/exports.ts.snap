@@ -76,6 +76,7 @@ Object {
   "browserName": "chrome",
   "debug": true,
   "headless": false,
+  "useTouch": false,
 }
 `;
 
