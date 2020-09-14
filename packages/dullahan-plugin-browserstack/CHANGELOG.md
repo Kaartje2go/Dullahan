@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.14 (2020-09-14)
+
+
+### Bug Fixes
+
+* pass parameter ([02b513d](https://github.com/Kaartje2go/Dullahan/commit/02b513d54ef813affa424cf8a708096a36d29b9c))
+
+
+
+
+
 # 1.0.0-alpha.13 (2020-09-14)
 
 
