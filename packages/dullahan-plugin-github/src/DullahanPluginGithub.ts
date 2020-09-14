@@ -81,7 +81,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const promises: Promise<void>[] = [];
 
         if (enableStatusChecks) {
-            promises.push(this.setStatus(html?.remoteUrls[0] ?? markdown?.remoteUrls[0]));
+            promises.push(this.setStatus(html?.remoteUrls[0] ?? markdown?.remoteUrls[0], earlyTermination));
         }
 
         if (enablePullRequestReviews) {
