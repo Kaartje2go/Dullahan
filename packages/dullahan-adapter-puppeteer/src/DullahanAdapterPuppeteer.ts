@@ -497,7 +497,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
     }
 
     public async click(selector: string): Promise<void> {
-        const {page} = this;
+        const {page, options: {useTouch}} = this;
 
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -520,21 +520,29 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
         }
 
+        if (useTouch) {
+            return element.tap();
+        }
+
         await element.click();
     }
 
     public async clickAt(x: number, y: number): Promise<void> {
-        const {page} = this;
+        const {page, options: {useTouch}} = this;
 
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        if (useTouch) {
+            return page.touchscreen.tap(x, y);
         }
 
         await page.mouse.click(x, y);
     }
 
     public async clickAtElement(selector: string, offsetX: number, offsetY: number): Promise<void> {
-        const {page} = this;
+        const {page, options: {useTouch}} = this;
 
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -558,11 +566,18 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         const {x: elementX, y: elementY} = await page.evaluate(getBoundingClientRect, element);
-        await page.mouse.click(elementX + offsetX, elementY + offsetY);
+        const x = elementX + offsetX;
+        const y = elementY + offsetY;
+
+        if (useTouch) {
+            return page.touchscreen.tap(x, y);
+        }
+
+        await page.mouse.click(x, y);
     }
 
     public async clickAtElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void> {
-        const {page} = this;
+        const {page, options: {useTouch}} = this;
 
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
@@ -586,7 +601,14 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         const {x: elementX, y: elementY, width, height} = await page.evaluate(getBoundingClientRect, element);
-        await page.mouse.click(elementX + offsetCenterX + width / 2, elementY + offsetCenterY + height / 2);
+        const x = elementX + offsetCenterX + width / 2;
+        const y = elementY + offsetCenterY + height / 2;
+
+        if (useTouch) {
+            return page.touchscreen.tap(x, y);
+        }
+
+        await page.mouse.click(x, y);
     }
 
     public async closeBrowser(): Promise<void> {
@@ -1111,5 +1133,30 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         return page.evaluate((_script: string) => new Function(_script)(), script);
+    }
+
+    public async fillIFrameField(iFrameSelector: string, fieldSelector: string, value: string) {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const iFrameHandle = await page.$(iFrameSelector);
+
+        const frame = iFrameHandle && await iFrameHandle.contentFrame();
+
+        if (!frame) {
+            throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+        }
+
+        await frame.waitForSelector(fieldSelector);
+        const field = await frame.$(fieldSelector);
+
+        if (!field) {
+            throw new AdapterError(`No field found in iFrame with selector ${field}`);
+        }
+
+        await field.type(value);
     }
 }

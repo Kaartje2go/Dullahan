@@ -563,4 +563,19 @@ export class DullahanApi<
     public async executeScript<T = any>(script: string): Promise<T> {
         return this.adapter.executeScript<T>(script);
     }
+
+    public async fillIFrameField(iFrameSelector: string, fieldSelector: string, value: string) {
+        const {adapter, options} = this;
+        const {defaultTimeout, autoScroll} = options;
+
+        if (autoScroll && !(await adapter.isElementVisible(iFrameSelector))) {
+            await this.scrollToElement(iFrameSelector, defaultTimeout);
+        }
+
+        await adapter.waitForElementVisible(iFrameSelector, {
+            timeout: defaultTimeout
+        });
+
+        await adapter.fillIFrameField(iFrameSelector, fieldSelector, value);
+    }
 }

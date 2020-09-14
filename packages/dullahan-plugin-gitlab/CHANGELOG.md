@@ -3,6 +3,153 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.12 (2020-09-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.11 (2020-09-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.10 (2020-09-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.9 (2020-09-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.8 (2020-09-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.7 (2020-09-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.6 (2020-09-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.5 (2020-09-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.4 (2020-09-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.3 (2020-09-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.2 (2020-09-08)
+
+
+### Features
+
+* Puppeteer can now use touch instead of click ([#91](https://github.com/Kaartje2go/Dullahan/issues/91)) ([4b05adc](https://github.com/Kaartje2go/Dullahan/commit/4b05adc38620a85fd11198c0a2a1e1380899dfa3))
+
+
+
+
+
+# 1.0.0-alpha.1 (2020-09-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.0 (2020-09-08)
+
+
+### Features
+
+* Selenmium 4 can now use events instead of actions ([#89](https://github.com/Kaartje2go/Dullahan/issues/89)) ([d90918f](https://github.com/Kaartje2go/Dullahan/commit/d90918fc14f17a513f3bac7ddbdcf4e055039e71))
+
+
+### BREAKING CHANGES
+
+* 🧨 The selenium 4 adapter no longer automaticly uses some events instead of
+actions on edge, you need to manualy set the `useActions` option to
+false.
+
+
+
+
+
+# 0.1.0-alpha.76 (2020-09-07)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 0.1.0-alpha.75 (2020-09-07)
+
+
+### Features
+
+* implement a function to fill a field in an iframe ([#88](https://github.com/Kaartje2go/Dullahan/issues/88)) ([7f3c3da](https://github.com/Kaartje2go/Dullahan/commit/7f3c3da6a74680aee323f44ed34d521efdcbf9c5))
+
+
+
+
+
+# 0.1.0-alpha.74 (2020-09-03)
+
+
+### Bug Fixes
+
+* Fixed problem with mouse coordinates not being integer ([#86](https://github.com/Kaartje2go/Dullahan/issues/86)) ([cf7d267](https://github.com/Kaartje2go/Dullahan/commit/cf7d26796f3a56045ed32fddc44f6fe80b36da88))
+
+
+
+
+
 # 0.1.0-alpha.73 (2020-08-31)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-gitlab

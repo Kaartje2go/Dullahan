@@ -1,10 +1,17 @@
 import {DullahanRunnerStandardDefaultOptions, DullahanRunnerStandardUserOptions} from './DullahanRunnerStandardOptions';
 
-import {DullahanClient, DullahanError, DullahanRunner, tryIgnore} from '@k2g/dullahan';
+import {
+    DullahanClient,
+    DullahanError,
+    DullahanRunner,
+    tryIgnore,
+    testFile,
+    testIfOnlyTestsModified,
+    getChangedFiles,
+} from '@k2g/dullahan';
 import asyncPool from 'tiny-async-pool';
 import * as fastGlob from 'fast-glob';
-import {cpus} from "os";
-
+import {cpus} from 'os';
 export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunnerStandardUserOptions, typeof DullahanRunnerStandardDefaultOptions> {
 
     private hasStopSignal = false;
@@ -36,11 +43,17 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
             dot: true,
         })));
 
+        const files = await getChangedFiles();
+        const onlyModifiedTests = testIfOnlyTestsModified(files);
+
         const testFiles = searchResults.flat()
-            .filter((file) =>
-                (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
+            .filter((file) => {
+                if (onlyModifiedTests) {
+                    return testFile(files, file);
+                }
+                return (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
                 && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
-            )
+            })
             .map((file) => ({
                 file,
                 successes: 0,
