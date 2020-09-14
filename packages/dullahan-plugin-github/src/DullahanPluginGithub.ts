@@ -65,7 +65,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         return dtec;
     }
 
-    public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[]): Promise<void> {
+    public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[], earlyTermination: boolean): Promise<void> {
         const {options} = this;
         const {enableStatusChecks, enablePullRequestComments, enablePullRequestReviews, statusName, statusUrl} = options;
 
@@ -95,12 +95,35 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         await Promise.all(promises);
     }
 
-    private async setStatus(url?: URL): Promise<void> {
+    private async setStatus(url?: URL, earlyTermination?: boolean): Promise<void> {
         const {options, octokit, failedTestsCounter, successfulTestsCounter} = this;
         const {repositoryName, repositoryOwner, commitHash, statusUrl, statusName} = options;
 
-        const state = url ? failedTestsCounter ? 'failure' : 'success' : 'pending';
-        const description = state !== 'pending' ? `${successfulTestsCounter}/${successfulTestsCounter + failedTestsCounter} tests have passed` : '';
+        function getState() {
+            if (!url) {
+                return 'pending';
+            }
+            if (earlyTermination) {
+                return 'failure';
+            }
+            if (failedTestsCounter) {
+                return 'failure';
+            }
+            return 'success';
+        }
+
+        function getDescription(state: string): string {
+            if (earlyTermination) {
+                return 'Dullahan terminated early!';
+            }
+            if (state === 'pending') {
+                return '';
+            }
+            return `${successfulTestsCounter}/${successfulTestsCounter + failedTestsCounter} tests have passed`;
+        }
+
+        const state = getState();
+        const description = getDescription(state);
 
         this.lastStatusCheck = Date.now();
 
