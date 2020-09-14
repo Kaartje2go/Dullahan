@@ -31,7 +31,6 @@
         "test-selenium-3": "yarn test-all --projects='scripts/jest/projects/selenium_3*.js'",
         "test-selenium-4": "yarn test-all --projects='scripts/jest/projects/selenium_4*.js'",
         "test-puppeteer-chromium": "yarn test-all --projects=./scripts/jest/projects/puppeteer_chromium.js",
-        "test-puppeteer-firefox": "yarn test-all --projects=./scripts/jest/projects/puppeteer_firefox.js",
         "test-playwright-chromium": "yarn test-all --projects=./scripts/jest/projects/playwright_chromium.js",
         "test-playwright-firefox": "yarn test-all --projects=./scripts/jest/projects/playwright_firefox.js",
         "test-playwright-webkit": "yarn test-all --projects=./scripts/jest/projects/playwright_webkit.js",
