@@ -166,12 +166,12 @@ export class DullahanClient {
         await runner.start();
     }
 
-    public async stop(): Promise<{
+    public async stop(earlyTermination = false): Promise<{
         storedArtifacts: StoredArtifact[];
         testEndCalls: DullahanTestEndCall[];
         functionEndCalls: DullahanFunctionEndCall[];
     }> {
-        const {plugins, runner, testStartCalls, testEndPromises, functionStartCalls, functionEndPromises} = this;
+        const {plugins, runner, testEndPromises, functionEndPromises} = this;
 
         console.log('Stopping runner');
         await runner.stop();
@@ -191,7 +191,7 @@ export class DullahanClient {
             artifacts.forEach((artifact) => this.submitArtifact(artifact));
         }));
         const storedArtifacts = await Promise.all(this.storedArtifactPromises);
-        await Promise.all(plugins.map(async (plugin) => plugin.processResults(storedArtifacts, testEndCalls, functionEndCalls).catch(console.error)));
+        await Promise.all(plugins.map(async (plugin) => plugin.processResults(storedArtifacts, testEndCalls, functionEndCalls, earlyTermination).catch(console.error)));
         console.log('Processing artifacts complete');
 
         return {
