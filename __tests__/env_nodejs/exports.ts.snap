@@ -97,6 +97,7 @@ Object {
   "browserName": "chrome",
   "debug": true,
   "headless": false,
+  "useActions": true,
 }
 `;
 
