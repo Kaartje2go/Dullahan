@@ -162,6 +162,19 @@
         border: 1px solid var(--color-grey);
     }
 
+    section.configuration {
+        display: flex;
+    }
+
+    section.configuration > span {
+        flex: 1 0 33%;
+        background-color: var(--color-grey);
+    }
+
+    section.configuration > span > h2 {
+        margin-top: 0;
+    }
+
     @media all and (max-width: 768px) {
         h1 {
             font-size: 2rem;
@@ -173,8 +186,11 @@
         }
 
         section.configuration {
-            grid-row-gap: 1em;
-            grid-template-areas: "title title title" "system system system" "filter filter filter" "plugins plugins plugins";
+            flex-direction: column;
+        }
+
+        section.configuration > span {
+            flex: 1 0 100%;
         }
     }
 </style>

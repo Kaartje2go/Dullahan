@@ -86,7 +86,10 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<DullahanPlu
                 unstableTests,
                 slowTests,
                 successfulTests,
-                ...options
+                ...options,
+                config: {
+                    ...this.client.config
+                }
             }, {
                 filename,
                 rmWhitespace: true

@@ -8,6 +8,19 @@
 <body>
 <section class="header">
     <h1><span class="header--icon"></span><span><%= reportTitle %></span></h1>
+    <% if (config) { %>
+        <section class="configuration">
+            <span>
+                <%- include('partials/config', {config: config.runner, title: 'Runner'}); %>
+            </span>
+            <span>
+                <%- include('partials/config', {config: config.api, title: 'Api'}); %>
+            </span>
+            <span>
+                <%- include('partials/config', {config: config.adapter, title: 'Adapter'}); %>
+            </span>
+        </section>
+    <% } %>
 </section>
 
 <% if (failingTests.length) { %>
