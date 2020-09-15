@@ -52,7 +52,7 @@ export class DullahanClient {
 
     private Adapter: AdapterConstructor;
 
-    private readonly config: DullahanConfig;
+    public readonly config: DullahanConfig;
 
     private readonly runner: DullahanRunner<never, never>;
 
