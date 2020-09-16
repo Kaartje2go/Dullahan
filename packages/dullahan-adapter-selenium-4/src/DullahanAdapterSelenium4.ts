@@ -1340,6 +1340,40 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async fillIFrameField(iFrameSelector: string, fieldSelector: string, value: string) {
-        throw new AdapterError('Function not implemented!');
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions = {
+            visibleOnly: false,
+            onScreenOnly: false,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const iFrameHandle = await driver.executeScript<WebElement | null>(findElement, { selector: iFrameSelector, ...findOptions });
+
+            if (!iFrameHandle) {
+                throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+            }
+
+            await driver.switchTo().frame(iFrameHandle);
+
+            const field = await driver.executeScript<WebElement | null>(findElement, { selector: fieldSelector, ...findOptions });
+
+            if (!field) {
+                throw new AdapterError(`No field found in iFrame with selector ${field}`);
+            }
+
+            await field.sendKeys(value);
+            await driver.switchTo().defaultContent();
+        } catch (e) {
+            throw e;
+        }
     }
 }
