@@ -47,8 +47,6 @@ module.exports = {
         'eslint-plugin-import',
         'eslint-plugin-jest',
         'eslint-plugin-jsdoc',
-        'eslint-plugin-react',
-        'eslint-plugin-react-hooks',
         'eslint-plugin-jsx-a11y'
     ],
     env: {
