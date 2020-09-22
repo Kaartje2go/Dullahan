@@ -49,6 +49,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         return this.options.role === 'master' ? this.startMaster() : this.startSlave();
     }
 
+    public async stop() : Promise<void> {
+        console.log('set hasStop signal to end loop early');
+        this.hasStopSignal = true;
+    }
+
     private async startMaster(): Promise<void> {
         const {client, options, rootDirectories, includeGlobs, excludeGlobs, includeRegexes, excludeRegexes} = this;
         const {maxConcurrency, minSuccesses, maxAttempts, failFast, testPredicate} = options;
