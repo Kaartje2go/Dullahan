@@ -43,7 +43,7 @@ export abstract class DullahanPlugin<
         // Nothing
     }
 
-    public async stop(earlyTermination): Promise<void> {
+    public async stop(_earlyTermination?): Promise<void> {
         // Nothing
     }
 
