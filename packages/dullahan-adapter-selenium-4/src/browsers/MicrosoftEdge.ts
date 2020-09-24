@@ -11,7 +11,8 @@ export const buildEdgeChromium = async (options: DullahanAdapterSelenium4Options
         headless,
         requireDriver,
         browserBinary = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
-        driverBinary = requireDriver && require(requireDriver)?.binPath?.()
+        driverBinary = requireDriver && require(requireDriver)?.binPath?.(),
+        rawCapabilities
     } = options;
 
     const args: string[] = [
@@ -36,7 +37,7 @@ export const buildEdgeChromium = async (options: DullahanAdapterSelenium4Options
             args
         }
     });
-    const capabilities = new Capabilities({}).merge(defaultSeleniumCapabilities).merge(defaultDullahanCapabilities);
+    const capabilities = new Capabilities({}).merge(defaultSeleniumCapabilities).merge(defaultDullahanCapabilities).merge(rawCapabilities);
 
     return Edge.Driver.createSession(capabilities, service);
 };

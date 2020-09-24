@@ -4,6 +4,7 @@ import * as Safari from 'selenium-webdriver/safari';
 import {DullahanAdapterSelenium4Options} from '../DullahanAdapterSelenium4Options';
 
 export const buildSafari = async (options: DullahanAdapterSelenium4Options): Promise<WebDriver> => {
+    const { rawCapabilities } = options;
     const args: string[] = [];
 
     const builder = new Builder().forBrowser('safari');
@@ -13,7 +14,7 @@ export const buildSafari = async (options: DullahanAdapterSelenium4Options): Pro
         browser: 'safari',
         args
     });
-    const capabilities = defaultSeleniumCapabilities.merge(defaultDullahanCapabilities);
+    const capabilities = defaultSeleniumCapabilities.merge(defaultDullahanCapabilities).merge(rawCapabilities);
 
     return builder.withCapabilities(capabilities).build();
 };

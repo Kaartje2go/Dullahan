@@ -3,7 +3,7 @@ import {Builder, Capabilities, WebDriver} from 'selenium-webdriver';
 import {DullahanAdapterSelenium4Options} from '../DullahanAdapterSelenium4Options';
 
 export const buildChrome = async (options: DullahanAdapterSelenium4Options): Promise<WebDriver> => {
-    const {headless, requireDriver, userAgent} = options;
+    const {headless, requireDriver, userAgent, rawCapabilities} = options;
 
     if (requireDriver) {
         require(requireDriver);
@@ -32,7 +32,7 @@ export const buildChrome = async (options: DullahanAdapterSelenium4Options): Pro
             args
         }
     });
-    const capabilities = defaultSeleniumCapabilities.merge(defaultDullahanCapabilities);
+    const capabilities = defaultSeleniumCapabilities.merge(defaultDullahanCapabilities).merge(rawCapabilities);
 
     return builder.withCapabilities(capabilities).build();
 };

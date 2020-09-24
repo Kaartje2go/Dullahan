@@ -4,7 +4,7 @@ import * as Ie from 'selenium-webdriver/ie';
 import {DullahanAdapterSelenium4Options} from '../DullahanAdapterSelenium4Options';
 
 export const buildInternetExplorer = async (options: DullahanAdapterSelenium4Options): Promise<WebDriver> => {
-    const {requireDriver} = options;
+    const {requireDriver, rawCapabilities} = options;
 
     if (requireDriver) {
         require(requireDriver);
@@ -19,7 +19,7 @@ export const buildInternetExplorer = async (options: DullahanAdapterSelenium4Opt
         browser: 'ie',
         args
     });
-    const capabilities = defaultSeleniumCapabilities.merge(defaultDullahanCapabilities);
+    const capabilities = defaultSeleniumCapabilities.merge(defaultDullahanCapabilities).merge(rawCapabilities);
 
     return builder.withCapabilities(capabilities).build();
 };
