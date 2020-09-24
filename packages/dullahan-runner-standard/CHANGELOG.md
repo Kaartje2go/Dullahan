@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.21 (2020-09-24)
+
+
+### Features
+
+* Use rawCapabilities from options for selenium-4 ([#117](https://github.com/Kaartje2go/Dullahan/issues/117)) ([2f80369](https://github.com/Kaartje2go/Dullahan/commit/2f803696e1eb2e5518aec9ac0f48b6d5f7e7b566))
+
+
+
+
+
 # 1.0.0-alpha.20 (2020-09-24)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-standard
