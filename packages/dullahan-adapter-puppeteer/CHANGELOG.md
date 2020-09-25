@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.22 (2020-09-25)
+
+
+### Bug Fixes
+
+* rawCapabilities no longer override ([#118](https://github.com/Kaartje2go/Dullahan/issues/118)) ([91d948d](https://github.com/Kaartje2go/Dullahan/commit/91d948d211935160840cfd7dcaaa537bf6640e9b))
+
+
+
+
+
 # 1.0.0-alpha.21 (2020-09-24)
 
 
