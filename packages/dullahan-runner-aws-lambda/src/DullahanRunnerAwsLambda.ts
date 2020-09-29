@@ -1,9 +1,9 @@
 import {
     DullahanRunnerAwsLambdaDefaultOptions,
-    DullahanRunnerAwsLambdaUserOptions
-} from './DullahanRunnerAwsLambdaOptions';
-import * as fastGlob from 'fast-glob';
-import asyncPool from 'tiny-async-pool';
+    DullahanRunnerAwsLambdaUserOptions,
+} from "./DullahanRunnerAwsLambdaOptions";
+import * as fastGlob from "fast-glob";
+import asyncPool from "tiny-async-pool";
 import {
     DullahanClient,
     DullahanError,
@@ -14,26 +14,31 @@ import {
     testFile,
     testIfOnlyTestsModified,
     getChangedFiles,
-} from '@k2g/dullahan';
-import {Lambda} from 'aws-sdk';
+} from "@k2g/dullahan";
+import { Lambda } from "aws-sdk";
+import PQueue from 'p-queue';
 
 interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
     testEndCalls?: DullahanTestEndCall[];
 }
 
-export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunnerAwsLambdaUserOptions, typeof DullahanRunnerAwsLambdaDefaultOptions> {
-
+export default class DullahanRunnerAwsLambda extends DullahanRunner<
+    DullahanRunnerAwsLambdaUserOptions,
+    typeof DullahanRunnerAwsLambdaDefaultOptions
+> {
     private hasStopSignal = false;
 
-    private readonly lambda = this.options.useAccessKeys ? new Lambda({
-        accessKeyId: this.options.accessKeyId,
-        secretAccessKey: this.options.secretAccessKey,
-        httpOptions: this.options.httpOptions,
-        region: this.options.region
-    }) : new Lambda({
-        httpOptions: this.options.httpOptions
-    });
+    private readonly lambda = this.options.useAccessKeys
+        ? new Lambda({
+              accessKeyId: this.options.accessKeyId,
+              secretAccessKey: this.options.secretAccessKey,
+              httpOptions: this.options.httpOptions,
+              region: this.options.region,
+          })
+        : new Lambda({
+              httpOptions: this.options.httpOptions,
+          });
 
     public constructor(args: {
         client: DullahanClient;
@@ -41,102 +46,151 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
     }) {
         super({
             ...args,
-            defaultOptions: DullahanRunnerAwsLambdaDefaultOptions
+            defaultOptions: DullahanRunnerAwsLambdaDefaultOptions,
         });
     }
 
     public async start(): Promise<void> {
-        return this.options.role === 'master' ? this.startMaster() : this.startSlave();
+        return this.options.role === "master"
+            ? this.startMaster()
+            : this.startSlave();
     }
 
-    public async stop(earlyTermination = false) : Promise<void> {
+    public async stop(earlyTermination = false): Promise<void> {
         if (earlyTermination) {
-            console.log('set hasStop signal to end loop early because early termination is true');
+            console.log(
+                "set hasStop signal to end loop early because early termination is true"
+            );
             this.hasStopSignal = true;
         }
     }
 
     private async startMaster(): Promise<void> {
-        const {client, options, rootDirectories, includeGlobs, excludeGlobs, includeRegexes, excludeRegexes} = this;
-        const {maxConcurrency, minSuccesses, maxAttempts, failFast, testPredicate} = options;
+        const {
+            client,
+            options,
+            rootDirectories,
+            includeGlobs,
+            excludeGlobs,
+            includeRegexes,
+            excludeRegexes,
+        } = this;
+        const {
+            maxConcurrency,
+            minSuccesses,
+            maxAttempts,
+            failFast,
+            testPredicate,
+        } = options;
 
         if (includeGlobs.length === 0) {
-            includeGlobs.push('**/*')
+            includeGlobs.push("**/*");
         }
 
-        console.log('Dullahan Runner AWS Lambda - finding tests');
+        console.log("Dullahan Runner AWS Lambda - finding tests");
 
-        const searchResults = await Promise.all(rootDirectories.map((rootDirectory) => fastGlob(includeGlobs, {
-            cwd: rootDirectory,
-            ignore: excludeGlobs,
-            absolute: true,
-            dot: true
-        })));
+        const searchResults = await Promise.all(
+            rootDirectories.map((rootDirectory) =>
+                fastGlob(includeGlobs, {
+                    cwd: rootDirectory,
+                    ignore: excludeGlobs,
+                    absolute: true,
+                    dot: true,
+                })
+            )
+        );
 
         const files = await getChangedFiles();
         const onlyModifiedTests = testIfOnlyTestsModified(files);
 
-        const testFiles = (await Promise.all(
-                searchResults.flat()
+        const testFiles = (
+            await Promise.all(
+                searchResults
+                    .flat()
                     .filter((file) => {
                         if (onlyModifiedTests) {
                             return testFile(files, file);
                         }
-                        return (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
-                        && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
+                        return (
+                            (!includeRegexes.length ||
+                                includeRegexes.some((iRegex) =>
+                                    iRegex.test(file)
+                                )) &&
+                            (!excludeRegexes.length ||
+                                !excludeRegexes.some((eRegex) =>
+                                    eRegex.test(file)
+                                ))
+                        );
                     })
                     .map(async (file: string) => {
                         const instance = client.getTestInstance(file);
-                        const accepted = !!instance && await testPredicate(file, instance.test);
-                        return {file, accepted};
+                        const accepted =
+                            !!instance &&
+                            (await testPredicate(file, instance.test));
+                        return { file, accepted };
                     })
-            ))
-            .filter(({accepted}) => accepted)
-            .map(({file}) => ({
+            )
+        )
+            .filter(({ accepted }) => accepted)
+            .map(({ file }) => ({
                 file,
                 successes: 0,
-                failures: 0
+                failures: 0,
             }));
 
         const nextPool = [...testFiles];
 
-        console.log(`Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`);
+        console.log(
+            `Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`
+        );
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
-        do {
-            const currentPool = nextPool.splice(0, nextPool.length);
+        const queue = new PQueue({ concurrency: maxConcurrency });
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-            await asyncPool(maxConcurrency, currentPool, async (testData) => {
-                if (this.hasStopSignal) {
-                    return;
-                }
+        const addElement = async (testData) => {
+            if (this.hasStopSignal) {
+                return;
+            }
 
-                const success = await this.processFile(testData.file).catch((error) => {
+            const success = await this.processFile(testData.file).catch(
+                (error) => {
                     console.error(error);
-
                     return false;
+                }
+            );
+            success ? testData.successes++ : testData.failures++;
+
+            if (testData.successes >= minSuccesses) {
+                return;
+            }
+
+            const hasMoreAttempts =
+                testData.successes + testData.failures < maxAttempts;
+            const couldStillPass =
+                maxAttempts - testData.failures >= minSuccesses;
+
+            if (hasMoreAttempts && couldStillPass) {
+                queue.add(async () => {
+                    queue.pause();
+                    await queue.onEmpty();
+                    await sleep(500);
+                    await addElement(testData);
+                    queue.start();
                 });
-                success ? testData.successes++ : testData.failures++;
+            } else if (failFast) {
+                queue.clear();
+            }
+        };
 
-                if (testData.successes >= minSuccesses) {
-                    return;
-                }
-
-                const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
-                const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
-
-                if (hasMoreAttempts && couldStillPass) {
-                    nextPool.push(testData);
-                } else if (failFast) {
-                    this.hasStopSignal = true;
-                }
-            });
-        } while (nextPool.length && !this.hasStopSignal);
+        nextPool.map(testData => {
+            queue.add(() => addElement(testData));
+        });
     }
 
     private async startSlave(): Promise<void> {
-        const {client, options} = this;
-        const {file} = options.slaveOptions;
+        const { client, options } = this;
+        const { file } = options.slaveOptions;
 
         const instance = client.getTestInstance(file);
 
@@ -144,7 +198,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             return;
         }
 
-        const {testId, test, adapter, api} = instance;
+        const { testId, test, adapter, api } = instance;
 
         const timeStart = Date.now();
         const testName = test.name;
@@ -153,7 +207,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
             client.emitTestStart({
                 testId,
                 testName,
-                timeStart
+                timeStart,
             });
 
             await adapter.openBrowser();
@@ -164,7 +218,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                 testName,
                 timeStart,
                 error: null,
-                timeEnd: Date.now()
+                timeEnd: Date.now(),
             });
         } catch (error) {
             client.emitTestEnd({
@@ -172,7 +226,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                 error: new DullahanError(error),
                 testName,
                 timeStart,
-                timeEnd: Date.now()
+                timeEnd: Date.now(),
             });
 
             await tryIgnore(1, async () => {
@@ -186,36 +240,44 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
     }
 
     private async processFile(file: string): Promise<boolean> {
-        const {lambda, client, options} = this;
-        const {slaveQualifier, slaveFunctionName, slaveOptions} = options;
+        const { lambda, client, options } = this;
+        const { slaveQualifier, slaveFunctionName, slaveOptions } = options;
 
-        const {Payload} = await lambda.invoke({
-            Qualifier: slaveQualifier!,
-            FunctionName: slaveFunctionName!,
-            Payload: JSON.stringify({
-                body: JSON.stringify({
-                    ...slaveOptions,
-                    file
-                })
+        const { Payload } = await lambda
+            .invoke({
+                Qualifier: slaveQualifier!,
+                FunctionName: slaveFunctionName!,
+                Payload: JSON.stringify({
+                    body: JSON.stringify({
+                        ...slaveOptions,
+                        file,
+                    }),
+                }),
             })
-        }).promise();
+            .promise();
 
         // If the payload is not of type string, it cannot be parsed.
-        if (typeof Payload !== 'string') {
-            console.error(`Invoked test returned incorrect Payload of type ${typeof Payload}`);
+        if (typeof Payload !== "string") {
+            console.error(
+                `Invoked test returned incorrect Payload of type ${typeof Payload}`
+            );
             return false;
         }
         try {
-            const parsedPayload = JSON.parse(JSON.parse(Payload as string)) as Test;
+            const parsedPayload = JSON.parse(
+                JSON.parse(Payload as string)
+            ) as Test;
             const { functionEndCalls, testEndCalls } = parsedPayload;
             const testEndCall = testEndCalls && testEndCalls[0];
 
-            functionEndCalls?.forEach((functionEndCall) => client.emitFunctionEnd(functionEndCall));
+            functionEndCalls?.forEach((functionEndCall) =>
+                client.emitFunctionEnd(functionEndCall)
+            );
             testEndCall && client.emitTestEnd(testEndCall);
 
             return !testEndCall?.error;
         } catch (e) {
-            console.info('Failed with Payload', Payload);
+            console.info("Failed with Payload", Payload);
             console.error(e);
             return false;
         }
