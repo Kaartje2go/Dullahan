@@ -180,6 +180,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                     queue.pause();
                     await queue.onIdle();
                     await sleep(10 * 1000);
+                    console.log('starting queue');
+                    queue.start();
                 }
                 await queue.add(async () => await addElement(testData));
             } else if (failFast) {
