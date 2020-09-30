@@ -14,6 +14,7 @@ import {
     testFile,
     testIfOnlyTestsModified,
     getChangedFiles,
+    sleep,
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
 import PQueue from "p-queue";
@@ -28,6 +29,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
     typeof DullahanRunnerAwsLambdaDefaultOptions
 > {
     private hasStopSignal = false;
+
+    private totalFailures = 0;
 
     private readonly lambda = this.options.useAccessKeys
         ? new Lambda({
@@ -146,10 +149,10 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
         const queue = new PQueue({ concurrency: maxConcurrency });
-        const retryQueue = new PQueue({ concurrency: 10, autoStart: false });
 
         const addElement = async (testData) => {
             if (this.hasStopSignal) {
+                queue.clear();
                 return;
             }
 
@@ -171,10 +174,16 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 maxAttempts - testData.failures >= minSuccesses;
 
             if (hasMoreAttempts && couldStillPass) {
-                await retryQueue.add(async () => await addElement(testData));
+                console.log("total failures", this.totalFailures);
+
+                if (this.totalFailures++ === 0) {
+                    queue.pause();
+                    await queue.onIdle();
+                    await sleep(10 * 1000);
+                }
+                await queue.add(async () => await addElement(testData));
             } else if (failFast) {
                 queue.clear();
-                retryQueue.clear();
             }
         };
 
@@ -184,9 +193,9 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             })
         );
 
+        console.log("wait for on idle");
         await queue.onIdle();
-        retryQueue.start();
-        await retryQueue.onIdle();
+        console.log("idle queue");
     }
 
     private async startSlave(): Promise<void> {
