@@ -16,7 +16,7 @@ import {
     getChangedFiles,
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
-import PQueue from 'p-queue';
+import PQueue from "p-queue";
 
 interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
@@ -146,7 +146,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
         const queue = new PQueue({ concurrency: maxConcurrency });
-        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+        const retryQueue = new PQueue({ concurrency: 1 });
 
         const addElement = async (testData) => {
             if (this.hasStopSignal) {
@@ -171,21 +171,23 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 maxAttempts - testData.failures >= minSuccesses;
 
             if (hasMoreAttempts && couldStillPass) {
-                queue.add(async () => {
-                    queue.pause();
-                    await queue.onEmpty();
-                    await sleep(500);
+                await retryQueue.add(async () => {
                     await addElement(testData);
-                    queue.start();
                 });
             } else if (failFast) {
                 queue.clear();
+                retryQueue.clear();
             }
         };
 
-        nextPool.map(testData => {
-            queue.add(() => addElement(testData));
-        });
+        await Promise.all(
+            nextPool.map(async (testData) => {
+                await queue.add(async () => await addElement(testData));
+            })
+        );
+
+        await queue.onEmpty();
+        await retryQueue.onEmpty();
     }
 
     private async startSlave(): Promise<void> {
