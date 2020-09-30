@@ -178,8 +178,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 
                 if (this.totalFailures++ === 0) {
                     queue.pause();
-                    await queue.onEmpty();
-                    await sleep(10000);
+                    await Promise.race([
+                        sleep(30 * 1000),
+                        queue.onIdle()
+                    ]);
+                    await sleep(10 * 1000);
                 }
                 await queue.add(async () => await addElement(testData));
             } else if (failFast) {
