@@ -146,7 +146,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
         const queue = new PQueue({ concurrency: maxConcurrency });
-        const retryQueue = new PQueue({ concurrency: 1 });
+        const retryQueue = new PQueue({ concurrency: 1, autoStart: false });
 
         const addElement = async (testData) => {
             if (this.hasStopSignal) {
@@ -186,8 +186,9 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             })
         );
 
-        await queue.onEmpty();
-        await retryQueue.onEmpty();
+        await queue.onIdle();
+        retryQueue.start();
+        await retryQueue.onIdle();
     }
 
     private async startSlave(): Promise<void> {
