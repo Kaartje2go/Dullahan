@@ -176,10 +176,10 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             if (hasMoreAttempts && couldStillPass) {
                 console.log("total failures", this.totalFailures);
 
-                if (this.totalFailures++ === 0) {
+                if (this.totalFailures++ % 5 === 0) {
+                    console.log('paused queue');
                     queue.pause();
-                    await queue.onIdle();
-                    await sleep(10 * 1000);
+                    await sleep(30 * 1000);
                     console.log('starting queue');
                     queue.start();
                 }
