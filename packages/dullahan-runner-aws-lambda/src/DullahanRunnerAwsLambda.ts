@@ -14,6 +14,7 @@ import {
     testFile,
     testIfOnlyTestsModified,
     getChangedFiles,
+    sleep
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
 import PQueue from "p-queue";
@@ -146,10 +147,10 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
         const queue = new PQueue({ concurrency: maxConcurrency });
-        const retryQueue = new PQueue({ concurrency: 10, autoStart: false });
 
         const addElement = async (testData) => {
             if (this.hasStopSignal) {
+                queue.clear();
                 return;
             }
 
@@ -171,10 +172,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 maxAttempts - testData.failures >= minSuccesses;
 
             if (hasMoreAttempts && couldStillPass) {
-                await retryQueue.add(async () => await addElement(testData));
+                await queue.pause();
+                await queue.onEmpty();
+                await queue.add(async () => await addElement(testData));
             } else if (failFast) {
                 queue.clear();
-                retryQueue.clear();
             }
         };
 
@@ -184,9 +186,9 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             })
         );
 
+        console.log('wait for on idle');
         await queue.onIdle();
-        retryQueue.start();
-        await retryQueue.onIdle();
+        console.log('idle queue');
     }
 
     private async startSlave(): Promise<void> {
