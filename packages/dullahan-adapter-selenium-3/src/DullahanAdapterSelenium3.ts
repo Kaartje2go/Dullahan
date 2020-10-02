@@ -1342,4 +1342,8 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         throw new AdapterError('Function not implemented!');
     }
 
+    public async clickIFrameElement(iFrameSelector: string, fieldSelector: string) {
+        throw new AdapterError('Function not implemented!');
+    }
+
 }

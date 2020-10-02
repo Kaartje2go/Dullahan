@@ -56,7 +56,9 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
 
     public abstract async executeScript<T>(script: string): Promise<T>;
 
-    public abstract async fillIFrameField(iFrameSelector: string, fieldSelecgtor, value: string): Promise<void>;
+    public abstract async fillIFrameField(iFrameSelector: string, fieldSelector, value: string): Promise<void>;
+
+    public abstract async clickIFrameElement(iFrameSelector: string, selector: string): Promise<void>;
 
     public abstract async getCookie(name: string): Promise<DullahanCookie | null>;
 

@@ -578,4 +578,19 @@ export class DullahanApi<
 
         await adapter.fillIFrameField(iFrameSelector, fieldSelector, value);
     }
+
+    public async clickIFrameElement(iFrameSelector: string, selector: string) {
+        const {adapter, options} = this;
+        const {defaultTimeout, autoScroll} = options;
+
+        if (autoScroll && !(await adapter.isElementVisible(iFrameSelector))) {
+            await this.scrollToElement(iFrameSelector, defaultTimeout);
+        }
+
+        await adapter.waitForElementVisible(iFrameSelector, {
+            timeout: defaultTimeout
+        });
+
+        await adapter.clickIFrameElement(iFrameSelector, selector);
+    }
 }

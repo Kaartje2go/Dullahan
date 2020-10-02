@@ -1376,4 +1376,38 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw e;
         }
     }
+
+    public async clickIFrameElement(iFrameSelector: string, selector: string) {
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions = {
+            selector: iFrameSelector,
+            visibleOnly: false,
+            onScreenOnly: false,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const iFrameHandle = await driver.executeScript<WebElement | null>(findElement, findOptions);
+
+            if (!iFrameHandle) {
+                throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+            }
+
+            await driver.switchTo().frame(iFrameHandle);
+
+            await this.click(selector);
+
+            await driver.switchTo().defaultContent();
+        } catch (e) {
+            throw e;
+        }
+    }
 }
