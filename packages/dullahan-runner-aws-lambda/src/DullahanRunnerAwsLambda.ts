@@ -17,7 +17,6 @@ import {
     sleep,
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
-import asyncPool from 'tiny-async-pool';
 
 interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
