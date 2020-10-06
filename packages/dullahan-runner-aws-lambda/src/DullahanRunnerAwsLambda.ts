@@ -17,6 +17,7 @@ import {
     sleep,
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
+import PQueue from "p-queue";
 
 interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
@@ -147,36 +148,51 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         );
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
-            
-        do {
-            const currentPool = nextPool.splice(0, nextPool.length);
+        const queue = new PQueue({ concurrency: maxConcurrency });
+        const retryQueue = new PQueue({ concurrency: 15, autoStart: false });
 
-            await asyncPool(maxConcurrency, currentPool, async (testData) => {
-                if (this.hasStopSignal) {
-                    return;
-                }
+        const addElement = async (testData) => {
+            if (this.hasStopSignal) {
+                return;
+            }
 
-                const success = await this.processFile(testData.file).catch((error) => {
+            const success = await this.processFile(testData.file).catch(
+                (error) => {
                     console.error(error);
-
                     return false;
-                });
-                success ? testData.successes++ : testData.failures++;
-
-                if (testData.successes >= minSuccesses) {
-                    return;
                 }
+            );
+            success ? testData.successes++ : testData.failures++;
 
-                const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
-                const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
+            if (testData.successes >= minSuccesses) {
+                return;
+            }
 
-                if (hasMoreAttempts && couldStillPass) {
-                    nextPool.push(testData);
-                } else if (failFast) {
-                    this.hasStopSignal = true;
-                }
-            });
-        } while (nextPool.length && !this.hasStopSignal);
+            const hasMoreAttempts =
+                testData.successes + testData.failures < maxAttempts;
+            const couldStillPass =
+                maxAttempts - testData.failures >= minSuccesses;
+
+            if (hasMoreAttempts && couldStillPass) {
+                console.log("total failures", this.totalFailures, testData);
+                await retryQueue.add(async () => await addElement(testData));
+            } else if (failFast) {
+                this.hasStopSignal = true;
+            }
+        };
+
+        await Promise.all(
+            nextPool.map(async (testData) => {
+                await queue.add(async () => await addElement(testData));
+            })
+        );
+
+        console.log("wait for on idle main queue");
+        await queue.onIdle();
+        console.log("wait for on idle retry queue");
+        retryQueue.start();
+        await retryQueue.onIdle();
+        console.log("idle retry queue");
     }
 
     private async startSlave(): Promise<void> {
