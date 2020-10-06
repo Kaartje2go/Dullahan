@@ -174,14 +174,14 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 maxAttempts - testData.failures >= minSuccesses;
 
             if (hasMoreAttempts && couldStillPass) {
-                console.log("total failures", this.totalFailures, testData);
+                console.log("total failures", this.totalFailures++, testData);
                 await retryQueue.add(async () => await addElement(testData));
             } else if (failFast) {
                 this.hasStopSignal = true;
             }
         };
 
-        await Promise.all(
+        await Promise.all(  
             nextPool.map(async (testData) => {
                 await queue.add(async () => await addElement(testData));
             })
@@ -190,8 +190,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         console.log("wait for on idle main queue");
         await queue.onIdle();
         console.log("wait for on idle retry queue");
-        retryQueue.start();
-        await retryQueue.onIdle();
+        await retryQueue.start().onIdle();
         console.log("idle retry queue");
     }
 
