@@ -3,7 +3,6 @@ import {
     DullahanRunnerAwsLambdaUserOptions,
 } from "./DullahanRunnerAwsLambdaOptions";
 import * as fastGlob from "fast-glob";
-import asyncPool from "tiny-async-pool";
 import {
     DullahanClient,
     DullahanError,
@@ -149,7 +148,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
         const queue = new PQueue({ concurrency: maxConcurrency, timeout: 5 * 60 * 1000 });
-        const retryQueue = new PQueue({ concurrency: 15, autoStart: false, timeout: 5 * 60 * 1000 });
 
         const addElement = async (testData) => {
             if (this.hasStopSignal) {
@@ -162,6 +160,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                     return false;
                 }
             );
+
             success ? testData.successes++ : testData.failures++;
 
             if (testData.successes >= minSuccesses) {
@@ -175,7 +174,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 
             if (hasMoreAttempts && couldStillPass) {
                 console.log("total failures", this.totalFailures++, testData);
-                await retryQueue.add(async () => addElement(testData));
+                queue.concurrency = 30 - (testData.failures * 5)
+                await queue.add(async () => addElement(testData));
             } else if (failFast) {
                 this.hasStopSignal = true;
             }
@@ -187,12 +187,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             })
         );
 
-        console.log("wait for on idle main queue");
+        console.log("wait for on idle queue");
         await queue.onIdle();
-        console.log("wait for on idle retry queue");
-        await sleep(5000);
-        await retryQueue.start().onIdle();
-        console.log("idle retry queue");
     }
 
     private async startSlave(): Promise<void> {
