@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "clean-code": "rimraf './dist'; rimraf './src/**/*.d.ts'; rimraf './src/**/*.js'; rimraf './src/**/*.js.map'",
-    "compile-code": "tsc -p ./tsconfig.build.json"
+    "cp": "cp dist/* ~/Kaartje2go/Dullahan-Tests/node_modules/\\@k2g/dullahan-runner-aws-lambda/dist/",
+    "compile-code": "tsc -p ./tsconfig.build.json",
+    "compile-code-watch": "yarn compile-code -w"
   },
   "dependencies": {
     "@k2g/dullahan": "^1.0.0-alpha.35",

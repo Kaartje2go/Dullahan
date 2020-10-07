@@ -175,7 +175,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 
             if (hasMoreAttempts && couldStillPass) {
                 console.log("total failures", this.totalFailures++, testData);
-                await retryQueue.add(async () => await addElement(testData));
+                await retryQueue.add(async () => addElement(testData));
             } else if (failFast) {
                 this.hasStopSignal = true;
             }
