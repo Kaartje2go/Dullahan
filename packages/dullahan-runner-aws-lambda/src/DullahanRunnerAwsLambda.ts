@@ -148,8 +148,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         );
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
-        const queue = new PQueue({ concurrency: maxConcurrency });
-        const retryQueue = new PQueue({ concurrency: 15, autoStart: false });
+        const queue = new PQueue({ concurrency: maxConcurrency, timeout: 5 * 60 * 1000 });
+        const retryQueue = new PQueue({ concurrency: 15, autoStart: false, timeout: 5 * 60 * 1000 });
 
         const addElement = async (testData) => {
             if (this.hasStopSignal) {
@@ -183,13 +183,14 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 
         await Promise.all(  
             nextPool.map(async (testData) => {
-                await queue.add(async () => await addElement(testData));
+                await queue.add(async () => addElement(testData));
             })
         );
 
         console.log("wait for on idle main queue");
         await queue.onIdle();
         console.log("wait for on idle retry queue");
+        await sleep(5000);
         await retryQueue.start().onIdle();
         console.log("idle retry queue");
     }
