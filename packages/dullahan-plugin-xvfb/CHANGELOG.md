@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.41 (2020-10-14)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-xvfb
+
+
+
+
+
 # 1.0.0-alpha.40 (2020-10-14)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-xvfb
