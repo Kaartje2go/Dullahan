@@ -8,7 +8,7 @@ module.exports = async () => {
             {
                 command: 'yarn serve packages/dullahan/fixtures -l tcp://localhost:8080',
                 debug: false,
-                launchTimeout: 15000,
+                launchTimeout: 30000,
                 host: 'localhost',
                 protocol: 'http',
                 port: 8080,
@@ -18,7 +18,7 @@ module.exports = async () => {
                     interval: 250,
                     log: false,
                     reverse: false,
-                    timeout: 15000,
+                    timeout: 30000,
                     tcpTimeout: 300,
                     verbose: false,
                     window: 705
