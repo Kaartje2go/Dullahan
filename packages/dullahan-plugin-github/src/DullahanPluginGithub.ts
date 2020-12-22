@@ -58,7 +58,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             }
         }
 
-        if (enableStatusChecks && lastStatusCheck + 15000 > Date.now()) {
+        if (enableStatusChecks && lastStatusCheck + 30000 > Date.now()) {
             await this.setStatus();
         }
 
