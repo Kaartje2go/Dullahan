@@ -6,4 +6,4 @@ Object.keys(parse(Buffer.from(readFileSync('.env.example')))).forEach((key) => {
     delete process.env[key];
 });
 
-jest.setTimeout(15000);
+jest.setTimeout(30000);
