@@ -10,7 +10,7 @@ export const DullahanApiDefaultOptions = {
     slowMotion: 0,
     autoScroll: true,
     displayPointer: true,
-    defaultTimeout: 30000,
+    defaultTimeout: 15000,
     defaultNetworkTimeout: 30000
 };
 

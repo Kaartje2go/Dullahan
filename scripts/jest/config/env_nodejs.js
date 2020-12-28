@@ -2,7 +2,7 @@ const base = require('./shared');
 
 module.exports = {
     ...base,
-    testTimeout: 30000,
+    testTimeout: 15000,
     testMatch: [
         '**/__tests__/env_nodejs/**/*.ts',
         '**/packages/*/__tests__/**/*.ts'
