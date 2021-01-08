@@ -15,13 +15,7 @@ export const getChangedFiles = async () : Promise<string[]> => {
     return [];
 }
 
-export const testIfOnlyTestsModified = async (splited : string[]) : Promise<boolean> => {
-    const file = './.changed-run-anyways';
-    const fileExists = await pathExists(file);
-
-    if (fileExists) {
-        return true;
-    }
+export const testIfOnlyTestsModified = (splited : string[]) : boolean => {
     if (splited.length === 0) {
         return false;
     }

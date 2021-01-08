@@ -44,7 +44,7 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
         })));
 
         const files = await getChangedFiles();
-        const onlyModifiedTests = await testIfOnlyTestsModified(files);
+        const onlyModifiedTests = testIfOnlyTestsModified(files);
 
         const testFiles = searchResults.flat()
             .filter((file) => {
