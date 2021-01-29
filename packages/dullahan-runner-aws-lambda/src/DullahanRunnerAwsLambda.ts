@@ -103,7 +103,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         );
 
         const files = await getChangedFiles();
-        const onlyModifiedTests = testIfOnlyTestsModified(files);
+        const onlyModifiedTests = await testIfOnlyTestsModified(files);
 
         const testFiles = (
             await Promise.all(
