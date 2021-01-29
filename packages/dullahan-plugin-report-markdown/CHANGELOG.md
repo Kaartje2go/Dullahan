@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.52 (2021-01-29)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-report-markdown
+
+
+
+
+
 # 1.0.0-alpha.51 (2021-01-29)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-markdown
