@@ -102,12 +102,10 @@ export function findElement(this: void, options: FindElementOptions): Element | 
         return (node instanceof Element);
     }
 
-    function formatReturnValue(value: Element[]): Element | boolean | void {
-        if (value[0] && (value[0] as HTMLElement).style) {
-            (value[0] as HTMLElement).style.outline = '1px solid blue'
+    function highlightElement(value: Element): void {
+        if (value && (value as HTMLElement).style) {
+            (value as HTMLElement).style.outline = '1px solid blue'
         }
-
-        return expectNoMatches ? !value[0] : value[0];
     }
 
     function isOnScreen(top: number, left: number, width: number, height: number): boolean {
@@ -176,12 +174,13 @@ export function findElement(this: void, options: FindElementOptions): Element | 
         return !!topElement && (topElement === element || isChildOf(topElement, element));
     }
 
-    function performSearch(): Element | boolean | void {
+    function performSearch(): Element | undefined {
         var nodeMatches: Node[] = isXPath() ? getByXPath() : isJSPath() ? getByJSPath() : getByCSSPath();
         var elementMatches: Element[] = nodeMatches.filter(filterNodeToElement);
 
         if (!visibleOnly && !onScreenOnly) {
-            return formatReturnValue(elementMatches);
+            highlightElement(elementMatches[0]);
+            return elementMatches[0];
         }
 
         var filteredMatches = elementMatches.filter(function (element) {
@@ -209,31 +208,33 @@ export function findElement(this: void, options: FindElementOptions): Element | 
             return true;
         });
 
-        return formatReturnValue(filteredMatches);
+        highlightElement(filteredMatches[0]);
+        return filteredMatches[0];
     }
 
     if (interval && promise) {
         return new Promise(function poll(resolve, reject) {
             try {
-                var result = performSearch();
+                var element = performSearch();
+                var hasResult = expectNoMatches ? !element : !!element;
 
-                if (result) {
-                    console.log('findElement', 'return', result);
-                    resolve(result);
+                if (hasResult) {
+                    console.log('findElement', 'return', element);
+                    resolve(element);
                 } else if (Date.now() < endTime) {
                     setTimeout(poll, interval, resolve, reject);
                 } else {
-                    console.log('findElement', 'return', result);
-                    resolve();
+                    console.log('findElement', 'return', element);
+                    resolve(element);
                 }
             } catch (error) {
                 reject(error);
             }
         });
     } else {
-        var result = performSearch();
-        console.log('findElement', 'return', result);
+        var element = performSearch();
+        console.log('findElement', 'return', element);
 
-        return result;
+        return element;
     }
 }
