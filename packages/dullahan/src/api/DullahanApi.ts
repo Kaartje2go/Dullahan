@@ -88,15 +88,11 @@ export class DullahanApi<
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
-        if (autoScroll) {
-            await this.waitForElementNotVisible(selector, timeout);
-
-            if (!await this.isElementVisible(selector)) {
-                await this.scrollToElement(selector, timeout);
-            }
+        if (autoScroll && !(await adapter.isElementInteractable(selector))) {
+            await this.scrollToElement(selector, timeout);
         }
 
-        await adapter.waitForElementVisible(selector, {
+        await adapter.waitForElementInteractive(selector, {
             timeout: timeout ?? defaultTimeout
         });
         await adapter.click(selector);
