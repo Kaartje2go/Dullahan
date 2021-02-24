@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.53 (2021-02-24)
+
+
+### Bug Fixes
+
+* fixed waitForElementNotVisible, waitForElementNotPresent ([#161](https://github.com/Kaartje2go/Dullahan/issues/161)) ([7f71285](https://github.com/Kaartje2go/Dullahan/commit/7f71285b5d17c0bde7465c030eb5a550093ce796))
+
+
+
+
+
 # 1.0.0-alpha.52 (2021-01-29)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-standard
