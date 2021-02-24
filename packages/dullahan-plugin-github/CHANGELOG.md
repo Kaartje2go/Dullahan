@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.54 (2021-02-24)
+
+
+### Bug Fixes
+
+* fixed autoscroll ([#162](https://github.com/Kaartje2go/Dullahan/issues/162)) ([154ae03](https://github.com/Kaartje2go/Dullahan/commit/154ae03864c2f028ad975fa9feac7217de1b1016))
+
+
+
+
+
 # 1.0.0-alpha.53 (2021-02-24)
 
 
