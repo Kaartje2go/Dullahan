@@ -411,10 +411,12 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         };
 
         try {
-            const elementHandle = await page.evaluateHandle(findElement, findOptions);
-            const element = elementHandle.asElement();
+            // with `expectNoMatches: true`
+            // findElement returns `true` if NO element was found
+            // and returns `undefined` if an element was found
+            const elementWasFound = !await page.evaluate(findElement, findOptions);
 
-            if (element) {
+            if (elementWasFound) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
         } catch (error) {
@@ -449,10 +451,12 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         };
 
         try {
-            const elementHandle = await page.evaluateHandle(findElement, findOptions);
-            const element = elementHandle.asElement();
+            // with `expectNoMatches: true`
+            // findElement returns `true` if NO element was found
+            // and returns `undefined` if an element was found
+            const elementWasFound = !await page.evaluate(findElement, findOptions);
 
-            if (element) {
+            if (elementWasFound) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
         } catch (error) {
