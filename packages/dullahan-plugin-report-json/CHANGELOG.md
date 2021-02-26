@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.55 (2021-02-26)
+
+
+### Bug Fixes
+
+* fixes waitForElementNotPresent, waitForElementNotVisible ([#164](https://github.com/Kaartje2go/Dullahan/issues/164)) ([bba86d9](https://github.com/Kaartje2go/Dullahan/commit/bba86d9591e7e860edd9f5b37bf2c4b9fb9ed3e3))
+
+
+
+
+
 # 1.0.0-alpha.54 (2021-02-24)
 
 
