@@ -22,6 +22,7 @@ import {
     DullahanTestEndCall,
 } from "@k2g/dullahan";
 
+const startTime = Date.now();
 export default class DullahanPluginReportHtml extends DullahanPlugin<
     DullahanPluginReportHtmlUserOptions,
     typeof DullahanPluginReportHtmlDefaultOptions
@@ -100,12 +101,13 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
         const add = (accumulator, test) => {
             return (
                 accumulator +
-                parseInt(test.timeEnd, 10) -
-                parseInt(test.timeStart, 10)
+                (parseInt(test.timeEnd, 10) -
+                parseInt(test.timeStart, 10)) / 1000
             );
         };
 
-        const totalTime = tests.reduce(add, 0);
+        const totalTimeTests = tests.reduce(add, 0);
+        const totalRunningTime = (startTime - Date.now()) / 1000
 
         return [
             {
@@ -117,7 +119,8 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
                 data: render(
                     await templatePromise,
                     {
-                        totalTime,
+                        totalRunningTime,
+                        totalTimeTests,
                         failingTests,
                         unstableTests,
                         slowTests,
