@@ -107,7 +107,7 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
         };
 
         const totalTimeTests = tests.reduce(add, 0);
-        const totalRunningTime = (startTime - Date.now()) / 1000
+        const totalRunningTime = (Date.now() - startTime) / 1000
 
         return [
             {

@@ -18,16 +18,10 @@
             </span>
             <span>
                 <%- include('partials/config', {config: config.adapter, title: 'Adapter'}); %>
-            </span>
-            <span>
-                <details>
-                    <summary>Test statistics</summary>
-                    <section>
-                        <ul>
-                            <li>total time seperate tests (s): <%- totalTimeTests %></li>
-                            <li>total running time (s): <%- totalRunningTime %></li>
-                    </section>
-                </details>
+                <ul>
+                    <li>total time seperate tests (s): <%- totalTimeTests %></li>
+                    <li>total running time (s): <%- totalRunningTime %></li>
+                </ul>
             </span>
         </section>
     <% } %>
