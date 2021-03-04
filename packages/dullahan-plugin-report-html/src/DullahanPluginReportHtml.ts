@@ -21,8 +21,6 @@ import {
     DullahanPlugin,
     DullahanTestEndCall,
 } from "@k2g/dullahan";
-
-const startTime = Date.now();
 export default class DullahanPluginReportHtml extends DullahanPlugin<
     DullahanPluginReportHtmlUserOptions,
     typeof DullahanPluginReportHtmlDefaultOptions
@@ -31,6 +29,7 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
         ? resolvePath(process.cwd(), this.options.template)
         : resolvePath(__dirname, "../template/report.ejs");
 
+    private startTime:number;
     private readonly templatePromise = promisify(readFile)(
         this.filename
     ).then((buffer) => buffer.toString());
@@ -43,6 +42,7 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
             ...args,
             defaultOptions: DullahanPluginReportHtmlDefaultOptions,
         });
+        this.startTime = Date.now();
     }
 
     public async getArtifacts(
@@ -107,7 +107,7 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
         };
 
         const totalTimeTests = tests.reduce(add, 0);
-        const totalRunningTime = (Date.now() - startTime) / 1000
+        const totalRunningTime = (Date.now() - this.startTime) / 1000
 
         return [
             {
