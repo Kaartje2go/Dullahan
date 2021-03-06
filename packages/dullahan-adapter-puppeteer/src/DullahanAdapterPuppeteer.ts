@@ -999,17 +999,23 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        
-        // await page.evaluate(`window.location = ${JSON.stringify(url)}`),
-    
-        // await tryX(2, async () => {
-        //     await page.waitForFunction(waitForReadyState, {timeout: timeout / 2}, {
-        //         readyState,
-        //         timeout: timeout / 2
-        //     });
-        // });
+        await this.executeScript(`
+        var noop = function () {};
 
-        await page.goto(url, {timeout});
+        window.confirm = noop;
+        window.alert = noop;
+        window.prompt = noop;
+        window.onbeforeunload = noop;
+        `);
+        
+        await page.evaluate(`window.location = ${JSON.stringify(url)}`),
+    
+        await tryX(2, async () => {
+            await page.waitForFunction(waitForReadyState, {timeout: timeout / 2}, {
+                readyState,
+                timeout: timeout / 2
+            });
+        });
     }
 
     public async waitForElementPresent(selector: string, options: {

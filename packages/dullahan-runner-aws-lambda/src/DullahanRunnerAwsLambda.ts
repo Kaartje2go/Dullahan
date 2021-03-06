@@ -29,7 +29,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 > {
     private hasStopSignal = false;
 
-    private totalFailures = 0;
+    // private totalFailures = 0;
 
     private readonly lambda = this.options.useAccessKeys
         ? new Lambda({
