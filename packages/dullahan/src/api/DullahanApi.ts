@@ -497,10 +497,11 @@ export class DullahanApi<
     }
 
     public async getText(selector: string, timeout?: number): Promise<string> {
-        const {adapter} = this;
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
 
         await adapter.waitForElementPresent(selector, {
-            timeout: timeout ?? 10000
+            timeout: timeout ?? defaultTimeout
         });
 
         const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
