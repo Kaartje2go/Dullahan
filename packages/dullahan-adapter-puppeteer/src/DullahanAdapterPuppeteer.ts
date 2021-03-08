@@ -1015,8 +1015,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await this.disableDialogs();
         
         await page.evaluate(`window.location = ${JSON.stringify(url)}`);
-
-        await this.disableDialogs();
     
         await tryX(2, async () => {
             await page.waitForFunction(waitForReadyState, {timeout: timeout / 2}, {
@@ -1024,6 +1022,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
                 timeout: timeout / 2
             });
         });
+
+        await this.disableDialogs();
     }
 
     public async waitForElementPresent(selector: string, options: {
