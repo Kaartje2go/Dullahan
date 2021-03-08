@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-plugin-report-html",
-  "version": "1.0.0-alpha.63",
+  "version": "1.0.0-alpha.64",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -14,7 +14,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^1.0.0-alpha.63",
+    "@k2g/dullahan": "^1.0.0-alpha.64",
     "ejs": "^3.1.5"
   }
 }
