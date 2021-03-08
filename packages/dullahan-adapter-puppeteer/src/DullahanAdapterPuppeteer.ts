@@ -517,6 +517,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             expectNoMatches: false
         };
 
+        // try $
         const element = await page.$(selector);
 
         if (!element) {
