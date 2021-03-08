@@ -517,8 +517,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             expectNoMatches: false
         };
 
-        // try $
-        const element = await page.$(selector);
+        const elementHandle = await page.evaluateHandle(findElement, findOptions);
+        const element = elementHandle.asElement();
 
         if (!element) {
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
@@ -990,6 +990,17 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         return screenshot.replace(/^data:image\/png;base64,/, '');
     }
 
+    public async disableDialogs(): Promise<void> {
+        await this.executeScript(`
+        var noop = function () {};
+
+        window.confirm = noop;
+        window.alert = noop;
+        window.prompt = noop;
+        window.onbeforeunload = noop;
+        `);
+    }
+
     public async setURL(url: string, options: {
         readyState: DullahanReadyState;
         timeout: number;
@@ -1001,16 +1012,11 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await this.executeScript(`
-        var noop = function () {};
-
-        window.confirm = noop;
-        window.alert = noop;
-        window.prompt = noop;
-        window.onbeforeunload = noop;
-        `);
+        await this.disableDialogs();
         
-        await page.evaluate(`window.location = ${JSON.stringify(url)}`),
+        await page.evaluate(`window.location = ${JSON.stringify(url)}`);
+
+        await this.disableDialogs();
     
         await tryX(2, async () => {
             await page.waitForFunction(waitForReadyState, {timeout: timeout / 2}, {
