@@ -517,8 +517,14 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             expectNoMatches: false
         };
 
-        const elementHandle = await page.evaluateHandle(findElement, findOptions);
-        const element = elementHandle.asElement();
+
+        console.log('before evaluateHandle');
+        const elementHandle = await Promise.race([
+            page.evaluateHandle(findElement, findOptions),
+            page.waitFor(15000)
+        ]);
+        const element = elementHandle && elementHandle.asElement();
+        console.log('after evaluateHandle')
 
         if (!element) {
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
@@ -528,7 +534,9 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             return element.tap();
         }
 
+        console.log('before click');
         await element.click();
+        console.log('after click');
     }
 
     public async clickAt(x: number, y: number): Promise<void> {
