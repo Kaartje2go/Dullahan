@@ -517,14 +517,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             expectNoMatches: false
         };
 
-
-        console.log('before evaluateHandle');
-        const elementHandle = await Promise.race([
-            page.evaluateHandle(findElement, findOptions),
-            page.waitFor(15000)
-        ]);
-        const element = elementHandle && elementHandle.asElement();
-        console.log('after evaluateHandle')
+        // try $
+        const element = await page.$(selector);
 
         if (!element) {
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
