@@ -507,6 +507,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        await this.disableDialogs();
+
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: true,
@@ -528,7 +530,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             return element.tap();
         }
 
-        await this.disableDialogs();
         await element.click();
     }
 
