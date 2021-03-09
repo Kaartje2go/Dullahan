@@ -528,9 +528,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             return element.tap();
         }
 
-        console.log('before click');
+        await this.disableDialogs();
         await element.click();
-        console.log('after click');
     }
 
     public async clickAt(x: number, y: number): Promise<void> {
