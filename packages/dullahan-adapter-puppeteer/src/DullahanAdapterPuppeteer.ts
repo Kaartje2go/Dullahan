@@ -306,7 +306,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await page.setCookie(cookie as Puppeteer.SetCookie);
+        await page.setCookie(cookie);
     }
 
     public async setElementAttribute(selector: string, attributeName: string, attributeValue: string): Promise<void> {
@@ -693,7 +693,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
 
         return Promise.all(propertyNames.map(async (attributeName: string) => {
             const valueHandle = await element.getProperty(attributeName);
-            const value = await valueHandle.jsonValue() as T | undefined;
+            const value = valueHandle && await valueHandle.jsonValue() as T | undefined;
 
             return value ?? null;
         }));
@@ -893,7 +893,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         const launchOptions = {
-            defaultViewport: null,
             devtools,
             executablePath,
             headless,
@@ -987,7 +986,10 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             encoding: 'base64'
         });
 
-        return screenshot.replace(/^data:image\/png;base64,/, '');
+        if (typeof screenshot === 'string') {
+            return screenshot.replace(/^data:image\/png;base64,/, '');
+        }
+        return '';
     }
 
     public async disableDialogs(): Promise<void> {
