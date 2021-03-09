@@ -1021,8 +1021,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
                 timeout: timeout / 2
             });
         });
-
-        await this.disableDialogs();
     }
 
     public async waitForElementPresent(selector: string, options: {
