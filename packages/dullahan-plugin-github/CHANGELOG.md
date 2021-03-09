@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.69 (2021-03-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-github
+
+
+
+
+
 # 1.0.0-alpha.68 (2021-03-09)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-github
