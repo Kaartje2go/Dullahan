@@ -239,7 +239,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         const { lambda, client, options } = this;
         const { slaveQualifier, slaveFunctionName, slaveOptions } = options;
 
-        await sleep(i * 1000 * 10);
+        await sleep(i * 1000 * 1);
 
         const { Payload } = await lambda
             .invoke({
