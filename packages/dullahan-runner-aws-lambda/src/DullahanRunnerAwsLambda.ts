@@ -147,7 +147,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         );
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
-            
+        let i = 0;
+
         do {
             const currentPool = nextPool.splice(0, nextPool.length);
 
@@ -156,19 +157,23 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                     return;
                 }
 
-                const success = await this.processFile(testData.file).catch((error) => {
-                    console.error(error);
+                const success = await this.processFile(testData.file, i++).catch(
+                    (error) => {
+                        console.error(error);
 
-                    return false;
-                });
+                        return false;
+                    }
+                );
                 success ? testData.successes++ : testData.failures++;
 
                 if (testData.successes >= minSuccesses) {
                     return;
                 }
 
-                const hasMoreAttempts = testData.successes + testData.failures < maxAttempts;
-                const couldStillPass = maxAttempts - testData.failures >= minSuccesses;
+                const hasMoreAttempts =
+                    testData.successes + testData.failures < maxAttempts;
+                const couldStillPass =
+                    maxAttempts - testData.failures >= minSuccesses;
 
                 if (hasMoreAttempts && couldStillPass) {
                     nextPool.push(testData);
@@ -230,9 +235,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         }
     }
 
-    private async processFile(file: string): Promise<boolean> {
+    private async processFile(file: string, i: number): Promise<boolean> {
         const { lambda, client, options } = this;
         const { slaveQualifier, slaveFunctionName, slaveOptions } = options;
+
+        await sleep(i * 1000 * 10);
 
         const { Payload } = await lambda
             .invoke({
