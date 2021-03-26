@@ -18,6 +18,8 @@ import {
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
 
+const startTime = Date.now();
+
 interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
     testEndCalls?: DullahanTestEndCall[];
@@ -235,11 +237,32 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         }
     }
 
+    private sleepTillSecondsFromStart(secondsFromStart) {
+        return new Promise(resolve => {
+            setTimeout(resolve, startTime + secondsFromStart * 1000 - Date.now());
+        })
+    }
+
+    private async backpressure(i : number) {
+        if (i >= 6 && i <= 10) {
+            await this.sleepTillSecondsFromStart(5)
+        } else if (i >= 11 && i <=15) {
+            await this.sleepTillSecondsFromStart(10)
+        } else if (i >= 16 && i <=20) {
+            await this.sleepTillSecondsFromStart(15)
+        } else if (i >= 21 && i <=25) {
+            await this.sleepTillSecondsFromStart(20)
+        } else if (i >= 26 && i <= 30) {
+            await this.sleepTillSecondsFromStart(25)
+        } 
+    }
+
     private async processFile(file: string, i: number): Promise<boolean> {
         const { lambda, client, options } = this;
         const { slaveQualifier, slaveFunctionName, slaveOptions } = options;
 
-        await sleep(i * 1000 * 0.5);
+
+        await this.backpressure(i);
 
         const { Payload } = await lambda
             .invoke({
