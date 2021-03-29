@@ -19,7 +19,7 @@ import {
 import { Lambda } from "aws-sdk";
 
 import { RateLimit } from "async-sema";
-const rateLimit = RateLimit(1, { uniformDistribution: true }); // 1 request per second to avoid thundering herd
+const rateLimit = RateLimit(4, { uniformDistribution: true }); // 1 request per second to avoid thundering herd
 
 const startTime = Date.now();
 
