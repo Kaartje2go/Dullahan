@@ -18,6 +18,9 @@ import {
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
 
+import { RateLimit } from "async-sema";
+const rateLimit = RateLimit(1, { uniformDistribution: true }); // 1 request per second to avoid thundering herd
+
 const startTime = Date.now();
 
 interface Test {
@@ -159,13 +162,14 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                     return;
                 }
 
-                const success = await this.processFile(testData.file, i++).catch(
-                    (error) => {
-                        console.error(error);
+                const success = await this.processFile(
+                    testData.file,
+                    i++
+                ).catch((error) => {
+                    console.error(error);
 
-                        return false;
-                    }
-                );
+                    return false;
+                });
                 success ? testData.successes++ : testData.failures++;
 
                 if (testData.successes >= minSuccesses) {
@@ -237,32 +241,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         }
     }
 
-    private sleepTillSecondsFromStart(secondsFromStart) {
-        return new Promise(resolve => {
-            setTimeout(resolve, startTime + secondsFromStart * 1000 - Date.now());
-        })
-    }
-
-    private async backpressure(i : number) {
-        if (i >= 6 && i <= 10) {
-            await this.sleepTillSecondsFromStart(5)
-        } else if (i >= 11 && i <=15) {
-            await this.sleepTillSecondsFromStart(10)
-        } else if (i >= 16 && i <=20) {
-            await this.sleepTillSecondsFromStart(15)
-        } else if (i >= 21 && i <=25) {
-            await this.sleepTillSecondsFromStart(20)
-        } else if (i >= 26 && i <= 30) {
-            await this.sleepTillSecondsFromStart(25)
-        } 
-    }
-
     private async processFile(file: string, i: number): Promise<boolean> {
         const { lambda, client, options } = this;
         const { slaveQualifier, slaveFunctionName, slaveOptions } = options;
 
-
-        await this.backpressure(i);
+        await rateLimit();
 
         const { Payload } = await lambda
             .invoke({
