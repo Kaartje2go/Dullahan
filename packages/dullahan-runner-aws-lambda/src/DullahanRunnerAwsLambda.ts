@@ -152,8 +152,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         );
         console.log(`Running tests with concurrency ${maxConcurrency}`);
 
-        let i = 0;
-
         do {
             const currentPool = nextPool.splice(0, nextPool.length);
 
@@ -164,7 +162,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 
                 const success = await this.processFile(
                     testData.file,
-                    i++
                 ).catch((error) => {
                     console.error(error);
 
