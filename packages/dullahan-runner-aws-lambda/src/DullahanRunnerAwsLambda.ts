@@ -241,7 +241,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         }
     }
 
-    private async processFile(file: string, i: number): Promise<boolean> {
+    private async processFile(file: string): Promise<boolean> {
         const { lambda, client, options } = this;
         const { slaveQualifier, slaveFunctionName, slaveOptions } = options;
 
