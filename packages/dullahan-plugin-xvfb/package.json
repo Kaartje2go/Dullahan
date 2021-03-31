@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-plugin-xvfb",
-  "version": "1.0.0-alpha.77",
+  "version": "1.0.0-alpha.78",
   "description": "Allows Dullahan to manage Xvfb by starting, stopping and/or re-using a virtual frame buffer whenever Dullahan needs it",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,7 +13,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^1.0.0-alpha.77",
+    "@k2g/dullahan": "^1.0.0-alpha.78",
     "xvfb": "^0.4.0"
   }
 }
