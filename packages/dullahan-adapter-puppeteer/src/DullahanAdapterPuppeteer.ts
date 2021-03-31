@@ -893,6 +893,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         const launchOptions = {
+            defaultViewPort: null,
             devtools,
             executablePath,
             headless,
