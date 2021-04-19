@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "@k2g/dullahan": "^1.0.0-alpha.80",
-    "@octokit/rest": "^18.0.6"
+    "@octokit/rest": "^18.5.2"
   }
 }
