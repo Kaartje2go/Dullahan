@@ -13,15 +13,15 @@ import {
     tryIgnore,
     testFile,
     testIfOnlyTestsModified,
-    getChangedFiles,
-    sleep,
+    getChangedFiles
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
 
 import { RateLimit } from "async-sema";
-const rateLimit = RateLimit(15, { uniformDistribution: true }); // 1 request per second to avoid thundering herd
 
-const startTime = Date.now();
+const MAX_FAILURES = 20;
+
+const rateLimit = RateLimit(15, { uniformDistribution: true }); // 1 request per second to avoid thundering herd
 
 interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
@@ -34,7 +34,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 > {
     private hasStopSignal = false;
 
-    // private totalFailures = 0;
+    private totalFailures = 0;
 
     private readonly lambda = this.options.useAccessKeys
         ? new Lambda({
@@ -156,7 +156,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             const currentPool = nextPool.splice(0, nextPool.length);
 
             await asyncPool(maxConcurrency, currentPool, async (testData) => {
-                if (this.hasStopSignal) {
+                if (this.totalFailures > MAX_FAILURES || this.hasStopSignal) {
                     return;
                 }
 
@@ -178,7 +178,9 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 const couldStillPass =
                     maxAttempts - testData.failures >= minSuccesses;
 
-                if (hasMoreAttempts && couldStillPass) {
+                if (!hasMoreAttempts) {
+                    this.totalFailures += 1;
+                } else if (hasMoreAttempts && couldStillPass) {
                     nextPool.push(testData);
                 } else if (failFast) {
                     this.hasStopSignal = true;
