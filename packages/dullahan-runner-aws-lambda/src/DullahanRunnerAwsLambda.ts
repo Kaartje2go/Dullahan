@@ -246,7 +246,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 
         await rateLimit();
 
-        const { Payload } = await lambda
+        const data = await lambda
             .invoke({
                 Qualifier: slaveQualifier!,
                 FunctionName: slaveFunctionName!,
@@ -258,6 +258,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 }),
             })
             .promise();
+
+        const { Payload } = data;
 
         // If the payload is not of type string, it cannot be parsed.
         if (typeof Payload !== "string") {
@@ -281,6 +283,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             return !testEndCall?.error;
         } catch (e) {
             console.info("Failed with Payload", Payload);
+            console.info("Failed with data", data);
             console.error(e);
             return false;
         }
