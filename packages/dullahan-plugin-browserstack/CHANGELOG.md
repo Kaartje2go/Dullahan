@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.82 (2021-05-05)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-browserstack
+
+
+
+
+
 # 1.0.0-alpha.81 (2021-04-26)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-browserstack
