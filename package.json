@@ -82,7 +82,7 @@
         "commitizen": "^4.2.1",
         "cross-env": "^7.0.2",
         "docusaurus": "^1.14.6",
-        "dotenv": "^8.2.0",
+        "dotenv": "^9.0.0",
         "eslint": "^7.9.0",
         "eslint-import-resolver-typescript": "^2.3.0",
         "eslint-plugin-import": "^2.22.0",
