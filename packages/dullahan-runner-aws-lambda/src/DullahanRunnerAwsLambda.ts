@@ -283,7 +283,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             return !testEndCall?.error;
         } catch (e) {
             console.info("Failed with Payload", Payload);
-            console.info("Failed with data", data);
+            console.info("Failed with data", JSON.stringify(data));
             console.error(e);
             return false;
         }
