@@ -7,11 +7,10 @@ import {DullahanError} from '../DullahanError';
 const resolveDependencyPath = (nameOrPath: string): string => {
     try {
         const path = require.resolve(nameOrPath);
-        console.log(`Resolved dependency "${nameOrPath}" to "${path}" using NodeJS`);
 
         return path;
     } catch {
-        console.log('Dependency could not be found by NodeJS');
+        console.log(`Dependency could not be found by NodeJS ${nameOrPath}`);
     }
 
     try {
@@ -19,11 +18,9 @@ const resolveDependencyPath = (nameOrPath: string): string => {
         const absolutePath = resolvePath(cwd, nameOrPath);
         const path = require.resolve(absolutePath);
 
-        console.log(`Resolved dependency "${nameOrPath}" to "${path}" using current working directory`);
-
         return path;
     } catch {
-        console.log('Dependency could not be found relative to the current working directory');
+        console.log(`Dependency could not be found relative to the current working directory for ${nameOrPath}`);
     }
 
     throw new DullahanError(`Could not resolve dependency "${nameOrPath}"`);

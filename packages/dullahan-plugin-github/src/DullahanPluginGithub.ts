@@ -209,8 +209,6 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
                 console.error('Error creating Github comment', error);
             }
         }
-
-
     }
 
     private async setReview(comment: string): Promise<void> {
