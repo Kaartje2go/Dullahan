@@ -186,22 +186,31 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             issue_number: pullRequestNumber
         });
         const commentId = comments.find(({body}) => body.includes(identifier))?.id;
-
         if (typeof commentId === 'number') {
-            await octokit.issues.updateComment({
-                owner: repositoryOwner,
-                repo: repositoryName,
-                comment_id: commentId,
-                body: comment
-            });
+            try {
+                await octokit.issues.updateComment({
+                    owner: repositoryOwner,
+                    repo: repositoryName,
+                    comment_id: commentId,
+                    body: comment
+                });
+            } catch (error) {
+                console.error('Error updating Github comment', error);
+            }
         } else {
-            await octokit.issues.createComment({
-                owner: repositoryOwner,
-                repo: repositoryName,
-                issue_number: pullRequestNumber,
-                body: comment
-            });
+            try {
+                await octokit.issues.createComment({
+                    owner: repositoryOwner,
+                    repo: repositoryName,
+                    issue_number: pullRequestNumber,
+                    body: comment
+                });
+            } catch (error) {
+                console.error('Error creating Github comment', error);
+            }
         }
+
+
     }
 
     private async setReview(comment: string): Promise<void> {
