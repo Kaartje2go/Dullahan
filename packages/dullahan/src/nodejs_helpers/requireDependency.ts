@@ -55,12 +55,10 @@ export const requireDependency = (nameOrPath: string, options: {
         if (!keys.length) {
             throw new DullahanError(`Imported dependency "${path}" appears to be an empty file`);
         } else if (keys.includes('default')) {
-            console.log(`Imported dependency with "import default from "${path}"`);
 
             return importedData.default as unknown;
         } else if (keys.length === 1) {
             const [key] = keys;
-            console.log(`Imported dependency with "import {${key}} from "${path}"`);
 
             return importedData[key] as unknown;
         } else {
@@ -70,13 +68,9 @@ export const requireDependency = (nameOrPath: string, options: {
 
                 if (key) {
                     console.log(matchedKeys);
-                    console.log(`Imported dependency with "import {${key}} from "${path}"`);
-
                     return importedData[key] as unknown;
                 }
             }
-
-            console.log(`Imported dependency with "import * from "${path}"`);
 
             return importedData as unknown;
         }
