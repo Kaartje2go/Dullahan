@@ -1,4 +1,5 @@
 import * as Puppeteer from 'puppeteer';
+import * as PuppeteerHar from 'puppeteer-har';
 
 import {
     DullahanAdapterPuppeteerDefaultOptions,
@@ -32,6 +33,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
     protected browser?: Puppeteer.Browser;
 
     protected page?: Puppeteer.Page;
+
+    protected har?: Puppeteer.Page;
 
     public constructor(args: {
         testId: string;
@@ -618,15 +621,20 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
     }
 
     public async closeBrowser(): Promise<void> {
-        const {browser} = this;
+        const {browser, har} = this;
 
         if (!browser) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        if (har) {
+            await har.stop();
+        }
+
         await browser.close();
 
         this.browser = undefined;
+        this.har = undefined;
         this.page = undefined;
     }
 
@@ -886,7 +894,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         sessionId: string | null
     }> {
         const {options} = this;
-        const {args, devtools, headless, browserName, emulateDevice, executablePath, rawOptions, userAgent} = options;
+        const {args, devtools, headless, browserName, emulateDevice, executablePath, rawOptions, userAgent, har} = options;
 
         if (this.browser) {
             throw new AdapterError(DullahanErrorMessage.ACTIVE_BROWSER);
@@ -906,6 +914,11 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         const pages = await browser.pages();
         const page = pages[pages.length - 1];
 
+        if (har) {
+            const har = new PuppeteerHar(page);
+            await har.start({ path: 'results.har' });
+        }
+
         if (emulateDevice) {
             const emulationTarget = Puppeteer.devices[emulateDevice];
             if (userAgent) {
@@ -919,6 +932,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
 
         this.browser = browser;
         this.page = page;
+        this.har = har;
 
         return {
             sessionId: null
@@ -1016,9 +1030,9 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         await this.disableDialogs();
-        
+
         await page.evaluate(`window.location = ${JSON.stringify(url)}`);
-    
+
         await tryX(2, async () => {
             await page.waitForFunction(waitForReadyState, {timeout: timeout / 2}, {
                 readyState,

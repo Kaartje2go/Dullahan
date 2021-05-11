@@ -9,6 +9,7 @@ export type DullahanAdapterPuppeteerUserOptions = Partial<DullahanAdapterUserOpt
     executablePath?: string;
     rawOptions: Record<string, unknown>;
     userAgent?: string;
+    har?: boolean;
  }>;
 
 export const DullahanAdapterPuppeteerDefaultOptions = {
