@@ -19,8 +19,6 @@ import { Lambda } from "aws-sdk";
 
 import { RateLimit } from "async-sema";
 
-const MAX_FAILURES = 20;
-
 const rateLimit = RateLimit(15, { uniformDistribution: true }); // 1 request per second to avoid thundering herd
 
 interface Test {
@@ -33,8 +31,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
     typeof DullahanRunnerAwsLambdaDefaultOptions
 > {
     private hasStopSignal = false;
-
-    private totalFailures = 0;
 
     private readonly lambda = this.options.useAccessKeys
         ? new Lambda({
@@ -145,6 +141,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 failures: 0,
             }));
 
+        let failureCount = 0;
         const nextPool = [...testFiles];
 
         console.log(
@@ -156,7 +153,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             const currentPool = nextPool.splice(0, nextPool.length);
 
             await asyncPool(maxConcurrency, currentPool, async (testData) => {
-                if (this.totalFailures > MAX_FAILURES || this.hasStopSignal) {
+                if (this.hasStopSignal) {
                     return;
                 }
 
@@ -178,12 +175,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 const couldStillPass =
                     maxAttempts - testData.failures >= minSuccesses;
 
-                if (!hasMoreAttempts) {
-                    this.totalFailures += 1;
-                } else if (hasMoreAttempts && couldStillPass) {
+                if (hasMoreAttempts && couldStillPass) {
                     nextPool.push(testData);
                 } else if (failFast) {
-                    this.hasStopSignal = true;
+                    failureCount++;
+                    this.hasStopSignal ||= failureCount >= Number(failFast);
                 }
             });
         } while (nextPool.length && !this.hasStopSignal);
