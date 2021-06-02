@@ -75,8 +75,6 @@ exports[`@k2g/dullahan findElement should remain the same 1`] = `[Function]`;
 
 exports[`@k2g/dullahan getBoundingClientRect should remain the same 1`] = `[Function]`;
 
-exports[`@k2g/dullahan getChangedFiles should remain the same 1`] = `[Function]`;
-
 exports[`@k2g/dullahan getElementAttributes should remain the same 1`] = `[Function]`;
 
 exports[`@k2g/dullahan getElementProperties should remain the same 1`] = `[Function]`;
@@ -106,10 +104,6 @@ exports[`@k2g/dullahan setElementAttribute should remain the same 1`] = `[Functi
 exports[`@k2g/dullahan setElementProperty should remain the same 1`] = `[Function]`;
 
 exports[`@k2g/dullahan sleep should remain the same 1`] = `[Function]`;
-
-exports[`@k2g/dullahan testFile should remain the same 1`] = `[Function]`;
-
-exports[`@k2g/dullahan testIfOnlyTestsModified should remain the same 1`] = `[Function]`;
 
 exports[`@k2g/dullahan tryIgnore should remain the same 1`] = `[Function]`;
 

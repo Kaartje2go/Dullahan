@@ -11,9 +11,6 @@ import {
     DullahanRunner,
     DullahanTestEndCall,
     tryIgnore,
-    testFile,
-    testIfOnlyTestsModified,
-    getChangedFiles
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
 
@@ -103,17 +100,11 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
             )
         );
 
-        const files = await getChangedFiles();
-        const onlyModifiedTests = await testIfOnlyTestsModified(files);
-
         const testFiles = (
             await Promise.all(
                 searchResults
                     .flat()
                     .filter((file) => {
-                        if (onlyModifiedTests) {
-                            return testFile(files, file);
-                        }
                         return (
                             (!includeRegexes.length ||
                                 includeRegexes.some((iRegex) =>
