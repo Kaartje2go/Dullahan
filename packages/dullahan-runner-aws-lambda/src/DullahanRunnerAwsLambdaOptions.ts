@@ -13,6 +13,7 @@ export type DullahanRunnerAwsLambdaUserOptions = Partial<DullahanRunnerUserOptio
     accessKeyId: string;
     httpOptions?: HTTPOptions;
     maxConcurrency: number;
+    rateLimitConcurrency: number;
     region: string;
     role: 'master' | 'slave';
     secretAccessKey: string;
@@ -28,6 +29,7 @@ export type DullahanRunnerAwsLambdaUserOptions = Partial<DullahanRunnerUserOptio
 export const DullahanRunnerAwsLambdaDefaultOptions = {
     ...DullahanRunnerDefaultOptions,
     maxConcurrency: 900,
+    rateLimitConcurrency: Infinity,
     role: 'master',
     region: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_REGION || AWS_REGION || AWS_DEFAULT_REGION,
     accessKeyId: DULLAHAN_RUNNER_AWS_LAMBDA_AWS_ACCESS_KEY_ID || AWS_ACCESS_KEY_ID,
