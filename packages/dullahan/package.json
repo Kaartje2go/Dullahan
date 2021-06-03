@@ -22,7 +22,6 @@
     "clone-deep": "^4.0.1",
     "decache": "^4.6.0",
     "expect": "^26.4.2",
-    "fs-extra": "^9.0.1",
     "glob": "^7.1.6",
     "signale": "^1.4.0",
     "yargs": "^16.0.3"
