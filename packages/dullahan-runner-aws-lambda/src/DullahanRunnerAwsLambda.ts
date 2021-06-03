@@ -16,8 +16,6 @@ import { Lambda } from "aws-sdk";
 
 import { RateLimit } from "async-sema";
 
-const rateLimit = RateLimit(15, { uniformDistribution: true }); // 1 request per second to avoid thundering herd
-
 interface Test {
     functionEndCalls?: DullahanFunctionEndCall[];
     testEndCalls?: DullahanTestEndCall[];
@@ -77,6 +75,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
         } = this;
         const {
             maxConcurrency,
+            rateLimitConcurrency,
             minSuccesses,
             maxAttempts,
             failFast,
@@ -134,6 +133,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
 
         let failureCount = 0;
         const nextPool = [...testFiles];
+        const rateLimit = rateLimitConcurrency === Infinity ? null
+            : RateLimit(rateLimitConcurrency, {uniformDistribution: true});
 
         console.log(
             `Dullahan Runner AWS Lambda - found ${testFiles.length} valid test files`
@@ -147,6 +148,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
                 if (this.hasStopSignal) {
                     return;
                 }
+
+                rateLimit && await rateLimit();
 
                 const success = await this.processFile(
                     testData.file,
@@ -230,8 +233,6 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<
     private async processFile(file: string): Promise<boolean> {
         const { lambda, client, options } = this;
         const { slaveQualifier, slaveFunctionName, slaveOptions } = options;
-
-        await rateLimit();
 
         const data = await lambda
             .invoke({

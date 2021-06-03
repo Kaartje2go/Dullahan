@@ -276,6 +276,7 @@ Object {
   "maxAttempts": 1,
   "maxConcurrency": 900,
   "minSuccesses": 1,
+  "rateLimitConcurrency": Infinity,
   "region": undefined,
   "role": "master",
   "rootDirectories": Array [],
