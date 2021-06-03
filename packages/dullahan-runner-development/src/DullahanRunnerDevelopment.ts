@@ -23,8 +23,8 @@ export default class DullahanRunnerDevelopment extends DullahanRunner<DullahanRu
     private isBusy = false;
 
     private instance?: ({
-        api: DullahanApi<never, never>;
-        adapter: DullahanAdapter<never, never>;
+        api: DullahanApi<any, any>;
+        adapter: DullahanAdapter<any, any>;
         test: DullahanTest;
     });
 
@@ -102,8 +102,8 @@ export default class DullahanRunnerDevelopment extends DullahanRunner<DullahanRu
 
     private async processFile(file: string, instance: {
         testId: string;
-        api: DullahanApi<never, never>;
-        adapter: DullahanAdapter<never, never>;
+        api: DullahanApi<any, any>;
+        adapter: DullahanAdapter<any, any>;
         test: DullahanTest;
     }): Promise<boolean> {
         const {client} = this;

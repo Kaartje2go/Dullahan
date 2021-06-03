@@ -15,9 +15,9 @@ export type DullahanApiArguments<
     testId: string;
     test: DullahanTest;
     client: DullahanClient;
-    adapter: DullahanAdapter<never, never>;
+    adapter: DullahanAdapter<any, any>;
     userOptions: DullahanApiSubclassUserOptions;
-    defaultOptions: DullahanApiSubclassDefaultOptions;
+    defaultOptions?: DullahanApiSubclassDefaultOptions;
 };
 
 export class DullahanApi<
@@ -27,7 +27,7 @@ export class DullahanApi<
 
     protected readonly client: unknown;
 
-    protected readonly adapter: DullahanAdapter<never, never>;
+    protected readonly adapter: DullahanAdapter<any, any>;
 
     protected readonly test: DullahanTest;
 

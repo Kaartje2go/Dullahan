@@ -81,6 +81,8 @@ exports[`@k2g/dullahan getElementProperties should remain the same 1`] = `[Funct
 
 exports[`@k2g/dullahan getElementStyles should remain the same 1`] = `[Function]`;
 
+exports[`@k2g/dullahan hasProperty should remain the same 1`] = `[Function]`;
+
 exports[`@k2g/dullahan isAbsolutePath should remain the same 1`] = `[Function]`;
 
 exports[`@k2g/dullahan isDullahanConfig should remain the same 1`] = `[Function]`;

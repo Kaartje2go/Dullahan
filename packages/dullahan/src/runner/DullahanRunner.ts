@@ -11,7 +11,7 @@ export type DullahanRunnerArguments<DullahanRunnerSubclassUserOptions extends Du
     DullahanRunnerSubclassDefaultOptions extends typeof DullahanRunnerDefaultOptions> = {
     client: DullahanClient;
     userOptions: DullahanRunnerSubclassUserOptions;
-    defaultOptions: DullahanRunnerSubclassDefaultOptions;
+    defaultOptions?: DullahanRunnerSubclassDefaultOptions;
 };
 
 export abstract class DullahanRunner<DullahanRunnerSubclassUserOptions extends DullahanRunnerUserOptions,
@@ -34,7 +34,7 @@ export abstract class DullahanRunner<DullahanRunnerSubclassUserOptions extends D
     public constructor({
                            client,
                            userOptions,
-                           defaultOptions
+                           defaultOptions = DullahanRunnerDefaultOptions as DullahanRunnerSubclassDefaultOptions
                        }: DullahanRunnerArguments<DullahanRunnerSubclassUserOptions, DullahanRunnerSubclassDefaultOptions>) {
         this.client = client;
         this.options = assignDeep({}, defaultOptions, userOptions);

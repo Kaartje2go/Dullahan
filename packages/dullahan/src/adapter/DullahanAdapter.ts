@@ -15,7 +15,7 @@ export type DullahanAdapterArguments<
     testId: string;
     client: DullahanClient;
     userOptions: DullahanAdapterSubclassUserOptions;
-    defaultOptions: DullahanAdapterSubclassDefaultOptions;
+    defaultOptions?: DullahanAdapterSubclassDefaultOptions;
 };
 
 export abstract class DullahanAdapter<
@@ -31,7 +31,7 @@ export abstract class DullahanAdapter<
         testId,
         client,
         userOptions,
-        defaultOptions,
+        defaultOptions = DullahanAdapterDefaultOptions as DullahanAdapterSubclassDefaultOptions,
     }: DullahanAdapterArguments<
         DullahanAdapterSubclassUserOptions,
         DullahanAdapterSubclassDefaultOptions
