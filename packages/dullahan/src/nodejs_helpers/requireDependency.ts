@@ -3,30 +3,35 @@ import {resolve as resolvePath} from 'path';
 import decache from 'decache';
 
 import {DullahanError} from '../DullahanError';
+import {DependencyPath, isAbsolutePath, isRelativePath} from "./types";
 
-const resolveDependencyPath = (nameOrPath: string): string => {
-    try {
-        const path = require.resolve(nameOrPath);
-
-        return path;
-    } catch {
-        console.log(`Dependency could not be found by NodeJS ${nameOrPath}`);
+const resolveDependencyPath = (path: DependencyPath): string => {
+    if (isAbsolutePath(path)) {
+        try {
+            return require.resolve(path);
+        } catch (error) {
+            throw new DullahanError(`Could not resolve dependency "${path}" as an absolute path`);
+        }
     }
 
-    try {
+    if (isRelativePath(path)) {
         const cwd = process.cwd();
-        const absolutePath = resolvePath(cwd, nameOrPath);
-        const path = require.resolve(absolutePath);
-
-        return path;
-    } catch {
-        console.log(`Dependency could not be found relative to the current working directory for ${nameOrPath}`);
+        try {
+            const absolutePath = resolvePath(cwd, path);
+            return require.resolve(absolutePath);
+        } catch (error) {
+            throw new DullahanError(`Could not resolve dependency "${path}" as a relative path to "${cwd}"`);
+        }
     }
 
-    throw new DullahanError(`Could not resolve dependency "${nameOrPath}"`);
+    try {
+        return require.resolve(path);
+    } catch (error) {
+        throw new DullahanError(`Could not resolve dependency "${path}" as a node module`);
+    }
 };
 
-export const requireDependency = (nameOrPath: string, options: {
+export const requireDependency = (nameOrPath: DependencyPath, options: {
     expectedName?: RegExp;
     clearCache?: 'shallow' | 'recursive';
 }): unknown => {

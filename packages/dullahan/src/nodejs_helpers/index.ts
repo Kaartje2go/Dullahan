@@ -4,3 +4,4 @@ export * from './sleep';
 export * from './requireDependency';
 export * from './options';
 export * from './runModifiedTests';
+export * from './types';
