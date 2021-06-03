@@ -40,8 +40,8 @@ export const saveArtifactToFile = async (artifact: Artifact): Promise<URL> => {
     return pathToFileURL(filePath);
 };
 
-export const saveArtifactToRemotes = async (artifact: Artifact, plugins: DullahanPlugin<never, never>[]): Promise<URL[]> => {
-    const uploads = plugins.map(async (plugin: DullahanPlugin<never, never>) => plugin.uploadArtifact(artifact));
+export const saveArtifactToRemotes = async (artifact: Artifact, plugins: DullahanPlugin<any, any>[]): Promise<URL[]> => {
+    const uploads = plugins.map(async (plugin: DullahanPlugin<any, any>) => plugin.uploadArtifact(artifact));
 
     return (await Promise.all(uploads)).filter((url): url is URL => !!url);
 };

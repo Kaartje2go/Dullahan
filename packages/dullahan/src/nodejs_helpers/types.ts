@@ -1,3 +1,10 @@
+import {DullahanTest} from "../DullahanTest";
+import {DullahanAdapter, DullahanAdapterArguments} from "../adapter/DullahanAdapter";
+import {DullahanApi, DullahanApiArguments} from "../api/DullahanApi";
+import {DullahanClient} from "../DullahanClient";
+import {DullahanPlugin} from "../DullahanPlugin";
+import {DullahanRunner, DullahanRunnerArguments} from "../runner/DullahanRunner";
+
 export type AbsolutePath = string;
 export type RelativePath = string;
 export type ModulePath = string;
@@ -39,11 +46,26 @@ export const isRelativePath = (path: string): path is RelativePath => {
  * Does not check if the file or directory actually exists.
  *
  * @example
- * import 'jquery';
- * import 'jquery/file';
+ * import '@k2g/dullahan';
+ * import '@k2g/dullahan/file';
  *
  * @param path Any string that could be used in a require call.
  */
 export const isModulePath = (path: string): path is ModulePath => {
     return !!path.length && !isRelativePath(path) && !isAbsolutePath(path);
+};
+
+export type ApiContructor = new (args: DullahanApiArguments<any, any>) => DullahanApi<any, any>;
+
+export type AdapterConstructor = new (args: DullahanAdapterArguments<any, any>) => DullahanAdapter<any, any>;
+
+export type RunnerConstructor = new (args: DullahanRunnerArguments<any, any>) => DullahanRunner<any, any>;
+
+export type PluginConstructor = new (args: {
+    client: DullahanClient;
+    userOptions: object;
+}) => DullahanPlugin<any, any>;
+
+export const hasProperty = <O, P extends PropertyKey>(object: O, property: P): object is O & Record<P, unknown> => {
+    return object !== null && typeof object === 'object' && Object.prototype.hasOwnProperty.call(object, property);
 };

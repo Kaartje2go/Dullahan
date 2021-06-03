@@ -1,4 +1,4 @@
-import {DullahanRunnerDefaultOptions, DullahanRunnerUserOptions} from '@k2g/dullahan';
+import {DullahanRunnerDefaultOptions, DullahanRunnerUserOptions, DullahanTest} from '@k2g/dullahan';
 import { HTTPOptions } from 'aws-sdk';
 
 const {
@@ -10,6 +10,7 @@ const {
 } = process.env;
 
 export type DullahanRunnerAwsLambdaUserOptions = Partial<DullahanRunnerUserOptions & {
+    tests?: DullahanTest[];
     accessKeyId: string;
     httpOptions?: HTTPOptions;
     maxConcurrency: number;
@@ -21,6 +22,11 @@ export type DullahanRunnerAwsLambdaUserOptions = Partial<DullahanRunnerUserOptio
     slaveQualifier: string;
     slaveOptions: {
         file: string;
+        test?: DullahanTest;
+        [key: string]: unknown;
+    } | {
+        file?: undefined;
+        test: DullahanTest;
         [key: string]: unknown;
     };
     useAccessKeys: boolean;
