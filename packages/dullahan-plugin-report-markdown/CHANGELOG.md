@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.87 (2021-06-03)
+
+
+### Features
+
+* allow tests to be passed as instances ([#205](https://github.com/Kaartje2go/Dullahan/issues/205)) ([2e8506f](https://github.com/Kaartje2go/Dullahan/commit/2e8506f136b6cac2c0d439cf7ffe6a0eac4b2666))
+
+
+
+
+
 # 1.0.0-alpha.86 (2021-06-03)
 
 
