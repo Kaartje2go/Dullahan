@@ -8,8 +8,10 @@ import {
     DullahanClient,
     DullahanError,
     DullahanFunctionEndCall,
-    DullahanRunner, DullahanTest,
-    DullahanTestEndCall, hasProperty,
+    DullahanRunner,
+    DullahanTest,
+    DullahanTestEndCall,
+    hasProperty,
     tryIgnore,
 } from "@k2g/dullahan";
 import { Lambda } from "aws-sdk";
