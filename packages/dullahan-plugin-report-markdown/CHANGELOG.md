@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.86 (2021-06-03)
+
+
+### Features
+
+* add rateLimitConcurrency option ([#203](https://github.com/Kaartje2go/Dullahan/issues/203)) ([3569404](https://github.com/Kaartje2go/Dullahan/commit/3569404de8044eb20df9d7008711bf1974b5cb51))
+
+
+
+
+
 # 1.0.0-alpha.85 (2021-06-03)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-markdown
