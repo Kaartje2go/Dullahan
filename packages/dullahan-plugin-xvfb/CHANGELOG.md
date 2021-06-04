@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.88 (2021-06-04)
+
+
+### Features
+
+* add support for inlined templates ([#206](https://github.com/Kaartje2go/Dullahan/issues/206)) ([c0653af](https://github.com/Kaartje2go/Dullahan/commit/c0653af7778139451d0527cbbb35836b096cb434))
+
+
+
+
+
 # 1.0.0-alpha.87 (2021-06-03)
 
 
