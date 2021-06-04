@@ -44,7 +44,7 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
 
         if (!this.options.template) {
             this.filename = resolvePath(__dirname, '../template/report.ejs');
-        } else if (this.options.template.includes('\n')) {
+        } else if (this.options.template.includes('<')) {
             this.filename = 'report.ejs';
             this.templatePromise = Promise.resolve(this.options.template);
         } else if (isRelativePath(this.options.template)) {
