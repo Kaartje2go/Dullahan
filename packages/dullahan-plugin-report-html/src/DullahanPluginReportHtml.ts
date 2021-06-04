@@ -17,22 +17,21 @@ import { readFile } from "fs";
 import {
     Artifact,
     DullahanClient,
+    DullahanError,
     DullahanFunctionEndCall,
     DullahanPlugin,
     DullahanTestEndCall,
+    isAbsolutePath,
+    isRelativePath
 } from "@k2g/dullahan";
 export default class DullahanPluginReportHtml extends DullahanPlugin<
     DullahanPluginReportHtmlUserOptions,
     typeof DullahanPluginReportHtmlDefaultOptions
 > {
-    private readonly filename = this.options.template
-        ? resolvePath(process.cwd(), this.options.template)
-        : resolvePath(__dirname, "../template/report.ejs");
 
-    private startTime:number;
-    private readonly templatePromise = promisify(readFile)(
-        this.filename
-    ).then((buffer) => buffer.toString());
+    private startTime: number;
+    private readonly filename;
+    private readonly templatePromise: Promise<string>;
 
     public constructor(args: {
         client: DullahanClient;
@@ -42,6 +41,21 @@ export default class DullahanPluginReportHtml extends DullahanPlugin<
             ...args,
             defaultOptions: DullahanPluginReportHtmlDefaultOptions,
         });
+
+        if (!this.options.template) {
+            this.filename = resolvePath(__dirname, '../template/report.ejs');
+        } else if (this.options.template.includes('<')) {
+            this.filename = 'report.ejs';
+            this.templatePromise = Promise.resolve(this.options.template);
+        } else if (isRelativePath(this.options.template)) {
+            this.filename = resolvePath(process.cwd(), this.options.template)
+        } else if (isAbsolutePath(this.options.template)) {
+            this.filename = resolvePath(this.options.template);
+        } else {
+            throw new DullahanError('Loading templates from node_modules is not (yet) supported');
+        }
+
+        this.templatePromise ??= promisify(readFile)(this.filename).then((buffer) => buffer.toString());
         this.startTime = Date.now();
     }
 

@@ -1,4 +1,4 @@
-import {DullahanPluginUserOptions, DullahanPluginDefaultOptions} from '@k2g/dullahan';
+import {DullahanPluginUserOptions, DullahanPluginDefaultOptions, DependencyPath} from '@k2g/dullahan';
 
 export type DullahanPluginReportHtmlUserOptions = Partial<DullahanPluginUserOptions & {
     reportTitle: string;
@@ -9,7 +9,7 @@ export type DullahanPluginReportHtmlUserOptions = Partial<DullahanPluginUserOpti
     colorUnstable: string;
     colorSlow: string;
     colorSuccessful: string;
-    template: string;
+    template: DependencyPath | string;
 }>;
 
 export const DullahanPluginReportHtmlDefaultOptions = {
