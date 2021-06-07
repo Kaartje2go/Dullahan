@@ -23,6 +23,22 @@ export class DullahanTest<Api extends DullahanApi<DullahanApiUserOptions, Dullah
         this.disabled = !!disabled;
         this.run = run;
     }
+
+    public toJSON(): {
+        name: string;
+        tags: string[];
+        disabled: boolean;
+        run: string;
+    } {
+        const {name, tags, disabled, run} = this;
+
+        return {
+          name,
+          tags,
+          disabled,
+          run: run.toString()
+        };
+    }
 }
 
 export const isValidTest = (test: Partial<DullahanTest>): test is DullahanTest => {
