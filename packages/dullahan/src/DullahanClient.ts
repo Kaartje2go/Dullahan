@@ -113,7 +113,7 @@ export class DullahanClient {
     } | null {
         const {config, Api, Adapter} = this;
 
-        const testId = createHash('sha256').update(file.toString()).digest('hex');
+        const testId = createHash('sha256').update(JSON.stringify(file)).digest('hex');
         const test = typeof file === 'string' ? requireDependency(file, {clearCache}) as Partial<DullahanTest> : file;
 
         if (!isValidTest(test)) {
