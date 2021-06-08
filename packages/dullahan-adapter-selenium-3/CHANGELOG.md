@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.89 (2021-06-08)
+
+
+### Bug Fixes
+
+* generate test ids based on test content ([#207](https://github.com/Kaartje2go/Dullahan/issues/207)) ([b3ded5b](https://github.com/Kaartje2go/Dullahan/commit/b3ded5b15aa42e979be0e031cc0c98718e2dbec2))
+
+
+
+
+
 # 1.0.0-alpha.88 (2021-06-04)
 
 
