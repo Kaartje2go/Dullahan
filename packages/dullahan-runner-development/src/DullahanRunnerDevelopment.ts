@@ -113,6 +113,7 @@ export default class DullahanRunnerDevelopment extends DullahanRunner<DullahanRu
         if (oldInstance) {
             await tryIgnore(3, async () => {
                 if (await oldInstance.adapter.isBrowserOpen()) {
+                    await oldInstance.adapter.disableDialogs();
                     await oldInstance.adapter.closeBrowser();
                 }
             });

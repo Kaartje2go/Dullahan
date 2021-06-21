@@ -263,4 +263,34 @@ export abstract class DullahanAdapter<
             readyState: DullahanReadyState;
         }
     ): Promise<void>;
+
+    public async enableDialogs(): Promise<void> {
+        await this.executeScript(`
+            window.confirm = window.__DULLAHAN_CONFIRM__ || window.confirm;
+            window.alert = window.__DULLAHAN_ALERT__ || window.alert;
+            window.prompt = window.__DULLAHAN_PROMPT__ || window.prompt;
+            window.onbeforeunload = window.__DULLAHAN_ONBEFOREUNLOAD__ || window.onbeforeunload;
+        `);
+    }
+
+    public async disableDialogs(): Promise<void> {
+        await this.executeScript(`
+            window.__DULLAHAN_CONFIRM__ = window.confirm;
+            window.__DULLAHAN_ALERT__ = window.alert;
+            window.__DULLAHAN_PROMPT__ = window.prompt;
+            window.__DULLAHAN_ONBEFOREUNLOAD__ = window.onbeforeunload;
+
+            var noop = function () {};
+            window.confirm = noop;
+            window.alert = noop;
+            window.prompt = noop;
+            window.onbeforeunload = noop;
+        `);
+    }
+
+    public abstract waitForDialog(options: {
+        timeout: number;
+    }): Promise<void>;
+
+    public abstract setDialogValue(accept: boolean, value?: string): Promise<void>;
 }
