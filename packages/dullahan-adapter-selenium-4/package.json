@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-adapter-selenium-4",
-  "version": "1.0.0-alpha.90",
+  "version": "1.0.0-alpha.91",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,7 +13,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^1.0.0-alpha.90",
+    "@k2g/dullahan": "^1.0.0-alpha.91",
     "deepmerge": "^4.2.2",
     "selenium-webdriver": "4.0.0-alpha.6"
   },
