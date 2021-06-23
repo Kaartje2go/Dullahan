@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-plugin-slack",
-  "version": "1.0.0-alpha.91",
+  "version": "1.0.0-alpha.92",
   "description": "Allows Dullahan to send messages to Slack",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,7 +13,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^1.0.0-alpha.91",
+    "@k2g/dullahan": "^1.0.0-alpha.92",
     "@slack/client": "^5.0.2"
   }
 }
