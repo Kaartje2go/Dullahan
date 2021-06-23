@@ -32,6 +32,8 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
 
     protected page?: Playwright.Page;
 
+    protected dialog?: Playwright.Dialog;
+
     public constructor(args: {
         testId: string;
         client: DullahanClient;
@@ -877,6 +879,8 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         const context = await browser.newContext(contextOptions);
         const page = await context.newPage();
 
+        page.on('dialog', (dialog) => this.dialog = dialog);
+
         this.browser = browser;
         this.page = page;
 
@@ -1140,4 +1144,23 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         await field.click();
     }
 
+    public async waitForDialog({timeout}): Promise<void> {
+        const start = Date.now();
+        const end = start + timeout;
+
+        while (!this.dialog && Date.now () < end) {
+            await sleep(1000 / 60);
+        }
+    }
+
+    public async setDialogValue(accept: boolean, value?: string): Promise<void> {
+        const {dialog} = this;
+
+        if (!dialog) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await (accept ? dialog.accept(value) : dialog.dismiss());
+        this.dialog = undefined;
+    }
 }

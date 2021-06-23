@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan",
-  "version": "1.0.0-alpha.89",
+  "version": "1.0.0-alpha.92",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -21,7 +21,7 @@
     "assign-deep": "^1.0.1",
     "clone-deep": "^4.0.1",
     "decache": "^4.6.0",
-    "expect": "^26.4.2",
+    "expect": "^27.0.0",
     "glob": "^7.1.6",
     "signale": "^1.4.0",
     "yargs": "^16.0.3"

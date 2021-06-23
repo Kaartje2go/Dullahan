@@ -1,4 +1,4 @@
-import {Builder, Origin, WebDriver, WebElement} from 'selenium-webdriver';
+import {Builder, Origin, until, WebDriver, WebElement} from 'selenium-webdriver';
 
 import {
     buildChrome,
@@ -1409,5 +1409,27 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         } catch (e) {
             throw e;
         }
+    }
+
+    public async waitForDialog({timeout}): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await driver.wait(until.alertIsPresent(), timeout);
+    }
+
+    public async setDialogValue(accept: boolean, value?: string): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const dialog = await driver.switchTo().alert();
+        value && await dialog.sendKeys(value);
+        await (accept ? dialog.accept() : dialog.dismiss());
     }
 }

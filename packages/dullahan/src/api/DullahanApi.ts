@@ -594,4 +594,32 @@ export class DullahanApi<
 
         await adapter.clickIFrameElement(iFrameSelector, selector);
     }
+
+    public async disableDialogs(): Promise<void> {
+        return this.adapter.disableDialogs();
+    }
+
+    public async enableDialogs(): Promise<void> {
+        return this.adapter.enableDialogs();
+    }
+
+    public async acceptDialog(value?: string, timeout?: number): Promise<void> {
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
+
+        await adapter.waitForDialog({
+            timeout: timeout ?? defaultTimeout
+        });
+        await adapter.setDialogValue(true, value);
+    }
+
+    public async dismissDialog(timeout?: number): Promise<void> {
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
+
+        await adapter.waitForDialog({
+            timeout: timeout ?? defaultTimeout
+        });
+        await adapter.setDialogValue(false);
+    }
 }
