@@ -242,6 +242,16 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await page.keyboard.type(keys);
     }
 
+    public async pressKey(key: string): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await page.keyboard.press(key);
+    }
+
     public async clearText(selector: string, count: number): Promise<void> {
         const {page} = this;
 
@@ -1016,9 +1026,9 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         await this.disableDialogs();
-        
+
         await page.evaluate(`window.location = ${JSON.stringify(url)}`);
-    
+
         await tryX(2, async () => {
             await page.waitForFunction(waitForReadyState, {timeout: timeout / 2}, {
                 readyState,
