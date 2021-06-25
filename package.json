@@ -100,7 +100,7 @@
         "serve": "^11.3.2",
         "signale": "^1.4.0",
         "ts-jest": "^26.3.0",
-        "ts-node": "^9.0.0",
+        "ts-node": "^10.0.0",
         "tsconfig-paths": "^3.9.0",
         "typedoc": "^0.19.1",
         "typedoc-plugin-lerna-packages": "^0.3.1",
