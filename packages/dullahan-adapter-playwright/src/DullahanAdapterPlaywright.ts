@@ -12,6 +12,7 @@ import {
     DullahanClient,
     DullahanCookie,
     DullahanErrorMessage,
+    DullahanKey,
     DullahanReadyState,
     findElement,
     FindElementOptions,
@@ -244,6 +245,16 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         }
 
         await page.keyboard.type(keys);
+    }
+
+    public async pressKey(key: DullahanKey): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await page.keyboard.press(key);
     }
 
     public async clearText(selector: string, count: number): Promise<void> {

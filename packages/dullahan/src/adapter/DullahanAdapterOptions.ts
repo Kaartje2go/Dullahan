@@ -13,5 +13,3 @@ export const DullahanAdapterDefaultOptions = {
 };
 
 export type DullahanAdapterOptions = DullahanAdapterUserOptions & typeof DullahanAdapterDefaultOptions;
-
-export type GenericKey = 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown';

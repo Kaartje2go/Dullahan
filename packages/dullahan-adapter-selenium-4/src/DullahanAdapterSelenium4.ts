@@ -22,9 +22,10 @@ import {
     DullahanCookie,
     DullahanErrorMessage,
     DullahanReadyState,
+    DullahanKey,
     emitFakeEvent,
     findElement,
-    FindElementOptions, GenericKey,
+    FindElementOptions,
     getBoundingClientRect,
     getElementAttributes,
     getElementProperties,
@@ -347,7 +348,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         await driver.actions().sendKeys(keys).perform();
     }
 
-    public async pressKey(key: GenericKey): Promise<void> {
+    public async pressKey(key: DullahanKey): Promise<void> {
         const {driver} = this;
 
         if (!driver) {

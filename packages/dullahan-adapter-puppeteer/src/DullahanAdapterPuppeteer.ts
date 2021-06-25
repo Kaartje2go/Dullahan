@@ -12,9 +12,10 @@ import {
     DullahanClient,
     DullahanCookie,
     DullahanErrorMessage,
+    DullahanKey,
     DullahanReadyState,
     findElement,
-    FindElementOptions, GenericKey,
+    FindElementOptions,
     getBoundingClientRect,
     getElementAttributes,
     getElementStyles,
@@ -244,7 +245,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await page.keyboard.type(keys);
     }
 
-    public async pressKey(key: GenericKey): Promise<void> {
+    public async pressKey(key: DullahanKey): Promise<void> {
         const {page} = this;
 
         if (!page) {
@@ -318,7 +319,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await page.setCookie(cookie);
+        await page.setCookie(cookie as Puppeteer.SetCookie);
     }
 
     public async setElementAttribute(selector: string, attributeName: string, attributeValue: string): Promise<void> {

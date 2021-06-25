@@ -2,10 +2,11 @@ import { DullahanReadyState } from "../browser_helpers/waitForReadyState";
 import { DullahanCallSpy } from "../DullahanCall";
 import { DullahanClient } from "../DullahanClient";
 import { DullahanCookie } from "../DullahanCookie";
+import { DullahanKey } from "../DullahanKey";
 
 import {
     DullahanAdapterDefaultOptions,
-    DullahanAdapterUserOptions, GenericKey
+    DullahanAdapterUserOptions
 } from "./DullahanAdapterOptions";
 
 export type DullahanAdapterArguments<
@@ -187,7 +188,7 @@ export abstract class DullahanAdapter<
 
     public abstract sendKeys(keys: string): Promise<void>;
 
-    public abstract pressKey(keys: GenericKey): Promise<void>;
+    public abstract pressKey(keys: DullahanKey): Promise<void>;
 
     public abstract sendKeysToElement(
         selector: string,
