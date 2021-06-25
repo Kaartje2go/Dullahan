@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.92 (2021-06-23)
+
+**Note:** Version bump only for package @k2g/dullahan-adapter-selenium-3
+
+
+
+
+
+# 1.0.0-alpha.91 (2021-06-22)
+
+**Note:** Version bump only for package @k2g/dullahan-adapter-selenium-3
+
+
+
+
+
+# 1.0.0-alpha.90 (2021-06-22)
+
+
+### Features
+
+* add dialog handling functionality ([#209](https://github.com/Kaartje2go/Dullahan/issues/209)) ([b03f929](https://github.com/Kaartje2go/Dullahan/commit/b03f929048856c3e89d5264fdf80bcbd009172d7))
+
+
+### BREAKING CHANGES
+
+* For puppeteer, you will now
+have to disable dialogs in your tests yourself.
+
+
+
+
+
 # 1.0.0-alpha.89 (2021-06-08)
 
 

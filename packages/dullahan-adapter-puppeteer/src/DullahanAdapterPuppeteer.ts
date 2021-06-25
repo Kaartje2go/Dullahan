@@ -33,6 +33,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
 
     protected page?: Puppeteer.Page;
 
+    protected dialog?: Puppeteer.Dialog;
+
     public constructor(args: {
         testId: string;
         client: DullahanClient;
@@ -517,8 +519,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await this.disableDialogs();
-
         const findOptions: FindElementOptions = {
             selector,
             visibleOnly: true,
@@ -927,6 +927,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             await page.setUserAgent(`${defaultUserAgent} ${userAgent}`);
         }
 
+        page.on('dialog', (dialog) => this.dialog = dialog);
+
         this.browser = browser;
         this.page = page;
 
@@ -1003,17 +1005,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         return '';
     }
 
-    public async disableDialogs(): Promise<void> {
-        await this.executeScript(`
-        var noop = function () {};
-
-        window.confirm = noop;
-        window.alert = noop;
-        window.prompt = noop;
-        window.onbeforeunload = noop;
-        `);
-    }
-
     public async setURL(url: string, options: {
         readyState: DullahanReadyState;
         timeout: number;
@@ -1024,8 +1015,6 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
-
-        await this.disableDialogs();
 
         await page.evaluate(`window.location = ${JSON.stringify(url)}`);
 
@@ -1215,5 +1204,25 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         await field.click();
+    }
+
+    public async waitForDialog({timeout}): Promise<void> {
+        const start = Date.now();
+        const end = start + timeout;
+
+        while (!this.dialog && Date.now () < end) {
+            await sleep(1000 / 60);
+        }
+    }
+
+    public async setDialogValue(accept: boolean, value?: string): Promise<void> {
+        const {dialog} = this;
+
+        if (!dialog) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await (accept ? dialog.accept(value) : dialog.dismiss());
+        this.dialog = undefined;
     }
 }
