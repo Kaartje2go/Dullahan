@@ -2,6 +2,7 @@ import {DullahanAdapter} from '../adapter';
 import {DullahanCallSpy} from '../DullahanCall';
 import {DullahanCookie} from '../DullahanCookie';
 import {DullahanClient} from '../DullahanClient';
+import {DullahanKey} from '../DullahanKey';
 import {DullahanTest} from '../DullahanTest';
 import {resolve as resolvePath} from 'path';
 import {DullahanApiUserOptions, DullahanApiDefaultOptions} from './DullahanApiOptions';
@@ -334,6 +335,10 @@ export class DullahanApi<
 
     public async sendKeys(keys: string): Promise<void> {
         return this.adapter.sendKeys(keys);
+    }
+
+    public async pressKey(key: DullahanKey): Promise<void> {
+        return this.adapter.pressKey(key);
     }
 
     public async sendKeysToElement(selector: string, keys: string, timeout?: number): Promise<void> {

@@ -1,4 +1,4 @@
-import {Builder, Origin, until, WebDriver, WebElement} from 'selenium-webdriver';
+import {Builder, Origin, until, WebDriver, WebElement, Key} from 'selenium-webdriver';
 
 import {
     buildChrome,
@@ -22,6 +22,7 @@ import {
     DullahanCookie,
     DullahanErrorMessage,
     DullahanReadyState,
+    DullahanKey,
     emitFakeEvent,
     findElement,
     FindElementOptions,
@@ -345,6 +346,32 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().sendKeys(keys).perform();
+    }
+
+    public async pressKey(key: DullahanKey): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        switch (key) {
+            case 'ArrowLeft' :
+                await driver.actions().sendKeys(Key.ARROW_LEFT).perform();
+                break;
+            case 'ArrowRight' :
+                await driver.actions().sendKeys(Key.ARROW_RIGHT).perform();
+                break;
+            case 'ArrowUp' :
+                await driver.actions().sendKeys(Key.ARROW_UP).perform();
+                break;
+            case 'ArrowDown' :
+                await driver.actions().sendKeys(Key.ARROW_DOWN).perform();
+                break;
+            case 'Escape' :
+                await driver.actions().sendKeys(Key.ESCAPE).perform();
+        }
+
     }
 
     public async clearText(selector: string, count: number): Promise<void> {
