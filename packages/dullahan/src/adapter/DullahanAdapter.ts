@@ -5,7 +5,7 @@ import { DullahanCookie } from "../DullahanCookie";
 
 import {
     DullahanAdapterDefaultOptions,
-    DullahanAdapterUserOptions,
+    DullahanAdapterUserOptions, GenericKey
 } from "./DullahanAdapterOptions";
 
 export type DullahanAdapterArguments<
@@ -186,6 +186,8 @@ export abstract class DullahanAdapter<
     public abstract screenshotPage(): Promise<string>;
 
     public abstract sendKeys(keys: string): Promise<void>;
+
+    public abstract pressKey(keys: GenericKey): Promise<void>;
 
     public abstract sendKeysToElement(
         selector: string,

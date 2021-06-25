@@ -14,7 +14,7 @@ import {
     DullahanErrorMessage,
     DullahanReadyState,
     findElement,
-    FindElementOptions,
+    FindElementOptions, GenericKey,
     getBoundingClientRect,
     getElementAttributes,
     getElementStyles,
@@ -242,7 +242,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await page.keyboard.type(keys);
     }
 
-    public async pressKey(key: string): Promise<void> {
+    public async pressKey(key: GenericKey): Promise<void> {
         const {page} = this;
 
         if (!page) {
