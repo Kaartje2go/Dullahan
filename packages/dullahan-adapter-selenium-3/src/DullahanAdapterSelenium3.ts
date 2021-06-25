@@ -352,6 +352,9 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
                 break;
             case 'ArrowDown' :
                 await driver.actions().sendKeys(Key.ARROW_DOWN).perform();
+                break;
+            case 'Escape' :
+                await driver.actions().sendKeys(Key.ESCAPE).perform();
         }
 
     }
