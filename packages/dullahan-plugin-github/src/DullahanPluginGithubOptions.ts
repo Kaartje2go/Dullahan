@@ -6,8 +6,10 @@ const {
 
 export type DullahanPluginGithubUserOptions = Partial<DullahanPluginUserOptions & {
     enableStatusChecks: boolean;
+    enableDetailedStatusChecks: boolean;
     enablePullRequestReviews: boolean;
     enablePullRequestComments: boolean;
+    slowTestThreshold: number;
     statusName: string;
     statusUrl: string;
     githubToken: string;
@@ -21,8 +23,10 @@ export type DullahanPluginGithubUserOptions = Partial<DullahanPluginUserOptions 
 export const DullahanPluginGithubDefaultOptions = {
     ...DullahanPluginDefaultOptions,
     enableStatusChecks: true,
+    enableDetailedStatusChecks: false,
     enablePullRequestReviews: false,
     enablePullRequestComments: true,
+    slowTestThreshold: 60000,
     statusName: 'Dullahan',
     statusUrl: 'https://dullahan.io',
     githubToken: DULLAHAN_PLUGIN_GITHUB_GITHUB_TOKEN || GITHUB_TOKEN || GH_TOKEN
