@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.94 (2021-07-21)
+
+
+### Features
+
+* add detailed status checks for github ([#211](https://github.com/Kaartje2go/Dullahan/issues/211)) ([1e16d9a](https://github.com/Kaartje2go/Dullahan/commit/1e16d9ac33a4e5735990a164aa32afba10ba6d8b))
+
+
+
+
+
 # 1.0.0-alpha.93 (2021-06-25)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-json
