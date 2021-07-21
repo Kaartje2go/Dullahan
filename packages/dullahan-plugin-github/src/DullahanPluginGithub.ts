@@ -9,6 +9,7 @@ import {
     DullahanTestEndCall,
     StoredArtifact
 } from '@k2g/dullahan';
+import {isFailingTest, isSlowTest, isSuccessfulTest, isUnstableTest, Test} from './helpers';
 
 export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginGithubUserOptions,
     typeof DullahanPluginGithubDefaultOptions> {
@@ -33,17 +34,45 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
     }
 
     public async start(): Promise<void> {
-        const {enableStatusChecks} = this.options;
+        const {enableStatusChecks, enableDetailedStatusChecks, statusName, statusUrl} = this.options;
 
-        if (enableStatusChecks) {
-            await this.setStatus();
+        const promises: Promise<void>[] = [];
+
+        if (enableStatusChecks || enableDetailedStatusChecks) {
+            promises.push(this.setStatus({
+                state: 'pending'
+            }));
         }
+
+        if (enableDetailedStatusChecks) {
+            promises.push(
+                this.setStatus({
+                    state: 'pending',
+                    name: `${statusName} / Failing`
+                }),
+                this.setStatus({
+                    state: 'pending',
+                    name: `${statusName} / Unstable`
+                }),
+                this.setStatus({
+                    state: 'pending',
+                    name: `${statusName} / Slow`
+                }),
+                this.setStatus({
+                    state: 'pending',
+                    name: `${statusName} / Successful`
+                })
+            );
+        }
+
+        await Promise.all(promises);
     }
 
     public async onTestEnd(dtec: DullahanTestEndCall): Promise<DullahanTestEndCall> {
         const {options, lastStatusCheck} = this;
-        const {enableStatusChecks} = options;
+        const {enableStatusChecks, enableDetailedStatusChecks} = options;
         const {error} = dtec;
+
         if (error) {
             // Make sure to count failures only once
             if (!this.failedTests.includes(dtec.testId)) {
@@ -58,8 +87,11 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             }
         }
 
-        if (enableStatusChecks && lastStatusCheck + 15000 > Date.now()) {
-            await this.setStatus();
+        if ((enableStatusChecks || enableDetailedStatusChecks) && lastStatusCheck + 15000 > Date.now()) {
+            await this.setStatus({
+                state: 'pending',
+                description: `${this.successfulTestsCounter}/${this.successfulTestsCounter + this.failedTestsCounter} tests have passed`
+            })
         }
 
         return dtec;
@@ -67,21 +99,88 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
 
     public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[], earlyTermination: boolean): Promise<void> {
         const {options} = this;
-        const {enableStatusChecks, enablePullRequestComments, enablePullRequestReviews, statusName, statusUrl} = options;
+        const {enableStatusChecks, enablePullRequestComments, enablePullRequestReviews, enableDetailedStatusChecks, slowTestThreshold, statusName, statusUrl} = options;
 
         const html = artifacts.find(({scope, name}) => scope === 'dullahan-plugin-report-html' && name === 'report');
         const markdown = artifacts.find(({scope, name}) => scope === 'dullahan-plugin-report-markdown' && name === 'report');
+        const url = html?.remoteUrls[0] ?? markdown?.remoteUrls[0] ?? new URL( statusUrl);
 
         let comment = markdown?.data ?? '[@k2g/dullahan-plugin-report-markdown](https://github.com/Kaartje2go/Dullahan/tree/master/packages/dullahan-plugin-report-markdown) not found';
 
         if (html?.remoteUrls?.[0]) {
             comment += `\n[Continue to review full report.](${html?.remoteUrls[0]})`
-        };
+        }
+
+        const dedupedDtecs = dtecs.reduce((acc: DullahanTestEndCall[], current: DullahanTestEndCall) => {
+            const previouslyFound = acc.find((prev) => prev.testId === current.testId);
+            if (!previouslyFound) {
+                acc.push(current);
+            } else if (previouslyFound.error && !current.error) {
+                const index = acc.indexOf(previouslyFound);
+                acc[index] = current;
+            }
+            return acc;
+        }, []);
+
+        const tests: Test[] = dedupedDtecs.map((dtec) => ({
+            ...dtec,
+            calls: dfecs
+                .filter(({testId}) => dtec.testId === testId)
+                .map((call) => {
+                    const {functionResult} = call;
+
+                    if (typeof functionResult === "string" && functionResult.length > 1024) {
+                        return {
+                            ...call,
+                            functionResult: "<truncated>",
+                        };
+                    }
+
+                    return call;
+                })
+        }));
+
+        const failingTests = tests.filter(isFailingTest).length;
+        const unstableTests = tests.filter(isUnstableTest).length;
+        const slowTests = tests.filter(isSlowTest.bind(null, slowTestThreshold)).length;
+        const successfulTests = tests.filter(isSuccessfulTest.bind(null, slowTestThreshold)).length;
+        const allTests = failingTests + unstableTests + slowTests + successfulTests;
 
         const promises: Promise<void>[] = [];
 
-        if (enableStatusChecks) {
-            promises.push(this.setStatus(html?.remoteUrls[0] ?? markdown?.remoteUrls[0], earlyTermination));
+        if (enableStatusChecks || enableDetailedStatusChecks) {
+            promises.push(this.setStatus({
+                state: earlyTermination || failingTests ? 'failure' : 'success',
+                description: earlyTermination
+                    ? 'Dullahan terminated early'
+                    :`${successfulTests + slowTests + unstableTests}/${allTests} tests have passed`,
+                url
+            }));
+
+            if (enableDetailedStatusChecks) {
+                promises.push(
+                    this.setStatus({
+                        state: earlyTermination || failingTests ? 'failure' : 'success',
+                        name: `${statusName} / Failing`,
+                        url
+                    }),
+                    this.setStatus({
+                        state: earlyTermination || unstableTests ? 'failure' : 'success',
+                        name: `${statusName} / Unstable`,
+                        url
+                    }),
+                    this.setStatus({
+                        state: earlyTermination || slowTests ? 'failure' : 'success',
+                        name: `${statusName} / Slow`,
+                        url
+                    }),
+                    this.setStatus({
+                        state: earlyTermination || !successfulTests ? 'failure' : 'success',
+                        name: `${statusName} / Successful`,
+                        url
+                    })
+                );
+            }
         }
 
         if (enablePullRequestReviews) {
@@ -95,37 +194,14 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         await Promise.all(promises);
     }
 
-    private async setStatus(url?: URL, earlyTermination?: boolean): Promise<void> {
-        const {options, octokit, failedTestsCounter, successfulTestsCounter} = this;
+    private async setStatus({state, name, description, url}: {
+        state: 'pending' | 'failure' | 'success';
+        description?: string;
+        name?: string;
+        url?: URL;
+    }): Promise<void> {
+        const {options, octokit} = this;
         const {repositoryName, repositoryOwner, commitHash, statusUrl, statusName} = options;
-
-        function getState() {
-            if (!url) {
-                return 'pending';
-            }
-            if (earlyTermination) {
-                return 'failure';
-            }
-            if (failedTestsCounter) {
-                return 'failure';
-            }
-            return 'success';
-        }
-
-        function getDescription(state: string): string {
-            if (earlyTermination) {
-                return 'Dullahan terminated early!';
-            }
-            if (state === 'pending') {
-                return '';
-            }
-            return `${successfulTestsCounter}/${successfulTestsCounter + failedTestsCounter} tests have passed`;
-        }
-
-        const state = getState();
-        const description = getDescription(state);
-
-        this.lastStatusCheck = Date.now();
 
         if (typeof repositoryOwner !== 'string') {
             throw new DullahanError('Could not set status on Github: no repositoryOwner');
@@ -144,9 +220,9 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             repo: repositoryName,
             sha: commitHash,
             state,
-            context: statusName,
+            context: name ?? statusName,
             target_url: url?.href ?? statusUrl,
-            description
+            description: description ?? ''
         });
     }
 

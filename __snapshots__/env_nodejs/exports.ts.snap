@@ -192,10 +192,12 @@ exports[`@k2g/dullahan-plugin-browserstack default should remain the same 1`] = 
 
 exports[`@k2g/dullahan-plugin-github DullahanPluginGithubDefaultOptions should remain the same 1`] = `
 Object {
+  "enableDetailedStatusChecks": false,
   "enablePullRequestComments": true,
   "enablePullRequestReviews": false,
   "enableStatusChecks": true,
   "githubToken": undefined,
+  "slowTestThreshold": 60000,
   "statusName": "Dullahan",
   "statusUrl": "https://dullahan.io",
 }
