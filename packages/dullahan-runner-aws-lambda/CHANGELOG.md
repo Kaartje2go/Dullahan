@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.96 (2021-10-27)
+
+
+### Bug Fixes
+
+* install missing host dep ([#216](https://github.com/Kaartje2go/Dullahan/issues/216)) ([a20b009](https://github.com/Kaartje2go/Dullahan/commit/a20b0092582717c7f3c0782e770e4ca36bf48d70))
+
+
+
+
+
 # 1.0.0-alpha.95 (2021-10-27)
 
 
