@@ -16,6 +16,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
 
     private lastStatusCheck = Date.now() - 60000;
     private successfulTestsCounter = 0;
+    private successfulTests: string[] = [];
     private failedTestsCounter = 0;
     private failedTests: string[] = [];
 
@@ -71,16 +72,20 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
     public async onTestEnd(dtec: DullahanTestEndCall): Promise<DullahanTestEndCall> {
         const {options, lastStatusCheck} = this;
         const {enableStatusChecks, enableDetailedStatusChecks} = options;
-        const {error} = dtec;
+        const {error, testId} = dtec;
 
         if (error) {
             // Make sure to count failures only once
-            if (!this.failedTests.includes(dtec.testId)) {
+            if (!this.failedTests.includes(testId)) {
                 this.failedTestsCounter++;
-                this.failedTests.push(dtec.testId);
+                this.failedTests.push(testId);
             }
         } else {
-            this.successfulTestsCounter++;
+            // Make sure to count successes only once
+            if (!this.successfulTests.includes(testId)) {
+                this.successfulTestsCounter++;
+                this.successfulTests.push(testId);
+            }
             // If this test was marked as a failure before, decrease the failed tests count
             if (this.failedTests.includes(dtec.testId)) {
                 this.failedTestsCounter--;
