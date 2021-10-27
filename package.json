@@ -85,7 +85,7 @@
         "dotenv": "^8.2.0",
         "eslint": "^8.0.0",
         "eslint-import-resolver-typescript": "^2.3.0",
-        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-import": "^2.25.2",
         "eslint-plugin-jest": "^25.0.0",
         "eslint-plugin-jsdoc": "^37.0.0",
         "eslint-plugin-jsx-a11y": "^6.3.1",
