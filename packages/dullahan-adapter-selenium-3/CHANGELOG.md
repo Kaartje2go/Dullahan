@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.95 (2021-10-27)
+
+
+### Bug Fixes
+
+* Ensure that successes are counted only once ([#215](https://github.com/Kaartje2go/Dullahan/issues/215)) ([190ba5d](https://github.com/Kaartje2go/Dullahan/commit/190ba5d250d38282be0bc88519980f04b0cd4757))
+
+
+
+
+
 # 1.0.0-alpha.94 (2021-07-21)
 
 
