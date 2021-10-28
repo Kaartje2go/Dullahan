@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.101 (2021-10-28)
+
+
+### Bug Fixes
+
+* Changed how successful tests are counted ([#218](https://github.com/Kaartje2go/Dullahan/issues/218)) ([4f551c0](https://github.com/Kaartje2go/Dullahan/commit/4f551c0714ecb573f5461bb68be9cc99e7df27bf))
+
+
+
+
+
 # 1.0.0-alpha.100 (2021-10-28)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-playwright
