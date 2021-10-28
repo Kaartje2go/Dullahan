@@ -144,7 +144,8 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
         const unstableTests = tests.filter(isUnstableTest).length;
         const slowTests = tests.filter(isSlowTest.bind(null, slowTestThreshold)).length;
         const successfulTests = tests.filter(isSuccessfulTest.bind(null, slowTestThreshold)).length;
-        const allTests = failingTests + unstableTests + slowTests + successfulTests;
+        const passingTests = tests.filter((test) => !isFailingTest(test)).length;
+        const allTests = failingTests + passingTests;
 
         const promises: Promise<void>[] = [];
 
@@ -153,7 +154,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
                 state: earlyTermination || failingTests ? 'failure' : 'success',
                 description: earlyTermination
                     ? 'Dullahan terminated early'
-                    :`${successfulTests + slowTests + unstableTests}/${allTests} tests have passed`,
+                    :`${passingTests}/${allTests} tests have passed`,
                 url
             }));
 
