@@ -1,4 +1,4 @@
-import {Builder, Origin, WebDriver, WebElement} from 'selenium-webdriver';
+import {Builder, Origin, until, WebDriver, WebElement, Key} from 'selenium-webdriver';
 
 import {
     buildChrome,
@@ -22,6 +22,7 @@ import {
     DullahanCookie,
     DullahanErrorMessage,
     DullahanReadyState,
+    DullahanKey,
     emitFakeEvent,
     findElement,
     FindElementOptions,
@@ -345,6 +346,32 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().sendKeys(keys).perform();
+    }
+
+    public async pressKey(key: DullahanKey): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        switch (key) {
+            case 'ArrowLeft' :
+                await driver.actions().sendKeys(Key.ARROW_LEFT).perform();
+                break;
+            case 'ArrowRight' :
+                await driver.actions().sendKeys(Key.ARROW_RIGHT).perform();
+                break;
+            case 'ArrowUp' :
+                await driver.actions().sendKeys(Key.ARROW_UP).perform();
+                break;
+            case 'ArrowDown' :
+                await driver.actions().sendKeys(Key.ARROW_DOWN).perform();
+                break;
+            case 'Escape' :
+                await driver.actions().sendKeys(Key.ESCAPE).perform();
+        }
+
     }
 
     public async clearText(selector: string, count: number): Promise<void> {
@@ -1340,6 +1367,96 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async fillIFrameField(iFrameSelector: string, fieldSelector: string, value: string) {
-        throw new AdapterError('Function not implemented!');
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions = {
+            visibleOnly: false,
+            onScreenOnly: false,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const iFrameHandle = await driver.executeScript<WebElement | null>(findElement, { selector: iFrameSelector, ...findOptions });
+
+            if (!iFrameHandle) {
+                throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+            }
+
+            await driver.switchTo().frame(iFrameHandle);
+
+            const field = await driver.executeScript<WebElement | null>(findElement, { selector: fieldSelector, ...findOptions });
+
+            if (!field) {
+                throw new AdapterError(`No field found in iFrame with selector ${field}`);
+            }
+
+            await field.sendKeys(value);
+            await driver.switchTo().defaultContent();
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    public async clickIFrameElement(iFrameSelector: string, selector: string) {
+        const {driver, supportsPromises} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const findOptions = {
+            selector: iFrameSelector,
+            visibleOnly: false,
+            onScreenOnly: false,
+            interactiveOnly: false,
+            timeout: 200,
+            promise: supportsPromises,
+            expectNoMatches: false
+        };
+
+        try {
+            const iFrameHandle = await driver.executeScript<WebElement | null>(findElement, findOptions);
+
+            if (!iFrameHandle) {
+                throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+            }
+
+            await driver.switchTo().frame(iFrameHandle);
+
+            await this.click(selector);
+
+            await driver.switchTo().defaultContent();
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    public async waitForDialog({timeout}): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await driver.wait(until.alertIsPresent(), timeout);
+    }
+
+    public async setDialogValue(accept: boolean, value?: string): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const dialog = await driver.switchTo().alert();
+        value && await dialog.sendKeys(value);
+        await (accept ? dialog.accept() : dialog.dismiss());
     }
 }

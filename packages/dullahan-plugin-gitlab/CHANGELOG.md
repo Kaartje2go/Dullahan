@@ -3,6 +3,775 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.101 (2021-10-28)
+
+
+### Bug Fixes
+
+* Changed how successful tests are counted ([#218](https://github.com/Kaartje2go/Dullahan/issues/218)) ([4f551c0](https://github.com/Kaartje2go/Dullahan/commit/4f551c0714ecb573f5461bb68be9cc99e7df27bf))
+
+
+
+
+
+# 1.0.0-alpha.100 (2021-10-28)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.99 (2021-10-27)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.98 (2021-10-27)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.97 (2021-10-27)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.96 (2021-10-27)
+
+
+### Bug Fixes
+
+* install missing host dep ([#216](https://github.com/Kaartje2go/Dullahan/issues/216)) ([a20b009](https://github.com/Kaartje2go/Dullahan/commit/a20b0092582717c7f3c0782e770e4ca36bf48d70))
+
+
+
+
+
+# 1.0.0-alpha.95 (2021-10-27)
+
+
+### Bug Fixes
+
+* Ensure that successes are counted only once ([#215](https://github.com/Kaartje2go/Dullahan/issues/215)) ([190ba5d](https://github.com/Kaartje2go/Dullahan/commit/190ba5d250d38282be0bc88519980f04b0cd4757))
+
+
+
+
+
+# 1.0.0-alpha.94 (2021-07-21)
+
+
+### Features
+
+* add detailed status checks for github ([#211](https://github.com/Kaartje2go/Dullahan/issues/211)) ([1e16d9a](https://github.com/Kaartje2go/Dullahan/commit/1e16d9ac33a4e5735990a164aa32afba10ba6d8b))
+
+
+
+
+
+# 1.0.0-alpha.93 (2021-06-25)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.92 (2021-06-23)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.91 (2021-06-22)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.90 (2021-06-22)
+
+
+### Features
+
+* add dialog handling functionality ([#209](https://github.com/Kaartje2go/Dullahan/issues/209)) ([b03f929](https://github.com/Kaartje2go/Dullahan/commit/b03f929048856c3e89d5264fdf80bcbd009172d7))
+
+
+### BREAKING CHANGES
+
+* For puppeteer, you will now
+have to disable dialogs in your tests yourself.
+
+
+
+
+
+# 1.0.0-alpha.89 (2021-06-08)
+
+
+### Bug Fixes
+
+* generate test ids based on test content ([#207](https://github.com/Kaartje2go/Dullahan/issues/207)) ([b3ded5b](https://github.com/Kaartje2go/Dullahan/commit/b3ded5b15aa42e979be0e031cc0c98718e2dbec2))
+
+
+
+
+
+# 1.0.0-alpha.88 (2021-06-04)
+
+
+### Features
+
+* add support for inlined templates ([#206](https://github.com/Kaartje2go/Dullahan/issues/206)) ([c0653af](https://github.com/Kaartje2go/Dullahan/commit/c0653af7778139451d0527cbbb35836b096cb434))
+
+
+
+
+
+# 1.0.0-alpha.87 (2021-06-03)
+
+
+### Features
+
+* allow tests to be passed as instances ([#205](https://github.com/Kaartje2go/Dullahan/issues/205)) ([2e8506f](https://github.com/Kaartje2go/Dullahan/commit/2e8506f136b6cac2c0d439cf7ffe6a0eac4b2666))
+
+
+
+
+
+# 1.0.0-alpha.86 (2021-06-03)
+
+
+### Features
+
+* add rateLimitConcurrency option ([#203](https://github.com/Kaartje2go/Dullahan/issues/203)) ([3569404](https://github.com/Kaartje2go/Dullahan/commit/3569404de8044eb20df9d7008711bf1974b5cb51))
+
+
+
+
+
+# 1.0.0-alpha.85 (2021-06-03)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.84 (2021-05-07)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.83 (2021-05-07)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.82 (2021-05-05)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.81 (2021-04-26)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.80 (2021-04-01)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.79 (2021-03-31)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.78 (2021-03-31)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.77 (2021-03-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.76 (2021-03-29)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.75 (2021-03-29)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.74 (2021-03-26)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.73 (2021-03-26)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.72 (2021-03-26)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.71 (2021-03-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.70 (2021-03-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.69 (2021-03-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.68 (2021-03-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.67 (2021-03-09)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.66 (2021-03-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.65 (2021-03-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.64 (2021-03-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.63 (2021-03-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.62 (2021-03-06)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.61 (2021-03-05)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.60 (2021-03-05)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.59 (2021-03-04)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.58 (2021-03-03)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.57 (2021-03-03)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.56 (2021-03-03)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.55 (2021-02-26)
+
+
+### Bug Fixes
+
+* fixes waitForElementNotPresent, waitForElementNotVisible ([#164](https://github.com/Kaartje2go/Dullahan/issues/164)) ([bba86d9](https://github.com/Kaartje2go/Dullahan/commit/bba86d9591e7e860edd9f5b37bf2c4b9fb9ed3e3))
+
+
+
+
+
+# 1.0.0-alpha.54 (2021-02-24)
+
+
+### Bug Fixes
+
+* fixed autoscroll ([#162](https://github.com/Kaartje2go/Dullahan/issues/162)) ([154ae03](https://github.com/Kaartje2go/Dullahan/commit/154ae03864c2f028ad975fa9feac7217de1b1016))
+
+
+
+
+
+# 1.0.0-alpha.53 (2021-02-24)
+
+
+### Bug Fixes
+
+* fixed waitForElementNotVisible, waitForElementNotPresent ([#161](https://github.com/Kaartje2go/Dullahan/issues/161)) ([7f71285](https://github.com/Kaartje2go/Dullahan/commit/7f71285b5d17c0bde7465c030eb5a550093ce796))
+
+
+
+
+
+# 1.0.0-alpha.52 (2021-01-29)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.51 (2021-01-29)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.50 (2021-01-29)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.49 (2021-01-12)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.48 (2020-12-28)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.47 (2020-12-23)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.46 (2020-12-22)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.45 (2020-12-22)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.44 (2020-12-22)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.43 (2020-10-25)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.42 (2020-10-14)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.41 (2020-10-14)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.40 (2020-10-14)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.39 (2020-10-08)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.38 (2020-10-07)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.37 (2020-10-07)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.36 (2020-10-06)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.35 (2020-10-06)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.34 (2020-10-02)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.33 (2020-10-02)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.32 (2020-10-02)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.31 (2020-10-02)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.30 (2020-09-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.29 (2020-09-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.28 (2020-09-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.27 (2020-09-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.26 (2020-09-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.25 (2020-09-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.24 (2020-09-30)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.23 (2020-09-29)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.22 (2020-09-25)
+
+
+### Bug Fixes
+
+* rawCapabilities no longer override ([#118](https://github.com/Kaartje2go/Dullahan/issues/118)) ([91d948d](https://github.com/Kaartje2go/Dullahan/commit/91d948d211935160840cfd7dcaaa537bf6640e9b))
+
+
+
+
+
+# 1.0.0-alpha.21 (2020-09-24)
+
+
+### Features
+
+* Use rawCapabilities from options for selenium-4 ([#117](https://github.com/Kaartje2go/Dullahan/issues/117)) ([2f80369](https://github.com/Kaartje2go/Dullahan/commit/2f803696e1eb2e5518aec9ac0f48b6d5f7e7b566))
+
+
+
+
+
+# 1.0.0-alpha.20 (2020-09-24)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.19 (2020-09-22)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.18 (2020-09-19)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.17 (2020-09-17)
+
+
+### Features
+
+* update dependencies ([#111](https://github.com/Kaartje2go/Dullahan/issues/111)) ([1ad15f6](https://github.com/Kaartje2go/Dullahan/commit/1ad15f6375f7127c00f545e03df933830bcb5dd4))
+
+
+
+
+
+# 1.0.0-alpha.16 (2020-09-16)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.15 (2020-09-15)
+
+**Note:** Version bump only for package @k2g/dullahan-plugin-gitlab
+
+
+
+
+
+# 1.0.0-alpha.14 (2020-09-14)
+
+
+### Bug Fixes
+
+* pass parameter ([02b513d](https://github.com/Kaartje2go/Dullahan/commit/02b513d54ef813affa424cf8a708096a36d29b9c))
+
+
+
+
+
+# 1.0.0-alpha.13 (2020-09-14)
+
+
+### Features
+
+* use earlytermination flag to set failure state ([#108](https://github.com/Kaartje2go/Dullahan/issues/108)) ([21dde06](https://github.com/Kaartje2go/Dullahan/commit/21dde064898b8b666a48e70a1e98c9d52cb197d8))
+
+
+
+
+
 # 1.0.0-alpha.12 (2020-09-09)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-gitlab

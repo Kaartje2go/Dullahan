@@ -1,4 +1,4 @@
-import {Builder, WebDriver, WebElement} from 'selenium-webdriver';
+import {Builder, WebDriver, WebElement, Key, until} from 'selenium-webdriver';
 
 import {
     buildChrome,
@@ -23,7 +23,7 @@ import {
     DullahanReadyState,
     emitFakeEvent,
     findElement,
-    FindElementOptions,
+    FindElementOptions, DullahanKey,
     getBoundingClientRect,
     getElementAttributes,
     getElementProperties,
@@ -331,6 +331,32 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         }
 
         await driver.actions().sendKeys(keys).perform();
+    }
+
+    public async pressKey(key: DullahanKey): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        switch (key) {
+            case 'ArrowLeft' :
+                await driver.actions().sendKeys(Key.ARROW_LEFT).perform();
+                break;
+            case 'ArrowRight' :
+                await driver.actions().sendKeys(Key.ARROW_RIGHT).perform();
+                break;
+            case 'ArrowUp' :
+                await driver.actions().sendKeys(Key.ARROW_UP).perform();
+                break;
+            case 'ArrowDown' :
+                await driver.actions().sendKeys(Key.ARROW_DOWN).perform();
+                break;
+            case 'Escape' :
+                await driver.actions().sendKeys(Key.ESCAPE).perform();
+        }
+
     }
 
     public async clearText(selector: string, count: number): Promise<void> {
@@ -1342,4 +1368,29 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         throw new AdapterError('Function not implemented!');
     }
 
+    public async clickIFrameElement(iFrameSelector: string, fieldSelector: string) {
+        throw new AdapterError('Function not implemented!');
+    }
+
+    public async waitForDialog({timeout}): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await driver.wait(until.alertIsPresent(), timeout);
+    }
+
+    public async setDialogValue(accept: boolean, value?: string): Promise<void> {
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const dialog = await driver.switchTo().alert();
+        value && await dialog.sendKeys(value);
+        await (accept ? dialog.accept() : dialog.dismiss());
+    }
 }

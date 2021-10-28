@@ -40,10 +40,10 @@ describe('adapter.scrollToElement', () => {
             readyState: 'interactive'
         });
         await adapter.waitForElementVisible(id, {
-            timeout: 2000
+            timeout: 3000
         });
         await adapter.waitForElementPresent(target, {
-            timeout: 2000
+            timeout: 3000
         });
 
         const before = await adapter.isElementInteractable(target);

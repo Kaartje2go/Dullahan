@@ -1,5 +1,5 @@
 <details data-test-id="<%= test.testId %>">
-    <summary><%= test.testName %> (<%= Math.ceil((test.timeEnd - test.timeStart) / 1000) %>s)</summary>
+    <summary><%= test.testName %> [<%= new Date(test.timeStart).toLocaleString("nl-NL", {timeZone: "Europe/Amsterdam"}) %>] - [<%= new Date(test.timeEnd).toLocaleString("nl-NL", {timeZone: "Europe/Amsterdam"}) %>] (<%= Math.ceil((test.timeEnd - test.timeStart) / 1000) %>s)</summary>
     <% test.calls.forEach(function(call, index) { %>
         <% if (call. error && call.functionScope === 'adapter') { %>
             <div class="<%= call.error ? 'step step--error' : 'step' %>">

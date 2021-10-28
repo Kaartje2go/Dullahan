@@ -81,7 +81,15 @@ exports[`@k2g/dullahan getElementProperties should remain the same 1`] = `[Funct
 
 exports[`@k2g/dullahan getElementStyles should remain the same 1`] = `[Function]`;
 
+exports[`@k2g/dullahan hasProperty should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan isAbsolutePath should remain the same 1`] = `[Function]`;
+
 exports[`@k2g/dullahan isDullahanConfig should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan isModulePath should remain the same 1`] = `[Function]`;
+
+exports[`@k2g/dullahan isRelativePath should remain the same 1`] = `[Function]`;
 
 exports[`@k2g/dullahan isValidTest should remain the same 1`] = `[Function]`;
 
@@ -125,6 +133,7 @@ Object {
   "headless": false,
   "rawOptions": Object {},
   "slowMotion": 0,
+  "useTouch": false,
 }
 `;
 
@@ -151,6 +160,7 @@ Object {
   "maximizeWindow": true,
   "rawCapabilities": Object {},
   "slowMotion": 0,
+  "useActions": true,
 }
 `;
 
@@ -182,10 +192,12 @@ exports[`@k2g/dullahan-plugin-browserstack default should remain the same 1`] = 
 
 exports[`@k2g/dullahan-plugin-github DullahanPluginGithubDefaultOptions should remain the same 1`] = `
 Object {
+  "enableDetailedStatusChecks": false,
   "enablePullRequestComments": true,
   "enablePullRequestReviews": false,
   "enableStatusChecks": true,
   "githubToken": undefined,
+  "slowTestThreshold": 60000,
   "statusName": "Dullahan",
   "statusUrl": "https://dullahan.io",
 }
@@ -268,6 +280,7 @@ Object {
   "maxAttempts": 1,
   "maxConcurrency": 900,
   "minSuccesses": 1,
+  "rateLimitConcurrency": Infinity,
   "region": undefined,
   "role": "master",
   "rootDirectories": Array [],

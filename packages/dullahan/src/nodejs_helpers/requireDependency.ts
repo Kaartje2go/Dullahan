@@ -3,33 +3,35 @@ import {resolve as resolvePath} from 'path';
 import decache from 'decache';
 
 import {DullahanError} from '../DullahanError';
+import {DependencyPath, isAbsolutePath, isRelativePath} from "./types";
 
-const resolveDependencyPath = (nameOrPath: string): string => {
-    try {
-        const path = require.resolve(nameOrPath);
-        console.log(`Resolved dependency "${nameOrPath}" to "${path}" using NodeJS`);
-
-        return path;
-    } catch {
-        console.log('Dependency could not be found by NodeJS');
+const resolveDependencyPath = (path: DependencyPath): string => {
+    if (isAbsolutePath(path)) {
+        try {
+            return require.resolve(path);
+        } catch (error) {
+            throw new DullahanError(`Could not resolve dependency "${path}" as an absolute path`);
+        }
     }
 
-    try {
+    if (isRelativePath(path)) {
         const cwd = process.cwd();
-        const absolutePath = resolvePath(cwd, nameOrPath);
-        const path = require.resolve(absolutePath);
-
-        console.log(`Resolved dependency "${nameOrPath}" to "${path}" using current working directory`);
-
-        return path;
-    } catch {
-        console.log('Dependency could not be found relative to the current working directory');
+        try {
+            const absolutePath = resolvePath(cwd, path);
+            return require.resolve(absolutePath);
+        } catch (error) {
+            throw new DullahanError(`Could not resolve dependency "${path}" as a relative path to "${cwd}"`);
+        }
     }
 
-    throw new DullahanError(`Could not resolve dependency "${nameOrPath}"`);
+    try {
+        return require.resolve(path);
+    } catch (error) {
+        throw new DullahanError(`Could not resolve dependency "${path}" as a node module`);
+    }
 };
 
-export const requireDependency = (nameOrPath: string, options: {
+export const requireDependency = (nameOrPath: DependencyPath, options: {
     expectedName?: RegExp;
     clearCache?: 'shallow' | 'recursive';
 }): unknown => {
@@ -55,12 +57,10 @@ export const requireDependency = (nameOrPath: string, options: {
         if (!keys.length) {
             throw new DullahanError(`Imported dependency "${path}" appears to be an empty file`);
         } else if (keys.includes('default')) {
-            console.log(`Imported dependency with "import default from "${path}"`);
 
             return importedData.default as unknown;
         } else if (keys.length === 1) {
             const [key] = keys;
-            console.log(`Imported dependency with "import {${key}} from "${path}"`);
 
             return importedData[key] as unknown;
         } else {
@@ -70,13 +70,9 @@ export const requireDependency = (nameOrPath: string, options: {
 
                 if (key) {
                     console.log(matchedKeys);
-                    console.log(`Imported dependency with "import {${key}} from "${path}"`);
-
                     return importedData[key] as unknown;
                 }
             }
-
-            console.log(`Imported dependency with "import * from "${path}"`);
 
             return importedData as unknown;
         }

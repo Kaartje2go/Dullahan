@@ -12,6 +12,7 @@ import {
     DullahanClient,
     DullahanCookie,
     DullahanErrorMessage,
+    DullahanKey,
     DullahanReadyState,
     findElement,
     FindElementOptions,
@@ -31,6 +32,8 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
     protected browser?: Playwright.Browser;
 
     protected page?: Playwright.Page;
+
+    protected dialog?: Playwright.Dialog;
 
     public constructor(args: {
         testId: string;
@@ -242,6 +245,16 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         }
 
         await page.keyboard.type(keys);
+    }
+
+    public async pressKey(key: DullahanKey): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await page.keyboard.press(key);
     }
 
     public async clearText(selector: string, count: number): Promise<void> {
@@ -877,6 +890,8 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         const context = await browser.newContext(contextOptions);
         const page = await context.newPage();
 
+        page.on('dialog', (dialog) => this.dialog = dialog);
+
         this.browser = browser;
         this.page = page;
 
@@ -1115,4 +1130,48 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         await field.type(value);
     }
 
+    public async clickIFrameElement(iFrameSelector: string, selector: string) {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const iFrameHandle = await page.$(iFrameSelector);
+
+        const frame = iFrameHandle && await iFrameHandle.contentFrame();
+
+        if (!frame) {
+            throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+        }
+
+        await frame.waitForSelector(selector);
+        const field = await frame.$(selector);
+
+        if (!field) {
+            throw new AdapterError(`No field found in iFrame with selector ${field}`);
+        }
+
+        await field.click();
+    }
+
+    public async waitForDialog({timeout}): Promise<void> {
+        const start = Date.now();
+        const end = start + timeout;
+
+        while (!this.dialog && Date.now () < end) {
+            await sleep(1000 / 60);
+        }
+    }
+
+    public async setDialogValue(accept: boolean, value?: string): Promise<void> {
+        const {dialog} = this;
+
+        if (!dialog) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await (accept ? dialog.accept(value) : dialog.dismiss());
+        this.dialog = undefined;
+    }
 }

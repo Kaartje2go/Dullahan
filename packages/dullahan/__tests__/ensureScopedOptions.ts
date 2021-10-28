@@ -16,7 +16,7 @@ describe('ensureScopedOptions', () => {
     });
 
     it('should throw an error if the argument is not a type we can work with', () => {
-        const message = 'Expected input to be a string or an array containing a string and an object';
+        const message = 'Expected input to be a string/constructor or an array containing a string/constructor and an object';
 
         expect(ensureScopedOptions.bind(null, undefined)).toThrow(message);
         expect(ensureScopedOptions.bind(null, null as unknown as undefined)).toThrow(message);

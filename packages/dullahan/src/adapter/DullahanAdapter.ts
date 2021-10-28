@@ -1,68 +1,101 @@
-import {DullahanReadyState} from '../browser_helpers/waitForReadyState';
-import {DullahanCallSpy} from '../DullahanCall';
-import {DullahanClient} from '../DullahanClient';
-import {DullahanCookie} from '../DullahanCookie';
+import { DullahanReadyState } from "../browser_helpers/waitForReadyState";
+import { DullahanCallSpy } from "../DullahanCall";
+import { DullahanClient } from "../DullahanClient";
+import { DullahanCookie } from "../DullahanCookie";
+import { DullahanKey } from "../DullahanKey";
 
-import {DullahanAdapterDefaultOptions, DullahanAdapterUserOptions} from './DullahanAdapterOptions';
+import {
+    DullahanAdapterDefaultOptions,
+    DullahanAdapterUserOptions
+} from "./DullahanAdapterOptions";
 
-export type DullahanAdapterArguments<DullahanAdapterSubclassUserOptions extends DullahanAdapterUserOptions,
-    DullahanAdapterSubclassDefaultOptions extends typeof DullahanAdapterDefaultOptions> = {
+export type DullahanAdapterArguments<
+    DullahanAdapterSubclassUserOptions extends DullahanAdapterUserOptions,
+    DullahanAdapterSubclassDefaultOptions extends typeof DullahanAdapterDefaultOptions
+> = {
     testId: string;
     client: DullahanClient;
     userOptions: DullahanAdapterSubclassUserOptions;
-    defaultOptions: DullahanAdapterSubclassDefaultOptions;
+    defaultOptions?: DullahanAdapterSubclassDefaultOptions;
 };
 
-export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends DullahanAdapterUserOptions,
-    DullahanAdapterSubclassDefaultOptions extends typeof DullahanAdapterDefaultOptions> extends DullahanCallSpy {
-
+export abstract class DullahanAdapter<
+    DullahanAdapterSubclassUserOptions extends DullahanAdapterUserOptions,
+    DullahanAdapterSubclassDefaultOptions extends typeof DullahanAdapterDefaultOptions
+> extends DullahanCallSpy {
     public readonly client: DullahanClient;
 
-    protected readonly options: DullahanAdapterSubclassUserOptions & DullahanAdapterSubclassDefaultOptions;
+    protected readonly options: DullahanAdapterSubclassUserOptions &
+        DullahanAdapterSubclassDefaultOptions;
 
     public constructor({
-                           testId,
-                           client,
-                           userOptions,
-                           defaultOptions
-                       }: DullahanAdapterArguments<DullahanAdapterSubclassUserOptions, DullahanAdapterSubclassDefaultOptions>) {
+        testId,
+        client,
+        userOptions,
+        defaultOptions = DullahanAdapterDefaultOptions as DullahanAdapterSubclassDefaultOptions,
+    }: DullahanAdapterArguments<
+        DullahanAdapterSubclassUserOptions,
+        DullahanAdapterSubclassDefaultOptions
+    >) {
         super({
             testId,
             client,
-            functionScope: 'adapter',
-            slowMotion: userOptions.slowMotion ?? defaultOptions.slowMotion
+            functionScope: "adapter",
+            slowMotion: userOptions.slowMotion ?? defaultOptions.slowMotion,
         });
 
         this.client = client;
         this.options = {
             ...defaultOptions,
-            ...userOptions
+            ...userOptions,
         };
     }
 
-    public abstract async clearText(selector: string, count: number): Promise<void>;
+    public abstract clearText(selector: string, count: number): Promise<void>;
 
-    public abstract async click(selector: string): Promise<void>;
+    public abstract click(selector: string): Promise<void>;
 
-    public abstract async clickAt(x: number, y: number): Promise<void>;
+    public abstract clickAt(x: number, y: number): Promise<void>;
 
-    public abstract async clickAtElement(selector: string, offsetX: number, offsetY: number): Promise<void>;
+    public abstract clickAtElement(
+        selector: string,
+        offsetX: number,
+        offsetY: number
+    ): Promise<void>;
 
-    public abstract async clickAtElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void>;
+    public abstract clickAtElementCenter(
+        selector: string,
+        offsetCenterX: number,
+        offsetCenterY: number
+    ): Promise<void>;
 
-    public abstract async closeBrowser(): Promise<void>;
+    public abstract closeBrowser(): Promise<void>;
 
-    public abstract async displayPointer(): Promise<void>;
+    public abstract displayPointer(): Promise<void>;
 
-    public abstract async executeScript<T>(script: string): Promise<T>;
+    public abstract executeScript<T>(script: string): Promise<T>;
 
-    public abstract async fillIFrameField(iFrameSelector: string, fieldSelecgtor, value: string): Promise<void>;
+    public abstract fillIFrameField(
+        iFrameSelector: string,
+        fieldSelector,
+        value: string
+    ): Promise<void>;
 
-    public abstract async getCookie(name: string): Promise<DullahanCookie | null>;
+    public abstract clickIFrameElement(
+        iFrameSelector: string,
+        selector: string
+    ): Promise<void>;
 
-    public abstract async getElementAttributes(selector: string, ...attributeNames: string[]): Promise<(string | null)[]>;
+    public abstract getCookie(name: string): Promise<DullahanCookie | null>;
 
-    public abstract async getElementBoundaries(selector: string): Promise<{
+    public abstract getElementAttributes(
+        selector: string,
+        ...attributeNames: string[]
+    ): Promise<(string | null)[]>;
+
+    public abstract getElementBoundaries(
+        selector: string
+    ): Promise<{
         top: number;
         left: number;
         bottom: number;
@@ -73,95 +106,194 @@ export abstract class DullahanAdapter<DullahanAdapterSubclassUserOptions extends
         height: number;
     }>;
 
-    public abstract async getElementProperties<T>(selector: string, ...propertyNames: string[]): Promise<(T | null)[]>;
+    public abstract getElementProperties<T>(
+        selector: string,
+        ...propertyNames: string[]
+    ): Promise<(T | null)[]>;
 
-    public abstract async getElementStyles(selector: string, ...styleNames: string[]): Promise<{
-        value: string | null;
-        unit: string | null;
-    }[]>;
+    public abstract getElementStyles(
+        selector: string,
+        ...styleNames: string[]
+    ): Promise<
+        {
+            value: string | null;
+            unit: string | null;
+        }[]
+    >;
 
-    public abstract async getURL(): Promise<string>;
+    public abstract getURL(): Promise<string>;
 
-    public abstract async isBrowserOpen(): Promise<boolean>;
+    public abstract isBrowserOpen(): Promise<boolean>;
 
-    public abstract async isElementPresent(selector: string): Promise<boolean>;
+    public abstract isElementPresent(selector: string): Promise<boolean>;
 
-    public abstract async isElementVisible(selector: string): Promise<boolean>;
+    public abstract isElementVisible(selector: string): Promise<boolean>;
 
-    public abstract async isElementInteractable(selector: string): Promise<boolean>;
+    public abstract isElementInteractable(selector: string): Promise<boolean>;
 
-    public abstract async moveMouseTo(x: number, y: number): Promise<void>;
+    public abstract moveMouseTo(x: number, y: number): Promise<void>;
 
-    public abstract async moveMouseToElement(selector: string, offsetX: number, offsetY: number): Promise<void>;
+    public abstract moveMouseToElement(
+        selector: string,
+        offsetX: number,
+        offsetY: number
+    ): Promise<void>;
 
-    public abstract async moveMouseToElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void>;
+    public abstract moveMouseToElementCenter(
+        selector: string,
+        offsetCenterX: number,
+        offsetCenterY: number
+    ): Promise<void>;
 
-    public abstract async openBrowser(): Promise<{
-        sessionId: string | null
+    public abstract openBrowser(): Promise<{
+        sessionId: string | null;
     }>;
 
-    public abstract async pressMouseAt(x: number, y: number): Promise<void>;
+    public abstract pressMouseAt(x: number, y: number): Promise<void>;
 
-    public abstract async pressMouseAtElement(selector: string, offsetX: number, offsetY: number): Promise<void>;
+    public abstract pressMouseAtElement(
+        selector: string,
+        offsetX: number,
+        offsetY: number
+    ): Promise<void>;
 
-    public abstract async pressMouseAtElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void>;
+    public abstract pressMouseAtElementCenter(
+        selector: string,
+        offsetCenterX: number,
+        offsetCenterY: number
+    ): Promise<void>;
 
-    public abstract async releaseMouseAt(x: number, y: number): Promise<void>;
+    public abstract releaseMouseAt(x: number, y: number): Promise<void>;
 
-    public abstract async releaseMouseAtElement(selector: string, offsetX: number, offsetY: number): Promise<void>;
+    public abstract releaseMouseAtElement(
+        selector: string,
+        offsetX: number,
+        offsetY: number
+    ): Promise<void>;
 
-    public abstract async releaseMouseAtElementCenter(selector: string, offsetCenterX: number, offsetCenterY: number): Promise<void>;
+    public abstract releaseMouseAtElementCenter(
+        selector: string,
+        offsetCenterX: number,
+        offsetCenterY: number
+    ): Promise<void>;
 
-    public abstract async reloadPage(options: {
+    public abstract reloadPage(options: {
         readyState: DullahanReadyState;
         timeout: number;
     }): Promise<void>;
 
-    public abstract async removeCookie(name: string): Promise<void>;
+    public abstract removeCookie(name: string): Promise<void>;
 
-    public abstract async screenshotPage(): Promise<string>;
+    public abstract screenshotPage(): Promise<string>;
 
-    public abstract async sendKeys(keys: string): Promise<void>;
+    public abstract sendKeys(keys: string): Promise<void>;
 
-    public abstract async sendKeysToElement(selector: string, keys: string): Promise<void>;
+    public abstract pressKey(keys: DullahanKey): Promise<void>;
 
-    public abstract async setCookie(cookie: DullahanCookie): Promise<void>;
+    public abstract sendKeysToElement(
+        selector: string,
+        keys: string
+    ): Promise<void>;
 
-    public abstract async setElementAttribute(selector: string, attributeName: string, attributeValue: string): Promise<void>;
+    public abstract setCookie(cookie: DullahanCookie): Promise<void>;
 
-    public abstract async setElementInputFile(selector: string, file: string): Promise<void>;
+    public abstract setElementAttribute(
+        selector: string,
+        attributeName: string,
+        attributeValue: string
+    ): Promise<void>;
 
-    public abstract async setElementProperty(selector: string, propertyName: string, propertyValue: any): Promise<void>;
+    public abstract setElementInputFile(
+        selector: string,
+        file: string
+    ): Promise<void>;
 
-    public abstract async setURL(url: string, options: {
-        readyState: DullahanReadyState;
+    public abstract setElementProperty(
+        selector: string,
+        propertyName: string,
+        propertyValue: any
+    ): Promise<void>;
+
+    public abstract setURL(
+        url: string,
+        options: {
+            readyState: DullahanReadyState;
+            timeout: number;
+        }
+    ): Promise<void>;
+
+    public abstract scrollToElement(selector: string): Promise<void>;
+
+    public abstract waitForElementNotPresent(
+        selector: string,
+        options: {
+            timeout: number;
+        }
+    ): Promise<void>;
+
+    public abstract waitForElementNotVisible(
+        selector: string,
+        options: {
+            timeout: number;
+        }
+    ): Promise<void>;
+
+    public abstract waitForElementPresent(
+        selector: string,
+        options: {
+            timeout: number;
+        }
+    ): Promise<void>;
+
+    public abstract waitForElementVisible(
+        selector: string,
+        options: {
+            timeout: number;
+        }
+    ): Promise<void>;
+
+    public abstract waitForElementInteractive(
+        selector: string,
+        options: {
+            timeout: number;
+        }
+    ): Promise<void>;
+
+    public abstract waitForNavigation(
+        trigger: () => Promise<void> | void,
+        options: {
+            timeout: number;
+            readyState: DullahanReadyState;
+        }
+    ): Promise<void>;
+
+    public async enableDialogs(): Promise<void> {
+        await this.executeScript(`
+            window.confirm = window.__DULLAHAN_CONFIRM__ || window.confirm;
+            window.alert = window.__DULLAHAN_ALERT__ || window.alert;
+            window.prompt = window.__DULLAHAN_PROMPT__ || window.prompt;
+            window.onbeforeunload = window.__DULLAHAN_ONBEFOREUNLOAD__ || window.onbeforeunload;
+        `);
+    }
+
+    public async disableDialogs(): Promise<void> {
+        await this.executeScript(`
+            window.__DULLAHAN_CONFIRM__ = window.confirm;
+            window.__DULLAHAN_ALERT__ = window.alert;
+            window.__DULLAHAN_PROMPT__ = window.prompt;
+            window.__DULLAHAN_ONBEFOREUNLOAD__ = window.onbeforeunload;
+
+            var noop = function () {};
+            window.confirm = noop;
+            window.alert = noop;
+            window.prompt = noop;
+            window.onbeforeunload = noop;
+        `);
+    }
+
+    public abstract waitForDialog(options: {
         timeout: number;
     }): Promise<void>;
 
-    public abstract async scrollToElement(selector: string): Promise<void>;
-
-    public abstract async waitForElementNotPresent(selector: string, options: {
-        timeout: number;
-    }): Promise<void>;
-
-    public abstract async waitForElementNotVisible(selector: string, options: {
-        timeout: number;
-    }): Promise<void>;
-
-    public abstract async waitForElementPresent(selector: string, options: {
-        timeout: number;
-    }): Promise<void>;
-
-    public abstract async waitForElementVisible(selector: string, options: {
-        timeout: number;
-    }): Promise<void>;
-
-    public abstract async waitForElementInteractive(selector: string, options: {
-        timeout: number;
-    }): Promise<void>;
-
-    public abstract async waitForNavigation(trigger: () => (Promise<void> | void), options: {
-        timeout: number;
-        readyState: DullahanReadyState;
-    }): Promise<void>;
+    public abstract setDialogValue(accept: boolean, value?: string): Promise<void>;
 }

@@ -10,19 +10,19 @@ jobs:
     test_nodejs:
         strategy:
             matrix:
-                node: [10, 12, 14]
+                node: [12, 14]
         name: ${{ matrix.node }}
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v2
                 with:
                     path: .
-            -   uses: actions/setup-node@v1
+            -   uses: actions/setup-node@v2
                 with:
                     node-version: ${{ matrix.node }}
             -   run: echo "::set-output name=dir::$(yarn cache dir)"
                 id: yarn-cache-dir
-            -   uses: actions/cache@v1
+            -   uses: actions/cache@v2
                 with:
                     path: ${{ steps.yarn-cache-dir.outputs.dir }}
                     key: yarn-cache-${{ matrix.node }}-${{ hashFiles('**/yarn.lock') }}

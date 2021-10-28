@@ -21,30 +21,8 @@ import {
     StoredArtifact
 } from './nodejs_helpers';
 import {DullahanRunner} from './runner';
-
-type ApiContructor = new (args: {
-    testId: string;
-    test: DullahanTest<never>;
-    adapter: DullahanAdapter<never, never>;
-    client: DullahanClient;
-    userOptions: object;
-}) => DullahanApi<never, never>;
-
-type AdapterConstructor = new (args: {
-    testId: string;
-    client: DullahanClient;
-    userOptions: object;
-}) => DullahanAdapter<never, never>;
-
-type RunnerConstructor = new (args: {
-    client: DullahanClient;
-    userOptions: object;
-}) => DullahanRunner<never, never>;
-
-type PluginConstructor = new (args: {
-    client: DullahanClient;
-    userOptions: object;
-}) => DullahanPlugin<never, never>;
+import {AdapterConstructor, ApiContructor, PluginConstructor, RunnerConstructor} from "./nodejs_helpers/types";
+import {DullahanError} from "./DullahanError";
 
 export class DullahanClient {
 
@@ -52,11 +30,11 @@ export class DullahanClient {
 
     private Adapter: AdapterConstructor;
 
-    private readonly config: DullahanConfig;
+    public readonly config: DullahanConfig;
 
-    private readonly runner: DullahanRunner<never, never>;
+    private readonly runner: DullahanRunner<any, any>;
 
-    private readonly plugins: DullahanPlugin<never, never>[];
+    private readonly plugins: DullahanPlugin<any, any>[];
 
     private readonly storedArtifactPromises: Promise<StoredArtifact>[] = [];
 
@@ -66,22 +44,22 @@ export class DullahanClient {
     private readonly testEndPromises: Promise<DullahanTestEndCall>[] = [];
 
     public constructor(config: DullahanConfig) {
-        const Api = requireDependency(config.api[0], {
+        const Api = typeof config.api[0] === 'string' ? requireDependency(config.api[0], {
             expectedName: /^DullahanApi/i
-        }) as ApiContructor;
+        }) as ApiContructor : config.api[0];
 
-        const Adapter = requireDependency(config.adapter[0], {
+        const Adapter = typeof config.adapter[0] === 'string'?requireDependency(config.adapter[0], {
             expectedName: /^DullahanAdapter/i
-        }) as AdapterConstructor;
+        }) as AdapterConstructor : config.adapter[0];
 
-        const Runner = requireDependency(config.runner[0], {
+        const Runner = typeof config.runner[0] === 'string' ? requireDependency(config.runner[0], {
             expectedName: /^DullahanRunner/i
-        }) as RunnerConstructor;
+        }) as RunnerConstructor : config.runner[0];
 
-        const plugins = config.plugins.map(([nameOrPath, userOptions]: DullahanScopedOptions) => {
-            const Plugin = requireDependency(nameOrPath, {
+        const plugins = config.plugins.map(([nameOrPath, userOptions]: DullahanScopedOptions<PluginConstructor>) => {
+            const Plugin = typeof nameOrPath === 'string' ? requireDependency(nameOrPath, {
                 expectedName: /^DullahanPlugin/i
-            }) as PluginConstructor;
+            }) as PluginConstructor : nameOrPath;
 
             return new Plugin({
                 client: this,
@@ -104,6 +82,10 @@ export class DullahanClient {
     public reloadApi(clearCache?: 'shallow' | 'recursive'): void {
         const {api} = this.config;
 
+        if (typeof api[0] !== 'string') {
+            throw new DullahanError('Cannot reload API: A file path is needed, but a constructor was provided.');
+        }
+
         this.Api = requireDependency(api[0], {
             clearCache,
             expectedName: /^DullahanApi/i
@@ -113,22 +95,26 @@ export class DullahanClient {
     public reloadAdapter(clearCache?: 'shallow' | 'recursive'): void {
         const {adapter} = this.config;
 
+        if (typeof adapter[0] !== 'string') {
+            throw new DullahanError('Cannot reload Adapter: A file path is needed, but a constructor was provided.');
+        }
+
         this.Adapter = requireDependency(adapter[0], {
             clearCache,
             expectedName: /^DullahanAdapter/i
         }) as AdapterConstructor;
     }
 
-    public getTestInstance(file: string, clearCache?: 'shallow' | 'recursive'): {
+    public getTestInstance(file: string | DullahanTest, clearCache?: 'shallow' | 'recursive'): {
         testId: string;
-        api: DullahanApi<never, never>;
-        adapter: DullahanAdapter<never, never>;
+        api: DullahanApi<any, any>;
+        adapter: DullahanAdapter<any, any>;
         test: DullahanTest;
     } | null {
         const {config, Api, Adapter} = this;
 
-        const testId = createHash('sha256').update(file).digest('hex');
-        const test = requireDependency(file, {clearCache}) as Partial<DullahanTest>;
+        const testId = createHash('sha256').update(JSON.stringify(file)).digest('hex');
+        const test = typeof file === 'string' ? requireDependency(file, {clearCache}) as Partial<DullahanTest> : file;
 
         if (!isValidTest(test)) {
             return null;
@@ -166,12 +152,12 @@ export class DullahanClient {
         await runner.start();
     }
 
-    public async stop(): Promise<{
+    public async stop(earlyTermination = false): Promise<{
         storedArtifacts: StoredArtifact[];
         testEndCalls: DullahanTestEndCall[];
         functionEndCalls: DullahanFunctionEndCall[];
     }> {
-        const {plugins, runner, testStartCalls, testEndPromises, functionStartCalls, functionEndPromises} = this;
+        const {plugins, runner, testEndPromises, functionEndPromises} = this;
 
         console.log('Stopping runner');
         await runner.stop();
@@ -191,7 +177,7 @@ export class DullahanClient {
             artifacts.forEach((artifact) => this.submitArtifact(artifact));
         }));
         const storedArtifacts = await Promise.all(this.storedArtifactPromises);
-        await Promise.all(plugins.map(async (plugin) => plugin.processResults(storedArtifacts, testEndCalls, functionEndCalls).catch(console.error)));
+        await Promise.all(plugins.map(async (plugin) => plugin.processResults(storedArtifacts, testEndCalls, functionEndCalls, earlyTermination).catch(console.error)));
         console.log('Processing artifacts complete');
 
         return {

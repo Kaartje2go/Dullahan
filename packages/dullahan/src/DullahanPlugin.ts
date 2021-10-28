@@ -43,7 +43,7 @@ export abstract class DullahanPlugin<
         // Nothing
     }
 
-    public async stop(): Promise<void> {
+    public async stop(_earlyTermination?): Promise<void> {
         // Nothing
     }
 
@@ -71,7 +71,7 @@ export abstract class DullahanPlugin<
         return null;
     }
 
-    public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[]): Promise<void> {
+    public async processResults(artifacts: StoredArtifact[], dtecs: DullahanTestEndCall[], dfecs: DullahanFunctionEndCall[], earlyTermination: boolean): Promise<void> {
         // Nothing
     }
 }

@@ -2,6 +2,7 @@ import {DullahanAdapter} from '../adapter';
 import {DullahanCallSpy} from '../DullahanCall';
 import {DullahanCookie} from '../DullahanCookie';
 import {DullahanClient} from '../DullahanClient';
+import {DullahanKey} from '../DullahanKey';
 import {DullahanTest} from '../DullahanTest';
 import {resolve as resolvePath} from 'path';
 import {DullahanApiUserOptions, DullahanApiDefaultOptions} from './DullahanApiOptions';
@@ -15,9 +16,9 @@ export type DullahanApiArguments<
     testId: string;
     test: DullahanTest;
     client: DullahanClient;
-    adapter: DullahanAdapter<never, never>;
+    adapter: DullahanAdapter<any, any>;
     userOptions: DullahanApiSubclassUserOptions;
-    defaultOptions: DullahanApiSubclassDefaultOptions;
+    defaultOptions?: DullahanApiSubclassDefaultOptions;
 };
 
 export class DullahanApi<
@@ -27,7 +28,7 @@ export class DullahanApi<
 
     protected readonly client: unknown;
 
-    protected readonly adapter: DullahanAdapter<never, never>;
+    protected readonly adapter: DullahanAdapter<any, any>;
 
     protected readonly test: DullahanTest;
 
@@ -88,11 +89,11 @@ export class DullahanApi<
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
 
-        if (autoScroll && !(await adapter.isElementVisible(selector))) {
+        if (autoScroll && !(await adapter.isElementInteractable(selector))) {
             await this.scrollToElement(selector, timeout);
         }
 
-        await adapter.waitForElementVisible(selector, {
+        await adapter.waitForElementInteractive(selector, {
             timeout: timeout ?? defaultTimeout
         });
         await adapter.click(selector);
@@ -336,6 +337,10 @@ export class DullahanApi<
         return this.adapter.sendKeys(keys);
     }
 
+    public async pressKey(key: DullahanKey): Promise<void> {
+        return this.adapter.pressKey(key);
+    }
+
     public async sendKeysToElement(selector: string, keys: string, timeout?: number): Promise<void> {
         const {adapter, options} = this;
         const {defaultTimeout, autoScroll} = options;
@@ -497,10 +502,11 @@ export class DullahanApi<
     }
 
     public async getText(selector: string, timeout?: number): Promise<string> {
-        const {adapter} = this;
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
 
         await adapter.waitForElementPresent(selector, {
-            timeout: timeout ?? 10000
+            timeout: timeout ?? defaultTimeout
         });
 
         const [value, innerText] = await adapter.getElementProperties(selector, 'value', 'innerText');
@@ -577,5 +583,48 @@ export class DullahanApi<
         });
 
         await adapter.fillIFrameField(iFrameSelector, fieldSelector, value);
+    }
+
+    public async clickIFrameElement(iFrameSelector: string, selector: string) {
+        const {adapter, options} = this;
+        const {defaultTimeout, autoScroll} = options;
+
+        if (autoScroll && !(await adapter.isElementVisible(iFrameSelector))) {
+            await this.scrollToElement(iFrameSelector, defaultTimeout);
+        }
+
+        await adapter.waitForElementVisible(iFrameSelector, {
+            timeout: defaultTimeout
+        });
+
+        await adapter.clickIFrameElement(iFrameSelector, selector);
+    }
+
+    public async disableDialogs(): Promise<void> {
+        return this.adapter.disableDialogs();
+    }
+
+    public async enableDialogs(): Promise<void> {
+        return this.adapter.enableDialogs();
+    }
+
+    public async acceptDialog(value?: string, timeout?: number): Promise<void> {
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
+
+        await adapter.waitForDialog({
+            timeout: timeout ?? defaultTimeout
+        });
+        await adapter.setDialogValue(true, value);
+    }
+
+    public async dismissDialog(timeout?: number): Promise<void> {
+        const {adapter, options} = this;
+        const {defaultTimeout} = options;
+
+        await adapter.waitForDialog({
+            timeout: timeout ?? defaultTimeout
+        });
+        await adapter.setDialogValue(false);
     }
 }

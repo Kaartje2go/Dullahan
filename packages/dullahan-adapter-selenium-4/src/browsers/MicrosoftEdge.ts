@@ -3,6 +3,7 @@ import * as Edge from 'selenium-webdriver/edge';
 import {DullahanAdapterSelenium4Options} from '../DullahanAdapterSelenium4Options';
 import {sep} from 'path';
 import {buildUnknown} from './Unknown';
+import * as deepmerge from 'deepmerge';
 
 export const buildEdgeClassic = buildUnknown;
 
@@ -11,7 +12,8 @@ export const buildEdgeChromium = async (options: DullahanAdapterSelenium4Options
         headless,
         requireDriver,
         browserBinary = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
-        driverBinary = requireDriver && require(requireDriver)?.binPath?.()
+        driverBinary = requireDriver && require(requireDriver)?.binPath?.(),
+        rawCapabilities
     } = options;
 
     const args: string[] = [
@@ -28,14 +30,19 @@ export const buildEdgeChromium = async (options: DullahanAdapterSelenium4Options
     console.log('process.env.EdgeWebDriver', process.env.EdgeWebDriver);
     console.log('process.env.PATH', process.env.PATH);
 
+    const dullahanCapabilities = deepmerge(
+        {
+            'ms:edgeOptions': {
+                binary: browserBinary,
+                args
+            }
+        },
+        rawCapabilities
+    )
+
     const service = new Edge.ServiceBuilder().build();
     const defaultSeleniumCapabilities = new Edge.Options();
-    const defaultDullahanCapabilities = new Capabilities({
-        'ms:edgeOptions': {
-            binary: browserBinary,
-            args
-        }
-    });
+    const defaultDullahanCapabilities = new Capabilities(dullahanCapabilities);
     const capabilities = new Capabilities({}).merge(defaultSeleniumCapabilities).merge(defaultDullahanCapabilities);
 
     return Edge.Driver.createSession(capabilities, service);

@@ -12,6 +12,7 @@ import {
     DullahanClient,
     DullahanCookie,
     DullahanErrorMessage,
+    DullahanKey,
     DullahanReadyState,
     findElement,
     FindElementOptions,
@@ -32,6 +33,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
     protected browser?: Puppeteer.Browser;
 
     protected page?: Puppeteer.Page;
+
+    protected dialog?: Puppeteer.Dialog;
 
     public constructor(args: {
         testId: string;
@@ -242,6 +245,16 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await page.keyboard.type(keys);
     }
 
+    public async pressKey(key: DullahanKey): Promise<void> {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await page.keyboard.press(key);
+    }
+
     public async clearText(selector: string, count: number): Promise<void> {
         const {page} = this;
 
@@ -411,14 +424,16 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         };
 
         try {
-            const elementHandle = await page.evaluateHandle(findElement, findOptions);
-            const element = elementHandle.asElement();
+            // with `expectNoMatches: true`
+            // findElement returns `true` if NO element was found
+            // and returns `undefined` if an element was found
+            const elementWasFound = !await page.evaluate(findElement, findOptions);
 
-            if (element) {
+            if (elementWasFound) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
         } catch (error) {
-            if (error.name === 'TimeoutError') {
+            if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementNotPresent(selector, { timeout: options.timeout + startTime - Date.now() });
@@ -449,14 +464,16 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         };
 
         try {
-            const elementHandle = await page.evaluateHandle(findElement, findOptions);
-            const element = elementHandle.asElement();
+            // with `expectNoMatches: true`
+            // findElement returns `true` if NO element was found
+            // and returns `undefined` if an element was found
+            const elementWasFound = !await page.evaluate(findElement, findOptions);
 
-            if (element) {
+            if (elementWasFound) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
         } catch (error) {
-            if (error.name === 'TimeoutError') {
+            if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementNotVisible(selector, { timeout: options.timeout + startTime - Date.now() });
@@ -687,7 +704,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
 
         return Promise.all(propertyNames.map(async (attributeName: string) => {
             const valueHandle = await element.getProperty(attributeName);
-            const value = await valueHandle.jsonValue() as T | undefined;
+            const value = valueHandle && await valueHandle.jsonValue() as T | undefined;
 
             return value ?? null;
         }));
@@ -911,6 +928,8 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             await page.setUserAgent(`${defaultUserAgent} ${userAgent}`);
         }
 
+        page.on('dialog', (dialog) => this.dialog = dialog);
+
         this.browser = browser;
         this.page = page;
 
@@ -981,7 +1000,10 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             encoding: 'base64'
         });
 
-        return screenshot.replace(/^data:image\/png;base64,/, '');
+        if (typeof screenshot === 'string') {
+            return screenshot.replace(/^data:image\/png;base64,/, '');
+        }
+        return '';
     }
 
     public async setURL(url: string, options: {
@@ -1035,7 +1057,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
         } catch (error) {
-            if (error.name === 'TimeoutError') {
+            if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementPresent(selector, { timeout: options.timeout + startTime - Date.now() });
@@ -1075,7 +1097,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
         } catch (error) {
-            if (error.name === 'TimeoutError') {
+            if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementVisible(selector, { timeout: options.timeout + startTime - Date.now() });
@@ -1115,7 +1137,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
         } catch (error) {
-            if (error.name === 'TimeoutError') {
+            if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
                 return this.waitForElementInteractive(selector, { timeout: options.timeout + startTime - Date.now() });
@@ -1158,5 +1180,50 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         }
 
         await field.type(value);
+    }
+
+    public async clickIFrameElement(iFrameSelector: string, selector: string) {
+        const {page} = this;
+
+        if (!page) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        const iFrameHandle = await page.$(iFrameSelector);
+
+        const frame = iFrameHandle && await iFrameHandle.contentFrame();
+
+        if (!frame) {
+            throw new AdapterError(`No iFrame found with selector ${iFrameSelector}`);
+        }
+
+        await frame.waitForSelector(selector);
+        const field = await frame.$(selector);
+
+        if (!field) {
+            throw new AdapterError(`No field found in iFrame with selector ${field}`);
+        }
+
+        await field.click();
+    }
+
+    public async waitForDialog({timeout}): Promise<void> {
+        const start = Date.now();
+        const end = start + timeout;
+
+        while (!this.dialog && Date.now () < end) {
+            await sleep(1000 / 60);
+        }
+    }
+
+    public async setDialogValue(accept: boolean, value?: string): Promise<void> {
+        const {dialog} = this;
+
+        if (!dialog) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        await (accept ? dialog.accept(value) : dialog.dismiss());
+        this.dialog = undefined;
     }
 }

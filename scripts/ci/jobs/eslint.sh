@@ -2,4 +2,4 @@
 
 set -e
 
-yarn lint-code || true
+yarn lint-code

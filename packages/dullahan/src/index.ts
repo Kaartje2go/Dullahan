@@ -12,5 +12,6 @@ export * from './DullahanConfig';
 export * from './DullahanCookie';
 export * from './DullahanClient';
 export * from './DullahanPlugin';
+export * from './DullahanKey';
 export * from './runner/DullahanRunner';
 export * from './DullahanTest';

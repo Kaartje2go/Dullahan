@@ -1,7 +1,7 @@
 import {DullahanTest} from '../DullahanTest';
 
 export type DullahanRunnerUserOptions = Partial<{
-    failFast: boolean;
+    failFast: boolean | number;
     minSuccesses: number;
     maxAttempts: number;
     rootDirectories: string[];

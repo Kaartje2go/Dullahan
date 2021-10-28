@@ -4,10 +4,7 @@ import {
     DullahanClient,
     DullahanError,
     DullahanRunner,
-    tryIgnore,
-    testFile,
-    testIfOnlyTestsModified,
-    getChangedFiles,
+    tryIgnore
 } from '@k2g/dullahan';
 import asyncPool from 'tiny-async-pool';
 import * as fastGlob from 'fast-glob';
@@ -43,14 +40,8 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
             dot: true,
         })));
 
-        const files = await getChangedFiles();
-        const onlyModifiedTests = testIfOnlyTestsModified(files);
-
         const testFiles = searchResults.flat()
             .filter((file) => {
-                if (onlyModifiedTests) {
-                    return testFile(files, file);
-                }
                 return (!includeRegexes.length || includeRegexes.some((iRegex) => iRegex.test(file)))
                 && (!excludeRegexes.length || !excludeRegexes.some((eRegex) => eRegex.test(file)))
             })

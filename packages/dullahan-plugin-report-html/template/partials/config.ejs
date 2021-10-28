@@ -1,0 +1,14 @@
+<% if (config) { %>
+    <details>
+        <summary><%= `${title}` %> config</summary>
+        <section>
+            <div>Package: <strong><%= `${config[0]}` %></strong></div>
+            <div>Options:</div>
+            <ul>
+                <% Object.entries(config[1]).forEach(function(option) { %>
+                    <li><%= `${option[0]}` %>: <%= `${option[1]}` %></li>
+                <% }) %>
+            </ul>
+        </section>
+    </details>
+<% } %>
