@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.105 (2021-11-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency selenium-webdriver to v4.0.0 ([#143](https://github.com/Kaartje2go/Dullahan/issues/143)) ([7f4903f](https://github.com/Kaartje2go/Dullahan/commit/7f4903f618826aa7e9fdafaf31f331aceb6362ff))
+
+
+
+
+
 # 1.0.0-alpha.104 (2021-11-01)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-browserstack
