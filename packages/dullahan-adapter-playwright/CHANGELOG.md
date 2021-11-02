@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.107 (2021-11-02)
+
+
+### Reverts
+
+* Revert "chore(deps): update dependency typedoc to ^0.22.0 (#214)" (#220) ([3abd611](https://github.com/Kaartje2go/Dullahan/commit/3abd61195cc616a069fbb7a52c8cb222b7395069)), closes [#214](https://github.com/Kaartje2go/Dullahan/issues/214) [#220](https://github.com/Kaartje2go/Dullahan/issues/220)
+
+
+
+
+
 # 1.0.0-alpha.106 (2021-11-02)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-playwright
