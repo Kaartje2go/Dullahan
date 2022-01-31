@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.109 (2022-01-31)
+
+
+### Reverts
+
+* Revert "chore(deps): update dependency lerna to v4 (#165)" (#228) ([84f2451](https://github.com/Kaartje2go/Dullahan/commit/84f24519a96fbfbff95b88a03629cf23173a9429)), closes [#165](https://github.com/Kaartje2go/Dullahan/issues/165) [#228](https://github.com/Kaartje2go/Dullahan/issues/228)
+
+
+
+
+
 # 1.0.0-alpha.108 (2021-11-03)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
