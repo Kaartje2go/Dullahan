@@ -31,7 +31,7 @@ jobs:
             -   run: bash ./scripts/ci/jobs/test_selenium_3_chrome.sh
                 env:
                     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v3
                 if: ${{ failure() }}
                 with:
                     name: screenshots_selenium_3_chrome
@@ -59,7 +59,7 @@ jobs:
             -   run: bash ./scripts/ci/jobs/test_selenium_3_firefox.sh
                 env:
                     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v3
                 if: ${{ failure() }}
                 with:
                     name: screenshots_selenium_3_firefox
@@ -87,7 +87,7 @@ jobs:
             -   run: bash ./scripts/ci/jobs/test_selenium_3_edge.sh
                 env:
                     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v3
                 if: ${{ failure() }}
                 with:
                     name: screenshots_selenium_3_edge
@@ -115,7 +115,7 @@ jobs:
             -   run: bash ./scripts/ci/jobs/test_selenium_3_ie11.sh
                 env:
                     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v3
                 if: ${{ failure() }}
                 with:
                     name: screenshots_selenium_3_ie11
