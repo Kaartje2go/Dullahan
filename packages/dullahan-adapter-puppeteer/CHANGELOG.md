@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.110 (2022-04-14)
+
+
+### Bug Fixes
+
+* improve json parsing in lambda runner ([#230](https://github.com/Kaartje2go/Dullahan/issues/230)) ([482b7f4](https://github.com/Kaartje2go/Dullahan/commit/482b7f473f38bce81287dfd6256abe8895f14a60))
+
+
+
+
+
 # 1.0.0-alpha.109 (2022-01-31)
 
 
