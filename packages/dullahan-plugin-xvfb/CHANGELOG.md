@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.115 (2022-04-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency glob to v8 ([#240](https://github.com/Kaartje2go/Dullahan/issues/240)) ([e7632f8](https://github.com/Kaartje2go/Dullahan/commit/e7632f8f1d8c571719555b5572ee576311e6cb34))
+
+
+
+
+
 # 1.0.0-alpha.114 (2022-04-14)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-xvfb
