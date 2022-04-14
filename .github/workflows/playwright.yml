@@ -11,7 +11,7 @@ jobs:
         name: 'Chromium'
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: actions/checkout@v3
                 with:
                     path: .
             -   uses: actions/setup-node@v2
@@ -39,7 +39,7 @@ jobs:
         name: 'Firefox'
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: actions/checkout@v3
                 with:
                     path: .
             -   uses: actions/setup-node@v2
@@ -67,7 +67,7 @@ jobs:
         name: 'WebKit'
         runs-on: macos-latest
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: actions/checkout@v3
                 with:
                     path: .
             -   uses: actions/setup-node@v2
