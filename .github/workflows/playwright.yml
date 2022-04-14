@@ -29,7 +29,7 @@ jobs:
             -   run: bash ./scripts/ci/jobs/test_playwright_chromium.sh
                 env:
                     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v3
                 if: ${{ failure() }}
                 with:
                     name: screenshots_playwright_chromium
@@ -57,7 +57,7 @@ jobs:
             -   run: bash ./scripts/ci/jobs/test_playwright_firefox.sh
                 env:
                     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v3
                 if: ${{ failure() }}
                 with:
                     name: screenshots_playwright_firefox
@@ -85,7 +85,7 @@ jobs:
             -   run: bash ./scripts/ci/jobs/test_playwright_webkit.sh
                 env:
                     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-            -   uses: actions/upload-artifact@v2
+            -   uses: actions/upload-artifact@v3
                 if: ${{ failure() }}
                 with:
                     name: screenshots_playwright_webkit
