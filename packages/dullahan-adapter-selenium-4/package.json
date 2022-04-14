@@ -15,7 +15,7 @@
   "dependencies": {
     "@k2g/dullahan": "^1.0.0-alpha.111",
     "deepmerge": "^4.2.2",
-    "selenium-webdriver": "4.0.0"
+    "selenium-webdriver": "4.1.1"
   },
   "devDependencies": {
     "@types/selenium-webdriver": "^4.0.9"
