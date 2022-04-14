@@ -19,7 +19,6 @@
     "async-sema": "^3.1.0",
     "aws-sdk": "^2.753.0",
     "fast-glob": "^3.2.4",
-    "p-queue": "^6.6.1",
     "tiny-async-pool": "^1.1.0"
   }
 }
