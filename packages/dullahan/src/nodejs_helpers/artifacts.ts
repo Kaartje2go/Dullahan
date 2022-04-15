@@ -33,7 +33,7 @@ export const saveArtifactToFile = async (artifact: Artifact): Promise<URL> => {
     try {
         await mkdirP(directoryPath, {recursive: true});
         await writeFileP(filePath, data, {encoding});
-    } catch (error) {
+    } catch (error: any) {
         console.log(`Failed to write file "${filePath}": ${error.name}`);
     }
 

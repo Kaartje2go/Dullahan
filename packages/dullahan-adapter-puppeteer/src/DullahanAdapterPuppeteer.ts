@@ -432,7 +432,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (elementWasFound) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
@@ -472,7 +472,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (elementWasFound) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
@@ -1056,7 +1056,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
@@ -1096,7 +1096,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {
@@ -1136,7 +1136,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError' || timeout <= 0) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/Protocol error|Execution context/u.test(error.message)) {

@@ -64,7 +64,7 @@ export class DullahanCallSpy {
                         });
 
                         intermediate = property.apply(this, functionArguments);
-                    } catch (error) {
+                    } catch (error: any) {
                         client.emitFunctionEnd({
                             testId,
                             timeStart,

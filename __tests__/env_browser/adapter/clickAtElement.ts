@@ -8,7 +8,7 @@ describe('adapter.clickAtElement', () => {
         try {
             expect.hasAssertions();
             await adapter.clickAtElement('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }
@@ -23,7 +23,7 @@ describe('adapter.clickAtElement', () => {
                 readyState: 'interactive'
             });
             await adapter.clickAtElement('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toMatchSnapshot();
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

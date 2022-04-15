@@ -9,7 +9,7 @@ describe('adapter.openBrowser', () => {
             expect.hasAssertions();
             await tryX(3, () => adapter.openBrowser());
             await tryX(3, () => adapter.openBrowser());
-        } catch (error) {
+        } catch (error: any) {
             expect(error.name).toStrictEqual(AdapterError.NAME);
             expect(error.message).toStrictEqual(DullahanErrorMessage.ACTIVE_BROWSER);
         }

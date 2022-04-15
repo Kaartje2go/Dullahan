@@ -8,7 +8,7 @@ describe('adapter.isElementPresent', () => {
         try {
             expect.hasAssertions();
             await adapter.isElementPresent('#dullahan');
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

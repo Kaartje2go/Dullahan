@@ -8,7 +8,7 @@ describe('adapter.getElementStyles', () => {
         try {
             expect.hasAssertions();
             await adapter.getElementStyles('#dullahan', 'font-size', 'fontSize');
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }
@@ -23,7 +23,7 @@ describe('adapter.getElementStyles', () => {
                 readyState: 'interactive'
             });
             await adapter.getElementStyles('#dullahan');
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toMatchSnapshot();
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

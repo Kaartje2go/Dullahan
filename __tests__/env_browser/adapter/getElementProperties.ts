@@ -8,7 +8,7 @@ describe('adapter.getElementProperties', () => {
         try {
             expect.hasAssertions();
             await adapter.getElementProperties('#dullahan', 'dullahanProperty', 'dullahan-property');
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }
@@ -23,7 +23,7 @@ describe('adapter.getElementProperties', () => {
                 readyState: 'interactive'
             });
             await adapter.getElementProperties('#dullahan');
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toMatchSnapshot();
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

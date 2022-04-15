@@ -83,7 +83,7 @@ export function findElement(this: void, options: FindElementOptions): Element | 
             } else if (jsPathMatches instanceof NodeList) {
                 return Array.prototype.slice.call(jsPathMatches);
             }
-        } catch (error) {
+        } catch (error: any) {
             if (/'querySelectorAll'.*?'Document(?:Fragment)?'/.test(error.message)) {
                 throw error;
             }
@@ -125,12 +125,12 @@ export function findElement(this: void, options: FindElementOptions): Element | 
         function parse(propertyName: string, defaultValue: string): string {
             try {
                 return csmResult!.get(propertyName)!.value.toString();
-            } catch (error) {
+            } catch (error: any) {
             }
 
             try {
                 return csResult![propertyName].toString();
-            } catch (error) {
+            } catch (error: any) {
             }
 
             return defaultValue;
@@ -226,7 +226,7 @@ export function findElement(this: void, options: FindElementOptions): Element | 
                     console.log('findElement', 'return', result);
                     resolve();
                 }
-            } catch (error) {
+            } catch (error: any) {
                 reject(error);
             }
         });

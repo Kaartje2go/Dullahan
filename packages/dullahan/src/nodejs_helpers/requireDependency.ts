@@ -9,7 +9,7 @@ const resolveDependencyPath = (path: DependencyPath): string => {
     if (isAbsolutePath(path)) {
         try {
             return require.resolve(path);
-        } catch (error) {
+        } catch (error: any) {
             throw new DullahanError(`Could not resolve dependency "${path}" as an absolute path`);
         }
     }
@@ -19,14 +19,14 @@ const resolveDependencyPath = (path: DependencyPath): string => {
         try {
             const absolutePath = resolvePath(cwd, path);
             return require.resolve(absolutePath);
-        } catch (error) {
+        } catch (error: any) {
             throw new DullahanError(`Could not resolve dependency "${path}" as a relative path to "${cwd}"`);
         }
     }
 
     try {
         return require.resolve(path);
-    } catch (error) {
+    } catch (error: any) {
         throw new DullahanError(`Could not resolve dependency "${path}" as a node module`);
     }
 };
@@ -76,7 +76,7 @@ export const requireDependency = (nameOrPath: DependencyPath, options: {
 
             return importedData as unknown;
         }
-    } catch (error) {
+    } catch (error: any) {
         throw new DullahanError(error);
     }
 };

@@ -109,7 +109,7 @@ afterEach(async () => {
 
                 await mkdirP(directoryPath, {recursive: true});
                 await writeFileP(resolvePath(directoryPath, filename), screenshot, 'base64');
-            } catch (error) {
+            } catch (error: any) {
                 console.warn(error);
             }
         }

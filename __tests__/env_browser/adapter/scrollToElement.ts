@@ -12,7 +12,7 @@ describe('adapter.scrollToElement', () => {
         try {
             expect.hasAssertions();
             await adapter.scrollToElement('#dullahan');
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

@@ -8,7 +8,7 @@ describe('adapter.moveMouseToElement', () => {
         try {
             expect.hasAssertions();
             await adapter.moveMouseToElement('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }
@@ -23,7 +23,7 @@ describe('adapter.moveMouseToElement', () => {
                 readyState: 'interactive'
             });
             await adapter.moveMouseToElement('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toMatchSnapshot();
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

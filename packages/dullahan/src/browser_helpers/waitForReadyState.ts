@@ -5,7 +5,7 @@ export type WaitForReadyStateOptions = {
     timeout: number;
 }
 
-export function waitForReadyState(this: void, options: WaitForReadyStateOptions): boolean | Promise<boolean> {
+export function waitForReadyState(this: void, options: WaitForReadyStateOptions): boolean | Promise<boolean|void> {
     var states = {
         loading: 1,
         interactive: 2,
@@ -30,13 +30,13 @@ export function waitForReadyState(this: void, options: WaitForReadyStateOptions)
                 var result = performSearch();
 
                 if (result) {
-                     resolve(result);
+                    resolve(result);
                 } else if (Date.now() < endTime) {
-                     setTimeout(poll, interval, resolve, reject);
+                    setTimeout(poll, interval, resolve, reject);
                 } else {
-                     resolve();
+                    resolve();
                 }
-            } catch (error) {
+            } catch (error: any) {
                 reject(error);
             }
         });

@@ -267,7 +267,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
             repo: repositoryName,
             issue_number: pullRequestNumber
         });
-        const commentId = comments.find(({body}) => body.includes(identifier))?.id;
+        const commentId = comments.find(({body}) => body?.includes(identifier))?.id;
         if (typeof commentId === 'number') {
             try {
                 await octokit.issues.updateComment({
@@ -276,7 +276,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
                     comment_id: commentId,
                     body: comment
                 });
-            } catch (error) {
+            } catch (error: any) {
                 console.error('Error updating Github comment', error);
             }
         } else {
@@ -287,7 +287,7 @@ export default class DullahanPluginGithub extends DullahanPlugin<DullahanPluginG
                     issue_number: pullRequestNumber,
                     body: comment
                 });
-            } catch (error) {
+            } catch (error: any) {
                 console.error('Error creating Github comment', error);
             }
         }

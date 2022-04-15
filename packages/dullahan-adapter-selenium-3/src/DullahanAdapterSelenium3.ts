@@ -400,7 +400,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
 
         try {
             await element.sendKeys(keys);
-        } catch (error) {
+        } catch (error: any) {
             if (error.message === 'One or more files could not be selected.') {
                 console.warn(error);
             } else {
@@ -477,7 +477,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
 
         try {
             await element.sendKeys(file);
-        } catch (error) {
+        } catch (error: any) {
             if (error.message === 'One or more files could not be selected.') {
                 console.warn(error);
             } else {
@@ -536,7 +536,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             if (element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/unloaded|destroyed/ui.test(error.message)) {
@@ -567,7 +567,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
 
         try {
             await driver.wait(async () => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/unloaded|destroyed/ui.test(error.message)) {
@@ -906,7 +906,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
 
             return !!element;
-        } catch (error) {
+        } catch (error: any) {
             if (/unloaded|destroyed/ui.test(error.message)) {
                 return this.isElementPresent(selector);
             }
@@ -936,7 +936,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
 
             return !!element;
-        } catch (error) {
+        } catch (error: any) {
             if (/unloaded|destroyed/ui.test(error.message)) {
                 return this.isElementVisible(selector);
             }
@@ -966,7 +966,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
 
             return !!element;
-        } catch (error) {
+        } catch (error: any) {
             if (/unloaded|destroyed/ui.test(error.message)) {
                 return this.isElementInteractable(selector);
             }
@@ -1269,7 +1269,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/unloaded|destroyed/ui.test(error.message)) {
@@ -1306,7 +1306,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/unloaded|destroyed/ui.test(error.message)) {
@@ -1343,7 +1343,7 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             } else if (/unloaded|destroyed/ui.test(error.message)) {

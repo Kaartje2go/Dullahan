@@ -39,7 +39,7 @@ export default class DullahanPluginBrowserstack extends DullahanPlugin<
 
         const browserstack = new BrowserstackLocal();
 
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
             browserstack.start({
                 key,
                 user,

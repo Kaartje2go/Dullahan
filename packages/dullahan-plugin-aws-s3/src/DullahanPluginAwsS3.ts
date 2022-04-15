@@ -90,7 +90,7 @@ export default class DullahanPluginAwsS3 extends DullahanPlugin<
             }).promise();
 
             return url;
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
 
             return null;

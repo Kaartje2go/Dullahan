@@ -430,7 +430,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             if (element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
@@ -464,7 +464,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             if (element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
@@ -1014,7 +1014,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
@@ -1050,7 +1050,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
@@ -1086,7 +1086,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             if (!element) {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.name === 'TimeoutError') {
                 throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
             }

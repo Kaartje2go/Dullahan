@@ -6,7 +6,7 @@ export const tryX = async <T = void>(maximumTries: number, callback: () => Promi
             const result = await callback();
 
             return result;
-        } catch (error) {
+        } catch (error: any) {
             e = error;
         }
     }

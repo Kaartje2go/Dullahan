@@ -121,7 +121,7 @@ export default class DullahanRunnerStandard extends DullahanRunner<DullahanRunne
                 error: null,
                 timeEnd: Date.now()
             });
-        } catch (error) {
+        } catch (error: any) {
             client.emitTestEnd({
                 testId,
                 error: new DullahanError(error),

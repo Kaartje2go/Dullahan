@@ -8,7 +8,7 @@ describe('adapter.moveMouseToElementCenter', () => {
         try {
             expect.hasAssertions();
             await adapter.moveMouseToElementCenter('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }
@@ -23,7 +23,7 @@ describe('adapter.moveMouseToElementCenter', () => {
                 readyState: 'interactive'
             });
             await adapter.moveMouseToElementCenter('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toMatchSnapshot();
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

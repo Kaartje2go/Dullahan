@@ -24,7 +24,7 @@ export default class DullahanPluginXvfb extends DullahanPlugin<
     public async start(): Promise<void> {
         const {xvfb} = this;
 
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
             xvfb.start((error?: Error) => {
                 error ? reject(error) : resolve();
             });
@@ -34,7 +34,7 @@ export default class DullahanPluginXvfb extends DullahanPlugin<
     public async stop(): Promise<void> {
         const {xvfb} = this;
 
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
             xvfb.stop((error?: Error) => {
                 error ? reject(error) : resolve();
             });

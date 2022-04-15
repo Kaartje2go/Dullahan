@@ -10,7 +10,7 @@ describe('adapter.waitForElementPresent', () => {
             await adapter.waitForElementPresent('#dullahan', {
                 timeout: 0
             });
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }
@@ -27,7 +27,7 @@ describe('adapter.waitForElementPresent', () => {
             await adapter.waitForElementPresent('#dullahan', {
                 timeout: 0
             });
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toMatchSnapshot();
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

@@ -11,7 +11,7 @@ describe('adapter.setURL', () => {
                 timeout: 0,
                 readyState: 'interactive'
             });
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

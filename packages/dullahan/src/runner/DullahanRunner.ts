@@ -47,7 +47,7 @@ export abstract class DullahanRunner<DullahanRunnerSubclassUserOptions extends D
         this.rootDirectories = ensureArray<string>(rootDirectories).map((rootDirectory) => resolvePath(process.cwd(), rootDirectory));
     }
 
-    public abstract async start(): Promise<void>;
+    public abstract start(): Promise<void>;
 
     public async stop(): Promise<void> {
 

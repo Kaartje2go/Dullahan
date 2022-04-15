@@ -8,7 +8,7 @@ describe('adapter.clickAtElementCenter', () => {
         try {
             expect.hasAssertions();
             await adapter.clickAtElementCenter('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }
@@ -23,7 +23,7 @@ describe('adapter.clickAtElementCenter', () => {
                 readyState: 'interactive'
             });
             await adapter.clickAtElementCenter('#dullahan', 0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toMatchSnapshot();
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

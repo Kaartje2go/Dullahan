@@ -9,7 +9,7 @@ describe('api.getText', () => {
         try {
             expect.hasAssertions();
             await api.getText('#dullahan');
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

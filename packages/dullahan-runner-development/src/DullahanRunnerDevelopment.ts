@@ -140,7 +140,7 @@ export default class DullahanRunnerDevelopment extends DullahanRunner<DullahanRu
                 error: null,
                 timeEnd: Date.now()
             });
-        } catch (error) {
+        } catch (error: any) {
             client.emitTestEnd({
                 testId,
                 error: new DullahanError(error),

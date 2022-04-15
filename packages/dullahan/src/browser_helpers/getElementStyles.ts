@@ -32,7 +32,7 @@ export function getElementStyles(this: void, optionsOrElement: GetElementStylesO
                 value: csmEntry.value.toString() || null,
                 unit: csmEntry.unit ?? null
             };
-        } catch (error) {}
+        } catch (error: any) {}
 
         try {
             var csEntry = csResult![propertyName].toString();
@@ -44,7 +44,7 @@ export function getElementStyles(this: void, optionsOrElement: GetElementStylesO
                 value: value,
                 unit: unit
             };
-        } catch (error) {}
+        } catch (error: any) {}
 
         return {
             value: null,

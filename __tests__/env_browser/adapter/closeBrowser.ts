@@ -8,7 +8,7 @@ describe('adapter.closeBrowser', () => {
         try {
             expect.hasAssertions();
             await adapter.closeBrowser();
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

@@ -8,7 +8,7 @@ describe('adapter.pressMouseAt', () => {
         try {
             expect.hasAssertions();
             await adapter.pressMouseAt(0, 0);
-        } catch (error) {
+        } catch (error: any) {
             expect(error.message).toStrictEqual(DullahanErrorMessage.NO_BROWSER);
             expect(error.name).toStrictEqual(AdapterError.NAME);
         }

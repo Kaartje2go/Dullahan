@@ -190,7 +190,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
                 error: null,
                 timeEnd: Date.now(),
             });
-        } catch (error) {
+        } catch (error: any) {
             client.emitTestEnd({
                 testId,
                 error: new DullahanError(error),
