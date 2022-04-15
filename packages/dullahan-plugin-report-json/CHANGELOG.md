@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.118 (2022-04-15)
+
+
+### Bug Fixes
+
+* type errors ([db34557](https://github.com/Kaartje2go/Dullahan/commit/db34557cae6adce46a3ea0290e88f8623959a874))
+
+
+
+
+
 # 1.0.0-alpha.117 (2022-04-15)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-json
