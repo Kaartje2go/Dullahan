@@ -15,7 +15,7 @@ jobs:
                     path: .
             -   uses: actions/setup-node@v3
                 with:
-                    node-version: 12
+                    node-version: 16
             -   run: echo "::set-output name=dir::$(yarn cache dir)"
                 id: yarn-cache-dir
             -   uses: actions/cache@v3
@@ -36,7 +36,7 @@ jobs:
                     path: .
             -   uses: actions/setup-node@v3
                 with:
-                    node-version: 12
+                    node-version: 16
             -   run: echo "::set-output name=dir::$(yarn cache dir)"
                 id: yarn-cache-dir
             -   uses: actions/cache@v3
@@ -57,7 +57,7 @@ jobs:
                     path: .
             -   uses: actions/setup-node@v3
                 with:
-                    node-version: 12
+                    node-version: 16
             -   run: echo "::set-output name=dir::$(yarn cache dir)"
                 id: yarn-cache-dir
             -   uses: actions/cache@v3
