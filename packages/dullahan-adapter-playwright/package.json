@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-adapter-playwright",
-  "version": "1.0.0-alpha.119",
+  "version": "1.0.0-alpha.120",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -13,7 +13,7 @@
     "compile-code": "tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@k2g/dullahan": "^1.0.0-alpha.119",
+    "@k2g/dullahan": "^1.0.0-alpha.120",
     "playwright": "^1.21.0"
   }
 }

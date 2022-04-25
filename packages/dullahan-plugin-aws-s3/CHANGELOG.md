@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.120 (2022-04-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tiny-async-pool to v2 ([#242](https://github.com/Kaartje2go/Dullahan/issues/242)) ([ff119be](https://github.com/Kaartje2go/Dullahan/commit/ff119befcc01824ea43ff523f3663efea8768130))
+
+
+
+
+
 # 1.0.0-alpha.119 (2022-04-21)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-aws-s3
