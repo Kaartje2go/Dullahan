@@ -15,6 +15,6 @@
   "dependencies": {
     "@k2g/dullahan": "^1.0.0-alpha.119",
     "fast-glob": "^3.2.4",
-    "tiny-async-pool": "^1.1.0"
+    "tiny-async-pool": "^2.0.0"
   }
 }
