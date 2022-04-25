@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.121 (2022-04-25)
+
+
+### Reverts
+
+* Revert "fix(deps): update dependency tiny-async-pool to v2 (#242)" (#249) ([296444c](https://github.com/Kaartje2go/Dullahan/commit/296444c11ddf77d2a24a3502871665cd70602f84)), closes [#242](https://github.com/Kaartje2go/Dullahan/issues/242) [#249](https://github.com/Kaartje2go/Dullahan/issues/249)
+
+
+
+
+
 # 1.0.0-alpha.120 (2022-04-25)
 
 
