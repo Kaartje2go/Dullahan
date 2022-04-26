@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.122 (2022-04-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency yargs to v17 ([#192](https://github.com/Kaartje2go/Dullahan/issues/192)) ([b5e91a8](https://github.com/Kaartje2go/Dullahan/commit/b5e91a8d92d3b8feba0f6783cf6a9ad61114feec))
+
+
+
+
+
 # 1.0.0-alpha.121 (2022-04-25)
 
 
