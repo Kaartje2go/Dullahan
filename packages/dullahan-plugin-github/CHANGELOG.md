@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.124 (2022-04-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ejs to v3.1.7 [security] ([#252](https://github.com/Kaartje2go/Dullahan/issues/252)) ([d25a42b](https://github.com/Kaartje2go/Dullahan/commit/d25a42b98e3909d8b5dfe7f10ff3c166abb97357))
+
+
+
+
+
 # 1.0.0-alpha.123 (2022-04-28)
 
 
