@@ -319,7 +319,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await page.setCookie(cookie as Puppeteer.SetCookie);
+        await page.setCookie(cookie);
     }
 
     public async setElementAttribute(selector: string, attributeName: string, attributeValue: string): Promise<void> {
