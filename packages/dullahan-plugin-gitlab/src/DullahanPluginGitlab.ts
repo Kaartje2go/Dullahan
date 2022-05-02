@@ -45,7 +45,7 @@ export default class DullahanPluginGitlab extends DullahanPlugin<
             }
         })
             .then((response) => response.json())
-            .then((comments) => comments.find(({body}) => body.startsWith(identifier)))
+            .then((comments: any) => comments.find(({body}) => body.startsWith(identifier)))
             .then((comment) => comment?.id ?? null);
 
         await fetch(commentId === null
