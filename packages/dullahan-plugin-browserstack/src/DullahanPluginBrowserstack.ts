@@ -1,5 +1,5 @@
 import {Local as BrowserstackLocal} from 'browserstack-local';
-import fetch from 'node-fetch';
+import fetch, { Response } from 'node-fetch';
 
 import {
     DullahanPluginBrowserstackDefaultOptions,
@@ -63,7 +63,7 @@ export default class DullahanPluginBrowserstack extends DullahanPlugin<
         const sessionIds = sessionCache[testId];
         const curSessionId = sessionIds[sessionIds.length - 1];
 
-        const requests: Promise<void>[] = [
+        const requests: Promise<Response|void>[] = [
             fetch(`https://${username}:${accessKey}@api.browserstack.com/automate/sessions/${curSessionId}.json`, {
                 method: 'PUT',
                 headers: {
@@ -115,7 +115,7 @@ export default class DullahanPluginBrowserstack extends DullahanPlugin<
             }).then((response) => response.json()).catch(console.error);
 
             if (response) {
-                const {automation_session} = response;
+                const {automation_session} = response as any;
                 const {browser_url, hashed_id} = automation_session;
 
                 this.browserstackBuildUrl = browser_url.replace(`/${hashed_id}`, '');
