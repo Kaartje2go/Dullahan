@@ -1,0 +1,946 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>DullahanApi · Dullahan</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Type parameters"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="DullahanApi · Dullahan"/><meta property="og:type" content="website"/><meta property="og:url" content="https://dullahan.io/"/><meta property="og:description" content="## Type parameters"/><meta property="og:image" content="https://dullahan.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://dullahan.io/img/undraw_tweetstorm.svg"/><meta name="robots" content="noindex"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="Dullahan"/><h2 class="headerTitleWithLogo">Dullahan</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/" target="_self">API</a></li><li class=""><a href="https://github.com/Kaartje2go/Dullahan" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Classes</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/">README</a></li><li class="navListItem"><a class="navItem" href="/docs/globals">Globals</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Modules</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan">@k2g/dullahan</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_playwright">@k2g/dullahan-adapter-playwright</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_puppeteer">@k2g/dullahan-adapter-puppeteer</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_selenium_3">@k2g/dullahan-adapter-selenium-3</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_selenium_4">@k2g/dullahan-adapter-selenium-4</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_aws_s3">@k2g/dullahan-plugin-aws-s3</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_browserstack">@k2g/dullahan-plugin-browserstack</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_github">@k2g/dullahan-plugin-github</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_gitlab">@k2g/dullahan-plugin-gitlab</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_report_html">@k2g/dullahan-plugin-report-html</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_report_json">@k2g/dullahan-plugin-report-json</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_report_markdown">@k2g/dullahan-plugin-report-markdown</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_slack">@k2g/dullahan-plugin-slack</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_xvfb">@k2g/dullahan-plugin-xvfb</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_runner_aws_lambda">@k2g/dullahan-runner-aws-lambda</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_runner_development">@k2g/dullahan-runner-development</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_runner_standard">@k2g/dullahan-runner-standard</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Classes</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.adaptererror">AdapterError</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.assertionerror">AssertionError</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanadapter">DullahanAdapter</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanapi">DullahanApi</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahancallspy">DullahanCallSpy</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanclient">DullahanClient</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanerror">DullahanError</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanplugin">DullahanPlugin</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanrunner">DullahanRunner</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahantest">DullahanTest</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_playwright.dullahanadapterplaywright">DullahanAdapterPlaywright</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_puppeteer.dullahanadapterpuppeteer">DullahanAdapterPuppeteer</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_selenium_3.dullahanadapterselenium3">DullahanAdapterSelenium3</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_selenium_4.dullahanadapterselenium4">DullahanAdapterSelenium4</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_aws_s3.dullahanpluginawss3">DullahanPluginAwsS3</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_browserstack.dullahanpluginbrowserstack">DullahanPluginBrowserstack</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_github.dullahanplugingithub">DullahanPluginGithub</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_gitlab.dullahanplugingitlab">DullahanPluginGitlab</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_report_html.dullahanpluginreporthtml">DullahanPluginReportHtml</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_report_json.dullahanpluginreportjson">DullahanPluginReportJson</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_report_markdown.dullahanpluginreportmarkdown">DullahanPluginReportMarkdown</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_slack.dullahanpluginslack">DullahanPluginSlack</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_xvfb.dullahanpluginxvfb">DullahanPluginXvfb</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_runner_aws_lambda.dullahanrunnerawslambda">DullahanRunnerAwsLambda</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_runner_development.dullahanrunnerdevelopment">DullahanRunnerDevelopment</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_runner_standard.dullahanrunnerstandard">DullahanRunnerStandard</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.artifact">Artifact</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.dullahancallend">DullahanCallEnd</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.dullahancallstart">DullahanCallStart</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.storedartifact">StoredArtifact</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_github.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_github.test">Test</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_html.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_html.test">Test</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_markdown.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_markdown.test">Test</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_slack.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_slack.test">Test</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">DullahanApi</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="type-parameters"></a><a href="#type-parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type parameters</h2>
+<p>▪ <strong>DullahanApiSubclassUserOptions</strong>: <em><a href="/docs/modules/_k2g_dullahan#dullahanapiuseroptions">DullahanApiUserOptions</a></em></p>
+<p>▪ <strong>DullahanApiSubclassDefaultOptions</strong>: <em>typeof DullahanApiDefaultOptions</em></p>
+<h2><a class="anchor" aria-hidden="true" id="hierarchy"></a><a href="#hierarchy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hierarchy</h2>
+<ul>
+<li><p><a href="/docs/classes/_k2g_dullahan.dullahancallspy">DullahanCallSpy</a></p>
+<p>↳ <strong>DullahanApi</strong></p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="constructors"></a><a href="#constructors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructors</h3>
+<ul>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#constructor">constructor</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="methods"></a><a href="#methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<ul>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#acceptdialog">acceptDialog</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#appendtext">appendText</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#assert">assert</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#cleartext">clearText</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#click">click</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#clickat">clickAt</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#clickatelement">clickAtElement</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#clickatelementcenter">clickAtElementCenter</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#clickiframeelement">clickIFrameElement</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#disabledialogs">disableDialogs</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#dismissdialog">dismissDialog</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#displaypointer">displayPointer</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#enabledialogs">enableDialogs</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#executescript">executeScript</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#filliframefield">fillIFrameField</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#getcookie">getCookie</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#getelementattributes">getElementAttributes</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#getelementboundaries">getElementBoundaries</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#getelementproperties">getElementProperties</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#getelementstyles">getElementStyles</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#gettext">getText</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#geturl">getURL</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#getvalue">getValue</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#goto">goto</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#iselementpresent">isElementPresent</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#iselementvisible">isElementVisible</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#movemouseto">moveMouseTo</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#movemousetoelement">moveMouseToElement</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#movemousetoelementcenter">moveMouseToElementCenter</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#presskey">pressKey</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#pressmouse">pressMouse</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#pressmouseat">pressMouseAt</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#pressmouseatelement">pressMouseAtElement</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#pressmouseatelementcenter">pressMouseAtElementCenter</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#releasemouse">releaseMouse</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#releasemouseat">releaseMouseAt</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#releasemouseatelement">releaseMouseAtElement</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#releasemouseatelementcenter">releaseMouseAtElementCenter</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#reloadpage">reloadPage</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#removecookie">removeCookie</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#screenshotpage">screenshotPage</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#scrolltoelement">scrollToElement</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#sendkeys">sendKeys</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#sendkeystoelement">sendKeysToElement</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#setcookie">setCookie</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#setelementattribute">setElementAttribute</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#setelementinputfile">setElementInputFile</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#setelementproperty">setElementProperty</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#settext">setText</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#seturl">setURL</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#setvalue">setValue</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#sleep">sleep</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#waitforelementinteractive">waitForElementInteractive</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#waitforelementnotpresent">waitForElementNotPresent</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#waitforelementnotvisible">waitForElementNotVisible</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#waitforelementpresent">waitForElementPresent</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#waitforelementvisible">waitForElementVisible</a></li>
+<li><a href="/docs/classes/_k2g_dullahan.dullahanapi#waitfornavigation">waitForNavigation</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="constructors-1"></a><a href="#constructors-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructors</h2>
+<h3><a class="anchor" aria-hidden="true" id="constructor"></a><a href="#constructor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>constructor</h3>
+<p>+ <strong>new DullahanApi</strong>(<code>__namedParameters</code>: object): <em><a href="/docs/classes/_k2g_dullahan.dullahanapi">DullahanApi</a></em></p>
+<p><em>Overrides void</em></p>
+<p><strong>Parameters:</strong></p>
+<p>▪ <strong>__namedParameters</strong>: <em>object</em></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>adapter</code></td><td><a href="/docs/classes/_k2g_dullahan.dullahanadapter">DullahanAdapter</a>‹any, any›</td><td>-</td></tr>
+<tr><td><code>client</code></td><td><a href="/docs/classes/_k2g_dullahan.dullahanclient">DullahanClient</a>‹›</td><td>-</td></tr>
+<tr><td><code>defaultOptions</code></td><td>DullahanApiSubclassDefaultOptions</td><td>DullahanApiDefaultOptions as DullahanApiSubclassDefaultOptions</td></tr>
+<tr><td><code>test</code></td><td><a href="/docs/classes/_k2g_dullahan.dullahantest">DullahanTest</a>‹<a href="/docs/classes/_k2g_dullahan.dullahanapi">DullahanApi</a>‹Partial‹object›, <a href="/docs/modules/_k2g_dullahan#dullahanapioptions">DullahanApiOptions</a>››</td><td>-</td></tr>
+<tr><td><code>testId</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>userOptions</code></td><td>DullahanApiSubclassUserOptions</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em><a href="/docs/classes/_k2g_dullahan.dullahanapi">DullahanApi</a></em></p>
+<h2><a class="anchor" aria-hidden="true" id="methods-1"></a><a href="#methods-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h2>
+<h3><a class="anchor" aria-hidden="true" id="acceptdialog"></a><a href="#acceptdialog" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>acceptDialog</h3>
+<p>▸ <strong>acceptDialog</strong>(<code>value?</code>: undefined | string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>value?</code></td><td>undefined | string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="appendtext"></a><a href="#appendtext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>appendText</h3>
+<p>▸ <strong>appendText</strong>(<code>selector</code>: string, <code>text</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>text</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="assert"></a><a href="#assert" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>assert</h3>
+<p>▸ <strong>assert</strong>(<code>message</code>: string, <code>assertion</code>: function): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<p>▪ <strong>message</strong>: <em>string</em></p>
+<p>▪ <strong>assertion</strong>: <em>function</em></p>
+<p>▸ (<code>this</code>: void, <code>expect</code>: Expect): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>this</code></td><td>void</td></tr>
+<tr><td><code>expect</code></td><td>Expect</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="cleartext"></a><a href="#cleartext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clearText</h3>
+<p>▸ <strong>clearText</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="click"></a><a href="#click" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>click</h3>
+<p>▸ <strong>click</strong>(<code>selector</code>: string, <code>offsetCenterX?</code>: undefined | number, <code>offsetCenterY?</code>: undefined | number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>offsetCenterX?</code></td><td>undefined | number</td></tr>
+<tr><td><code>offsetCenterY?</code></td><td>undefined | number</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="clickat"></a><a href="#clickat" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clickAt</h3>
+<p>▸ <strong>clickAt</strong>(<code>x</code>: number, <code>y</code>: number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>x</code></td><td>number</td></tr>
+<tr><td><code>y</code></td><td>number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="clickatelement"></a><a href="#clickatelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clickAtElement</h3>
+<p>▸ <strong>clickAtElement</strong>(<code>selector</code>: string, <code>offsetX</code>: number, <code>offsetY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="clickatelementcenter"></a><a href="#clickatelementcenter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clickAtElementCenter</h3>
+<p>▸ <strong>clickAtElementCenter</strong>(<code>selector</code>: string, <code>offsetCenterX</code>: number, <code>offsetCenterY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetCenterX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetCenterY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="clickiframeelement"></a><a href="#clickiframeelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clickIFrameElement</h3>
+<p>▸ <strong>clickIFrameElement</strong>(<code>iFrameSelector</code>: string, <code>selector</code>: string): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>iFrameSelector</code></td><td>string</td></tr>
+<tr><td><code>selector</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="disabledialogs"></a><a href="#disabledialogs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>disableDialogs</h3>
+<p>▸ <strong>disableDialogs</strong>(): <em>Promise‹void›</em></p>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="dismissdialog"></a><a href="#dismissdialog" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>dismissDialog</h3>
+<p>▸ <strong>dismissDialog</strong>(<code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="displaypointer"></a><a href="#displaypointer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>displayPointer</h3>
+<p>▸ <strong>displayPointer</strong>(): <em>Promise‹void›</em></p>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="enabledialogs"></a><a href="#enabledialogs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>enableDialogs</h3>
+<p>▸ <strong>enableDialogs</strong>(): <em>Promise‹void›</em></p>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="executescript"></a><a href="#executescript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>executeScript</h3>
+<p>▸ <strong>executeScript</strong>‹<strong>T</strong>›(<code>script</code>: string): <em>Promise‹T›</em></p>
+<p><strong>Type parameters:</strong></p>
+<p>▪ <strong>T</strong></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>script</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹T›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="filliframefield"></a><a href="#filliframefield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>fillIFrameField</h3>
+<p>▸ <strong>fillIFrameField</strong>(<code>iFrameSelector</code>: string, <code>fieldSelector</code>: string, <code>value</code>: string): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>iFrameSelector</code></td><td>string</td></tr>
+<tr><td><code>fieldSelector</code></td><td>string</td></tr>
+<tr><td><code>value</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="getcookie"></a><a href="#getcookie" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getCookie</h3>
+<p>▸ <strong>getCookie</strong>(<code>name</code>: string): <em>Promise‹<a href="/docs/modules/_k2g_dullahan#dullahancookie">DullahanCookie</a> | null›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>name</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹<a href="/docs/modules/_k2g_dullahan#dullahancookie">DullahanCookie</a> | null›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="getelementattributes"></a><a href="#getelementattributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getElementAttributes</h3>
+<p>▸ <strong>getElementAttributes</strong>(<code>selector</code>: string, <code>attributeNames</code>: string[], <code>timeout?</code>: undefined | number): <em>Promise‹(string | null)[]›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>attributeNames</code></td><td>string[]</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹(string | null)[]›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="getelementboundaries"></a><a href="#getelementboundaries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getElementBoundaries</h3>
+<p>▸ <strong>getElementBoundaries</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹object›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹object›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="getelementproperties"></a><a href="#getelementproperties" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getElementProperties</h3>
+<p>▸ <strong>getElementProperties</strong>‹<strong>T</strong>›(<code>selector</code>: string, <code>propertyNames</code>: string[], <code>timeout?</code>: undefined | number): <em>Promise‹(T | null)[]›</em></p>
+<p><strong>Type parameters:</strong></p>
+<p>▪ <strong>T</strong></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>propertyNames</code></td><td>string[]</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹(T | null)[]›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="getelementstyles"></a><a href="#getelementstyles" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getElementStyles</h3>
+<p>▸ <strong>getElementStyles</strong>(<code>selector</code>: string, <code>styleNames</code>: string[], <code>timeout?</code>: undefined | number): <em>Promise‹object[]›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>styleNames</code></td><td>string[]</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹object[]›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="gettext"></a><a href="#gettext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getText</h3>
+<p>▸ <strong>getText</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹string›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹string›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="geturl"></a><a href="#geturl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getURL</h3>
+<p>▸ <strong>getURL</strong>(): <em>Promise‹string›</em></p>
+<p><strong>Returns:</strong> <em>Promise‹string›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="getvalue"></a><a href="#getvalue" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getValue</h3>
+<p>▸ <strong>getValue</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹string | null›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹string | null›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="goto"></a><a href="#goto" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>goto</h3>
+<p>▸ <strong>goto</strong>(<code>url</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>url</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="iselementpresent"></a><a href="#iselementpresent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isElementPresent</h3>
+<p>▸ <strong>isElementPresent</strong>(<code>selector</code>: string): <em>Promise‹boolean›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹boolean›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="iselementvisible"></a><a href="#iselementvisible" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isElementVisible</h3>
+<p>▸ <strong>isElementVisible</strong>(<code>selector</code>: string): <em>Promise‹boolean›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹boolean›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="movemouseto"></a><a href="#movemouseto" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>moveMouseTo</h3>
+<p>▸ <strong>moveMouseTo</strong>(<code>x</code>: number, <code>y</code>: number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>x</code></td><td>number</td></tr>
+<tr><td><code>y</code></td><td>number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="movemousetoelement"></a><a href="#movemousetoelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>moveMouseToElement</h3>
+<p>▸ <strong>moveMouseToElement</strong>(<code>selector</code>: string, <code>offsetX</code>: number, <code>offsetY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="movemousetoelementcenter"></a><a href="#movemousetoelementcenter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>moveMouseToElementCenter</h3>
+<p>▸ <strong>moveMouseToElementCenter</strong>(<code>selector</code>: string, <code>offsetCenterX</code>: number, <code>offsetCenterY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetCenterX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetCenterY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="presskey"></a><a href="#presskey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pressKey</h3>
+<p>▸ <strong>pressKey</strong>(<code>key</code>: <a href="/docs/modules/_k2g_dullahan#dullahankey">DullahanKey</a>): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>key</code></td><td><a href="/docs/modules/_k2g_dullahan#dullahankey">DullahanKey</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="pressmouse"></a><a href="#pressmouse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pressMouse</h3>
+<p>▸ <strong>pressMouse</strong>(<code>selector</code>: string, <code>offsetCenterX</code>: number, <code>offsetCenterY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetCenterX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetCenterY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="pressmouseat"></a><a href="#pressmouseat" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pressMouseAt</h3>
+<p>▸ <strong>pressMouseAt</strong>(<code>x</code>: number, <code>y</code>: number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>x</code></td><td>number</td></tr>
+<tr><td><code>y</code></td><td>number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="pressmouseatelement"></a><a href="#pressmouseatelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pressMouseAtElement</h3>
+<p>▸ <strong>pressMouseAtElement</strong>(<code>selector</code>: string, <code>offsetX</code>: number, <code>offsetY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="pressmouseatelementcenter"></a><a href="#pressmouseatelementcenter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pressMouseAtElementCenter</h3>
+<p>▸ <strong>pressMouseAtElementCenter</strong>(<code>selector</code>: string, <code>offsetCenterX</code>: number, <code>offsetCenterY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetCenterX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetCenterY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="releasemouse"></a><a href="#releasemouse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>releaseMouse</h3>
+<p>▸ <strong>releaseMouse</strong>(<code>selector</code>: string, <code>offsetCenterX</code>: number, <code>offsetCenterY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetCenterX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetCenterY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="releasemouseat"></a><a href="#releasemouseat" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>releaseMouseAt</h3>
+<p>▸ <strong>releaseMouseAt</strong>(<code>x</code>: number, <code>y</code>: number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>x</code></td><td>number</td></tr>
+<tr><td><code>y</code></td><td>number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="releasemouseatelement"></a><a href="#releasemouseatelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>releaseMouseAtElement</h3>
+<p>▸ <strong>releaseMouseAtElement</strong>(<code>selector</code>: string, <code>offsetX</code>: number, <code>offsetY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="releasemouseatelementcenter"></a><a href="#releasemouseatelementcenter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>releaseMouseAtElementCenter</h3>
+<p>▸ <strong>releaseMouseAtElementCenter</strong>(<code>selector</code>: string, <code>offsetCenterX</code>: number, <code>offsetCenterY</code>: number, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>offsetCenterX</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>offsetCenterY</code></td><td>number</td><td>0</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="reloadpage"></a><a href="#reloadpage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>reloadPage</h3>
+<p>▸ <strong>reloadPage</strong>(<code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="removecookie"></a><a href="#removecookie" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeCookie</h3>
+<p>▸ <strong>removeCookie</strong>(<code>name</code>: string): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>name</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="screenshotpage"></a><a href="#screenshotpage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>screenshotPage</h3>
+<p>▸ <strong>screenshotPage</strong>(): <em>Promise‹string›</em></p>
+<p><strong>Returns:</strong> <em>Promise‹string›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="scrolltoelement"></a><a href="#scrolltoelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>scrollToElement</h3>
+<p>▸ <strong>scrollToElement</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="sendkeys"></a><a href="#sendkeys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sendKeys</h3>
+<p>▸ <strong>sendKeys</strong>(<code>keys</code>: string): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>keys</code></td><td>string</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="sendkeystoelement"></a><a href="#sendkeystoelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sendKeysToElement</h3>
+<p>▸ <strong>sendKeysToElement</strong>(<code>selector</code>: string, <code>keys</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>keys</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="setcookie"></a><a href="#setcookie" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setCookie</h3>
+<p>▸ <strong>setCookie</strong>(<code>cookie</code>: <a href="/docs/modules/_k2g_dullahan#dullahancookie">DullahanCookie</a>): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cookie</code></td><td><a href="/docs/modules/_k2g_dullahan#dullahancookie">DullahanCookie</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="setelementattribute"></a><a href="#setelementattribute" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setElementAttribute</h3>
+<p>▸ <strong>setElementAttribute</strong>(<code>selector</code>: string, <code>attributeName</code>: string, <code>attributeValue</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>attributeName</code></td><td>string</td></tr>
+<tr><td><code>attributeValue</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="setelementinputfile"></a><a href="#setelementinputfile" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setElementInputFile</h3>
+<p>▸ <strong>setElementInputFile</strong>(<code>selector</code>: string, <code>file</code>: string, <code>isAbsolute</code>: boolean, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>file</code></td><td>string</td><td>-</td></tr>
+<tr><td><code>isAbsolute</code></td><td>boolean</td><td>false</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="setelementproperty"></a><a href="#setelementproperty" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setElementProperty</h3>
+<p>▸ <strong>setElementProperty</strong>(<code>selector</code>: string, <code>propertyName</code>: string, <code>propertyValue</code>: any, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>propertyName</code></td><td>string</td></tr>
+<tr><td><code>propertyValue</code></td><td>any</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="settext"></a><a href="#settext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setText</h3>
+<p>▸ <strong>setText</strong>(<code>selector</code>: string, <code>text</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>text</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="seturl"></a><a href="#seturl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setURL</h3>
+<p>▸ <strong>setURL</strong>(<code>url</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>url</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="setvalue"></a><a href="#setvalue" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setValue</h3>
+<p>▸ <strong>setValue</strong>(<code>selector</code>: string, <code>value</code>: any, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>value</code></td><td>any</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="sleep"></a><a href="#sleep" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sleep</h3>
+<p>▸ <strong>sleep</strong>(<code>milliseconds</code>: number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>milliseconds</code></td><td>number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="waitforelementinteractive"></a><a href="#waitforelementinteractive" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>waitForElementInteractive</h3>
+<p>▸ <strong>waitForElementInteractive</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="waitforelementnotpresent"></a><a href="#waitforelementnotpresent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>waitForElementNotPresent</h3>
+<p>▸ <strong>waitForElementNotPresent</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="waitforelementnotvisible"></a><a href="#waitforelementnotvisible" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>waitForElementNotVisible</h3>
+<p>▸ <strong>waitForElementNotVisible</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="waitforelementpresent"></a><a href="#waitforelementpresent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>waitForElementPresent</h3>
+<p>▸ <strong>waitForElementPresent</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="waitforelementvisible"></a><a href="#waitforelementvisible" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>waitForElementVisible</h3>
+<p>▸ <strong>waitForElementVisible</strong>(<code>selector</code>: string, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>selector</code></td><td>string</td></tr>
+<tr><td><code>timeout?</code></td><td>undefined | number</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="waitfornavigation"></a><a href="#waitfornavigation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>waitForNavigation</h3>
+<p>▸ <strong>waitForNavigation</strong>(<code>trigger</code>: function, <code>timeout?</code>: undefined | number): <em>Promise‹void›</em></p>
+<p><strong>Parameters:</strong></p>
+<p>▪ <strong>trigger</strong>: <em>function</em></p>
+<p>▸ (): <em>Promise‹void› | void</em></p>
+<p>▪<code>Optional</code>  <strong>timeout</strong>: <em>undefined | number</em></p>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/classes/_k2g_dullahan.dullahanadapter"><span class="arrow-prev">← </span><span class="function-name-prevnext">DullahanAdapter</span></a><a class="docs-next button" href="/docs/classes/_k2g_dullahan.dullahancallspy"><span class="function-name-prevnext">DullahanCallSpy</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#type-parameters">Type parameters</a></li><li><a href="#hierarchy">Hierarchy</a></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#constructors">Constructors</a></li><li><a href="#methods">Methods</a></li></ul></li><li><a href="#constructors-1">Constructors</a><ul class="toc-headings"><li><a href="#constructor">constructor</a></li></ul></li><li><a href="#methods-1">Methods</a><ul class="toc-headings"><li><a href="#acceptdialog">acceptDialog</a></li><li><a href="#appendtext">appendText</a></li><li><a href="#assert">assert</a></li><li><a href="#cleartext">clearText</a></li><li><a href="#click">click</a></li><li><a href="#clickat">clickAt</a></li><li><a href="#clickatelement">clickAtElement</a></li><li><a href="#clickatelementcenter">clickAtElementCenter</a></li><li><a href="#clickiframeelement">clickIFrameElement</a></li><li><a href="#disabledialogs">disableDialogs</a></li><li><a href="#dismissdialog">dismissDialog</a></li><li><a href="#displaypointer">displayPointer</a></li><li><a href="#enabledialogs">enableDialogs</a></li><li><a href="#executescript">executeScript</a></li><li><a href="#filliframefield">fillIFrameField</a></li><li><a href="#getcookie">getCookie</a></li><li><a href="#getelementattributes">getElementAttributes</a></li><li><a href="#getelementboundaries">getElementBoundaries</a></li><li><a href="#getelementproperties">getElementProperties</a></li><li><a href="#getelementstyles">getElementStyles</a></li><li><a href="#gettext">getText</a></li><li><a href="#geturl">getURL</a></li><li><a href="#getvalue">getValue</a></li><li><a href="#goto">goto</a></li><li><a href="#iselementpresent">isElementPresent</a></li><li><a href="#iselementvisible">isElementVisible</a></li><li><a href="#movemouseto">moveMouseTo</a></li><li><a href="#movemousetoelement">moveMouseToElement</a></li><li><a href="#movemousetoelementcenter">moveMouseToElementCenter</a></li><li><a href="#presskey">pressKey</a></li><li><a href="#pressmouse">pressMouse</a></li><li><a href="#pressmouseat">pressMouseAt</a></li><li><a href="#pressmouseatelement">pressMouseAtElement</a></li><li><a href="#pressmouseatelementcenter">pressMouseAtElementCenter</a></li><li><a href="#releasemouse">releaseMouse</a></li><li><a href="#releasemouseat">releaseMouseAt</a></li><li><a href="#releasemouseatelement">releaseMouseAtElement</a></li><li><a href="#releasemouseatelementcenter">releaseMouseAtElementCenter</a></li><li><a href="#reloadpage">reloadPage</a></li><li><a href="#removecookie">removeCookie</a></li><li><a href="#screenshotpage">screenshotPage</a></li><li><a href="#scrolltoelement">scrollToElement</a></li><li><a href="#sendkeys">sendKeys</a></li><li><a href="#sendkeystoelement">sendKeysToElement</a></li><li><a href="#setcookie">setCookie</a></li><li><a href="#setelementattribute">setElementAttribute</a></li><li><a href="#setelementinputfile">setElementInputFile</a></li><li><a href="#setelementproperty">setElementProperty</a></li><li><a href="#settext">setText</a></li><li><a href="#seturl">setURL</a></li><li><a href="#setvalue">setValue</a></li><li><a href="#sleep">sleep</a></li><li><a href="#waitforelementinteractive">waitForElementInteractive</a></li><li><a href="#waitforelementnotpresent">waitForElementNotPresent</a></li><li><a href="#waitforelementnotvisible">waitForElementNotVisible</a></li><li><a href="#waitforelementpresent">waitForElementPresent</a></li><li><a href="#waitforelementvisible">waitForElementVisible</a></li><li><a href="#waitfornavigation">waitForNavigation</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="Dullahan" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2022 Kaartje2go B.V.</section></footer></div></body></html>

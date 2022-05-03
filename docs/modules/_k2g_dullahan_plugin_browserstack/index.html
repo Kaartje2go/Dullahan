@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>@k2g/dullahan-plugin-browserstack · Dullahan</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="# Dullahan Plugin Browserstack"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="@k2g/dullahan-plugin-browserstack · Dullahan"/><meta property="og:type" content="website"/><meta property="og:url" content="https://dullahan.io/"/><meta property="og:description" content="# Dullahan Plugin Browserstack"/><meta property="og:image" content="https://dullahan.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://dullahan.io/img/undraw_tweetstorm.svg"/><meta name="robots" content="noindex"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="Dullahan"/><h2 class="headerTitleWithLogo">Dullahan</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/" target="_self">API</a></li><li class=""><a href="https://github.com/Kaartje2go/Dullahan" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Modules</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/">README</a></li><li class="navListItem"><a class="navItem" href="/docs/globals">Globals</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Modules</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan">@k2g/dullahan</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_playwright">@k2g/dullahan-adapter-playwright</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_puppeteer">@k2g/dullahan-adapter-puppeteer</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_selenium_3">@k2g/dullahan-adapter-selenium-3</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_adapter_selenium_4">@k2g/dullahan-adapter-selenium-4</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_aws_s3">@k2g/dullahan-plugin-aws-s3</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_browserstack">@k2g/dullahan-plugin-browserstack</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_github">@k2g/dullahan-plugin-github</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_gitlab">@k2g/dullahan-plugin-gitlab</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_report_html">@k2g/dullahan-plugin-report-html</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_report_json">@k2g/dullahan-plugin-report-json</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_report_markdown">@k2g/dullahan-plugin-report-markdown</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_slack">@k2g/dullahan-plugin-slack</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_plugin_xvfb">@k2g/dullahan-plugin-xvfb</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_runner_aws_lambda">@k2g/dullahan-runner-aws-lambda</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_runner_development">@k2g/dullahan-runner-development</a></li><li class="navListItem"><a class="navItem" href="/docs/modules/_k2g_dullahan_runner_standard">@k2g/dullahan-runner-standard</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Classes</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.adaptererror">AdapterError</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.assertionerror">AssertionError</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanadapter">DullahanAdapter</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanapi">DullahanApi</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahancallspy">DullahanCallSpy</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanclient">DullahanClient</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanerror">DullahanError</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanplugin">DullahanPlugin</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahanrunner">DullahanRunner</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan.dullahantest">DullahanTest</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_playwright.dullahanadapterplaywright">DullahanAdapterPlaywright</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_puppeteer.dullahanadapterpuppeteer">DullahanAdapterPuppeteer</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_selenium_3.dullahanadapterselenium3">DullahanAdapterSelenium3</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_adapter_selenium_4.dullahanadapterselenium4">DullahanAdapterSelenium4</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_aws_s3.dullahanpluginawss3">DullahanPluginAwsS3</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_browserstack.dullahanpluginbrowserstack">DullahanPluginBrowserstack</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_github.dullahanplugingithub">DullahanPluginGithub</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_gitlab.dullahanplugingitlab">DullahanPluginGitlab</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_report_html.dullahanpluginreporthtml">DullahanPluginReportHtml</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_report_json.dullahanpluginreportjson">DullahanPluginReportJson</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_report_markdown.dullahanpluginreportmarkdown">DullahanPluginReportMarkdown</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_slack.dullahanpluginslack">DullahanPluginSlack</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_plugin_xvfb.dullahanpluginxvfb">DullahanPluginXvfb</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_runner_aws_lambda.dullahanrunnerawslambda">DullahanRunnerAwsLambda</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_runner_development.dullahanrunnerdevelopment">DullahanRunnerDevelopment</a></li><li class="navListItem"><a class="navItem" href="/docs/classes/_k2g_dullahan_runner_standard.dullahanrunnerstandard">DullahanRunnerStandard</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Interfaces</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.artifact">Artifact</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.dullahancallend">DullahanCallEnd</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.dullahancallstart">DullahanCallStart</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan.storedartifact">StoredArtifact</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_github.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_github.test">Test</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_html.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_html.test">Test</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_markdown.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_report_markdown.test">Test</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_slack.failingtest">FailingTest</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces/_k2g_dullahan_plugin_slack.test">Test</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">@k2g/dullahan-plugin-browserstack</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="dullahan-plugin-browserstack"></a><a href="#dullahan-plugin-browserstack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dullahan Plugin Browserstack</h1>
+<p>Allows Dullahan to manage Browserstack.</p>
+<p>While this plugin is not needed to be able to use Dullahan on Browserstack, it does add the following functionality:</p>
+<ul>
+<li>Tests in Browserstack will show the test name, rather than the session ID;</li>
+<li>Tests in Browserstack will show <code>success</code> or <code>failure</code> statuses;</li>
+<li>Browserstack will be able to test against localhost, so your website/webapp does not even need to be live;</li>
+<li>Browserstack will be able to bypass an IP-whitelist on your server by using the system Dullahan is running on as a proxy;</li>
+<li>This plugin shares some data with other plugins, so that reporting plugins can link to failed tests on Browserstack.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="table-of-contents"></a><a href="#table-of-contents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Table of Contents</h2>
+<ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#plugin-options">Plugin Options</a></li>
+<li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="getting-started"></a><a href="#getting-started" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getting Started</h2>
+<p>Install this plugin:</p>
+<pre><code class="hljs css language-bash">yarn add @k2g/dullahan-plugin-browserstack
+</code></pre>
+<p>And make sure you have at least one of these installed:</p>
+<pre><code class="hljs css language-bash">yarn add @k2g/dullahan-adapter-selenium-3
+yarn add @k2g/dullahan-adapter-selenium-4
+</code></pre>
+<p>Note: Our documentation uses <code>yarn</code> commands, but <code>npm</code> will also work. You can compare <code>yarn</code> and <code>npm</code> commands in the <a href="https://yarnpkg.com/en/docs/migrating-from-npm#toc-cli-commands-comparison">yarn docs, here</a>.</p>
+<p>Now that the plugin is installed, you can add it to your Dullahan configuration file:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">runner</span>: [
+        <span class="hljs-string">'@k2g/dullahan-runner-standard'</span>, {
+            <span class="hljs-comment">// Or more, your choice</span>
+            <span class="hljs-attr">maxConcurrency</span>: <span class="hljs-number">1</span>
+        }
+    ],
+    <span class="hljs-attr">adapter</span>: [<span class="hljs-string">'@k2g/dullahan-adapter-selenium-3'</span>, {
+        <span class="hljs-attr">browserName</span>: <span class="hljs-string">'chrome'</span>,
+        <span class="hljs-attr">seleniumRemoteUrl</span>: <span class="hljs-string">'https://hub-cloud.browserstack.com/wd/hub'</span>,
+        <span class="hljs-attr">rawCapabilities</span>: {
+
+            <span class="hljs-comment">// Operating system of the remote machine</span>
+            <span class="hljs-attr">os</span>: <span class="hljs-string">'Windows'</span>,
+
+            <span class="hljs-comment">// Operating system version of the remote machine</span>
+            <span class="hljs-attr">os_version</span>: <span class="hljs-string">'10'</span>,
+
+            <span class="hljs-comment">// The resolution of the remote machine, _not_ the browser's window size</span>
+            <span class="hljs-attr">resolution</span>: <span class="hljs-string">'1920x1080'</span>,
+
+            <span class="hljs-comment">// Name of the browser on the remote machine</span>
+            <span class="hljs-attr">browserName</span>: <span class="hljs-string">'Chrome'</span>,
+
+            <span class="hljs-comment">// Version of the browser on the remote machine</span>
+            <span class="hljs-attr">browser_version</span>: <span class="hljs-string">'81.0'</span>,
+
+            <span class="hljs-comment">// The build ID (preferably unique)</span>
+            <span class="hljs-attr">build</span>: <span class="hljs-string">`Chrome at <span class="hljs-subst">${<span class="hljs-built_in">Date</span>.now()}</span>`</span>,
+
+            <span class="hljs-comment">// The project this build belongs to</span>
+            <span class="hljs-attr">project</span>: <span class="hljs-string">'Dullahan-Tests'</span>,
+
+            <span class="hljs-comment">// This version must match the adapter you've chosen</span>
+            <span class="hljs-string">'browserstack.selenium_version'</span>: <span class="hljs-string">'3.6.0'</span>,
+
+            <span class="hljs-comment">// This version _must_ be provided for Dullahan to work correctly</span>
+            <span class="hljs-string">'browserstack.chrome.driver'</span>: <span class="hljs-string">'81.0.4044.69'</span>,
+
+            <span class="hljs-comment">// Must be set to true to be able to test on localhost</span>
+            <span class="hljs-string">'browserstack.local'</span>: <span class="hljs-string">'false'</span>,
+
+            <span class="hljs-comment">// Collect and show browser console information on Browserstack</span>
+            <span class="hljs-string">'browserstack.console'</span>: <span class="hljs-string">'verbose'</span>,
+
+            <span class="hljs-comment">// Collect and show network logs on Browserstack</span>
+            <span class="hljs-string">'browserstack.networkLogs'</span>: <span class="hljs-string">'true'</span>,
+
+            <span class="hljs-comment">// Set the timezone of the remote machine</span>
+            <span class="hljs-string">'browserstack.timezone'</span>: <span class="hljs-string">'Europe/Amsterdam'</span>,
+
+            <span class="hljs-comment">// Your Browserstack credentials</span>
+            <span class="hljs-string">'browserstack.user'</span>: BROWSERSTACK_USERNAME,
+            <span class="hljs-string">'browserstack.key'</span>: BROWSERSTACK_ACCESS_KEY,
+        }
+    }],
+    <span class="hljs-attr">plugins</span>: [
+        <span class="hljs-string">'@k2g/dullahan-plugin-browserstack'</span>
+    ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="plugin-options"></a><a href="#plugin-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugin Options</h2>
+<p>This plugin uses <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a> internally and passes through almost all options given to it. A value of <code>-</code> means that the plugin leaves it up to <code>browserstack-local</code> to decide.</p>
+<p>Next to that, the Selenium adapter will also need some options to connect with Browserstack. You can use the example above as a template and use the <a href="https://www.browserstack.com/automate/capabilities">Capabilities Generator</a> to tailor it to your needs.</p>
+<table>
+<thead>
+<tr><th>name</th><th>type</th><th>default</th><th style="text-align:left">description</th></tr>
+</thead>
+<tbody>
+<tr><td>useLocal</td><td>boolean</td><td>false</td><td style="text-align:left">Tunnel requests through your local network</td></tr>
+<tr><td>removeFailedAfterRetrySuccess</td><td>boolean</td><td>true</td><td style="text-align:left">Remove &quot;failed&quot; tests after they have passed a successful retry</td></tr>
+<tr><td>username</td><td>string</td><td>BROWSERSTACK_USERNAME</td><td style="text-align:left">Your Browserstack username</td></tr>
+<tr><td>accessKey</td><td>string</td><td>BROWSERSTACK_ACCESS_KEY</td><td style="text-align:left">Your Browserstack access key</td></tr>
+<tr><td>localOptions.verbose</td><td>boolean</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.force</td><td>boolean</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.only</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.onlyAutomate</td><td>boolean</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.forceLocal</td><td>boolean</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.localIdentifier</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.folder</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.proxyHost</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.proxyPort</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.proxyUser</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.proxyPass</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.forceProxy</td><td>boolean</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.logFile</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.parallelRuns</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+<tr><td>localOptions.binarypath</td><td>string</td><td>-</td><td style="text-align:left">See <a href="https://yarnpkg.com/en/package/browserstack-local">browserstack-local</a></td></tr>
+</tbody>
+</table>
+<p>To change any of these options, pass along an object containing the options you wish to change to Dullahan:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">plugins</span>: [
+        [<span class="hljs-string">'@k2g/dullahan-plugin-browserstack'</span>, {
+            <span class="hljs-attr">useLocal</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">localOptions</span>: {
+                <span class="hljs-attr">forceLocal</span>: <span class="hljs-literal">true</span>
+            }
+        }]
+    ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="frequently-asked-questions"></a><a href="#frequently-asked-questions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Frequently Asked Questions</h2>
+<p><strong>Question:</strong> Can I use this with Puppeteer or Playwright?</p>
+<p><strong>Answer:</strong> No, not until Browserstack starts supporting them.</p>
+<p><strong>Question:</strong> Can I use Dullahan to run tests in parallel on Browserstack?</p>
+<p><strong>Answer:</strong> Yes, provided your Browserstack subscription also allows it.</p>
+<h2><a class="anchor" aria-hidden="true" id="license"></a><a href="#license" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>License</h2>
+<p>This plugin is <a href="./LICENSE">licensed under GPL-3.0</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
+<ul>
+<li><a href="/docs/modules/_k2g_dullahan_plugin_browserstack#dullahanpluginbrowserstackdefaultoptions">DullahanPluginBrowserstackDefaultOptions</a></li>
+<li><a href="/docs/modules/_k2g_dullahan_plugin_browserstack#dullahanpluginbrowserstackoptions">DullahanPluginBrowserstackOptions</a></li>
+<li><a href="/docs/modules/_k2g_dullahan_plugin_browserstack#dullahanpluginbrowserstackuseroptions">DullahanPluginBrowserstackUserOptions</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="classes"></a><a href="#classes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Classes</h3>
+<ul>
+<li><a href="/docs/classes/_k2g_dullahan_plugin_browserstack.dullahanpluginbrowserstack">DullahanPluginBrowserstack</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="type-aliases"></a><a href="#type-aliases" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type aliases</h3>
+<ul>
+<li><a href="/docs/modules/_k2g_dullahan_plugin_browserstack#dullahanpluginbrowserstackoptions">DullahanPluginBrowserstackOptions</a></li>
+<li><a href="/docs/modules/_k2g_dullahan_plugin_browserstack#dullahanpluginbrowserstackuseroptions">DullahanPluginBrowserstackUserOptions</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="object-literals"></a><a href="#object-literals" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object literals</h3>
+<ul>
+<li><a href="/docs/modules/_k2g_dullahan_plugin_browserstack#const-dullahanpluginbrowserstackdefaultoptions">DullahanPluginBrowserstackDefaultOptions</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references-1"></a><a href="#references-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<h3><a class="anchor" aria-hidden="true" id="dullahanpluginbrowserstackdefaultoptions"></a><a href="#dullahanpluginbrowserstackdefaultoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DullahanPluginBrowserstackDefaultOptions</h3>
+<p>• <strong>DullahanPluginBrowserstackDefaultOptions</strong>:</p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="dullahanpluginbrowserstackoptions"></a><a href="#dullahanpluginbrowserstackoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DullahanPluginBrowserstackOptions</h3>
+<p>• <strong>DullahanPluginBrowserstackOptions</strong>:</p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="dullahanpluginbrowserstackuseroptions"></a><a href="#dullahanpluginbrowserstackuseroptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DullahanPluginBrowserstackUserOptions</h3>
+<p>• <strong>DullahanPluginBrowserstackUserOptions</strong>:</p>
+<h2><a class="anchor" aria-hidden="true" id="type-aliases-1"></a><a href="#type-aliases-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type aliases</h2>
+<h3><a class="anchor" aria-hidden="true" id="dullahanpluginbrowserstackoptions-1"></a><a href="#dullahanpluginbrowserstackoptions-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DullahanPluginBrowserstackOptions</h3>
+<p>Ƭ <strong>DullahanPluginBrowserstackOptions</strong>: <em><a href="/docs/modules/_k2g_dullahan_plugin_browserstack#dullahanpluginbrowserstackuseroptions">DullahanPluginBrowserstackUserOptions</a> &amp; typeof DullahanPluginBrowserstackDefaultOptions</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="dullahanpluginbrowserstackuseroptions-1"></a><a href="#dullahanpluginbrowserstackuseroptions-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DullahanPluginBrowserstackUserOptions</h3>
+<p>Ƭ <strong>DullahanPluginBrowserstackUserOptions</strong>: <em>Partial‹<a href="/docs/modules/_k2g_dullahan#dullahanpluginuseroptions">DullahanPluginUserOptions</a> &amp; object›</em></p>
+<h2><a class="anchor" aria-hidden="true" id="object-literals-1"></a><a href="#object-literals-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object literals</h2>
+<h3><a class="anchor" aria-hidden="true" id="const-dullahanpluginbrowserstackdefaultoptions"></a><a href="#const-dullahanpluginbrowserstackdefaultoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Const</code> DullahanPluginBrowserstackDefaultOptions</h3>
+<h3><a class="anchor" aria-hidden="true" id="-dullahanpluginbrowserstackdefaultoptions-object"></a><a href="#-dullahanpluginbrowserstackdefaultoptions-object" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>▪ <strong>DullahanPluginBrowserstackDefaultOptions</strong>: <em>object</em></h3>
+<h3><a class="anchor" aria-hidden="true" id="accesskey"></a><a href="#accesskey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>accessKey</h3>
+<p>• <strong>accessKey</strong>: <em>undefined | string</em> = process.env.BROWSERSTACK_ACCESS_KEY</p>
+<h3><a class="anchor" aria-hidden="true" id="localoptions"></a><a href="#localoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>localOptions</h3>
+<p>• <strong>localOptions</strong>: <em>object</em></p>
+<h4><a class="anchor" aria-hidden="true" id="type-declaration"></a><a href="#type-declaration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type declaration:</h4>
+<h3><a class="anchor" aria-hidden="true" id="removefailedafterretrysuccess"></a><a href="#removefailedafterretrysuccess" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>removeFailedAfterRetrySuccess</h3>
+<p>• <strong>removeFailedAfterRetrySuccess</strong>: <em>boolean</em> = true</p>
+<h3><a class="anchor" aria-hidden="true" id="uselocal"></a><a href="#uselocal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useLocal</h3>
+<p>• <strong>useLocal</strong>: <em>boolean</em> = false</p>
+<h3><a class="anchor" aria-hidden="true" id="username"></a><a href="#username" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>username</h3>
+<p>• <strong>username</strong>: <em>undefined | string</em> = process.env.BROWSERSTACK_USERNAME</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/classes/_k2g_dullahan_plugin_aws_s3.dullahanpluginawss3"><span class="arrow-prev">← </span><span class="function-name-prevnext">DullahanPluginAwsS3</span></a><a class="docs-next button" href="/docs/classes/_k2g_dullahan_plugin_browserstack.dullahanpluginbrowserstack"><span class="function-name-prevnext">DullahanPluginBrowserstack</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#getting-started">Getting Started</a></li><li><a href="#plugin-options">Plugin Options</a></li><li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li><li><a href="#license">License</a></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#references">References</a></li><li><a href="#classes">Classes</a></li><li><a href="#type-aliases">Type aliases</a></li><li><a href="#object-literals">Object literals</a></li></ul></li><li><a href="#references-1">References</a><ul class="toc-headings"><li><a href="#dullahanpluginbrowserstackdefaultoptions">DullahanPluginBrowserstackDefaultOptions</a></li><li><a href="#dullahanpluginbrowserstackoptions">DullahanPluginBrowserstackOptions</a></li><li><a href="#dullahanpluginbrowserstackuseroptions">DullahanPluginBrowserstackUserOptions</a></li></ul></li><li><a href="#type-aliases-1">Type aliases</a><ul class="toc-headings"><li><a href="#dullahanpluginbrowserstackoptions-1">DullahanPluginBrowserstackOptions</a></li><li><a href="#dullahanpluginbrowserstackuseroptions-1">DullahanPluginBrowserstackUserOptions</a></li></ul></li><li><a href="#object-literals-1">Object literals</a><ul class="toc-headings"><li><a href="#const-dullahanpluginbrowserstackdefaultoptions"><code>Const</code> DullahanPluginBrowserstackDefaultOptions</a></li><li><a href="#-dullahanpluginbrowserstackdefaultoptions-object">▪ <strong>DullahanPluginBrowserstackDefaultOptions</strong>: <em>object</em></a></li><li><a href="#accesskey">accessKey</a></li><li><a href="#localoptions">localOptions</a></li><li><a href="#removefailedafterretrysuccess">removeFailedAfterRetrySuccess</a></li><li><a href="#uselocal">useLocal</a></li><li><a href="#username">username</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="Dullahan" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2022 Kaartje2go B.V.</section></footer></div></body></html>
