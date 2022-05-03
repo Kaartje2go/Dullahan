@@ -213,6 +213,8 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
         const {lambda, client, options} = this;
         const {slaveQualifier, slaveFunctionName, slaveOptions} = options;
 
+        console.info(`Invoking file ${file}`);
+
         const data = await lambda.invoke({
             Qualifier: slaveQualifier!,
             FunctionName: slaveFunctionName!,

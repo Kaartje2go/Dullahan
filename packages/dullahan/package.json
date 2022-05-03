@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan",
-  "version": "1.0.0-alpha.118",
+  "version": "1.0.0-alpha.126",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -24,6 +24,6 @@
     "expect": "^27.0.0",
     "glob": "^8.0.0",
     "signale": "^1.4.0",
-    "yargs": "^16.0.3"
+    "yargs": "^17.0.0"
   }
 }

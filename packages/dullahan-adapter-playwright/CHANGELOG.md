@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.126 (2022-05-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency puppeteer to 13.7 ([#254](https://github.com/Kaartje2go/Dullahan/issues/254)) ([238dcf7](https://github.com/Kaartje2go/Dullahan/commit/238dcf77dd1e2ce294518afae7b09c0a6760320c))
+
+
+
+
+
+# 1.0.0-alpha.125 (2022-04-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency puppeteer to v13 ([#241](https://github.com/Kaartje2go/Dullahan/issues/241)) ([b4cacd4](https://github.com/Kaartje2go/Dullahan/commit/b4cacd466644a1765cb70eaa28f7274aace2b01e))
+
+
+
+
+
+# 1.0.0-alpha.124 (2022-04-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ejs to v3.1.7 [security] ([#252](https://github.com/Kaartje2go/Dullahan/issues/252)) ([d25a42b](https://github.com/Kaartje2go/Dullahan/commit/d25a42b98e3909d8b5dfe7f10ff3c166abb97357))
+
+
+
+
+
+# 1.0.0-alpha.123 (2022-04-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency selenium-webdriver to v4.1.2 ([#251](https://github.com/Kaartje2go/Dullahan/issues/251)) ([1a4e003](https://github.com/Kaartje2go/Dullahan/commit/1a4e003e8a2a816867a39a4f32ccd7bcd52d9707))
+
+
+
+
+
+# 1.0.0-alpha.122 (2022-04-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency yargs to v17 ([#192](https://github.com/Kaartje2go/Dullahan/issues/192)) ([b5e91a8](https://github.com/Kaartje2go/Dullahan/commit/b5e91a8d92d3b8feba0f6783cf6a9ad61114feec))
+
+
+
+
+
+# 1.0.0-alpha.121 (2022-04-25)
+
+
+### Reverts
+
+* Revert "fix(deps): update dependency tiny-async-pool to v2 (#242)" (#249) ([296444c](https://github.com/Kaartje2go/Dullahan/commit/296444c11ddf77d2a24a3502871665cd70602f84)), closes [#242](https://github.com/Kaartje2go/Dullahan/issues/242) [#249](https://github.com/Kaartje2go/Dullahan/issues/249)
+
+
+
+
+
+# 1.0.0-alpha.120 (2022-04-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tiny-async-pool to v2 ([#242](https://github.com/Kaartje2go/Dullahan/issues/242)) ([ff119be](https://github.com/Kaartje2go/Dullahan/commit/ff119befcc01824ea43ff523f3663efea8768130))
+
+
+
+
+
+# 1.0.0-alpha.119 (2022-04-21)
+
+**Note:** Version bump only for package @k2g/dullahan-adapter-playwright
+
+
+
+
+
 # 1.0.0-alpha.118 (2022-04-15)
 
 
