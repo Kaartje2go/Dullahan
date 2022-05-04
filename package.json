@@ -13,7 +13,6 @@
         "dullahan": "yarn dullahan-ts",
         "dullahan-ts": "ts-node -r tsconfig-paths/register ./packages/dullahan/src/bin/dullahan-ts.ts",
         "commit": "yarn lint-staged && git-cz",
-        "serve-website": "yarn serve website/build/Dullahan",
         "serve-fixtures": "yarn serve packages/dullahan/fixtures/",
         "test-all": "jest --config=./scripts/jest/config/entry.js",
         "test-windows": "yarn test-all --projects='scripts/jest/projects/*{ie11,chrome,firefox,edge,chromium,webkit}.js'",
@@ -47,15 +46,11 @@
         "test-selenium-4-ie11": "yarn test-all --projects=./scripts/jest/projects/selenium_4_ie11.js",
         "lint-code": "yarn eslint 'packages/*/{src,tests}/**/*.{ts,js}' 'scripts/**/*.{ts,js}'",
         "lint-commit": "commitlint",
-        "clean-all": "yarn clean-code && yarn clean-coverage && yarn clean-website && yarn clean-modules",
+        "clean-all": "yarn clean-code && yarn clean-coverage && yarn clean-modules",
         "clean-code": "lerna run clean-code --parallel",
         "clean-coverage": "rimraf coverage",
-        "clean-website": "rimraf website/build",
         "clean-modules": "(rimraf 'packages/*/node_modules' || true) && (rimraf node_modules || true)",
-        "build-all": "yarn build-code && yarn build-website",
         "build-code": "yarn clean-code && lerna run compile-code",
-        "build-website": "yarn clean-website && bash ./scripts/ci/jobs/build_website.sh",
-        "build-website-local": "cross-env DULLAHAN_WEBSITE_TARGET=local yarn build-website && yarn serve-website",
         "ensure-all": "yarn ensure-env && yarn ensure-packagejson && yarn ensure-tsconfig && yarn ensure-license",
         "ensure-env": "ts-node ./scripts/yarn/ensure_env.ts",
         "ensure-license": "ts-node ./scripts/yarn/ensure_license.ts",
@@ -81,7 +76,6 @@
         "codecov": "^3.7.2",
         "commitizen": "^4.2.1",
         "cross-env": "^7.0.2",
-        "docusaurus": "^1.14.6",
         "dotenv": "^16.0.0",
         "eslint": "^8.0.0",
         "eslint-import-resolver-typescript": "^2.3.0",
@@ -102,9 +96,6 @@
         "ts-jest": "^26.3.0",
         "ts-node": "^10.0.0",
         "tsconfig-paths": "^4.0.0",
-        "typedoc": "^0.19.1",
-        "typedoc-plugin-lerna-packages": "^0.3.1",
-        "typedoc-plugin-markdown": "^2.4.2",
         "typescript": "^4.0.2"
     },
     "lint-staged": {
@@ -176,17 +167,6 @@
                     "git-cz"
                 ],
                 "groupName": "commitlint dependencies",
-                "updateTypes": [
-                    "major",
-                    "minor",
-                    "patch"
-                ]
-            },
-            {
-                "packagePatterns": [
-                    "typedoc"
-                ],
-                "groupName": "website dependencies",
                 "updateTypes": [
                     "major",
                     "minor",

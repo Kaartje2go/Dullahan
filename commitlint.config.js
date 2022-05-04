@@ -4,7 +4,7 @@ module.exports = {
         'footer-leading-blank': [1, 'always'],
         'header-max-length': [2, 'always', 72],
         'scope-case': [2, 'always', 'lower-case'],
-        'scope-enum': [2, 'always', ['deps', 'website', 'packages']],
+        'scope-enum': [2, 'always', ['deps', 'packages']],
         'subject-case': [
             2,
             'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']
