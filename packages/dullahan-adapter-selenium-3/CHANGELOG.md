@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.127 (2022-05-03)
+
+**Note:** Version bump only for package @k2g/dullahan-adapter-selenium-3
+
+
+
+
+
 # 1.0.0-alpha.126 (2022-05-02)
 
 
