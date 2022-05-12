@@ -1,3 +1,4 @@
+import {globalAgent} from 'https';
 import {Builder, Origin, until, WebDriver, WebElement, Key} from 'selenium-webdriver';
 
 import {
@@ -39,6 +40,12 @@ import {
     waitForReadyState
 } from '@k2g/dullahan';
 
+var keepAliveTimeout = 30*1000;
+
+if(globalAgent && globalAgent.options.hasOwnProperty('keepAlive')) {
+    globalAgent.options.keepAlive = true;
+    globalAgent.options.keepAliveMsecs = keepAliveTimeout;
+}
 export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAdapterSelenium4UserOptions,
     typeof DullahanAdapterSelenium4DefaultOptions> {
 
