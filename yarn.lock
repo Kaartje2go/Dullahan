@@ -6810,10 +6810,10 @@ kew@~0.1.7:
   resolved "https://registry.yarnpkg.com/kew/-/kew-0.1.7.tgz#0a32a817ff1a9b3b12b8c9bacf4bc4d679af8e72"
   integrity sha1-CjKoF/8amzsSuMm6z0vE1nmvjnI=
 
-kill-port@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/kill-port/-/kill-port-1.6.1.tgz#560fe79484583bdf3a5e908557dae614447618aa"
-  integrity sha512-un0Y55cOM7JKGaLnGja28T38tDDop0AQ8N0KlAdyh+B1nmMoX8AnNmqPNZbS3mUMgiST51DCVqmbFT1gNJpVNw==
+kill-port@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/kill-port/-/kill-port-2.0.0.tgz#be0db79071886cf86af20baf76d38abf598bb59a"
+  integrity sha512-TWGAJ/SGy52aKhYpPSCw4S/WR0rTYkC2+6oRp5xBlLo4UvJe3Gt0MwROO8hI+Hu4YkTDhe27EPKKeFUtqNNfdA==
   dependencies:
     get-them-args "1.3.2"
     shell-exec "1.0.2"
