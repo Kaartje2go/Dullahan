@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.130 (2022-05-16)
+
+
+### Bug Fixes
+
+* add keep alive to https ([#259](https://github.com/Kaartje2go/Dullahan/issues/259)) ([232e763](https://github.com/Kaartje2go/Dullahan/commit/232e7630faee7ebe9f86706caf2a874bfffa4642))
+
+
+
+
+
 # 1.0.0-alpha.129 (2022-05-16)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-aws-s3
