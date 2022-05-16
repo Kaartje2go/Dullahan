@@ -40,11 +40,9 @@ import {
     waitForReadyState
 } from '@k2g/dullahan';
 
-var keepAliveTimeout = 30*1000;
-
-if(globalAgent && globalAgent.options.hasOwnProperty('keepAlive')) {
+if(globalAgent?.options.hasOwnProperty?.('keepAlive')) {
     globalAgent.options.keepAlive = true;
-    globalAgent.options.keepAliveMsecs = keepAliveTimeout;
+    globalAgent.options.keepAliveMsecs = 30 * 1000;
 }
 export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAdapterSelenium4UserOptions,
     typeof DullahanAdapterSelenium4DefaultOptions> {
