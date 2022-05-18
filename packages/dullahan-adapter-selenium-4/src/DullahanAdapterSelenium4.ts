@@ -1,4 +1,4 @@
-import {Agent} from 'node:https';
+import {Agent} from 'https';
 
 import {Builder, Origin, until, WebDriver, WebElement, Key} from 'selenium-webdriver';
 
