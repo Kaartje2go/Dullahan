@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.132 (2022-05-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency puppeteer to v14 ([#257](https://github.com/Kaartje2go/Dullahan/issues/257)) ([bce64c5](https://github.com/Kaartje2go/Dullahan/commit/bce64c5b84e6fda62fe0e7640ca2f1011446a3fc))
+
+
+
+
+
 # 1.0.0-alpha.131 (2022-05-18)
 
 **Note:** Version bump only for package @k2g/dullahan-adapter-selenium-4
