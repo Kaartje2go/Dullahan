@@ -84,7 +84,7 @@ export class DullahanCallSpy {
                             timeStart,
                             functionScope,
                             functionName,
-                            functionArguments: functionArguments.map(v => truncateRecursive(v))
+                            functionArguments: truncateRecursive(functionArguments)
                         });
 
                         intermediate = property.apply(this, functionArguments);
@@ -95,7 +95,7 @@ export class DullahanCallSpy {
                             timeEnd: Date.now(),
                             functionScope,
                             functionName,
-                            functionArguments,
+                            functionArguments: truncateRecursive(functionArguments),
                             functionResult: undefined,
                             error: new DullahanError(error)
                         });
@@ -109,7 +109,7 @@ export class DullahanCallSpy {
                             timeEnd: Date.now(),
                             functionScope,
                             functionName,
-                            functionArguments,
+                            functionArguments: truncateRecursive(functionArguments),
                             functionResult: stringifyAndTruncate(intermediate),
                             error: null
                         });
@@ -131,7 +131,7 @@ export class DullahanCallSpy {
                             timeEnd: Date.now(),
                             functionScope,
                             functionName,
-                            functionArguments,
+                            functionArguments: truncateRecursive(functionArguments),
                             functionResult: stringifyAndTruncate(functionResult),
                             error: null
                         });
@@ -144,7 +144,7 @@ export class DullahanCallSpy {
                             timeEnd: Date.now(),
                             functionScope,
                             functionName,
-                            functionArguments,
+                            functionArguments: truncateRecursive(functionArguments),
                             functionResult: undefined,
                             error: new DullahanError(error)
                         });
