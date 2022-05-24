@@ -32,6 +32,30 @@ export type DullahanFunctionEndCall = DullahanFunctionStartCall & DullahanCallEn
     remoteUrls?: URL[];
 };
 
+const isObject = (obj: unknown): obj is Record<string, unknown> => Object.prototype.toString.call(obj) === '[object Object]';
+
+const truncateRecursive = (val: unknown) => {
+    if (typeof val === 'string') {
+        return val.length > 51 ? val.substring(0,50) + '...' : val;
+    }
+    if (isObject(val)) {
+        const clone = { ...val };
+        for (let key in clone) {
+            clone[key] = truncateRecursive(clone[key]);
+        }
+        return clone
+    }
+    if (Array.isArray(val)) {
+        return val.map(v => truncateRecursive(v));
+    }
+    return val;
+}
+
+const stringifyAndTruncate = (val: unknown) => {
+    const str = JSON.stringify(val);
+    return truncateRecursive(str);
+}
+
 export class DullahanCallSpy {
 
     protected constructor(args: {
@@ -60,7 +84,7 @@ export class DullahanCallSpy {
                             timeStart,
                             functionScope,
                             functionName,
-                            functionArguments
+                            functionArguments: functionArguments.map(v => truncateRecursive(v))
                         });
 
                         intermediate = property.apply(this, functionArguments);
@@ -86,7 +110,7 @@ export class DullahanCallSpy {
                             functionScope,
                             functionName,
                             functionArguments,
-                            functionResult: intermediate,
+                            functionResult: stringifyAndTruncate(intermediate),
                             error: null
                         });
 
@@ -108,7 +132,7 @@ export class DullahanCallSpy {
                             functionScope,
                             functionName,
                             functionArguments,
-                            functionResult,
+                            functionResult: stringifyAndTruncate(functionResult),
                             error: null
                         });
 
