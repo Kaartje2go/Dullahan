@@ -1776,13 +1776,13 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sitespeed.io/edgedriver@^85.0.564-40":
-  version "85.0.564-40"
-  resolved "https://registry.yarnpkg.com/@sitespeed.io/edgedriver/-/edgedriver-85.0.564-40.tgz#d3cbe9b39a226d17b7d753552025ff4a5f93a446"
-  integrity sha512-yRLP0ZrIH/gO5dJqqlBk8VOFyKxGt8DmMc0pxcL4thH+IZ7gslMXwkYrH2fF3H8i2lZK2TERpdaUTXvenQpUjA==
+"@sitespeed.io/edgedriver@^101.0.1210-32":
+  version "101.0.1210-32"
+  resolved "https://registry.yarnpkg.com/@sitespeed.io/edgedriver/-/edgedriver-101.0.1210-32.tgz#f2fe1431cb672e498d9853521c1f649b361e1968"
+  integrity sha512-sCyCPjAqMa+4m4H8jUjrvheRcy8xXKSZUQeI38jfa0vh84h3wVhwqWP5s5xg8RpJhLPT6Bat2fDIyJFtkBNRbA==
   dependencies:
-    node-downloader-helper "1.0.13"
-    node-stream-zip "1.11.2"
+    node-downloader-helper "2.1.1"
+    node-stream-zip "1.15.0"
 
 "@slack/client@^5.0.2":
   version "5.0.2"
@@ -7566,10 +7566,10 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-node-downloader-helper@1.0.13:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/node-downloader-helper/-/node-downloader-helper-1.0.13.tgz#bbed82ba9c5b0722d56cbb8770c0300f7785a400"
-  integrity sha512-HdwSd8tnC06dIWLFBSTGHlcPKXo308815J4m/1e/NkSd6gmdDaO6KSf9JON5fXt3R5Vdw5bgQvSrgSq4GXjYvg==
+node-downloader-helper@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/node-downloader-helper/-/node-downloader-helper-2.1.1.tgz#533427a3cdc163931b106d0fe6d522f83deac7ab"
+  integrity sha512-ouk8MGmJj1gYymbJwi1L8Mr6PdyheJLwfsmyx0KtsvyJ+7Fpf0kBBzM8Gmx8Mt/JBfRWP1PQm6dAGV6x7eNedw==
 
 node-fetch-npm@^2.0.2:
   version "2.0.4"
@@ -7631,10 +7631,10 @@ node-status-codes@^1.0.0:
   resolved "https://registry.yarnpkg.com/node-status-codes/-/node-status-codes-1.0.0.tgz#5ae5541d024645d32a58fcddc9ceecea7ae3ac2f"
   integrity sha1-WuVUHQJGRdMqWPzdyc7s6nrjrC8=
 
-node-stream-zip@1.11.2:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/node-stream-zip/-/node-stream-zip-1.11.2.tgz#5d0124b80e2942afd7f5853a36ceb0d65c1d9e77"
-  integrity sha512-cowCX+OyzS3tN2i4BMMFxCr/pE6cQlEMTbVCugmos0TNEJQNtcG04tR41CY8lumO1I7F5GFiLaU4WavomJthaA==
+node-stream-zip@1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/node-stream-zip/-/node-stream-zip-1.15.0.tgz#158adb88ed8004c6c49a396b50a6a5de3bca33ea"
+  integrity sha512-LN4fydt9TqhZhThkZIVQnF9cwjU3qmUH9h78Mx/K7d3VvfRqqwthLwJEUOEL0QPZ0XQmNN7be5Ggit5+4dq3Bw==
 
 nopt@^4.0.1:
   version "4.0.3"
