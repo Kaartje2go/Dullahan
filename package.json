@@ -88,7 +88,7 @@
         "jest": "^26.4.2",
         "jest-dev-server": "^4.4.0",
         "kill-port": "^2.0.0",
-        "lerna": "^3.22.1",
+        "lerna": "^5.0.0",
         "lint-staged": "^12.4.2",
         "rimraf": "^3.0.2",
         "serve": "^13.0.0",
