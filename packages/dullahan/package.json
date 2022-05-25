@@ -21,7 +21,7 @@
     "assign-deep": "^1.0.1",
     "clone-deep": "^4.0.1",
     "decache": "^4.6.0",
-    "expect": "^27.0.0",
+    "expect": "^28.0.0",
     "glob": "^8.0.0",
     "signale": "^1.4.0",
     "yargs": "^17.0.0"
