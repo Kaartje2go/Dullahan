@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.141 (2022-05-27)
+
+
+### Bug Fixes
+
+* no longer truncate result of the screenshotPage function ([#270](https://github.com/Kaartje2go/Dullahan/issues/270)) ([4d88a76](https://github.com/Kaartje2go/Dullahan/commit/4d88a76226ea61ad761309b774a9f0077535a501))
+
+
+
+
+
 # 1.0.0-alpha.140 (2022-05-25)
 
 **Note:** Version bump only for package @k2g/dullahan-plugin-report-json
