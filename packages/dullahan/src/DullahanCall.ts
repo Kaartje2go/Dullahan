@@ -51,7 +51,12 @@ const truncateRecursive = (val: unknown) => {
     return val;
 }
 
-const stringifyAndTruncate = (val: unknown) => {
+const truncateResult = (val: unknown, functionName: string) => {
+    // don't truncate the result of the screenshotPage function
+    if (functionName === 'screenshotPage') {
+        return val;
+    }
+
     const str = JSON.stringify(val);
     return truncateRecursive(str);
 }
@@ -110,7 +115,7 @@ export class DullahanCallSpy {
                             functionScope,
                             functionName,
                             functionArguments: truncateRecursive(functionArguments),
-                            functionResult: stringifyAndTruncate(intermediate),
+                            functionResult: truncateResult(intermediate, functionName),
                             error: null
                         });
 
@@ -132,7 +137,7 @@ export class DullahanCallSpy {
                             functionScope,
                             functionName,
                             functionArguments: truncateRecursive(functionArguments),
-                            functionResult: stringifyAndTruncate(functionResult),
+                            functionResult: truncateResult(functionResult, functionName),
                             error: null
                         });
 
