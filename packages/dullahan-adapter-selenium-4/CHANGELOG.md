@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.142 (2022-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency selenium-webdriver to v4.2.0 ([#271](https://github.com/Kaartje2go/Dullahan/issues/271)) ([be40832](https://github.com/Kaartje2go/Dullahan/commit/be4083211af687f4f08cfbddbbc4b7a549294e2e))
+
+
+
+
+
 # 1.0.0-alpha.141 (2022-05-27)
 
 
