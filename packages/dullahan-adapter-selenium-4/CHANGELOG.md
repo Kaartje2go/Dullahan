@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.143 (2022-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency puppeteer to 14.2 ([#273](https://github.com/Kaartje2go/Dullahan/issues/273)) ([cf16fea](https://github.com/Kaartje2go/Dullahan/commit/cf16fea3d4aaf72b328a7acbaf2733846fe89313))
+
+
+
+
+
 # 1.0.0-alpha.142 (2022-06-02)
 
 
