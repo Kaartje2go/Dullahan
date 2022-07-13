@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.147 (2022-07-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @octokit/rest to v19 ([#281](https://github.com/Kaartje2go/Dullahan/issues/281)) ([d31e0f0](https://github.com/Kaartje2go/Dullahan/commit/d31e0f0c2fbec17eed36fe16c908b39a6564e0a2))
+
+
+
+
+
 # 1.0.0-alpha.146 (2022-07-11)
 
 
