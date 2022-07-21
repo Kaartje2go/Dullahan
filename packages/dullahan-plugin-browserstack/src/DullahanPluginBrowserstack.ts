@@ -71,7 +71,8 @@ export default class DullahanPluginBrowserstack extends DullahanPlugin<
                 },
                 body: JSON.stringify({
                     name: testName,
-                    status: error ? 'failed' : 'passed'
+                    status: error ? 'failed' : 'passed',
+                    reason: ''
                 })
             }).catch(console.error)
         ];
