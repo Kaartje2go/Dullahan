@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.148 (2022-07-21)
+
+
+### Bug Fixes
+
+* attempt to set browserstack session status ([#285](https://github.com/Kaartje2go/Dullahan/issues/285)) ([4d436b3](https://github.com/Kaartje2go/Dullahan/commit/4d436b3b92c4203c73bd78ba6427127f95873f02))
+
+
+
+
+
 # 1.0.0-alpha.147 (2022-07-13)
 
 
