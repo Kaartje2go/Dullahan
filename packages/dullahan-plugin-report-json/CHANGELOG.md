@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.149 (2022-07-22)
+
+
+### Bug Fixes
+
+* make sure we have a session id ([f866ff3](https://github.com/Kaartje2go/Dullahan/commit/f866ff3aa27e56a9f6b6d5383272aabc61dc35d1))
+
+
+
+
+
 # 1.0.0-alpha.148 (2022-07-21)
 
 
