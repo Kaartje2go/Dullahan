@@ -61,7 +61,11 @@ export default class DullahanPluginBrowserstack extends DullahanPlugin<
         const {testId, testName, error} = dtec;
         const {username, accessKey, removeFailedAfterRetrySuccess} = options;
         const sessionIds = sessionCache[testId];
-        const curSessionId = sessionIds[sessionIds.length - 1];
+        const curSessionId = sessionIds && sessionIds[sessionIds.length - 1];
+
+        if (!curSessionId) {
+            return dtec;
+        }
 
         const requests: Promise<void>[] = [
             fetch(`https://${username}:${accessKey}@api.browserstack.com/automate/sessions/${curSessionId}.json`, {
