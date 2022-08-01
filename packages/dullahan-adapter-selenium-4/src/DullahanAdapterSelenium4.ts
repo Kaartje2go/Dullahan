@@ -1240,16 +1240,17 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await driver.executeScript<void>(`window.location = ${JSON.stringify(url)}`);
+        const capabilities  = await driver.getCapabilities();
+        // https://www.selenium.dev/documentation/webdriver/capabilities/shared/#pageloadstrategy
+        if (readyState === 'interactive') {
+            // DOM access is ready, but other resources like images may still be loading
+            capabilities.setPageLoadStrategy('eager');
+        } else {
+            // Used by default, waits for all resources to download
+            capabilities.setPageLoadStrategy('normal');
+        }
 
-        await tryX(2, async () => {
-            await sleep(100);
-
-            await driver.wait(() => driver.executeScript<boolean>(waitForReadyState, {
-                readyState,
-                timeout: timeout / 2
-            }), timeout / 2);
-        });
+        await driver.get(url);
     }
 
     public async waitForElementPresent(selector: string, options: {

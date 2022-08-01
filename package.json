@@ -107,6 +107,7 @@
         "extends": [
             "config:base"
         ],
+        "ignoreDeps": ["puppeteer"],
         "rangeStrategy": "auto",
         "packageRules": [
             {
