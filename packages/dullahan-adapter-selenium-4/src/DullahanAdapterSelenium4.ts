@@ -1240,6 +1240,16 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
+        const capabilities  = await driver.getCapabilities();
+        // https://www.selenium.dev/documentation/webdriver/capabilities/shared/#pageloadstrategy
+        if (readyState === 'interactive') {
+            // DOM access is ready, but other resources like images may still be loading
+            capabilities.setPageLoadStrategy('eager');
+        } else {
+            // Used by default, waits for all resources to download
+            capabilities.setPageLoadStrategy('normal');
+        }
+
         await driver.get(url);
     }
 
