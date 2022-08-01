@@ -1,6 +1,6 @@
 {
   "name": "@k2g/dullahan-runner-aws-lambda",
-  "version": "1.0.0-alpha.149",
+  "version": "1.0.0-alpha.150",
   "description": "TODO",
   "repository": "https://github.com/Kaartje2go/Dullahan",
   "license": "GPL-3.0",
@@ -15,7 +15,7 @@
     "compile-code-watch": "yarn compile-code -w"
   },
   "dependencies": {
-    "@k2g/dullahan": "^1.0.0-alpha.149",
+    "@k2g/dullahan": "^1.0.0-alpha.150",
     "async-sema": "^3.1.0",
     "aws-sdk": "^2.1179.0",
     "fast-glob": "^3.2.4",
