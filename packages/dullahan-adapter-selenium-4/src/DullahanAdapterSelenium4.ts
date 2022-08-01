@@ -1240,7 +1240,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await driver.navigate().to(url);
+        await driver.get(url);
     }
 
     public async waitForElementPresent(selector: string, options: {
