@@ -1240,16 +1240,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        await driver.executeScript<void>(`window.location = ${JSON.stringify(url)}`);
-
-        await tryX(2, async () => {
-            await sleep(100);
-
-            await driver.wait(() => driver.executeScript<boolean>(waitForReadyState, {
-                readyState,
-                timeout: timeout / 2
-            }), timeout / 2);
-        });
+        await driver.navigate().to(url);
     }
 
     public async waitForElementPresent(selector: string, options: {
