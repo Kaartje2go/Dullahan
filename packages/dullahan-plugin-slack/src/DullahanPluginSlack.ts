@@ -98,20 +98,12 @@ export default class DullahanPluginSlack extends DullahanPlugin<DullahanPluginSl
                 }
             }, {
                 type: 'divider'
-            }, ...failingTests.slice(0, maxPreviews).map((test) => ({
+            }, ...failingTests.map((test) => ({
                 type: 'section',
                 text: {
                     type: 'mrkdwn',
-                    text: `*${test.testName}*\n${test.error.name}: ${test.error.message}`
+                    text: `${test.testName}`
                 },
-                accessory: test.calls
-                    .filter(({remoteUrls}) => remoteUrls?.length)
-                    .map(({remoteUrls}) => (remoteUrls && {
-                        image_url: remoteUrls[0],
-                        type: 'image',
-                        alt_text: 'screenshot'
-                    }))
-                    .pop()
             })), {
                 type: 'divider'
             }, {
