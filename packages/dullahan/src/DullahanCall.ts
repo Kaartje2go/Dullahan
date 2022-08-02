@@ -52,8 +52,9 @@ const truncateRecursive = (val: unknown) => {
 }
 
 const truncateResult = (val: unknown, functionName: string) => {
-    // don't truncate the result of the screenshotPage function
-    if (functionName === 'screenshotPage') {
+    // don't truncate the result of the screenshotPage and openBrowser functions.
+    // The openBrowser result is used in packages/dullahan-plugin-browserstack/src/DullahanPluginBrowserstack.ts to create a session cache and pass test name and status to Browserstack
+    if (['screenshotPage', 'openBrowser'].includes(functionName)) {
         return val;
     }
 
