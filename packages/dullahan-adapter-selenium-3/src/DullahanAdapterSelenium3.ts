@@ -1393,4 +1393,14 @@ export default class DullahanAdapterSelenium3 extends DullahanAdapter<DullahanAd
         value && await dialog.sendKeys(value);
         await (accept ? dialog.accept() : dialog.dismiss());
     }
+
+    public getBrowser() : WebDriver{
+        const {driver} = this;
+
+        if (!driver) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        return driver;
+    }
 }

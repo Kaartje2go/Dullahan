@@ -296,4 +296,9 @@ export abstract class DullahanAdapter<
     }): Promise<void>;
 
     public abstract setDialogValue(accept: boolean, value?: string): Promise<void>;
+
+    /**
+     * To be able to directly interact with the browser
+     */
+    public abstract getBrowser(): any; 
 }

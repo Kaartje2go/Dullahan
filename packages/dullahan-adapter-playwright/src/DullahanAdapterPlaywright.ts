@@ -1174,4 +1174,14 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         await (accept ? dialog.accept(value) : dialog.dismiss());
         this.dialog = undefined;
     }
+
+    public getBrowser() : Playwright.Browser {
+        const {browser} = this;
+
+        if (!browser) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+
+        return browser;
+    }
 }

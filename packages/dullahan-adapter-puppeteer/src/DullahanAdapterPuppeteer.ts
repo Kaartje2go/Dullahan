@@ -1224,4 +1224,13 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         await (accept ? dialog.accept(value) : dialog.dismiss());
         this.dialog = undefined;
     }
+
+    public getBrowser(): Puppeteer.Browser {
+        const { browser } = this;
+    
+        if (!browser) {
+            throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
+        }
+        return browser;
+    }
 }
