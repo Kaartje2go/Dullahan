@@ -123,7 +123,7 @@ export default class DullahanPluginBrowserstack extends DullahanPlugin<
                 const {automation_session} = response;
                 const {browser_url, hashed_id} = automation_session;
 
-                this.browserstackBuildUrl = browser_url.replace(`/${hashed_id}`, '');
+                this.browserstackBuildUrl = browser_url.replace(`/sessions/${hashed_id}`, '');
             }
         }
 
