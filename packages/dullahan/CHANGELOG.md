@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.152 (2022-08-05)
+
+
+### Bug Fixes
+
+* correct browserstackBuildUrl for Slack link ([#290](https://github.com/Kaartje2go/Dullahan/issues/290)) ([6a5895c](https://github.com/Kaartje2go/Dullahan/commit/6a5895c0ce52f5011b770b8b8303e83feb3f1652))
+
+
+
+
+
 # 1.0.0-alpha.151 (2022-08-02)
 
 **Note:** Version bump only for package @k2g/dullahan
