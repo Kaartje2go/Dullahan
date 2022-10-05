@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.155 (2022-10-05)
+
+
+### Reverts
+
+* Revert "fix(deps): update dependency selenium-webdriver to v4.5.0 (#292)" (#297) ([8de9dc6](https://github.com/Kaartje2go/Dullahan/commit/8de9dc6330e62ab97459ea685e86f669a39150b2)), closes [#292](https://github.com/Kaartje2go/Dullahan/issues/292) [#297](https://github.com/Kaartje2go/Dullahan/issues/297)
+
+
+
+
+
 # 1.0.0-alpha.154 (2022-10-05)
 
 
