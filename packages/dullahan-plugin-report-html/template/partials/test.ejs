@@ -38,7 +38,7 @@
         <% } %>
         <% (call.remoteUrls || []).forEach(function(remoteUrl) { %>
             <div class="screenshot">
-                <img alt="screenshot" src="<%- remoteUrl %>">
+                <img loading="lazy" decoding="async" alt="screenshot" src="<%- remoteUrl %>">
             </div>
         <% }); %>
         <% if (call.functionScope === 'adapter' && call.functionName === 'closeBrowser' && index !== test.calls.length - 1) { %>
