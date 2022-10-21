@@ -134,7 +134,7 @@ export default class DullahanRunnerAwsLambda extends DullahanRunner<DullahanRunn
 
                 rateLimit && await rateLimit();
 
-                const test = hasProperty(testData, 'file') ? testData.file : testData.testIndex;
+                const test = hasProperty(testData, 'file') ? testData.file as string : testData.testIndex;
                 const success = await this.processFile(test).catch((error) => {
                     console.error(error);
                     return false;

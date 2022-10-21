@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "@k2g/dullahan": "^1.0.0-alpha.157",
-    "ejs": "^3.1.5"
+    "ejs": "^3.1.8"
   }
 }

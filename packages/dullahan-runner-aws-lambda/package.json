@@ -17,7 +17,7 @@
   "dependencies": {
     "@k2g/dullahan": "^1.0.0-alpha.157",
     "async-sema": "^3.1.0",
-    "aws-sdk": "^2.1179.0",
+    "aws-sdk": "^2.1237.0",
     "fast-glob": "^3.2.4",
     "tiny-async-pool": "^1.1.0"
   }
