@@ -63,26 +63,26 @@
         "**/minimist": ">=1.2.3"
     },
     "devDependencies": {
-        "@babel/core": "^7.18.9",
-        "@commitlint/cli": "^17.0.3",
-        "@commitlint/config-conventional": "^17.0.3",
-        "@commitlint/prompt": "^17.0.3",
+        "@babel/core": "^7.19.6",
+        "@commitlint/cli": "^17.1.2",
+        "@commitlint/config-conventional": "^17.1.0",
+        "@commitlint/prompt": "^17.1.2",
         "@types/jest": "^27.4.1",
         "@types/node": "^16.11.26",
-        "@typescript-eslint/eslint-plugin": "^5.30.7",
-        "@typescript-eslint/parser": "^5.30.7",
+        "@typescript-eslint/eslint-plugin": "^5.40.1",
+        "@typescript-eslint/parser": "^5.40.1",
         "babel-eslint": "^10.1.0",
         "babel-jest": "^26.6.3",
         "codecov": "^3.7.2",
-        "commitizen": "^4.2.1",
+        "commitizen": "^4.2.5",
         "cross-env": "^7.0.2",
         "dotenv": "^16.0.1",
-        "eslint": "^8.20.0",
-        "eslint-import-resolver-typescript": "^3.3.0",
+        "eslint": "^8.25.0",
+        "eslint-import-resolver-typescript": "^3.5.2",
         "eslint-plugin-import": "^2.25.2",
         "eslint-plugin-jest": "^27.0.0",
-        "eslint-plugin-jsdoc": "^39.3.3",
-        "eslint-plugin-jsx-a11y": "^6.6.0",
+        "eslint-plugin-jsdoc": "^39.3.14",
+        "eslint-plugin-jsx-a11y": "^6.6.1",
         "git-cz": "^4.9.0",
         "glob": "^8.0.3",
         "jest": "^26.4.2",
@@ -95,8 +95,8 @@
         "signale": "^1.4.0",
         "ts-jest": "^26.3.0",
         "ts-node": "^10.9.1",
-        "tsconfig-paths": "^4.0.0",
-        "typescript": "^4.7.4"
+        "tsconfig-paths": "^4.1.0",
+        "typescript": "^4.8.4"
     },
     "lint-staged": {
         "**/*.{ts,js}": [
@@ -188,9 +188,9 @@
         ]
     },
     "optionalDependencies": {
-        "@sitespeed.io/edgedriver": "^101.0.1210-32",
-        "chromedriver": "^101.0.0",
-        "geckodriver": "^3.0.1",
+        "@sitespeed.io/edgedriver": "^106.0.1370-34",
+        "chromedriver": "^106.0.1",
+        "geckodriver": "^3.2.0",
         "iedriver": "^4.0.0"
     }
 }
