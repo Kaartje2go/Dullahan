@@ -1,4 +1,4 @@
-type MouseEvents = 'mousedown' | 'mouseup' | 'click' | 'mousemove';
+type MouseEvents = 'mousedown' | 'mouseup' | 'click' | 'mousemove' | 'contextmenu';
 
 export type EmitFakeEventOptions = {
     type: MouseEvents;

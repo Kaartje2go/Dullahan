@@ -513,7 +513,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         });
     }
 
-    public async click(selector: string): Promise<void> {
+    public async click(selector: string, button: 'left' | 'right' = 'left'): Promise<void> {
         const {page, options: {useTouch}} = this;
 
         if (!page) {
@@ -541,7 +541,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             return element.tap();
         }
 
-        await element.click();
+        await element.click({ button });
     }
 
     public async clickAt(x: number, y: number): Promise<void> {

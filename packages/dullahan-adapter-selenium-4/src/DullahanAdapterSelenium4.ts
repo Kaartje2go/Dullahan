@@ -615,7 +615,7 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         }), timeout);
     }
 
-    public async click(selector: string): Promise<void> {
+    public async click(selector: string, button: 'left' | 'right' = 'left'): Promise<void> {
         const {driver, supportsPromises, options:{useActions}} = this;
 
         if (!driver) {
@@ -652,13 +652,21 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             await driver.executeScript<void>(emitFakeEvent, 'mousemove', x, y, element);
             await driver.executeScript<void>(emitFakeEvent, 'mousedown', x, y, element);
             await driver.executeScript<void>(emitFakeEvent, 'mouseup', x, y, element);
+            if (button === 'right') {
+                return driver.executeScript<void>(emitFakeEvent, 'contextmenu', x, y, element);
+            }
             return driver.executeScript<void>(emitFakeEvent, 'click', x, y, element);
         }
 
-        await driver.actions().move({
+        let intermediate = driver.actions().move({
             origin: element,
             duration: 0
-        }).click().perform();
+        });
+        if (button === 'right') {
+            await intermediate.contextClick().perform();
+        } else {
+            await intermediate.click().perform();
+        }
     }
 
     public async clickAt(x: number, y: number): Promise<void> {
@@ -1109,12 +1117,12 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
 
         if (seleniumRemoteUrl) {
             const builder = new Builder().forBrowser(browserName, browserVersion).usingServer(seleniumRemoteUrl);
-            
+
             builder.usingHttpAgent(new Agent({
                 keepAlive: true,
                 keepAliveMsecs: 30 * 1000
             }));
-            
+
             builder.withCapabilities(builder.getCapabilities().merge({
                 browser: browserName,
                 browser_version: browserVersion
