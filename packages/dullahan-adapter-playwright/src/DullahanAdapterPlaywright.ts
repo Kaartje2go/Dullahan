@@ -503,7 +503,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
         });
     }
 
-    public async click(selector: string): Promise<void> {
+    public async click(selector: string, button: 'left' | 'right' = 'left'): Promise<void> {
         const {page} = this;
 
         if (!page) {
@@ -527,7 +527,7 @@ export default class DullahanAdapterPlaywright extends DullahanAdapter<DullahanA
             throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
         }
 
-        await element.click();
+        await element.click({ button });
     }
 
     public async clickAt(x: number, y: number): Promise<void> {
