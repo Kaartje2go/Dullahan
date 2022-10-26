@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-alpha.159 (2022-10-26)
+
+
+### Reverts
+
+* Revert "update puppeteer (#304)" (#305) ([e65defd](https://github.com/Kaartje2go/Dullahan/commit/e65defd15b8721f8c152e4a7c80199565e190d28)), closes [#304](https://github.com/Kaartje2go/Dullahan/issues/304) [#305](https://github.com/Kaartje2go/Dullahan/issues/305)
+
+
+
+
+
 # 1.0.0-alpha.158 (2022-10-21)
 
 **Note:** Version bump only for package @k2g/dullahan-runner-aws-lambda
