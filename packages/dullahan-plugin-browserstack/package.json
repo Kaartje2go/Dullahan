@@ -15,6 +15,6 @@
   "dependencies": {
     "@k2g/dullahan": "^1.0.0-alpha.159",
     "browserstack-local": "^1.4.7",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^3.0.0"
   }
 }
