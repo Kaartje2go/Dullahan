@@ -522,7 +522,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
         if (useTouch) {
-            await page.tap(selector);
+            return page.tap(selector);
         }
         await page.click(selector, {
             button
