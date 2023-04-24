@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`adapter.clickAtElement throws a valid error when an element cannot be found 1`] = `"Found no element for selector \\"#dullahan\\" with filter [visible=true, onscreen=true] after 200ms"`;
+exports[`adapter.clickAtElement throws a valid error when an element cannot be found 1`] = `"Found no element for selector \\"#dullahan\\" with filter [visible=true, onscreen=true] after 500ms"`;
