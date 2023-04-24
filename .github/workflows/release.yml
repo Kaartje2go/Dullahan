@@ -50,32 +50,3 @@ jobs:
                 env:
                     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
                     GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-on:
-    pull_request: [master]
-
-jobs:
-    release_packages:
-        name: 'Packages'
-        runs-on: ubuntu-latest
-        needs: [commitlint]
-
-        steps:
-            -   uses: actions/checkout@v3
-                with:
-                    path: .
-            -   uses: actions/setup-node@v3
-                with:
-                    node-version: 16
-            -   run: echo "::set-output name=dir::$(yarn cache dir)"
-                id: yarn-cache-dir
-            -   uses: actions/cache@v3
-                with:
-                    path: ${{ steps.yarn-cache-dir.outputs.dir }}
-                    key: yarn-cache-12-${{ hashFiles('**/yarn.lock') }}
-                    restore-keys: yarn-cache-12-
-            -   run: bash ./scripts/ci/setup/default.sh
-            -   run: bash ./scripts/ci/jobs/release_packages_beta.sh
-                env:
-                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-                    GH_TOKEN: ${{ secrets.GH_TOKEN }}
