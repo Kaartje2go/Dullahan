@@ -27,6 +27,8 @@ import {
     waitForReadyState
 } from '@k2g/dullahan';
 
+const findElementTimeout = 500;
+
 export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAdapterPuppeteerUserOptions,
     typeof DullahanAdapterPuppeteerDefaultOptions> {
 
@@ -71,7 +73,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -98,7 +100,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -127,7 +129,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -156,7 +158,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -185,7 +187,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -267,7 +269,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -297,7 +299,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -334,7 +336,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -361,7 +363,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -388,7 +390,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -519,29 +521,14 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
         if (!page) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
-
-        const findOptions: FindElementOptions = {
-            selector,
-            visibleOnly: true,
-            onScreenOnly: true,
-            interactiveOnly: false,
-            timeout: 200,
-            promise: true,
-            expectNoMatches: false
-        };
-
-        const elementHandle = await page.evaluateHandle(findElement, findOptions);
-        const element = elementHandle.asElement();
-
-        if (!element) {
-            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-        }
-
         if (useTouch) {
-            return element.tap();
+            const element = await page.$(selector);
+            element?.tap();
+            return page.tap(selector);
         }
-
-        await element.click({ button });
+        await page.click(selector, {
+            button
+        });
     }
 
     public async clickAt(x: number, y: number): Promise<void> {
@@ -570,7 +557,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -605,7 +592,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -663,7 +650,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -690,7 +677,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -725,7 +712,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -768,7 +755,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -791,7 +778,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -814,7 +801,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -847,7 +834,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -876,7 +863,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: true,
             onScreenOnly: true,
             interactiveOnly: true,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
@@ -972,7 +959,7 @@ export default class DullahanAdapterPuppeteer extends DullahanAdapter<DullahanAd
             visibleOnly: false,
             onScreenOnly: false,
             interactiveOnly: false,
-            timeout: 200,
+            timeout: findElementTimeout,
             promise: true,
             expectNoMatches: false
         };
