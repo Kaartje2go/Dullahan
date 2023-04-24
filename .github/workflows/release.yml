@@ -52,8 +52,7 @@ jobs:
                     GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 on:
-    push:
-        pull_request: [master]
+    pull_request: [master]
 
 jobs:
     release_packages:
