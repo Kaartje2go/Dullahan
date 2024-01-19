@@ -1,6 +1,6 @@
 import {Agent} from 'https';
 
-import {Builder, Origin, until, WebDriver, WebElement, Key} from 'selenium-webdriver';
+import {Builder, Origin, until, WebDriver, WebElement, Key, By} from 'selenium-webdriver';
 
 import {
     buildChrome,
@@ -32,12 +32,9 @@ import {
     getElementAttributes,
     getElementProperties,
     getElementStyles,
-    scrollToElement,
     setElementAttribute,
     setElementProperty,
-    sleep,
     tryIgnore,
-    tryX,
     waitForReadyState
 } from '@k2g/dullahan';
 
@@ -1200,29 +1197,19 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
     }
 
     public async scrollToElement(selector: string): Promise<void> {
-        const {driver, supportsPromises} = this;
+        const { driver, options } = this;
 
         if (!driver) {
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        const findOptions: FindElementOptions = {
-            selector,
-            visibleOnly: false,
-            onScreenOnly: false,
-            interactiveOnly: false,
-            timeout: 200,
-            promise: supportsPromises,
-            expectNoMatches: false
-        };
-
-        const element = await driver.executeScript<WebElement | null>(findElement, findOptions);
+        const locatedElement = this.locateElement(selector);
+        const element = await driver.wait(until.elementLocated(locatedElement), 1000);
 
         if (!element) {
-            throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+            throw new AdapterError(`Could not scroll to element ${selector}`);
         }
-
-        await driver.executeScript(scrollToElement, element);
+        await driver.executeScript("arguments[0].scrollIntoView()", element);
     }
 
     public async screenshotPage(): Promise<string> {
@@ -1271,29 +1258,14 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        const findOptions: FindElementOptions = {
-            selector,
-            visibleOnly: false,
-            onScreenOnly: false,
-            interactiveOnly: false,
-            timeout,
-            promise: supportsPromises,
-            expectNoMatches: false
-        };
-
         try {
-            const element = await driver.wait(() => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
-
+            const locatedElement = this.locateElement(selector);
+            const element = await driver.wait(until.elementLocated(locatedElement), timeout);
+        
             if (!element) {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+                throw new AdapterError(`Unable to find element ${selector}`);
             }
         } catch (error: any) {
-            if (error.name === 'TimeoutError') {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/unloaded|destroyed/ui.test(error.message)) {
-                return this.waitForElementPresent(selector, options);
-            }
-
             throw error;
         }
     }
@@ -1308,29 +1280,14 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        const findOptions: FindElementOptions = {
-            selector,
-            visibleOnly: true,
-            onScreenOnly: true,
-            interactiveOnly: false,
-            timeout,
-            promise: supportsPromises,
-            expectNoMatches: false
-        };
-
         try {
-            const element = await driver.wait(() => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
-
+            const locatedElement = this.locateElement(selector);
+            const element = await driver.wait(until.elementIsVisible(driver.findElement(locatedElement)), timeout || 0);
+        
             if (!element) {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+                throw new AdapterError(`Unable to find element ${selector}`);
             }
         } catch (error: any) {
-            if (error.name === 'TimeoutError') {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/unloaded|destroyed/ui.test(error.message)) {
-                return this.waitForElementVisible(selector, options);
-            }
-
             throw error;
         }
     }
@@ -1345,29 +1302,15 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
             throw new AdapterError(DullahanErrorMessage.NO_BROWSER);
         }
 
-        const findOptions: FindElementOptions = {
-            selector,
-            visibleOnly: true,
-            onScreenOnly: true,
-            interactiveOnly: true,
-            timeout,
-            promise: supportsPromises,
-            expectNoMatches: false
-        };
-
         try {
-            const element = await driver.wait(() => driver.executeScript<WebElement | null>(findElement, findOptions), timeout || 1);
-
+            const locatedElement = this.locateElement(selector);
+            const element = await driver.wait(until.elementLocated(locatedElement), timeout);
+            await this.scrollToElement(selector);
+    
             if (!element) {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
+                throw new AdapterError(`Unable to interact with element ${selector}`);
             }
         } catch (error: any) {
-            if (error.name === 'TimeoutError') {
-                throw new AdapterError(DullahanErrorMessage.findElementResult(findOptions));
-            } else if (/unloaded|destroyed/ui.test(error.message)) {
-                return this.waitForElementInteractive(selector, options);
-            }
-
             throw error;
         }
     }
@@ -1474,5 +1417,11 @@ export default class DullahanAdapterSelenium4 extends DullahanAdapter<DullahanAd
         const dialog = await driver.switchTo().alert();
         value && await dialog.sendKeys(value);
         await (accept ? dialog.accept() : dialog.dismiss());
+    }
+
+    private locateElement(selector: string) : By {
+        return selector[0] === '/'
+            ? By.xpath(selector)
+            : By.css(selector);
     }
 }
