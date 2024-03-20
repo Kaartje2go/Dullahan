@@ -71,7 +71,7 @@
         "@types/node": "^16.11.26",
         "@typescript-eslint/eslint-plugin": "^5.40.1",
         "@typescript-eslint/parser": "^5.40.1",
-        "babel-eslint": "^10.1.0",
+        "@babel/eslint-parser": "^7.11.0",
         "babel-jest": "^26.6.3",
         "codecov": "^3.7.2",
         "commitizen": "^4.2.5",
